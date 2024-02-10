@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link href="{{ asset('') }}assets/css/app.css" rel="stylesheet">
     <link href="{{ asset('') }}assets/css/icons.css" rel="stylesheet">
-    <title>SIPENMARU UM JAMBI</title>
+    <title>{{ env('APP_NAME', 'PBL IK-TI') }}</title>
 </head>
 
 <body class="">
@@ -46,7 +46,7 @@
                                         {{-- <img src="assets/images/logo-icon.png" width="60" alt=""> --}}
                                     </div>
                                     <div class="text-center mb-4">
-                                        <h3 class="">{{ env('APP_NAME', 'UM JAMBI') }}</h3>
+                                        <h3 class="">{{ env('APP_NAME', 'PBL IK-TI') }}</h3>
                                         <p class="mb-0"></p>
                                     </div>
                                     <div class="form-body">
