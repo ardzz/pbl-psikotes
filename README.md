@@ -8,7 +8,7 @@ Dengan menggunakan satu template yang sama, diharapkan proyek-proyek yang dihasi
 
 PBL template ini membutuhkan <i>minimum requirements</i>:
 - PHP 8.2
-- Laravel 9
+- Laravel 10
 - MySQL 8.0
 
 Cara menggunakan template ini adalah sebagai berikut:
