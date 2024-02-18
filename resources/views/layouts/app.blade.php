@@ -88,7 +88,8 @@
             <a href="{{ url('') }}" class="brand-link">
                 <img src="{{ asset('') }}dist/img/logo-polines.png" alt="Logo Polines"
                     class="brand-image elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light "><strong>{{ env('APP_NAME', 'PBL IK-TI Polines') }}</strong></span>
+                <span
+                    class="brand-text font-weight-light "><strong>{{ env('APP_NAME', 'PBL IK-TI Polines') }}</strong></span>
             </a>
             <div class="sidebar">
                 <nav class="mt-2">
@@ -122,8 +123,65 @@
     <script src="{{ asset('') }}plugins/jquery/jquery.min.js"></script>
     <script src="{{ asset('') }}plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('') }}plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="{{ asset('') }}plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('') }}plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('') }}plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('') }}plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{ asset('') }}plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('') }}plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="{{ asset('') }}plugins/jszip/jszip.min.js"></script>
+    <script src="{{ asset('') }}plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="{{ asset('') }}plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="{{ asset('') }}plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="{{ asset('') }}plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="{{ asset('') }}plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
     @stack('js')
     <script src="{{ asset('') }}dist/js/adminlte.min.js"></script>
+    <script>
+        $(function() {
+            $("#datatable-main").DataTable({
+                "responsive": true,
+                lengthMenu: [
+                    [50, 100, 200, -1],
+                    [50, 100, 200, 'All']
+                ],
+                pageLength: 50,
+                //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#datatable-main_wrapper .col-md-6:eq(0)');
+            
+            $('#datatable-sub').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+
+        $('.confirm-button').click(function(event) {
+            var form = $(this).closest("form");
+            event.preventDefault();
+            swal({
+                    title: `Hapus data`,
+                    icon: "warning",
+                    buttons: {
+                        confirm: {
+                            text: 'Ya'
+                        },
+                        cancel: 'Tidak'
+                    },
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+        });
+    </script>
 </body>
 
 </html>
