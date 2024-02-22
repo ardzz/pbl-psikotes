@@ -82,4 +82,4 @@ test:
 
 deploy:
   stage: deploy
-  script: echo "Define your deployment script!"
+  script: echo "Define your deployment script!a"
