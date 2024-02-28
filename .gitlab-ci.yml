@@ -32,6 +32,6 @@ dev-deploy:
         - echo "$PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
     script:
         - composer install
-        - php vendor/bin/envoy run deploy-on-dev
+        - php vendor/bin/envoy run deploy-on-staging
     only:
         - dev
