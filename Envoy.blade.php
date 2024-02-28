@@ -24,7 +24,7 @@ fi
     if [ ! -d /home/cybxcom/psikotes-staging ]; then
         cd /home/cybxcom/
         if ssh-keygen -F gitlab.com; then echo ''; else ssh-keyscan -H gitlab.com >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts; fi
-        git clone --branch staging git@gitlab.com:pbl-2024/pbl-psikotes.git psikotes-staging
+        git clone --branch dev git@gitlab.com:pbl-2024/pbl-psikotes.git psikotes-staging
         cd psikotes-staging
         cp .env.example .env
         /usr/local/php83/bin/php83 /usr/local/bin/composer install
@@ -34,7 +34,7 @@ fi
     else
         echo "Directory already exists"
         cd /home/cybxcom/psikotes-staging
-        git pull origin staging
+        git pull origin dev
         /usr/local/php83/bin/php83 /usr/local/bin/composer install
         /usr/local/php83/bin/php83 artisan clear
     fi
