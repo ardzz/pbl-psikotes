@@ -1,5 +1,6 @@
 stages:
   - deploy
+  - dev-deploy
 
 deploy:
   stage: deploy
@@ -14,6 +15,23 @@ deploy:
     - echo "$PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
   script:
     - composer install
-    - php vendor/bin/envoy run deploy
+    - php vendor/bin/envoy run deploy-on-production
   only:
-    - main
+    - master
+
+dev-deploy:
+    stage: dev-deploy
+    image:
+        name: composer:latest
+        entrypoint: [""]
+    before_script:
+        - mkdir -p ~/.ssh
+        - touch ~/.ssh/known_hosts
+        - eval $(ssh-agent -s)
+        - if ssh-keygen -F $HOST; then echo ''; else ssh-keyscan -H $HOST >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts; fi
+        - echo "$PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    script:
+        - composer install
+        - php vendor/bin/envoy run deploy-on-dev
+    only:
+        - dev
