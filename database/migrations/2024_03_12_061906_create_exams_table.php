@@ -13,10 +13,7 @@ return new class extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")
-                ->constrained()
-                ->references("id")
-                ->on("users");
+            $table->foreignId("answer_id");
             $table->timestamp("start_time");
             $table->timestamp("end_time");
             $table->timestamps();

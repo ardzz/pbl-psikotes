@@ -17,10 +17,6 @@ return new class extends Migration
                 ->constrained()
                 ->references("id")
                 ->on("questions");
-            $table->foreignId("user_id")
-                ->constrained()
-                ->references("id")
-                ->on("users");
             $table->boolean("answer")->nullable(); // T, F, or NULL (can not say)
             $table->timestamps();
         });

@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->foreignId("exam_id")
+                ->constrained()
+                ->references("id")
+                ->on("exams");
             $table->rememberToken();
             $table->timestamps();
         });
