@@ -1,0 +1,65 @@
+.option input:checked::before {
+  transform-origin: left top;
+  animation: checkmark linear both 0.3s;
+}
+@keyframes checkmark {
+  0% {
+    height: 0px;
+    width: 0;
+    opacity: 0;
+    right: 106px;
+  }
+  30% {
+    height: 36px;
+    width: 0;
+    opacity: 1;
+    right: 106px;
+  }
+  to {
+    height: 36px;
+    width: 40px;
+    opacity: 1;
+  }
+}
+
+.animate {
+  animation: fadeDown 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  transform: translateY(-100px);
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animateReverse {
+  animation: fadeDownReverse 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeDownReverse {
+  to {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}

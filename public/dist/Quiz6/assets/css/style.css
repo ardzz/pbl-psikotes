@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sen:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --primary-color: rgb(1, 47, 71);
+  --secondary-color: rgb(207, 2, 47);
+}
+
+body {
+  width: 100%;
+  height: auto;
+  font-family: "Jost";
+  position: relative;
+}
+main {
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(254, 213, 0, 1);
+  background-image: url(../images/questionBG.png);
+  background-blend-mode: screen;
+  background-repeat: repeat space;
+  position: relative;
+  display: grid;
+}
+
+.stepCounter {
+  width: 50px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(212, 212, 212);
+
+  justify-content: center;
+  align-items: end;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.bgColor {
+  content: "";
+  width: 100%;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: 0.5s;
+}
+.stepCounter .stepSingle {
+  height: 150px;
+  background-color: rgb(212, 212, 212);
+  width: 100%;
+}
+.stepSingle .stepBar::before {
+  content: "";
+  width: 100%;
+  height: 0;
+  transition: 0.5s;
+  background-color: var(--primary-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+}
+.active.stepSingle .stepBar::before {
+  height: calc(100% + 70px);
+}
+.stepBar {
+  background-color: rgb(212, 212, 212);
+  height: calc(100% - 70px);
+  width: 100%;
+  position: relative;
+}
+.stepSingle span {
+  display: grid;
+  place-content: center;
+  width: 70px;
+  height: 70px;
+  border: solid 15px rgb(212, 212, 212);
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-family: "Sen";
+  transform: translateX(15px);
+  transition: 0.5s;
+  color: rgb(212, 212, 212);
+  position: relative;
+  z-index: 100;
+  font-weight: bold;
+}
+.stepSingle.active span {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+.steps {
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 10px;
+}
+#step1 .prev {
+  opacity: 0;
+  pointer-events: none;
+}
+.question {
+  font-size: 59px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  width: 80%;
+  margin: 20px auto;
+}
+.options {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 50px;
+}
+.options .option {
+  width: 47%;
+  height: 123px;
+  margin-bottom: 55px;
+  position: relative;
+  display: grid;
+  place-content: center;
+}
+.option input {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(255, 255, 255);
+  border-bottom-right-radius: 100px;
+  cursor: pointer;
+}
+.option::before {
+  content: "X";
+  background-color: var(--primary-color);
+  width: 111px;
+  height: 111px;
+  border-top-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  z-index: 11;
+  font-size: 52px;
+  color: rgb(255, 255, 255);
+  display: grid;
+  place-content: center;
+  pointer-events: none;
+}
+.option:nth-child(1):before {
+  content: "A";
+}
+.option:nth-child(2):before {
+  content: "B";
+}
+.option:nth-child(3):before {
+  content: "C";
+}
+.option:nth-child(4):before {
+  content: "D";
+}
+.option label {
+  font-size: 44px;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  position: relative;
+  pointer-events: none;
+  transition: 0.5s;
+}
+.option input:checked::before {
+  content: "";
+  position: absolute;
+  background-image: url(../images/check.png);
+  width: 40px;
+  height: 36px;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 85px;
+  opacity: 0;
+}
+.option input:checked ~ label {
+  color: var(--secondary-color);
+}
+.nextPrev {
+  width: 100%;
+  margin-top: 20px;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.nextPrev button {
+  background-color: rgb(255, 255, 255);
+  width: 302px;
+  height: 81px;
+  border-top-left-radius: 30px;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom-right-radius: 30px;
+  border: 0;
+  position: relative;
+}
+.nextPrev button i {
+  opacity: 0;
+  transition: 0.5s;
+}
+.nextPrev button:hover i {
+  transform: translateX(0);
+  opacity: 1;
+}
+.nextPrev .prev i {
+  color: rgb(0, 0, 0);
+  margin-right: 10px;
+  transform: translateX(100px);
+}
+.nextPrev .next,
+.nextPrev .apply {
+  background-color: var(--primary-color);
+  color: rgb(255, 255, 255);
+}
+.nextPrev .next i,
+.nextPrev .apply i {
+  color: rgb(255, 255, 255);
+  margin-left: 10px;
+  transform: translateX(-100px);
+}
+#error {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
