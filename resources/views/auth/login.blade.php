@@ -98,7 +98,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="text-center ">
-                                                    <p class="mb-0">Belum memuliki akun ? <a
+                                                    <p class="mb-0">Belum memiliki akun ? <a
                                                             href="{{ route('register') }}">Klik daftar</a>
                                                     </p>
                                                 </div>
