@@ -6,7 +6,7 @@
     <title>Quiz</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="assets/css/Bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="/quiz-assets/assets/css/Bootstrap/bootstrap.min.css" />
 
     <!-- Font Awesome -->
     <link
@@ -15,16 +15,16 @@
     />
 
     <!-- Custom Style -->
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="/quiz-assets/assets/css/style.css" />
 
     <!-- animation -->
-    <link rel="stylesheet" href="assets/css/animation.css" />
+    <link rel="stylesheet" href="/quiz-assets/assets/css/animation.css" />
 
     <!-- Responsive -->
-    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link rel="stylesheet" href="/quiz-assets/assets/css/responsive.css" />
 
     <!-- thankyou -->
-    <link rel="stylesheet" href="assets/css/thankyou.css" />
+    <link rel="stylesheet" href="/quiz-assets/assets/css/thankyou.css" />
   </head>
   <body>
     <main class="overflow-hidden">
@@ -53,7 +53,7 @@
       <div class="container">
         <section class="steps">
           <!-- Question Mark -->
-          <img src="assets/images/QuestionHead.jpg" alt="QuestionMark" />
+          <img src="/quiz-assets/assets/images/QuestionHead.jpg" alt="QuestionMark" />
           <form
             novalidate
             onsubmit="return false"
@@ -218,7 +218,7 @@
 
     <!-- result -->
     <div class="loadingresult">
-      <img src="assets/images/loading.gif" alt="loading" />
+      <img src="/quiz-assets/assets/images/loading.gif" alt="loading" />
     </div>
 
     <div class="thankyou-page">
@@ -226,7 +226,7 @@
         <h2>Quiz has been taken</h2>
       </header>
       <main class="thankyou-page-inner">
-        <img src="assets/images/thankyou-check.png" alt="" />
+        <img src="/quiz-assets/assets/images/thankyou-check.png" alt="" />
         <span>Your answer has been submitted</span>
         <h1>Thankyou for taking Quiz</h1>
         <div class="subscribe">
@@ -239,15 +239,15 @@
     <div id="error"></div>
 
     <!-- Bootstrap JS -->
-    <script src="assets/js/Bootstrap/bootstrap.min.js"></script>
+    <script src="/quiz-assets/assets/js/Bootstrap/bootstrap.min.js"></script>
 
     <!-- jQuery -->
-    <script src="assets/js/jQuery/jquery-3.7.1.min.js"></script>
+    <script src="/quiz-assets/assets/js/jQuery/jquery-3.7.1.min.js"></script>
 
     <!-- ThankyouJS -->
-    <script src="assets/js/thankyou.js"></script>
+    <script src="/quiz-assets/assets/js/thankyou.js"></script>
 
     <!-- Custom JS -->
-    <script src="assets/js/custom.js"></script>
+    <script src="/quiz-assets/assets/js/custom.js"></script>
   </body>
 </html>

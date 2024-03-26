@@ -29,12 +29,12 @@ Route::permanentRedirect('/', '/login');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/exams', [App\Http\Controllers\HomeController::class, 'exam'])->name('exams');
+Route::get('/quiz', [App\Http\Controllers\QuizController::class, 'index'])->name('quiz');
+
 Route::resource('profil', ProfilController::class)->except('destroy');
 
 Route::resource('manage-user', UserController::class);
 Route::resource('manage-role', RoleController::class);
 Route::resource('manage-menu', MenuController::class);
 Route::resource('manage-permission', PermissionController::class)->only('store', 'destroy');
-
-
-Route::get('dbbackup', [DBBackupController::class, 'DBDataBackup']);
