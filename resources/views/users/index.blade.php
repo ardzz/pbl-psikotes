@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6 text-uppercase">
-                    <h4 class="m-0">Management Menu</h4>
+                    <h4 class="m-0">manajemen pengguna</h4>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -25,7 +25,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title">Data Pasien</h3>
+                            <h3 class="card-title">Data Pengguna</h3>
                             <div class="card-tools">
                                 <a href="{{ route('manage-user.create') }}" class="btn btn-tool"><i
                                         class="fas fa-plus-circle"></i></a>
@@ -35,11 +35,9 @@
                             <table id="datatable-main" class="table table-bordered table-striped">
                                 <thead>
                                     <th>No</th>
-                                    <th>Menu</th>
-                                    <th>Url</th>
-                                    <th>Icon</th>
-                                    <th>Parent</th>
-                                    <th>Permission</th>
+                                    <th>Nama Pengguna</th>
+                                    <th>Email</th>
+                                    <th>Role Pengguna</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
