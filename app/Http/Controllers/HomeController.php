@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
-use Illuminate\Support\Facades\DB;
-use Psy\Util\Json;
+use App\Models\Exam;
 
 class HomeController extends Controller
 {
@@ -26,5 +24,25 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function exam()
+    {
+        $exams_db = Exam::all();
+        $users = [];
+
+        foreach ($exams_db as $exam) {
+            if (!is_null($exam->end_date)) {
+                $exam->status = 'Selesai';
+                $exam->duration = $exam->start_date->diffForHumans($exam->end_date);
+            } else {
+                $exam->status = 'Berlangsung';
+                $exam->duration = 'Sedang berlangsung';
+                $exam->end_time = '<span class="text-danger">Belum selesai</span>';
+            }
+            $users[] = $exam;
+        }
+
+        return view('daftar-exam', compact('users'));
     }
 }
