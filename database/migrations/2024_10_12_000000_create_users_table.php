@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->foreignId("exam_id")
+                ->nullable()
                 ->constrained()
                 ->references("id")
                 ->on("exams");
