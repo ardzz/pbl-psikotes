@@ -70,27 +70,19 @@
               <!-- Options -->
               <div class="options">
                 <div class="option animate">
-                  <input type="radio" name="op1" value="Russia" />
-                  <label>Russia</label>
+                  <input type="radio" name="op3" value="No" />
+                  <label>No</label>
                 </div>
                 <div class="option animate delay-100">
-                  <input type="radio" name="op1" value="America" />
-                  <label>America</label>
-                </div>
-                <div class="option animate delay-200">
-                  <input type="radio" name="op1" value="Australia" />
-                  <label>Australia</label>
-                </div>
-                <div class="option animate delay-300">
-                  <input type="radio" name="op1" value="Hong Kong" />
-                  <label>Hong Kong</label>
+                  <input type="radio" name="op3" value="Yes" />
+                  <label>Yes</label>
                 </div>
               </div>
 
               <!-- Next Prev -->
               <div class="nextPrev">
                 <button class="prev" type="button">
-                  <i class="fa-solid fa-arrow-left"></i>last question
+                  <i class="fa-solid fa-arrow-left"></i>Prev question
                 </button>
                 <button class="next" type="button" id="step1btn">
                   NEXT question<i class="fa-solid fa-arrow-right"></i>
@@ -108,27 +100,19 @@
               <!-- Options -->
               <div class="options">
                 <div class="option animate">
-                  <input type="radio" name="op2" value="Russia" />
-                  <label>Russia</label>
+                  <input type="radio" name="op3" value="No" />
+                  <label>No</label>
                 </div>
                 <div class="option animate delay-100">
-                  <input type="radio" name="op2" value="America" />
-                  <label>America</label>
-                </div>
-                <div class="option animate delay-200">
-                  <input type="radio" name="op2" value="Australia" />
-                  <label>Australia</label>
-                </div>
-                <div class="option animate delay-300">
-                  <input type="radio" name="op2" value="Hong Kong" />
-                  <label>Hong Kong</label>
+                  <input type="radio" name="op3" value="Yes" />
+                  <label>Yes</label>
                 </div>
               </div>
 
               <!-- Next Prev -->
               <div class="nextPrev">
                 <button class="prev" type="button">
-                  <i class="fa-solid fa-arrow-left"></i>last question
+                  <i class="fa-solid fa-arrow-left"></i>Prev question
                 </button>
                 <button class="next" type="button" id="step2btn">
                   NEXT question<i class="fa-solid fa-arrow-right"></i>
@@ -146,18 +130,18 @@
               <!-- Options -->
               <div class="options">
                 <div class="option animate">
-                  <input type="radio" name="op3" value="Yes" />
-                  <label>Yes</label>
-                </div>
-                <div class="option animate delay-100">
                   <input type="radio" name="op3" value="No" />
                   <label>No</label>
+                </div>
+                <div class="option animate delay-100">
+                  <input type="radio" name="op3" value="Yes" />
+                  <label>Yes</label>
                 </div>
               </div>
               <!-- Next Prev -->
               <div class="nextPrev">
                 <button class="prev" type="button">
-                  <i class="fa-solid fa-arrow-left"></i>last question
+                  <i class="fa-solid fa-arrow-left"></i>Prev question
                 </button>
                 <button class="next" type="button" id="step3btn">
                   NEXT question<i class="fa-solid fa-arrow-right"></i>
@@ -175,18 +159,19 @@
               <!-- Options -->
               <div class="options">
                 <div class="option animate">
-                  <input type="radio" name="op4" value="Yes" />
-                  <label>Yes</label>
+                  <input type="radio" name="op3" value="No" />
+                  <label>No</label>
                 </div>
                 <div class="option animate delay-100">
-                  <input type="radio" name="op4" value="No" />
-                  <label>No</label>
+                  <input type="radio" name="op3" value="Yes" />
+                  <label>Yes</label>
+                </div>
               </div>
 
               <!-- Next Prev -->
               <div class="nextPrev">
                 <button class="prev" type="button">
-                  <i class="fa-solid fa-arrow-left"></i>last question
+                  <i class="fa-solid fa-arrow-left"></i>Prev question
                 </button>
                 <button class="apply" type="button" id="sub">
                   Submit<i class="fa-solid fa-arrow-right"></i>
