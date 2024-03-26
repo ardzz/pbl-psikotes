@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("answer_id");
-            $table->timestamp("start_time")->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp("end_time")->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->foreignId("user_id");
+            $table->timestamp("start_time")->nullable();
+            $table->timestamp("end_time")->nullable();
             $table->timestamps();
         });
     }
