@@ -146,23 +146,14 @@
               <!-- Options -->
               <div class="options">
                 <div class="option animate">
-                  <input type="radio" name="op3" value="Russia" />
-                  <label>Russia</label>
+                  <input type="radio" name="op3" value="Yes" />
+                  <label>Yes</label>
                 </div>
                 <div class="option animate delay-100">
-                  <input type="radio" name="op3" value="America" />
-                  <label>America</label>
-                </div>
-                <div class="option animate delay-200">
-                  <input type="radio" name="op3" value="Australia" />
-                  <label>Australia</label>
-                </div>
-                <div class="option animate delay-300">
-                  <input type="radio" name="op3" value="Hong Kong" />
-                  <label>Hong Kong</label>
+                  <input type="radio" name="op3" value="No" />
+                  <label>No</label>
                 </div>
               </div>
-
               <!-- Next Prev -->
               <div class="nextPrev">
                 <button class="prev" type="button">
