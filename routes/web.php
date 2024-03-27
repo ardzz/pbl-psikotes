@@ -1,13 +1,17 @@
 <?php
 
+use App\Helpers\MenuHelper;
 use App\Http\Controllers\DBBackupController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +32,9 @@ Route::permanentRedirect('/', '/login');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/exams', [App\Http\Controllers\HomeController::class, 'exam'])->name('exams');
-Route::get('/quiz', [App\Http\Controllers\QuizController::class, 'index'])->name('quiz');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/exams', [HomeController::class, 'exam'])->name('exams');
+Route::get('/quiz', [QuizController::class, 'index'])->name('quiz');
 
 Route::resource('profil', ProfilController::class)->except('destroy');
 
