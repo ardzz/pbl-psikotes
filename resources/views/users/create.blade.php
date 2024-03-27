@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6 text-uppercase">
-                    <h4 class="m-0">Tambah Pengguna</h4>
+                    <h4 class="m-0">Tambah Pasien</h4>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -31,9 +31,9 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label>Nama Lengkap</label>
+                                    <label>Nama Pasien</label>
                                     <input type="text" name="name"
-                                        class="form-control @error('name')is-invalid @enderror" placeholder="Nama Lengkap">
+                                        class="form-control @error('name')is-invalid @enderror" placeholder="Nama Pasien">
                                     @error('name')
                                         <div class="invalid-feedback" role="alert">
                                             <span>{{ $message }}</span>
@@ -44,7 +44,7 @@
                                     <label>Alamat Email</label>
                                     <input type="email" name="email"
                                         class="form-control @error('email')is-invalid @enderror "
-                                        placeholder="Alamat Email">
+                                        placeholder="Alamat Email" disabled>
                                     @error('email')
                                         <div class="invalid-feedback" role="alert">
                                             <span>{{ $message }}</span>
@@ -53,25 +53,17 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" name="password" class="form-control" placeholder="Password">
+                                    <input type="text" name="password" class="form-control" placeholder="Password">
                                 </div>
                                 <div class="form-group">
-                                    <label>Role Pengguna</label>
-                                    @foreach ($roles as $item)
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" name="role[]" class="custom-control-input"
-                                                id="{{ $item->name . $item->id }}" value="{{ strtolower($item->name) }}">
-                                            <label class="custom-control-label"
-                                                for="{{ $item->name . $item->id }}">{{ strtoupper($item->name) }}</label>
+                                    <label>Nama Dokter</label>
+                                    <input type="text" name="name"
+                                        class="form-control @error('name')is-invalid @enderror" placeholder="Nama Dokter">
+                                    @error('name')
+                                        <div class="invalid-feedback" role="alert">
+                                            <span>{{ $message }}</span>
                                         </div>
-                                    @endforeach
-                                </div>
-                                <div class="form-group">
-                                    <label>Verified</label>
-                                    <div class="input-group">
-                                        <input type="checkbox" name="verified" data-bootstrap-switch data-off-color="danger"
-                                            data-on-color="success">
-                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="card-footer">
