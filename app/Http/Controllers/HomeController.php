@@ -53,4 +53,24 @@ class HomeController extends Controller
 
         return view('exam.create', compact('doctors'));
     }
+
+    public function myExam()
+    {
+        $exams_db = Exam::where('user_id', auth()->id())->get();
+        $exams = [];
+
+        foreach ($exams_db as $exam) {
+            if (!is_null($exam->end_date)) {
+                $exam->status = 'Selesai';
+                $exam->duration = $exam->start_date->diffForHumans($exam->end_date);
+            } elseif (is_null($exam->expired_time)){
+                $exam->status = 'Belum dimulai';
+            } else {
+                $exam->status = 'Berlangsung';
+            }
+            $exams[] = $exam;
+        }
+
+        return view('exam.mine', compact('exams'));
+    }
 }
