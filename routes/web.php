@@ -1,7 +1,5 @@
 <?php
 
-use App\Helpers\MenuHelper;
-use App\Http\Controllers\DBBackupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PermissionController;
@@ -33,11 +31,15 @@ Route::permanentRedirect('/', '/login');
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::get('/exams', [HomeController::class, 'exam'])->name('exams');
 Route::get('/exam-enrollments', [HomeController::class, 'enrollment'])->name('enrollment');
+Route::get('/my-exams', [HomeController::class, 'myExam'])->name('my-exam');
+
 Route::get('/quiz', [QuizController::class, 'index'])->name('quiz');
 
 Route::resource('profil', ProfilController::class)->except('destroy');
+
 
 Route::resource('manage-user', UserController::class);
 Route::resource('manage-role', RoleController::class);
