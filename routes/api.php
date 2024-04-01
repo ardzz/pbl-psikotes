@@ -25,4 +25,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post("/question", [Question::class, "store"]);
 
     Route::get("/exam/start", [Exam::class, "start"]);
+    Route::get("/exam/delete", [Exam::class, "delete"]);
 });

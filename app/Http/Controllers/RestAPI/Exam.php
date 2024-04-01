@@ -23,4 +23,23 @@ class Exam extends Controller
 
         return response()->json(["message" => "Exam started"], 200);
     }
+
+    public function delete(Request $request)
+    {
+    
+        $userId = auth()->id();
+        $id = $request->id;
+    
+        $deleted = ExamModel::where('user_id', $userId)
+                            ->where('id', $id)
+                            ->delete();
+    
+        if ($deleted) {
+            return response()->json(["message" => "Exam deleted successfully"], 200);
+        } else {
+            return response()->json(["message" => "Exam not found for deletion"], 404);
+        }
+    }
+    
+    
 }
