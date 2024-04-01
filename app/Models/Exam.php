@@ -21,4 +21,9 @@ class Exam extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    function doctor(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'doctor_id');
+    }
 }
