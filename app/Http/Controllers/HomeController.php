@@ -43,6 +43,6 @@ class HomeController extends Controller
             $users[] = $exam;
         }
 
-        return view('daftar-exam', compact('users'));
+        return view('exam.list', compact('users'));
     }
 }
