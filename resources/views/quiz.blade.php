@@ -3,159 +3,74 @@
 @section('title', 'Quiz')
 
 @section('content')
-<main class="overflow-hidden">
-      <div class="stepCounter">
-        <div class="stepSingle">
-          <div class="stepBar"></div>
+<div class="container">
+            <div class="container-question">
+                <div class="tittle-ujian">
+                    <h1 class="">PSIKOTEST</h1>
+                    <h2>No 13</h2>
+                </div>
+                <div class="question">
+                    <h1>apa yang membuatmu marah?</h1>
+                    <div class="options">
+                        <div class="option animate">
+                            <input type="radio" name="op3" value="No" />
+                            <label>No</label>
+                        </div>
+                        <div class="option animate delay-100">
+                            <input type="radio" name="op3" value="Yes" />
+                            <label>Yes</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn-sebelum">Sebelum</button>
+                    <button class="btn-ragu">Ragu</button>
+                    <button class="btn-setelah">setelah</button>
+                </div>
+            </div>
+            <div class="container-number">
+                <div class="title-nosoal">
+                    <h2>Nomor soal</h2>
+                </div>
+                <div class="list-nosoal">
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                    <div class="no-satu">1</div>
+                </div>
 
-          <span>1</span>
+                <h3>hijau : aman</h3>
+                <h3>hijau : aman</h3>
+                <h3>hijau : aman</h3>
+                <div class="btn-no-group">
+                    <div class="btn-prev-nomor">
+                        <a href="http:">Sebelumnya</a>
+                    </div>
+                    <div class="btn-next-nomor">
+                        <a href="http:">Setelahnya</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="stepSingle">
-          <div class="stepBar"></div>
-          <span>2</span>
-        </div>
-        <div class="stepSingle">
-          <div class="stepBar"></div>
-
-          <span>3</span>
-        </div>
-        <div class="stepSingle">
-          <div class="stepBar"></div>
-
-          <span>4</span>
-        </div>
-        <div class="bgColor"></div>
-      </div>
-      <div class="container">
-        <section class="steps">
-          <!-- Question Mark -->
-          <img src="/quiz-assets/assets/images/QuestionHead.jpg" alt="QuestionMark" />
-          <form
-            novalidate
-            onsubmit="return false"
-            class="show-section"
-            id="stepForm"
-          >
-            <!-- Step 1 -->
-            <fieldset id="step1">
-              <!-- Question -->
-              <h1 class="question">
-                Which Former Britishcolony was Given Back to China in 1997?
-              </h1>
-
-              <!-- Options -->
-              <div class="options">
-                <div class="option animate">
-                  <input type="radio" name="op3" value="No" />
-                  <label>No</label>
-                </div>
-                <div class="option animate delay-100">
-                  <input type="radio" name="op3" value="Yes" />
-                  <label>Yes</label>
-                </div>
-              </div>
-
-              <!-- Next Prev -->
-              <div class="nextPrev">
-                <button class="prev" type="button">
-                  <i class="fa-solid fa-arrow-left"></i>Prev question
-                </button>
-                <button class="next" type="button" id="step1btn">
-                  NEXT question<i class="fa-solid fa-arrow-right"></i>
-                </button>
-              </div>
-            </fieldset>
-
-            <!-- Step 2 -->
-            <fieldset id="step2">
-              <!-- Question -->
-              <h1 class="question">
-                Which Former Britishcolony was Given Back to China in 1997?
-              </h1>
-
-              <!-- Options -->
-              <div class="options">
-                <div class="option animate">
-                  <input type="radio" name="op3" value="No" />
-                  <label>No</label>
-                </div>
-                <div class="option animate delay-100">
-                  <input type="radio" name="op3" value="Yes" />
-                  <label>Yes</label>
-                </div>
-              </div>
-
-              <!-- Next Prev -->
-              <div class="nextPrev">
-                <button class="prev" type="button">
-                  <i class="fa-solid fa-arrow-left"></i>Prev question
-                </button>
-                <button class="next" type="button" id="step2btn">
-                  NEXT question<i class="fa-solid fa-arrow-right"></i>
-                </button>
-              </div>
-            </fieldset>
-
-            <!-- Step 3 -->
-            <fieldset id="step3">
-              <!-- Question -->
-              <h1 class="question">
-                Which Former Britishcolony was Given Back to China in 1997?
-              </h1>
-
-              <!-- Options -->
-              <div class="options">
-                <div class="option animate">
-                  <input type="radio" name="op3" value="No" />
-                  <label>No</label>
-                </div>
-                <div class="option animate delay-100">
-                  <input type="radio" name="op3" value="Yes" />
-                  <label>Yes</label>
-                </div>
-              </div>
-              <!-- Next Prev -->
-              <div class="nextPrev">
-                <button class="prev" type="button">
-                  <i class="fa-solid fa-arrow-left"></i>Prev question
-                </button>
-                <button class="next" type="button" id="step3btn">
-                  NEXT question<i class="fa-solid fa-arrow-right"></i>
-                </button>
-              </div>
-            </fieldset>
-
-            <!-- Step 4 -->
-            <fieldset id="step4">
-              <!-- Question -->
-              <h1 class="question">
-                Which Former Britishcolony was Given Back to China in 1997?
-              </h1>
-
-              <!-- Options -->
-              <div class="options">
-                <div class="option animate">
-                  <input type="radio" name="op3" value="No" />
-                  <label>No</label>
-                </div>
-                <div class="option animate delay-100">
-                  <input type="radio" name="op3" value="Yes" />
-                  <label>Yes</label>
-                </div>
-              </div>
-
-              <!-- Next Prev -->
-              <div class="nextPrev">
-                <button class="prev" type="button">
-                  <i class="fa-solid fa-arrow-left"></i>Prev question
-                </button>
-                <button class="apply" type="button" id="sub">
-                  Submit<i class="fa-solid fa-arrow-right"></i>
-                </button>
-              </div>
-            </fieldset>
-          </form>
-        </section>
-      </div>
-    </main>
 @endsection

@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    gap: 16px;
+    padding: 20px 50px;
+}
+.container-question {
+    padding: 30px; /* Tambahkan padding untuk memberikan jarak di sekitar konten */
+    border: 1px solid #a08a8a; /* Tambahkan garis tepi untuk membedakan konten */
+    border-radius: 10px; /* Tambahkan sudut bulat untuk estetika */
+
+    width: 75%;
+    background: aliceblue;
+}
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 50px;
+}
+
+.container-number {
+    width: 250 px;
+    background-color: aliceblue;
+}
+
+.list-nosoal {
+    padding: 30px;
+    border-top: 1px solid black;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(5, 40px);
+}
+
+.no-satu {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: aqua;
+}
+
+.tittle-ujian {
+    text-align: center;
+    font-size: 26px;
+}
+
+.question {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+label {
+    font-size: 20px;
+}
+
+.btn-no-group {
+    display: flex;
+    gap: 20px;
+}
+.btn-sebelum {
+    background-color: #4caf50; /* Hijau */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.btn-sebelum:hover {
+    background-color: #45a049; /* Hijau yang lebih gelap */
+}
+
+.btn-ragu {
+    background-color: #f44336; /* Merah */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.btn-ragu:hover {
+    background-color: #da190b; /* Merah yang lebih gelap */
+}
+
+.btn-setelah {
+    background-color: #008cba; /* Biru */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.btn-setelah:hover {
+    background-color: #005f6b; /* Biru yang lebih gelap */
+}

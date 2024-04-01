@@ -34,9 +34,7 @@ class insertQuestion extends Command
             $question = new Question([
                 'content' => $question,
             ]);
-            if($question->save()){
-                $this->info('Question inserted: ' . $question->content);
-            }else{
+            if(!$question->save()){
                 $this->error('Failed to insert question: ' . $question->content);
             }
         }

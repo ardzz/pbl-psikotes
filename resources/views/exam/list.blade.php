@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6 text-uppercase">
-                    <h4 class="m-0">manajemen pengguna</h4>
+                    <h4 class="m-0">manajemen exam</h4>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -37,9 +37,12 @@
                             <table id="datatable-main" class="table table-bordered table-striped">
                                 <thead>
                                     <th>No</th>
-                                    <th>Nama Pengguna</th>
-                                    <th>Waktu Mulai Tes</th>
+                                    <th>Nama</th>
+                                    <th>Tujuan Tes</th>
+                                    <th>Dokter</th>
+                                    <th>Waktu Mulai</th>
                                     <th>Waktu Selesai</th>
+                                    <th>Waktu Expired Tes</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>

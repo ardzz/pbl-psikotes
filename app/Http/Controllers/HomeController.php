@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exam;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -43,6 +44,13 @@ class HomeController extends Controller
             $users[] = $exam;
         }
 
-        return view('daftar-exam', compact('users'));
+        return view('exam.list', compact('users'));
+    }
+
+    public function enrollment()
+    {
+        $doctors = User::where('user_type', 3)->get();
+
+        return view('exam.create', compact('doctors'));
     }
 }

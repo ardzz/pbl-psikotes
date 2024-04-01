@@ -35,6 +35,22 @@ class MasterSeeder extends Seeder
             'urutan' => 1
         ]);
 
+        Menu::create([
+            'nama_menu' => 'Exam Management',
+            'url' => 'exams',
+            'icon' => 'fas fa-pen-alt',
+            'parent_id' => $menu->id,
+            'urutan' => 1
+        ]);
+
+        Menu::create([
+            'nama_menu' => 'Exam Enrollments',
+            'url' => 'exam-enrollments',
+            'icon' => 'fas fa-user-plus',
+            'parent_id' => $menu->id,
+            'urutan' => 1
+        ]);
+
         $submenu = Menu::create([
             'nama_menu' => 'Manajemen Pengguna',
             'url' => '#',
@@ -78,23 +94,6 @@ class MasterSeeder extends Seeder
         Permission::create(['name' => 'update_menu', 'menu_id' => $menu_id->id]);
         Permission::create(['name' => 'delete_menu', 'menu_id' => $menu_id->id]);
 
-        $menu = Menu::create([
-            'nama_menu' => 'Backup Server',
-            'url' => '#',
-            'icon' => '',
-            'parent_id' => '0',
-            'urutan' => 2
-        ]);
-
-        $menu_id = Menu::create([
-            'nama_menu' => 'Backup Database',
-            'url' => 'dbbackup',
-            'icon' => 'fas fa-database',
-            'parent_id' => $menu->id,
-            'urutan' => 1
-        ]);
-
-        Permission::create(['name' => 'backup_database', 'menu_id' => $menu_id->id]);
 
         DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [1, 1]);
         DB::insert('insert into role_has_menus (menu_id, role_id) values (?, ?)', [2, 1]);
@@ -108,8 +107,45 @@ class MasterSeeder extends Seeder
         User::factory()->create([
             'name' => 'Super Admin',
             'email' => 'superadmin@gmail.com',
-            'password' => Hash::make("adminadmin")
+            'password' => Hash::make("adminadmin"),
+            'user_type' => 2
         ]);
+
+        $patients = [
+            'YUNUS PAKAGE',
+            'KIKY FITRAH RUMAKAT',
+            'YOSUA KUDIAY',
+            'STEVEN LEHALEWERIWA'
+        ];
+
+        $i = 1;
+
+        foreach ($patients as $patient) {
+            User::factory()->create([
+                'name' => $patient,
+                'email' => 'pasien' . $i . '@gmail.com',
+                'password' => Hash::make("123"),
+                'user_type' => 1
+            ]);
+            $i++;
+        }
+
+        $doctors = [
+            'SIMON PETRUS MATLY',
+            'WIBE DAVID RUMBIAK',
+            'YOHANES YULIUS KAMORI',
+            'IVONNE APRILLIANTI SYARIF',
+        ];
+        $i = 1;
+        foreach ($doctors as $doctor) {
+            User::factory()->create([
+                'name' => $doctor,
+                'email' => 'dokter' . $i . '@gmail.com',
+                'password' => Hash::make("123"),
+                'user_type' => 3
+            ]);
+            $i++;
+        }
 
         $superadmin = Role::create(['name' => 'superadmin']);
         $superadmin->givePermissionTo(Permission::all());

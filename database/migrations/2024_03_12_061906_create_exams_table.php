@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id");
+            $table->string("purpose")->default("General Checkup");
             $table->timestamp("start_time")->nullable();
             $table->timestamp("end_time")->nullable();
+            $table->timestamp("expired_time")->nullable();
+            $table->foreignId("doctor_id");
             $table->timestamps();
         });
     }
