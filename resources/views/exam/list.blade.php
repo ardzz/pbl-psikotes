@@ -50,8 +50,11 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->user->name }}</td>
+                                            <td>{{ $item->purpose }}</td>
+                                            <td>{{ $item->doctor->name }}</td>
                                             <td>{{ $item->start_time }}</td>
                                             <td>{!! $item->end_time !!}</td>
+                                            <td>{{ $item->expired_time }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-block btn-sm btn-outline-info"
                                                     data-toggle="dropdown"><i class="fas fa-cog"></i>
