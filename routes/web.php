@@ -34,6 +34,7 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/exams', [HomeController::class, 'exam'])->name('exams');
+Route::get('/exam-enrollments', [HomeController::class, 'enrollment'])->name('enrollment');
 Route::get('/quiz', [QuizController::class, 'index'])->name('quiz');
 
 Route::resource('profil', ProfilController::class)->except('destroy');
