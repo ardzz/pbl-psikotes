@@ -24,10 +24,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("/question/{id}", [Question::class, "show"])->name('show_question');
     Route::post("/question", [Question::class, "store"])->name('store_question');
 
-<<<<<<< HEAD
     Route::get("/exam/start", [Exam::class, "start"]);
     Route::get("/exam/delete", [Exam::class, "delete"]);
-=======
     Route::get("/exam/start", [Exam::class, "start"])->name('start_exam');
->>>>>>> 689173a3f1084e8b6cd086233d64381aac240f40
 });
