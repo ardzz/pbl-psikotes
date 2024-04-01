@@ -21,8 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get("/question/{id}", [Question::class, "show"]);
-    Route::post("/question", [Question::class, "store"]);
+    Route::get("/question/{id}", [Question::class, "show"])->name('show_question');
+    Route::post("/question", [Question::class, "store"])->name('store_question');
 
-    Route::get("/exam/start", [Exam::class, "start"]);
+    Route::get("/exam/start", [Exam::class, "start"])->name('start_exam');
 });
