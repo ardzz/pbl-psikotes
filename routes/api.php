@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RestAPI\Exam;
+use App\Http\Controllers\RestAPI\Patient;
 use App\Http\Controllers\RestAPI\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("/question/{id}", [Question::class, "show"])->name('show_question');
     Route::post("/question", [Question::class, "store"])->name('store_question');
 
-    Route::get("/exam/start", [Exam::class, "start"]);
-    Route::get("/exam/delete", [Exam::class, "delete"]);
+    Route::get("/exam/delete", [Exam::class, "delete"])->name('delete_exam');
     Route::get("/exam/start", [Exam::class, "start"])->name('start_exam');
+    Route::post("/exam/add", [Exam::class, "add"])->name('add_exam');
+
+    Route::get("/search_patient/{name}", [Patient::class, "searchByName"])->name('search_patient');
 });
