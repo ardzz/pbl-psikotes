@@ -5,6 +5,8 @@ namespace App\Http\Controllers\RestAPI;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use App\Models\Exam as ExamModel;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class Exam extends Controller
 {
@@ -24,22 +26,36 @@ class Exam extends Controller
         return response()->json(["message" => "Exam started"], 200);
     }
 
+    /**
+     * @throws ValidationException
+     */
+    function add(Request $request): JsonResponse
+    {
+        $validated = $this->validate($request, [
+            'user_id' => 'required|integer',
+            'doctor_id' => 'required|integer',
+            'purpose' => 'required|string',
+        ]);
+
+        $exam = ExamModel::create($validated);
+
+        return response()->json($exam, 201);
+    }
+
     public function delete(Request $request)
     {
-    
+
         $userId = auth()->id();
         $id = $request->id;
-    
+
         $deleted = ExamModel::where('user_id', $userId)
-                            ->where('id', $id)
-                            ->delete();
-    
+            ->where('id', $id)
+            ->delete();
+
         if ($deleted) {
             return response()->json(["message" => "Exam deleted successfully"], 200);
         } else {
             return response()->json(["message" => "Exam not found for deletion"], 404);
         }
     }
-    
-    
 }
