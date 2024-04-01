@@ -44,7 +44,7 @@
                                     <label>Alamat Email</label>
                                     <input type="email" name="email"
                                         class="form-control @error('email')is-invalid @enderror "
-                                        placeholder="Alamat Email">
+                                        placeholder="Alamat Email" disabled="">
                                     @error('email')
                                         <div class="invalid-feedback" role="alert">
                                             <span>{{ $message }}</span>
@@ -52,26 +52,22 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" name="password" class="form-control" placeholder="Password">
+                                    <label>Tujuan Tes</label>
+                                    <input type="text" name="purpose" class="form-control" placeholder="Tujuan Tes">
                                 </div>
                                 <div class="form-group">
-                                    <label>Role Pengguna</label>
-                                    @foreach ($roles as $item)
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" name="role[]" class="custom-control-input"
-                                                id="{{ $item->name . $item->id }}" value="{{ strtolower($item->name) }}">
-                                            <label class="custom-control-label"
-                                                for="{{ $item->name . $item->id }}">{{ strtoupper($item->name) }}</label>
+                                    <label>Nama Dokter</label>
+                                    <option value="">Pilih Dokter</option>
+                                    <select name="doctor_id" class="form-control @error('doctor_id')is-invalid @enderror">
+                                        @foreach ($doctors as $doctor)
+                                            <option value="{{ $doctor->id }}">Dr. {{ $doctor->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('doctor_id')
+                                        <div class="invalid-feedback" role="alert">
+                                            <span>{{ $message }}</span>
                                         </div>
-                                    @endforeach
-                                </div>
-                                <div class="form-group">
-                                    <label>Verified</label>
-                                    <div class="input-group">
-                                        <input type="checkbox" name="verified" data-bootstrap-switch data-off-color="danger"
-                                            data-on-color="success">
-                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="card-footer">
