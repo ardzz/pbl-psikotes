@@ -37,9 +37,12 @@
                             <table id="datatable-main" class="table table-bordered table-striped">
                                 <thead>
                                     <th>No</th>
-                                    <th>Nama Pengguna</th>
-                                    <th>Waktu Mulai Tes</th>
+                                    <th>Nama</th>
+                                    <th>Tujuan Tes</th>
+                                    <th>Dokter</th>
+                                    <th>Waktu Mulai</th>
                                     <th>Waktu Selesai</th>
+                                    <th>Waktu Expired Tes</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
