@@ -23,7 +23,7 @@
 }
 
 .container-number {
-    width: 250 px;
+    width: 280px; /* Perhatikan tidak ada spasi antara nilai dan satuan (px) */
     background-color: aliceblue;
 }
 
@@ -32,13 +32,52 @@
     border-top: 1px solid black;
     display: grid;
     gap: 10px;
+    justify-content: center;
+    align-items: center;
     grid-template-columns: repeat(5, 40px);
 }
 
-.no-satu {
+.nomer {
     width: 100%;
-    aspect-ratio: 1;
-    background-color: aqua;
+    height: 40px; /* Menambahkan tinggi untuk item-grid */
+    background-color: rgb(78, 83, 83);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nomer-hijau {
+    background-color: #4caf50;
+}
+.nomer-merah {
+    background-color: #da190b;
+}
+.btn-no-group {
+    display: flex;
+    justify-content: center; /* Membuat tombol berada di tengah secara horizontal */
+}
+
+.btn-prev-nomor,
+.btn-next-nomor {
+    margin: 10px; /* Menambahkan jarak antara tombol */
+}
+
+.btn-prev-nomor a,
+.btn-next-nomor a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Warna latar belakang */
+    color: white; /* Warna teks */
+    text-decoration: none;
+    border-radius: 5px; /* Agar tombol memiliki sudut yang lebih lembut */
+}
+
+/* Efek hover saat kursor diarahkan ke tombol */
+.btn-prev-nomor a:hover,
+.btn-next-nomor a:hover {
+    background-color: #0056b3; /* Warna latar belakang saat hover */
+}
+.color-description {
+    color: black;
 }
 
 .tittle-ujian {
