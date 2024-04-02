@@ -9,13 +9,50 @@
         max-width: 1200px;
     }
 }
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
     .container {
         max-width: 800px;
     }
     .question {
         font-size: 45px;
         width: 90%;
+    }
+} */
+@media (max-width: 1200px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container-question {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .tittle-ujian {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .timer {
+        margin: 20px auto;
+    }
+
+    .button-group {
+        margin-top: 20px;
+    }
+
+    .container-number {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .list-nosoal {
+        justify-content: center;
+    }
+
+    .btn-no-group {
+        margin-top: 20px;
     }
 }
 
