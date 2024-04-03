@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Exam extends Model
 {
-    protected $fillable = ["user_id", "start_time", "end_time"];
+    protected $fillable = ["user_id", "start_time", "end_time", "doctor_id", "purpose"];
 
     use HasFactory;
 
