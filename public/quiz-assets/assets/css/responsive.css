@@ -1,66 +1,103 @@
 @media (min-width: 1600px) {
-  .container {
-    max-width: 1600px;
-  }
+    .container {
+        max-width: 1600px;
+    }
 }
 
 @media (max-width: 1440px) {
-  .container {
-    max-width: 1200px;
-  }
+    .container {
+        max-width: 1200px;
+    }
 }
+/* @media (max-width: 1200px) {
+    .container {
+        max-width: 800px;
+    }
+    .question {
+        font-size: 45px;
+        width: 90%;
+    }
+} */
 @media (max-width: 1200px) {
-  .container {
-    max-width: 800px;
-  }
-  .question {
-    font-size: 45px;
-    width: 90%;
-  }
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container-question {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .tittle-ujian {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .timer {
+        margin: 20px auto;
+    }
+
+    .button-group {
+        margin-top: 20px;
+    }
+
+    .container-number {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .list-nosoal {
+        justify-content: center;
+    }
+
+    .btn-no-group {
+        margin-top: 20px;
+    }
 }
 
-@media (max-width: 992px) {
-  .stepCounter {
-    display: none;
-  }
-  .option input:checked::before {
-    right: 40px;
-  }
+/* @media (max-width: 992px) {
+    .stepCounter {
+        display: none;
+    }
+    .option input:checked::before {
+        right: 40px;
+    }
 }
 
 @media (max-width: 768px) {
-  .question {
-    font-size: 35px;
-  }
-  .options .option {
-    height: 100px;
-  }
-  .option label {
-    font-size: 30px;
-  }
-  .option::before {
-    width: 60px;
-    height: 60px;
-    top: -15px;
-    left: -15px;
-    font-size: 30px;
-  }
-  .nextPrev {
-    flex-wrap: wrap;
-  }
-  .nextPrev button {
-    width: 100%;
-    margin-bottom: 30px;
-  }
+    .question {
+        font-size: 35px;
+    }
+    .options .option {
+        height: 100px;
+    }
+    .option label {
+        font-size: 30px;
+    }
+    .option::before {
+        width: 60px;
+        height: 60px;
+        top: -15px;
+        left: -15px;
+        font-size: 30px;
+    }
+    .nextPrev {
+        flex-wrap: wrap;
+    }
+    .nextPrev button {
+        width: 100%;
+        margin-bottom: 30px;
+    }
 }
 @media (max-width: 576px) {
 }
 
 @media (max-width: 480px) {
-  .question {
-    font-size: 25px;
-  }
-  .options .option {
-    width: 100%;
-  }
-}
+    .question {
+        font-size: 25px;
+    }
+    .options .option {
+        width: 100%;
+    }
+} */
