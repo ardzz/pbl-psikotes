@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Exam::class);
     }
+
+    public function personalInformation()
+    {
+        return $this->hasOne(PersonalInformation::class);
+    }
 }
