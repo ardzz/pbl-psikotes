@@ -77,7 +77,7 @@ class User extends Authenticatable implements MustVerifyEmail
         };
     }
 
-    public function personalInformation(): HasOne
+    public function personal_information(): HasOne
     {
         return $this->hasOne(PersonalInformation::class);
     }
