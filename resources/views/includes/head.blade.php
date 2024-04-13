@@ -16,4 +16,5 @@
     <link rel="stylesheet" href="/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css">
     <!-- Core Css -->
     <link  id="themeColors"  rel="stylesheet" href="/dist/css/style.min.css" />
+    @yield('css')
 </head>
