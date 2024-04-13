@@ -22,3 +22,4 @@ Route::get('/oauth/callback', [OauthGoogle::class, 'handleGoogleCallback'])->nam
 Route::get('/oauth/redirect', [OauthGoogle::class, 'redirectToGoogle'])->name('oauth.redirect');
 
 require __DIR__.'/auth.php';
+require __DIR__.'/api.php';
