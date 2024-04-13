@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('personal_informations', function (Blueprint $table) {
+        Schema::create('personal_information', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('nik')->unique();
+            $table->string('nik')->unique()->nullable();
             $table->string('occupation')->nullable();
-            $table->date('birthdate');
+            $table->date('birthdate')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('religion')->nullable();
             $table->enum('marital_status', ['single', 'married', 'divorced', 'widowed'])->nullable();
             $table->enum('education', ['elementary', 'junior_high', 'senior_high', 'diploma', 'bachelor', 'master', 'doctor'])
                 ->default('senior_high')->nullable();
-            $table->enum('sex', ['m', 'f']); // there are only two genders lmao
+            $table->enum('sex', ['m', 'f'])->nullable(); // there are only two genders lmao
             $table->string('province')->nullable();
             $table->string('city')->nullable();
             $table->string('district')->nullable();
