@@ -72,4 +72,8 @@ class HomeController extends Controller
     {
         return view('guides');
     }
+
+    public function aboutMmpi2(){
+        return view('about-mmpi2');
+    }
 }
