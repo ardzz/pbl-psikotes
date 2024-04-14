@@ -45,7 +45,7 @@ class HomeController extends Controller
     {
         $doctors = User::where('user_type', 3)->get();
 
-        return view('exam.create', compact('doctors'));
+        return view('exam.add', compact('doctors'));
     }
 
     public function myExam()
