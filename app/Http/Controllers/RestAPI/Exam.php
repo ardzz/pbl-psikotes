@@ -31,7 +31,7 @@ class Exam extends Controller
      */
     function add(Request $request): JsonResponse
     {
-        $validated = $this->validate($request, [
+        $validated = $request->validate([
             'user_id' => 'required|integer',
             'doctor_id' => 'required|integer',
             'purpose' => 'required|string',
