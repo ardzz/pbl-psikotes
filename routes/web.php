@@ -21,6 +21,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/guides', [HomeController::class, 'guides'])->name('guides');
     Route::get('/about-mmpi2', [HomeController::class, 'aboutMmpi2'])->name('about-mmpi2');
+
+    Route::get('/add-exam', [HomeController::class, 'enrollment'])->name('exam.enrollment');
+    Route::get('/exams', [HomeController::class, 'exam'])->name('exam.manage');
 });
 
 Route::get('/oauth/callback', [OauthGoogle::class, 'handleGoogleCallback'])->name('oauth.callback');
