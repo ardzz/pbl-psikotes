@@ -24,7 +24,6 @@
                     <i class="ti ti-notebook"></i>
                   </span>
                 <span class="hide-menu">Exam</span>
-                <span class="hide-menu badge rounded-pill bg-success fs-2 py-1 px-2">Coming soon</span>
             </a>
         </li>
         <li class="sidebar-item">
@@ -33,7 +32,6 @@
                     <i class="ti ti-report-medical"></i>
                 </span>
                 <span class="hide-menu">Medical Record</span>
-                <span class="hide-menu badge rounded-pill bg-success fs-2 py-1 px-2">Coming soon</span>
             </a>
         </li>
         <li class="sidebar-item">
