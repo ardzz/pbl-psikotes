@@ -18,7 +18,13 @@ class ProfileController extends Controller
     {
         return view('profile.edit', [
             'user' => $request->user(),
-            'data' => $request->user()->personal_information,
+        ]);
+    }
+
+    public function editPersonal(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        return view('profile.personal-information', [
+            'data' => auth()->user()->personal_information,
         ]);
     }
 
