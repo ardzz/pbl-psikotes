@@ -18,48 +18,13 @@
             </div>
         </div>
         <div class="card-body border-top p-4">
-            <h2 class="fs-8 fw-semibold mb-3">Title of the paragraph</h2>
             <p class="mb-3">
-                But you cannot figure out what it is or what it can do. MTA web directory is the simplest way in which one can bid on a link, or a few links if they wish to do so. The link
-                directory on MTA displays all of the links it currently has, and does so in alphabetical order, which makes it much easier for someone to find what they are looking for if it is
-                something specific and they do not want to go through all the other sites and links as well. It allows you to start your bid at the bottom and slowly work your way to the top
-                of the list.
+            MMPI-2, atau Minnesota Multiphasic Personality Inventory-2, adalah tes psikologi yang dirancang untuk menilai aspek-aspek kepribadian dan membantu dalam diagnosis gangguan mental. Tes ini merupakan revisi dari MMPI asli yang pertama kali diterbitkan pada tahun 1943. MMPI-2 diperkenalkan pada tahun 1989 dan telah menjadi salah satu instrumen penilaian klinis yang paling sering digunakan di dunia.
+            Tes MMPI-2 terdiri dari 567 pertanyaan dengan jawaban benar atau salah, dan biasanya membutuhkan waktu sekitar 60–90 menit untuk diselesaikan. Pertanyaan-pertanyaan tersebut mencakup berbagai aspek psikologis dan dirancang untuk mengungkap pola-pola pikir, emosi, dan perilaku responden.
+            Hasil tes MMPI-2 diinterpretasikan menggunakan skala yang berbeda-beda, yang masing-masing mengukur tendensi tertentu seperti depresi, paranoia, dan skizofrenia. Skor pada skala ini membantu profesional kesehatan mental dalam membuat diagnosis dan rencana perawatan2.
+            MMPI-2 juga telah direvisi dan diperbarui beberapa kali untuk meningkatkan keakuratannya dan untuk mengurangi bias yang mungkin ada dalam versi sebelumnya.
             </p>
-            <p class="mb-3">
-                Gigure out what it is or what it can do. MTA web directory is the simplest way in which one can bid on a link, or a few links if they wish to do so. The link directory on MTA
-                displays all of the links it currently has, and does so in alphabetical order, which makes it much easier for someone to find what they are looking for if it is something
-                specific and they do not want to go through all the other sites and links as well. It allows you to start your bid at the bottom and slowly work your way to the top of the
-            </p>
-            <p class="text-dark mb-0"><strong>This is strong text.</strong></p>
-            <p class="mb-0"><em>This is italic text.</em></p>
-            <div class="border-top mt-7 pt-7">
-                <h3 class="fw-semibold">Unorder list.</h3>
-                <ul class="my-3 ps-4 text-dark">
-                    <li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> Gigure out what it is or</li>
-                    <li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> The links it currently</li>
-                    <li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> It allows you to start your bid</li>
-                    <li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> Gigure out what it is or</li>
-                    <li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> The links it currently</li>
-                    <li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> It allows you to start your bid</li>
-                </ul>
-            </div>
-            <div class="border-top mt-7 pt-7">
-                <h3 class="fw-semibold">Order list.</h3>
-                <ol class="my-3 text-dark">
-                    <li>Gigure out what it is or</li>
-                    <li>The links it currently</li>
-                    <li>It allows you to start your bid</li>
-                    <li>Gigure out what it is or</li>
-                    <li>The links it currently</li>
-                    <li>It allows you to start your bid</li>
-                </ol>
-            </div>
-            <div class="border-top mt-7 pt-7">
-                <h3 class="fw-semibold">Quotes</h3>
-                <div class="p-3">
-                    <h6 class="mb-0 fs-4 fw-semibold"><i class="ti ti-quote fs-7"></i>Life is short, Smile while you still have teeth!</h6>
-                </div>
-            </div>
+            <p class="mb-0"><em>Kelompok 3 TI-2A PBL | Politeknik Negeri Semarang.</em></p>
         </div>
     </div>
 @endsection
