@@ -185,11 +185,11 @@
                                     </span>
                                 </div>
                                 <div class="mb-4">
-                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Date of Birth</label>
+                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Tanggal Lahir</label>
                                     <input type="date" class="form-control" id="exampleInputtext" name="birthdate" placeholder="12/12/1990" value="{{ $data->birthdate ?? '' }}">
                                 </div>
                                 <div class="mb-4">
-                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Phone</label>
+                                    <label for="exampleInputPassword1" class="form-label fw-semibold">No.Telepon</label>
                                     <input type="text" class="form-control" id="exampleInputtext" name="phone_number" placeholder="081234567890" value="{{ $data->phone_number ?? '' }}">
                                     <span class="help-block">
                                         <small>Pastikan isi nomor telepon yang dapat dihubungi</small>
@@ -296,7 +296,7 @@
     <script>
 
     function update_profile() {
-        let url = '{{ route('edit_personal_information') }}';
+        let url = "{{ route('edit_personal_information') }}";
 
         let data = {
             nik: document.querySelector('input[name="nik"]').value,
@@ -339,7 +339,7 @@
     }
 
     function update_account(){
-        let url = '{{ route('profile.update') }}';
+        let url = "{{ route('profile.update') }}";
 
         let data = {
             name: document.querySelector('input[name="full_name"]').value,
@@ -376,7 +376,7 @@
     }
 
     function update_password(){
-        let url = '{{ route('password.update') }}';
+        let url = "{{ route('password.update') }}";
 
         let data = {
             current_password: document.querySelector('input[name="current_password"]').value,

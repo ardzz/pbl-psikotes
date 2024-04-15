@@ -83,7 +83,7 @@
     <script>
 
     function update_profile() {
-        let url = '{{ route('edit_personal_information') }}';
+        let url = "{{ route('edit_personal_information') }}";
 
         let data = {
             nik: document.querySelector('input[name="nik"]').value,
@@ -126,7 +126,7 @@
     }
 
     function update_account(){
-        let url = '{{ route('profile.update') }}';
+        let url = "{{ route('profile.update') }}";
 
         let data = {
             name: document.querySelector('input[name="full_name"]').value,
@@ -163,7 +163,7 @@
     }
 
     function update_password(){
-        let url = '{{ route('password.update') }}';
+        let url = "{{ route('password.update') }}";
 
         let data = {
             current_password: document.querySelector('input[name="current_password"]').value,
