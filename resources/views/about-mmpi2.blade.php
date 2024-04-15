@@ -19,7 +19,10 @@
         </div>
         <div class="card-body border-top p-4">
             <p class="mb-4">
-                Minnesota Multiphasic Personality Inventory (MMPI) adalah tes psikologis yang paling banyak digunakan di dunia untuk membantu dalam penilaian dan diagnosis masalah mental dan emosional. MMPI-2 adalah versi yang diperbarui dari tes asli, yang dirilis pada tahun 1989.
+                MMPI-2, atau Minnesota Multiphasic Personality Inventory-2, adalah tes psikologi yang dirancang untuk menilai aspek-aspek kepribadian dan membantu dalam diagnosis gangguan mental.
+            </p>
+            <p class="mb-4">
+                MMPI-2 terdiri dari serangkaian pertanyaan atau pernyataan yang harus dijawab oleh individu yang mengikuti tes. Tujuan dari tes ini adalah untuk membantu profesional kesehatan mental memahami kepribadian dan masalah psikologis yang mungkin dimiliki oleh individu tersebut.
             </p>
             <p class="mb-4">
                 MMPI-2 terdiri dari serangkaian pertanyaan atau pernyataan yang harus dijawab oleh individu yang mengikuti tes. Tujuan dari tes ini adalah untuk membantu profesional kesehatan mental memahami kepribadian dan masalah psikologis yang mungkin dimiliki oleh individu tersebut.
@@ -27,9 +30,13 @@
             <p class="mb-4">
                 Tes ini mencakup berbagai area, termasuk kecenderungan terhadap depresi, kecemasan, gangguan kepribadian, serta pola pemikiran dan emosi lainnya. Hasil dari MMPI-2 dapat memberikan wawasan yang berharga bagi para profesional untuk membantu dalam merencanakan perawatan dan intervensi yang tepat.
             </p>
+            <p class="mb-4">
+                Hasil tes MMPI-2 diinterpretasikan menggunakan skala yang berbeda-beda, yang masing-masing mengukur tendensi tertentu seperti depresi, paranoia, dan skizofrenia. Skor pada skala ini membantu profesional kesehatan mental dalam membuat diagnosis dan rencana perawatan.
+            </p>
             <p class="mb-0">
                 Penting untuk diingat bahwa MMPI-2 bukanlah tes yang menentukan segala-galanya, tetapi merupakan alat yang membantu dalam proses evaluasi klinis dan diagnosis masalah mental. Hasilnya harus dianalisis oleh profesional yang berpengalaman dalam psikodiagnostik.
             </p>
         </div>
+        <p class="mb-0"><em>Kelompok 3 TI-2A PBL | Politeknik Negeri Semarang.</em></p>
     </div>
 @endsection
