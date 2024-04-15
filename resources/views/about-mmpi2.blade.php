@@ -3,7 +3,7 @@
 @section('container-fluid')
     <div class="card rounded-2 overflow-hidden">
         <div class="position-relative">
-            <a href="javascript:void(0)"><img src="../../dist/images/blog/about-mmpi2.png" class="card-img-top rounded-0 object-fit-cover" alt="..." height="440"></a>
+            <a href="javascript:void(0)"><img src="../../dist/images/blog/about-mmpi2.png" class="card-img-top rounded-0 object-fit-cover" alt="..." height="400"></a>
             <span class="badge bg-white text-dark fs-2 rounded-4 lh-sm mb-9 me-9 py-1 px-2 fw-semibold position-absolute bottom-0 end-0">2 min Read</span>
             <img src="../../dist/images/profile/user-1.jpg" alt="" class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9" width="40" height="40" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Esther Lindsey">
         </div>
