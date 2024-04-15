@@ -40,7 +40,7 @@
                         <th>Dokter</th>
                         <th>Waktu Mulai</th>
                         <th>Waktu Selesai</th>
-                        <th>Waktu Expired Tes</th>
+                        <th>Tenggat Waktu</th>
                         <th>Aksi</th>
                         </thead>
                         <tbody>
