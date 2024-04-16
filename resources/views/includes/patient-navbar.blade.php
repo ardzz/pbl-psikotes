@@ -11,7 +11,7 @@
         <!-- Dashboard -->
         <!-- =================== -->
         <li class="sidebar-item">
-            <a class="sidebar-link" href="#" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('mmpi2') }}" aria-expanded="false">
                   <span>
                     <i class="ti ti-notebook"></i>
                   </span>
