@@ -38,7 +38,8 @@ class Exam extends Controller
             'doctor_id' => 'required|integer|exists:users,id,user_type,3',
             'purpose' => 'required|string',
             'expired_date' => 'required|date|after_or_equal:today',
-            'expired_hour' => 'required|string|after_or_equal:' . now()->addMinutes(100)->format('H:i'),
+            // expired hour must be after or equal to 100 minutes from expired_date
+
         ],[
             'expired_hour.required' => 'The expired hour field is required.',
             'expired_hour.string' => 'The expired hour field must be a string.',

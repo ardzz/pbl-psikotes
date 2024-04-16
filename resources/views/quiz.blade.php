@@ -17,7 +17,7 @@
                                             </strong>
                                         </a>
                                     </li>
-                                    <li class="breadcrumb-item active">#5</li>
+                                    <li class="breadcrumb-item active">{{ env('APP_NAME') }}</li>
                                 </ol>
                                 <p class="text-muted text-truncate mb-0">
                                     <span>No soal</span>
@@ -25,6 +25,11 @@
                                     <span>Dari</span>
                                     <span class="text-success">568</span>
                                 </p>
+                            </div>
+                            <div class="col mb-2">
+                                <div class="d-flex justify-content-center">
+                                    <div class="timer">00:00:00</div>
+                                </div>
                             </div>
                             <div class="col mb-2">
                                 <div class="d-flex justify-content-end">
@@ -56,6 +61,16 @@
                                 <button class="btn btn-outline-primary me-2">Option A</button>
                                 <button class="btn btn-outline-primary me-2">Option B</button>
                                 <button class="btn btn-outline-primary">Option C</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer border-top p-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary">Prev</button>
+                                <button class="btn btn-primary">Next</button>
                             </div>
                         </div>
                     </div>
