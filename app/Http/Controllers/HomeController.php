@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Exam;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -77,7 +78,16 @@ class HomeController extends Controller
         return view('about-mmpi2');
     }
 
-    public function mmpi2(){
-        return view('quiz');
+    public function mmpi2(Request $request){
+        $agent = new \Jenssegers\Agent\Agent(userAgent: $request->header('User-Agent'));
+        if ($agent->isDesktop()){
+            return view('quiz-desktop');
+        }
+        elseif ($agent->isMobile()){
+            return view('quiz-mobile');
+        }
+        else{
+            return view('quiz-desktop');
+        }
     }
 }
