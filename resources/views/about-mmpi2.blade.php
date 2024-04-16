@@ -33,10 +33,13 @@
             <p class="mb-4">
                 Hasil tes MMPI-2 diinterpretasikan menggunakan skala yang berbeda-beda, yang masing-masing mengukur tendensi tertentu seperti depresi, paranoia, dan skizofrenia. Skor pada skala ini membantu profesional kesehatan mental dalam membuat diagnosis dan rencana perawatan.
             </p>
-            <p class="mb-0">
+            <p class="mb-4">
                 Penting untuk diingat bahwa MMPI-2 bukanlah tes yang menentukan segala-galanya, tetapi merupakan alat yang membantu dalam proses evaluasi klinis dan diagnosis masalah mental. Hasilnya harus dianalisis oleh profesional yang berpengalaman dalam psikodiagnostik.
             </p>
+            <p class="mb-1">
+                <span class="badge bg-dark fs-2 py-1 px-2 lh-sm mt-3">Kelompok 3 TI-2A PBL</span>
+                <span class="badge bg-dark fs-2 py-1 px-2 lh-sm mt-3">Politeknik Negeri Semarang.</span>
+            </p>
         </div>
-        <p class="mb-0"><em>Kelompok 3 TI-2A PBL | Politeknik Negeri Semarang.</em></p>
     </div>
 @endsection
