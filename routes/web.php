@@ -29,5 +29,11 @@ Route::middleware('auth')->group(function () {
 Route::get('/oauth/callback', [OauthGoogle::class, 'handleGoogleCallback'])->name('oauth.callback');
 Route::get('/oauth/redirect', [OauthGoogle::class, 'redirectToGoogle'])->name('oauth.redirect');
 
+
+if (env('APP_ENV') === 'local') {
+    Route::get('/login-as/{id}', [ProfileController::class, 'loginAs'])->name('login-as');
+}
+
+
 require __DIR__.'/auth.php';
 require __DIR__.'/api.php';
