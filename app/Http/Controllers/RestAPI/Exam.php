@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\RestAPI;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\ExamCreated;
 use Illuminate\Http\JsonResponse;
 use App\Models\Exam as ExamModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\ValidationException;
 
 class Exam extends Controller
@@ -56,6 +58,7 @@ class Exam extends Controller
         ]);
 
         if ($exam) {
+            $exam->user->notify(new ExamCreated($exam));
             return response()->json(["message" => "Exam added successfully"], 200);
         } else {
             return response()->json(["message" => "Exam not added"], 400);
