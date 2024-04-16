@@ -12,20 +12,26 @@ use Illuminate\Validation\ValidationException;
 
 class Exam extends Controller
 {
-    function start(): JsonResponse
+    function start(Request $request, string $id): JsonResponse
     {
+        $id_exam = $request->id;
         $userId = auth()->id();
-        $exam = ExamModel::where("user_id", $userId)->whereNull("end_time")->first();
+        $exam = ExamModel::where("user_id", $userId)->where("id", $id_exam)->first();
 
-        if ($exam || ExamModel::where("user_id", $userId)->where("end_time", ">", now()->subMinutes(30))->exists()) {
-            $message = $exam ? "You have an active exam" : "You have taken an exam in the last 30 minutes";
-            return response()->json(["message" => $message], 400);
+        if ($exam == null) {
+            return response()->json(["message" => "Exam not found"], 404);
+        }elseif ($exam->start_time != null && $exam->end_time == null) {
+            return response()->json(["message" => "Exam already started"], 400);
+        }elseif ($exam->start_time != null && $exam->end_time != null) {
+            return response()->json(["message" => "Exam already finished"], 400);
+        }elseif ($exam->expired_time < now()) {
+            return response()->json(["message" => "Exam expired"], 400);
+        }else{
+            $exam->update([
+                "start_time" => now()
+            ]);
+            return response()->json(["message" => "Exam started"], 200);
         }
-
-        $exam = ExamModel::create(['user_id' => $userId, 'start_time' => now()]);
-        $exam->user()->update(['exam_id' => $exam->id]);
-
-        return response()->json(["message" => "Exam started"], 200);
     }
 
     /**
@@ -38,8 +44,7 @@ class Exam extends Controller
             'doctor_id' => 'required|integer|exists:users,id,user_type,3',
             'purpose' => 'required|string',
             'expired_date' => 'required|date|after_or_equal:today',
-            // expired hour must be after or equal to 100 minutes from expired_date
-
+            'expired_hour' => 'required|string',
         ],[
             'expired_hour.required' => 'The expired hour field is required.',
             'expired_hour.string' => 'The expired hour field must be a string.',
@@ -50,6 +55,10 @@ class Exam extends Controller
 
 
         $expiredTime = $validated['expired_date'] . ' ' . $validated['expired_hour'];
+
+        if (now()->addMinutes(100) > $expiredTime) {
+            return response()->json(["message" => "The expired date must be after or equal to " . now()->addMinutes(100)->format('H:i') . " (minimum 100 minutes from now)"], 400);
+        }
 
         $exam = ExamModel::create([
             'user_id' => $validated['user_id'],
