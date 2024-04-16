@@ -34,9 +34,28 @@
                                     </button>
                                     <button class="btn btn-sm btn-outline-danger">
                                         <i class="uil uil-trash-alt me-1"></i>
-                                        Lihat Daftar Soal
+                                        Daftar Soal
                                     </button>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content of question full -->
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="mb-0">Soal no 5</h5>
+                                    <p class="text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+                                </div>
+                            </div>
+                            <!-- answer option using button (3 options) and centering -->
+                            <div class="mt-4 d-flex justify-content-center">
+                                <button class="btn btn-outline-primary me-2">Option A</button>
+                                <button class="btn btn-outline-primary me-2">Option B</button>
+                                <button class="btn btn-outline-primary">Option C</button>
                             </div>
                         </div>
                     </div>
