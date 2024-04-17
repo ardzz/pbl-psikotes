@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\VerifyEmailQueued;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -62,9 +62,9 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new ResetPasswordQueued($token));
     }
 
-    public function exam(): BelongsTo
+    public function exam(): HasMany
     {
-        return $this->belongsTo(Exam::class);
+        return $this->hasMany(Exam::class);
     }
 
     public function getUserType(): string
@@ -80,5 +80,19 @@ class User extends Authenticatable implements MustVerifyEmail
     public function personal_information(): HasOne
     {
         return $this->hasOne(PersonalInformation::class);
+    }
+
+    public function amIHaveUnassignedExam(): bool
+    {
+        return $this->exam()->whereNull('end_time')->exists();
+    }
+
+    public function amIUnstartedExam(): bool
+    {
+        return $this->exam()->whereNull('start_time')->exists();
+    }
+    public function getUnfinishedExam(): Model|HasMany
+    {
+        return $this->exam()->whereNull('end_time')->first();
     }
 }

@@ -83,7 +83,6 @@
     <script src="../../dist/js/plugins/numeric-input-example.js"></script>
     <script>
         $("#editable-datatable")
-            .editableTableWidget()
             .numericInputExample()
             .find("td:first")
             .focus();

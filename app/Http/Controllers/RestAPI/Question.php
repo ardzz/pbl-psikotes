@@ -21,8 +21,9 @@ class Question extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            "exam_id" => "required|exists:exams,id",
             "question_id" => "required|exists:questions,id",
-            "answer" => "required|in:Yes,No,null"
+            "answer" => "required|in:Yes,No,Unknown"
         ]);
 
         $answer = null;
@@ -31,12 +32,13 @@ class Question extends Controller
             $answer = match ($request->answer){
                 "Yes" => true,
                 "No" => false,
+                "Unknown" => null
             };
         }
 
         $question = Answer::updateOrCreate([
-            "user_id" => Auth::user()->id,
             "question_id" => $request->question_id,
+            "exam_id" => $request->exam_id,
             "answer" => $answer
         ]);
 

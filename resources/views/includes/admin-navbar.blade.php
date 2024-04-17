@@ -11,27 +11,19 @@
         <!-- Dashboard -->
         <!-- =================== -->
         <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('mmpi2') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('exam.enrollment') }}" aria-expanded="false">
                   <span>
-                    <i class="ti ti-notebook"></i>
+                    <i class="ti ti-pencil"></i>
                   </span>
-                <span class="hide-menu">Exam</span>
+                <span class="hide-menu">Add Exam</span>
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" href="#" aria-expanded="false">
-                <span>
-                    <i class="ti ti-report-medical"></i>
-                </span>
-                <span class="hide-menu">Medical Record</span>
-            </a>
-        </li>
-        <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('personal.edit') }}" aria-expanded="false">
-                <span>
-                    <i class="ti ti-user"></i>
-                </span>
-                <span class="hide-menu">Personal Information</span>
+            <a class="sidebar-link" href="{{ route('exam.manage') }}" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-report-analytics"></i>
+                  </span>
+                <span class="hide-menu">Manage Exam</span>
             </a>
         </li>
         <li class="sidebar-item">
@@ -39,7 +31,15 @@
                   <span>
                     <i class="ti ti-book"></i>
                   </span>
-                <span class="hide-menu">Guide</span>
+                <span class="hide-menu">Manage User</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('guides') }}" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-book"></i>
+                  </span>
+                <span class="hide-menu">Add User</span>
             </a>
         </li>
         <li class="sidebar-item">

@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Exam extends Model
 {
-    protected $fillable = ["user_id", "start_time", "end_time", "doctor_id", "purpose"];
+    protected $fillable = ["user_id", "start_time", "end_time", "doctor_id", "purpose", "expired_time"];
 
     use HasFactory;
 
-    function question(): BelongsTo
+    function answer()
     {
-        return $this->belongsTo(Question::class);
+        return $this->hasMany(Answer::class);
     }
 
     function user(): BelongsTo
@@ -25,5 +25,14 @@ class Exam extends Model
     function doctor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'doctor_id');
+    }
+
+    function getLatestQuestion()
+    {
+        $last = $this->answer->last();
+        if ($last) {
+            return $last->question;
+        }
+        return Question::first();
     }
 }

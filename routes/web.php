@@ -22,12 +22,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/guides', [HomeController::class, 'guides'])->name('guides');
     Route::get('/about-mmpi2', [HomeController::class, 'aboutMmpi2'])->name('about-mmpi2');
 
+    Route::get('/mmpi2', [HomeController::class, 'mmpi2'])->name('mmpi2');
     Route::get('/add-exam', [HomeController::class, 'enrollment'])->name('exam.enrollment');
     Route::get('/exams', [HomeController::class, 'exam'])->name('exam.manage');
 });
 
 Route::get('/oauth/callback', [OauthGoogle::class, 'handleGoogleCallback'])->name('oauth.callback');
 Route::get('/oauth/redirect', [OauthGoogle::class, 'redirectToGoogle'])->name('oauth.redirect');
+
+
+if (env('APP_ENV') === 'local') {
+    Route::get('/login-as/{id}', [ProfileController::class, 'loginAs'])->name('login-as');
+}
+
 
 require __DIR__.'/auth.php';
 require __DIR__.'/api.php';

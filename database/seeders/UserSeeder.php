@@ -24,7 +24,8 @@ class UserSeeder extends Seeder
             'YUNUS PAKAGE',
             'KIKY FITRAH RUMAKAT',
             'YOSUA KUDIAY',
-            'STEVEN LEHALEWERIWA'
+            'STEVEN LEHALEWERIWA',
+            'STEVEN KUDIAY',
         ];
 
         $i = 1;

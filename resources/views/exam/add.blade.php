@@ -1,9 +1,5 @@
 @extends('layouts.dashboard')
 
-@section('css')
-    <link rel="stylesheet" href="/dist/libs/sweetalert2/dist/sweetalert2.min.css">
-@endsection
-
 @section('container-fluid')
     <div class="card bg-light-info shadow-none position-relative overflow-hidden">
         <div class="card-body px-4 py-3">
@@ -30,25 +26,33 @@
             <div class="card w-100 position-relative overflow-hidden mb-0">
                 <div class="card-body">
                     <div class="form-group mb-4">
-                        <label>Cari Nama Pasien</label>
+                        <label class="form-label fw-semibold">Cari Nama Pasien</label>
                         <input type="text" name="search_name" class="form-control " placeholder="Nama Lengkap" id="search_name">
                     </div>
                     <div class="form-group mb-4">
-                        <label>Nama Pasien</label>
+                        <label class="form-label fw-semibold">Nama Pasien</label>
                         <select name="patient_id" class="form-control" id="patient" onchange="set_email();">
                             <option value="">Pilih Pasien</option>
                         </select>
                     </div>
                     <div class="form-group mb-4">
-                            <label>Alamat Email</label>
-                            <input type="email" name="email" class="form-control" placeholder="Alamat Email" disabled="">
-                        </div>
+                        <label class="form-label fw-semibold">Alamat Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="Alamat Email" disabled="">
+                    </div>
                     <div class="form-group mb-4">
-                            <label>Tujuan Tes</label>
-                            <input type="text" name="purpose" class="form-control" placeholder="Tujuan Tes">
-                        </div>
+                            <label class="form-label fw-semibold">Keterangan/Tujuan Psikotes</label>
+                            <input type="text" name="purpose" class="form-control" placeholder="Syarat administrasi pendaftaran PNS">
+                    </div>
                     <div class="form-group mb-4">
-                            <label>Nama Dokter</label>
+                        <label class="form-label fw-semibold">Tenggat Waktu</label>
+                        <input type="date" name="deadline" class="form-control" placeholder="Tenggat Waktu">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="form-label fw-semibold">Tenggat Jam</label>
+                        <input type="time" name="deadline_time" class="form-control" placeholder="Tenggat Jam">
+                    </div>
+                    <div class="form-group mb-4">
+                            <label class="form-label fw-semibold">Nama Dokter</label>
                             @if(auth()->user()->getUserType() == "Doctor")
                                 <input type="text" class="form-control" value="{{ auth()->user()->name }}" disabled>
                                 <input type="hidden" name="doctor_id" class="form-control" value="{{ auth()->user()->id }}" disabled>
@@ -73,8 +77,6 @@
 @endsection
 
 @section('scripts')
-    <script src="/dist/libs/sweetalert2/dist/sweetalert2.min.js"></script>
-    <script src="/dist/js/forms/sweet-alert.init.js"></script>
     <script>
         $(function() {
             $("input[data-bootstrap-switch]").each(function() {
@@ -131,6 +133,8 @@
             $.post(url, {
                 user_id: $('select[name="patient_id"]').val(),
                 purpose: $('input[name="purpose"]').val(),
+                expired_date: $('input[name="deadline"]').val(),
+                expired_hour: $('input[name="deadline_time"]').val(),
                 @if(auth()->user()->getUserType() == "Admin")
                 doctor_id: $('select[name="doctor_id"]').val()
                 @else
