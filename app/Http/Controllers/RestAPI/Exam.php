@@ -12,25 +12,20 @@ use Illuminate\Validation\ValidationException;
 
 class Exam extends Controller
 {
-    function start(Request $request, string $id): JsonResponse
+    function start(): JsonResponse
     {
-        $id_exam = $request->id;
         $userId = auth()->id();
-        $exam = ExamModel::where("user_id", $userId)->where("id", $id_exam)->first();
+        $exam = ExamModel::where("user_id", $userId)->whereNull("start_time")->whereNull("end_time")->first();
 
         if ($exam == null) {
-            return response()->json(["message" => "Exam not found"], 404);
-        }elseif ($exam->start_time != null && $exam->end_time == null) {
-            return response()->json(["message" => "Exam already started"], 400);
-        }elseif ($exam->start_time != null && $exam->end_time != null) {
-            return response()->json(["message" => "Exam already finished"], 400);
+            return response()->json(["message" => "Exam not found or already started/finished"], 404);
         }elseif ($exam->expired_time < now()) {
             return response()->json(["message" => "Exam expired"], 400);
         }else{
             $exam->update([
                 "start_time" => now()
             ]);
-            return response()->json(["message" => "Exam started"], 200);
+            return response()->json(["message" => "Exam successfully started"], 200);
         }
     }
 
@@ -55,8 +50,12 @@ class Exam extends Controller
 
 
         $expiredTime = $validated['expired_date'] . ' ' . $validated['expired_hour'];
+        $last_exam = ExamModel::where('user_id', $validated['user_id'])->whereNull('end_time')->first();
 
-        if (now()->addMinutes(100) > $expiredTime) {
+        if ($last_exam) {
+            return response()->json(["message" => "User already has an exam that is not finished"], 400);
+        }
+        elseif (now()->addMinutes(100) > $expiredTime) {
             return response()->json(["message" => "The expired date must be after or equal to " . now()->addMinutes(100)->format('H:i') . " (minimum 100 minutes from now)"], 400);
         }
 
