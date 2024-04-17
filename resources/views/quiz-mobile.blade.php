@@ -64,7 +64,7 @@
                         <div class="d-flex justify-content-center">
                             <h3 class="text-truncate mb-2 btn btn-lg btn-light">
                                 <span>No</span>
-                                <strong class="text-dark">5</strong>
+                                <strong class="text-dark" id="no_question">{{ $last_question->id }}</strong>
                                 <span>dari</span>
                                 <strong class="text-dark">568</strong>
                                 <span>soal</span>
@@ -79,16 +79,19 @@
                     <div class="col-12 mt-0">
                         <div class="d-flex justify-content-between">
                             <div>
-                                <h4 class="text mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</h4>
+                                <h4 class="text mb-4">
+                                    {{ $last_question->content }}
+                                </h4>
                             </div>
                         </div>
                         <!-- answer option using button (3 options) and centering -->
                         <!-- make button each line vertically -->
                         <div class="mt-2 d-flex justify-content-center">
                             <div class="col-md-6">
-                                <button class="btn btn-light btn-lg w-100 mb-2">YA</button>
-                                <button class="btn btn-light btn-lg w-100 mb-2">TIDAK MENJAWAB</button>
-                                <button class="btn btn-light btn-lg w-100 mb-2">TIDAK</button>
+                                <input type="hidden" id="question_id" value="{{ $last_question->id }}">
+                                <button class="btn btn-light btn-lg w-100 mb-2" onclick="submit_answer('Yes')">YA</button>
+                                <button class="btn btn-light btn-lg w-100 mb-2" onclick="submit_answer('Unknown')">TIDAK MENJAWAB</button>
+                                <button class="btn btn-light btn-lg w-100 mb-2" onclick="submit_answer('No')">TIDAK</button>
                             </div>
                         </div>
                     </div>
@@ -98,8 +101,8 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-dark">Kembali</button>
-                            <button class="btn btn-dark">Selanjutnya</button>
+                            <button class="btn btn-dark" onclick="prev_question()">Kembali</button>
+                            <button class="btn btn-dark" onclick="next_question()">Selanjutnya</button>
                         </div>
                     </div>
                 </div>
@@ -124,5 +127,54 @@
                 $('#countdown').remove();
             }
         }, 1000);
+    </script>
+    <script>
+        function submit_answer(answer) {
+            $.ajax({
+                url: '{{ route('store_question') }}',
+                type: 'POST',
+                data: {
+                    question_id: $('#question_id').val(),
+                    answer: answer,
+                    exam_id: '{{ $exam->id }}'
+                },
+                success: function(response) {
+                    get_question(response.question_id, 1);
+                },
+                error: function(error) {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: error.responseJSON.message
+                    });
+                }
+            });
+        }
+
+        function get_question(question_id, index) {
+            // convert to integer
+            question_id = parseInt(question_id);
+            index = parseInt(index);
+            let next_question_id = question_id + index;
+            $.ajax({
+                url: '{{ url('/api/question') }}' + '/' + next_question_id,
+                type: 'GET',
+                success: function(response) {
+                    $('#question').html(response.content);
+                    $('#no_question').html(response.id);
+                    $('#question_id').val(response.id);
+                }
+            });
+        }
+
+        function next_question() {
+            current_question_id = $('#question_id').val();
+            get_question(current_question_id, 1);
+        }
+
+        function prev_question() {
+            current_question_id = $('#question_id').val();
+            get_question(current_question_id, -1);
+        }
     </script>
 @endsection

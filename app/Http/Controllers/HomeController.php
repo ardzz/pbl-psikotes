@@ -89,14 +89,15 @@ class HomeController extends Controller
             else {
                 $exam = $request->user()->getUnfinishedExam();
                 $expired = Carbon::parse($exam->start_time)->addMinutes(90);
+                $last_question = $exam->getLatestQuestion();
                 if ($agent->isDesktop()){
-                    return view('quiz-desktop', ['deadline' => $expired]);
+                    return view('quiz-desktop', ['deadline' => $expired, 'last_question' => $last_question, 'exam' => $exam]);
                 }
                 elseif ($agent->isMobile()){
-                    return view('quiz-mobile', ['deadline' => $expired]);
+                    return view('quiz-mobile', ['deadline' => $expired, 'last_question' => $last_question, 'exam' => $exam]);
                 }
                 else{
-                    return view('quiz-desktop', ['deadline' => $expired]);
+                    return view('quiz-desktop', ['deadline' => $expired, 'last_question' => $last_question, 'exam' => $exam]);
                 }
             }
         }

@@ -12,9 +12,9 @@ class Exam extends Model
 
     use HasFactory;
 
-    function question(): BelongsTo
+    function answer()
     {
-        return $this->belongsTo(Question::class);
+        return $this->hasMany(Answer::class);
     }
 
     function user(): BelongsTo
@@ -25,5 +25,14 @@ class Exam extends Model
     function doctor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'doctor_id');
+    }
+
+    function getLatestQuestion()
+    {
+        $last = $this->answer->last();
+        if ($last) {
+            return $last->question;
+        }
+        return Question::first();
     }
 }
