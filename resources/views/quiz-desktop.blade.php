@@ -81,9 +81,9 @@
                     <div class="mt-2 d-flex justify-content-center">
                         <div class="col-md-6">
                             <input type="hidden" id="question_id" value="{{ $last_question->id }}">
-                            <button class="btn btn-light btn-lg w-100 mb-2" onclick="submit_answer('Yes')">YA</button>
-                            <button class="btn btn-light btn-lg w-100 mb-2" onclick="submit_answer('Unknown')">TIDAK TAHU</button>
-                            <button class="btn btn-light btn-lg w-100 mb-2" onclick="submit_answer('No')">TIDAK</button>
+                            <button class="btn btn-outline-dark btn-lg w-100 mb-2" onclick="submit_answer('Yes')">YA</button>
+                            <button class="btn btn-outline-dark btn-lg w-100 mb-2" onclick="submit_answer('Unknown')">TIDAK TAHU</button>
+                            <button class="btn btn-outline-dark btn-lg w-100 mb-2" onclick="submit_answer('No')">TIDAK</button>
                         </div>
                     </div>
                 </div>
