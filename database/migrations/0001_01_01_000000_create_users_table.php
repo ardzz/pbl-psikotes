@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('user_type')->default(1); // 1 = user, 2 = admin, 3 = doctor
-            $table->foreignId("exam_id")->nullable();
             $table->foreignId("doctor_id")->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
