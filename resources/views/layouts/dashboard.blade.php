@@ -172,6 +172,8 @@
     <script src="/dist/libs/jquery/dist/jquery.min.js"></script>
     <script src="/dist/libs/simplebar/dist/simplebar.min.js"></script>
     <script src="/dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/dist/libs/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="/dist/js/forms/sweet-alert.init.js"></script>
     <!-- core files -->
     <script src="/dist/js/app.min.js"></script>
     <script src="/dist/js/app.init.js"></script>

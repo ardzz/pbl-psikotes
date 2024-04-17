@@ -1,9 +1,5 @@
 @extends('layouts.dashboard')
 
-@section('css')
-    <link rel="stylesheet" href="/dist/libs/sweetalert2/dist/sweetalert2.min.css">
-@endsection
-
 @section('container-fluid')
     <div class="card bg-light-info shadow-none position-relative overflow-hidden">
         <div class="card-body px-4 py-3">
@@ -81,8 +77,6 @@
 @endsection
 
 @section('scripts')
-    <script src="/dist/libs/sweetalert2/dist/sweetalert2.min.js"></script>
-    <script src="/dist/js/forms/sweet-alert.init.js"></script>
     <script>
         $(function() {
             $("input[data-bootstrap-switch]").each(function() {
