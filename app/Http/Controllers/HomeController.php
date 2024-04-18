@@ -46,7 +46,7 @@ class HomeController extends Controller
 
     public function examHistory()
     {
-        $exams_db = Exam::all();
+        $exams_db = Exam::where('user_id', auth()->id())->get();
         $users = [];
 
         foreach ($exams_db as $exam) {
