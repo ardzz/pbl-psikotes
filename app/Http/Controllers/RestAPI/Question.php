@@ -15,7 +15,16 @@ class Question extends Controller
     public function show($id): JsonResponse
     {
         $question = ModelsQuestion::find($id);
-        return $question ? response()->json($question) : response()->json(["message" => "Question not found"], 404);
+        $currentExam = Auth::user()->getUnfinishedExam();
+        if (!$currentExam) {
+            return response()->json(["error" => "No exam started"], 400);
+        }else{
+            $answer = Answer::where("question_id", $id)->where("exam_id", $currentExam->id)->first();
+            return response()->json([
+                "question" => $question,
+                "answer" => $answer
+            ]);
+        }
     }
 
     public function store(Request $request)
@@ -36,12 +45,19 @@ class Question extends Controller
             };
         }
 
-        $question = Answer::updateOrCreate([
-            "question_id" => $request->question_id,
-            "exam_id" => $request->exam_id,
-            "answer" => $answer
-        ]);
+        $question = Answer::where("question_id", $request->question_id)->where("exam_id", $request->exam_id)->first();
+        if(!$question){
+            $question_model = new Answer();
+            $question_model->exam_id = $request->exam_id;
+            $question_model->question_id = $request->question_id;
+            $question_model->answer = $answer;
+            $question_model->save();
+            $question = $question_model;
+        }else{
+            $question->answer = $answer;
+            $question->save();
+        }
 
-        return response()->json($question);
+        return response()->json($question->toArray());
     }
 }
