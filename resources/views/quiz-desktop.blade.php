@@ -54,11 +54,11 @@
                 <div class="row">
                     <div class="col-12 col-sm-auto mb-2">
                         <div class="d-flex justify-content-center">
-                            <h3 class="text-truncate mb-2 btn btn-lg btn-light">
+                            <h3 class="text-truncate mb-2 btn btn-lg btn-outline-dark">
                                 <span>No</span>
                                 <strong class="text-dark" id="no_question">{{ $last_question->id }}</strong>
                                 <span>dari</span>
-                                <strong class="text-dark">568</strong>
+                                <strong class="text-dark">567</strong>
                                 <span>soal</span>
                             </h3>
                         </div>
@@ -81,9 +81,9 @@
                     <div class="mt-2 d-flex justify-content-center">
                         <div class="col-md-6">
                             <input type="hidden" id="question_id" value="{{ $last_question->id }}">
-                            <button class="btn btn-light btn-lg w-100 mb-2" onclick="submit_answer('Yes')">YA</button>
-                            <button class="btn btn-light btn-lg w-100 mb-2" onclick="submit_answer('Unknown')">TIDAK TAHU</button>
-                            <button class="btn btn-light btn-lg w-100 mb-2" onclick="submit_answer('No')">TIDAK</button>
+                            <button class="btn btn-outline-dark btn-lg w-100 mb-2" id="yes_answer" onclick="submit_answer('Yes')">YA</button>
+                            <button class="btn btn-outline-dark btn-lg w-100 mb-2" id="unknown_answer" onclick="submit_answer('Unknown')">TIDAK TAHU</button>
+                            <button class="btn btn-outline-dark btn-lg w-100 mb-2" id="no_answer" onclick="submit_answer('No')">TIDAK</button>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,6 @@
             document.getElementById("countdown").innerHTML = hours + ":" + minutes + ":" + seconds;
             if (t < 0) {
                 clearInterval(x);
-                // replace content countdown_desc
                 $('#countdown_desc').replaceWith('<h3 class="text-danger">Waktu Habis</h3>');
                 $('#countdown').remove();
             }
@@ -144,7 +143,6 @@
         }
 
         function get_question(question_id, index) {
-            // convert to integer
             question_id = parseInt(question_id);
             index = parseInt(index);
             let next_question_id = question_id + index;
@@ -152,21 +150,63 @@
                 url: '{{ url('/api/question') }}' + '/' + next_question_id,
                 type: 'GET',
                 success: function(response) {
-                    $('#question').html(response.content);
-                    $('#no_question').html(response.id);
-                    $('#question_id').val(response.id);
+                    if (response.question){
+                        $('#question').html(response.question.content);
+                        $('#no_question').html(response.question.id);
+                        $('#question_id').val(response.question.id);
+                        if(response.answer){
+                            switch (response.answer.answer) {
+                                case 1:
+                                    $('#yes_answer').addClass('active');
+                                    $('#unknown_answer').removeClass('active');
+                                    $('#no_answer').removeClass('active');
+                                    break;
+                                case null:
+                                    $('#yes_answer').removeClass('active');
+                                    $('#unknown_answer').addClass('active');
+                                    $('#no_answer').removeClass('active');
+                                    break;
+                                case 0:
+                                    $('#yes_answer').removeClass('active');
+                                    $('#unknown_answer').removeClass('active');
+                                    $('#no_answer').addClass('active');
+                                    break;
+                            }
+                        }else{
+                            // clear active class
+                            $('#yes_answer').removeClass('active');
+                            $('#unknown_answer').removeClass('active');
+                            $('#no_answer').removeClass('active');
+                        }
+                    }else{
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Soal tidak ditemukan atau soal sudah melebihi batas (567 soal)'
+                        });
+                    }
+                },
+                error: function(error) {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: error.responseJSON.message
+                    });
                 }
             });
         }
 
         function next_question() {
-            current_question_id = $('#question_id').val();
+            let current_question_id = $('#question_id').val();
             get_question(current_question_id, 1);
         }
 
         function prev_question() {
-            current_question_id = $('#question_id').val();
+            let current_question_id = $('#question_id').val();
             get_question(current_question_id, -1);
         }
+        @if($exam->answer)
+            get_question({{ $last_question->id }}, 0);
+        @endif
     </script>
 @endsection

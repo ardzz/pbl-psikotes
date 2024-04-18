@@ -31,7 +31,11 @@ class Exam extends Model
     {
         $last = $this->answer->last();
         if ($last) {
-            return $last->question;
+            if ($last->question_id + 1 <= Question::count()) {
+                return Question::where('id', $last->question_id + 1)->first();
+            }else{
+                return $last->question;
+            }
         }
         return Question::first();
     }

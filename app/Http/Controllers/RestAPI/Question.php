@@ -17,8 +17,12 @@ class Question extends Controller
         $question = ModelsQuestion::find($id);
         $currentExam = Auth::user()->getUnfinishedExam();
         if (!$currentExam) {
-            return response()->json(["error" => "No exam started"], 400);
-        }else{
+            return response()->json(["message" => "No exam started"], 400);
+        }
+        elseif (now()->greaterThanOrEqualTo($currentExam->expired_time)){
+            return response()->json(["message" => "Exam has expired"], 400);
+        }
+        else{
             $answer = Answer::where("question_id", $id)->where("exam_id", $currentExam->id)->first();
             return response()->json([
                 "question" => $question,

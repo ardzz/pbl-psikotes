@@ -66,7 +66,7 @@
                                 <span>No</span>
                                 <strong class="text-dark" id="no_question">{{ $last_question->id }}</strong>
                                 <span>dari</span>
-                                <strong class="text-dark">568</strong>
+                                <strong class="text-dark">567</strong>
                                 <span>soal</span>
                             </h3>
                         </div>
@@ -79,7 +79,7 @@
                     <div class="col-12 mt-0">
                         <div class="d-flex justify-content-between">
                             <div>
-                                <h4 class="text mb-4">
+                                <h4 class="text mb-4" id="question">
                                     {{ $last_question->content }}
                                 </h4>
                             </div>
@@ -89,9 +89,9 @@
                         <div class="mt-2 d-flex justify-content-center">
                             <div class="col-md-6">
                                 <input type="hidden" id="question_id" value="{{ $last_question->id }}">
-                                <button class="btn btn-light btn-lg w-100 mb-2" onclick="submit_answer('Yes')">YA</button>
-                                <button class="btn btn-light btn-lg w-100 mb-2" onclick="submit_answer('Unknown')">TIDAK MENJAWAB</button>
-                                <button class="btn btn-light btn-lg w-100 mb-2" onclick="submit_answer('No')">TIDAK</button>
+                                <button class="btn btn-outline-dark btn-lg w-100 mb-2" id="yes_answer" onclick="submit_answer('Yes')">YA</button>
+                                <button class="btn btn-outline-dark btn-lg w-100 mb-2" id="unknown_answer" onclick="submit_answer('Unknown')">TIDAK MENJAWAB</button>
+                                <button class="btn btn-outline-dark btn-lg w-100 mb-2" id="no_answer" onclick="submit_answer('No')">TIDAK</button>
                             </div>
                         </div>
                     </div>
@@ -142,6 +142,8 @@
                     get_question(response.question_id, 1);
                 },
                 error: function(error) {
+                    console.log("Error on submit_answer");
+                    console.log(error);
                     swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -152,17 +154,52 @@
         }
 
         function get_question(question_id, index) {
-            // convert to integer
             question_id = parseInt(question_id);
             index = parseInt(index);
             let next_question_id = question_id + index;
+            $('#yes_answer').removeClass('btn-dark text-white');
+            $('#unknown_answer').removeClass('btn-dark text-white');
+            $('#no_answer').removeClass('btn-dark text-white');
             $.ajax({
                 url: '{{ url('/api/question') }}' + '/' + next_question_id,
                 type: 'GET',
                 success: function(response) {
-                    $('#question').html(response.content);
-                    $('#no_question').html(response.id);
-                    $('#question_id').val(response.id);
+                    if (response.question){
+                        $('#question').html(response.question.content);
+                        $('#no_question').html(response.question.id);
+                        $('#question_id').val(response.question.id);
+                        if(response.answer != null){
+                            switch (response.answer.answer) {
+                                case 1:
+                                    $('#yes_answer').addClass('btn-dark text-white');
+                                    break;
+                                case null:
+                                    $('#unknown_answer').addClass('btn-dark text-white');
+                                    break;
+                                case 0:
+                                    $('#no_answer').addClass('btn-dark text-white');
+                                    break;
+                            }
+                        }
+                        else{
+                            $('#yes_answer').removeClass('active');
+                            $('#unknown_answer').removeClass('active');
+                            $('#no_answer').removeClass('active');
+                        }
+                    }else{
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Soal tidak ditemukan atau soal sudah melebihi batas (567 soal)'
+                        });
+                    }
+                },
+                error: function(error) {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: error.responseJSON.message
+                    });
                 }
             });
         }
@@ -176,5 +213,8 @@
             current_question_id = $('#question_id').val();
             get_question(current_question_id, -1);
         }
+        @if($exam->answer)
+        get_question({{ $last_question->id }}, 0);
+        @endif
     </script>
 @endsection
