@@ -44,6 +44,25 @@ class HomeController extends Controller
         return view('exam.list', compact('users'));
     }
 
+    public function examHistory()
+    {
+        $exams_db = Exam::all();
+        $users = [];
+
+        foreach ($exams_db as $exam) {
+            if (!is_null($exam->end_date)) {
+                $exam->status = 'Selesai';
+            } elseif (is_null($exam->expired_time)){
+                $exam->status = 'Belum dimulai';
+            } else {
+                $exam->status = 'Berlangsung';
+            }
+            $users[] = $exam;
+        }
+
+        return view('exam.list-patient', compact('users'));
+    }
+
     public function enrollment()
     {
         $doctors = User::where('user_type', 3)->get();
