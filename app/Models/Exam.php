@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -38,5 +39,15 @@ class Exam extends Model
             }
         }
         return Question::first();
+    }
+
+    function isExpired(): bool
+    {
+        $expired_time = Carbon::parse($this->expired_time);
+        $start_time = Carbon::parse($this->start_time);
+
+        return now()->greaterThanOrEqualTo($expired_time) ||
+            now()->greaterThanOrEqualTo($start_time->addMinutes(90)) ||
+            $this->end_time !== null;
     }
 }

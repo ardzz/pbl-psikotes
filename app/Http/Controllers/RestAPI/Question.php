@@ -5,6 +5,7 @@ namespace App\Http\Controllers\RestAPI;
 use App\Http\Controllers\Controller;
 use App\Models\Answer;
 use App\Models\Question as ModelsQuestion;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class Question extends Controller
         if (!$currentExam) {
             return response()->json(["message" => "No exam started"], 400);
         }
-        elseif (now()->greaterThanOrEqualTo($currentExam->expired_time)){
+        elseif ($currentExam->isExpired()){
             return response()->json(["message" => "Exam has expired"], 400);
         }
         else{
