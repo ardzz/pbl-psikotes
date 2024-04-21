@@ -84,20 +84,26 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function amIHaveUnassignedExam(): bool
     {
-        return $this->exam()->whereNull('end_time')->exists();
+        return $this->exam()->where('user_id', $this->id)->exists();
     }
 
     public function amIUnstartedExam(): bool
     {
         return $this->exam()->whereNull('start_time')->exists();
     }
-    public function getUnfinishedExam(): Model|HasMany
+    public function getUnfinishedExam(): Model|HasMany|null
     {
-        return $this->exam()->whereNull('end_time')->first();
+        $exams = $this->exam()->whereNull('end_time')->get();
+        foreach ($exams as $exam) {
+            if (!$exam->isExpired()) {
+                return $exam;
+            }
+        }
+        return null;
     }
 
     public function getLatestExam(): Model|HasMany
     {
-        return $this->exam()->orderBy('start_time', 'desc')->first();
+        return $this->exam()->latest()->first();
     }
 }
