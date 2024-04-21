@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string("purpose")->default("General Checkup");
             $table->timestamp("start_time")->nullable();
             $table->timestamp("end_time")->nullable();
-            $table->timestamp("expired_time")->nullable();
-            $table->foreignId("doctor_id");
+            $table->foreignId("doctor_id")->nullable();
+            $table->boolean("approved")->default(false);
             $table->timestamps();
         });
     }

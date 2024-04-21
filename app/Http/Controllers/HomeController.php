@@ -17,49 +17,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->user_type == 1){
-            $exam = Exam::where('user_id', auth()->id())->whereNull('end_date')->first();
-
-        }
         return view('home');
     }
 
     public function exam()
     {
-        $exams_db = Exam::all();
-        $users = [];
-
-        foreach ($exams_db as $exam) {
-            if (!is_null($exam->end_date)) {
-                $exam->status = 'Selesai';
-                $exam->duration = $exam->start_date->diffForHumans($exam->end_date);
-            } elseif (is_null($exam->expired_time)){
-                $exam->status = 'Belum dimulai';
-            } else {
-                $exam->status = 'Berlangsung';
-            }
-            $users[] = $exam;
-        }
-
+        $users = Exam::all();
         return view('exam.list', compact('users'));
     }
 
     public function examHistory()
     {
-        $exams_db = Exam::where('user_id', auth()->id())->get();
-        $users = [];
-
-        foreach ($exams_db as $exam) {
-            if (!is_null($exam->end_date)) {
-                $exam->status = 'Selesai';
-            } elseif (is_null($exam->expired_time)){
-                $exam->status = 'Belum dimulai';
-            } else {
-                $exam->status = 'Berlangsung';
-            }
-            $users[] = $exam;
-        }
-
+        $users = Exam::where('user_id', auth()->id())->get();
         return view('exam.list-patient', compact('users'));
     }
 
@@ -70,27 +39,7 @@ class HomeController extends Controller
         return view('exam.add', compact('doctors'));
     }
 
-    public function myExam()
-    {
-        $exams_db = Exam::where('user_id', auth()->id())->get();
-        $exams = [];
-
-        foreach ($exams_db as $exam) {
-            if (!is_null($exam->end_date)) {
-                $exam->status = 'Selesai';
-                $exam->duration = $exam->start_date->diffForHumans($exam->end_date);
-            } elseif (is_null($exam->expired_time)){
-                $exam->status = 'Belum dimulai';
-            } else {
-                $exam->status = 'Berlangsung';
-            }
-            $exams[] = $exam;
-        }
-
-        return view('exam.mine', compact('exams'));
-    }
-
-    public function guides(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function guides()
     {
         return view('guides');
     }
@@ -103,25 +52,38 @@ class HomeController extends Controller
         $agent = new Agent(userAgent: $request->header('User-Agent'));
         if($request->user()->amIHaveUnassignedExam()){
             if ($request->user()->amIUnstartedExam()){
-                return view('starting-quiz');
+                if($request->user()->getLatestExam()->approved){
+                    return view('quiz.start');
+                }
+                else {
+                    return view('quiz.unapproved', ['exam' => $request->user()->getLatestExam()]);
+                }
             }
             else {
                 $exam = $request->user()->getUnfinishedExam();
                 $expired = Carbon::parse($exam->start_time)->addMinutes(90);
                 $last_question = $exam->getLatestQuestion();
                 if ($agent->isDesktop()){
-                    return view('quiz-desktop', ['deadline' => $expired, 'last_question' => $last_question, 'exam' => $exam]);
+                    return view('quiz.desktop', ['deadline' => $expired, 'last_question' => $last_question, 'exam' => $exam]);
                 }
                 elseif ($agent->isMobile()){
-                    return view('quiz-mobile', ['deadline' => $expired, 'last_question' => $last_question, 'exam' => $exam]);
+                    return view('quiz.mobile', ['deadline' => $expired, 'last_question' => $last_question, 'exam' => $exam]);
                 }
                 else{
-                    return view('quiz-desktop', ['deadline' => $expired, 'last_question' => $last_question, 'exam' => $exam]);
+                    return view('quiz.desktop', ['deadline' => $expired, 'last_question' => $last_question, 'exam' => $exam]);
                 }
             }
         }
         else {
-            return view('quiz-unavailable');
+            return view('quiz.unavailable');
         }
+    }
+
+    public function requestMmpi2(){
+        return view('exam.request');
+    }
+
+    public function approveExam($id){
+        return view('exam.approve', ['exam' => Exam::find($id), 'doctors' => User::where('user_type', 3)->get()]);
     }
 }

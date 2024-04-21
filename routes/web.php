@@ -24,8 +24,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/about-mmpi2', [HomeController::class, 'aboutMmpi2'])->name('about-mmpi2');
 
     Route::get('/mmpi2', [HomeController::class, 'mmpi2'])->name('mmpi2');
+    Route::get('/request-mmpi2', [HomeController::class, 'requestMmpi2'])->name('mmpi2.request');
     Route::get('/add-exam', [HomeController::class, 'enrollment'])->name('exam.enrollment');
     Route::get('/exams', [HomeController::class, 'exam'])->name('exam.manage');
+    Route::get('/approve-exam/{id}', [HomeController::class, 'approveExam'])->name('exam.approve');
 });
 
 Route::get('/oauth/callback', [OauthGoogle::class, 'handleGoogleCallback'])->name('oauth.callback');
