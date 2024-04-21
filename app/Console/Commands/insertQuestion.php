@@ -30,13 +30,6 @@ class insertQuestion extends Command
         $this->call('db:seed');
         $question_file = file_get_contents("indonesian_questions.json");
         $questions = json_decode($question_file, true);
-        foreach ($questions as $question) {
-            $question = new Question([
-                'content' => $question,
-            ]);
-            if(!$question->save()){
-                $this->error('Failed to insert question: ' . $question->content);
-            }
-        }
+        Question::insert(array_map(fn($question) => ['content' => $question], $questions));
     }
 }
