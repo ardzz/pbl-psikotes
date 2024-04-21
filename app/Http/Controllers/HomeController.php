@@ -22,7 +22,12 @@ class HomeController extends Controller
 
     public function exam()
     {
-        $users = Exam::all();
+        if (auth()->user()->user_type == 3){
+            $users = Exam::where('doctor_id', auth()->id())->get();
+        }
+        else {
+            $users = Exam::all();
+        }
         return view('exam.list', compact('users'));
     }
 
