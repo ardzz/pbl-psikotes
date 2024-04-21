@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Exam extends Model
 {
-    protected $fillable = ["user_id", "start_time", "end_time", "doctor_id", "purpose", "expired_time"];
+    protected $fillable = ["user_id", "doctor_id", "purpose", "approved", "start_time", "end_time"];
 
     use HasFactory;
 
@@ -18,7 +18,7 @@ class Exam extends Model
         return $this->hasMany(Answer::class);
     }
 
-    function user(): BelongsTo
+    function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -43,11 +43,9 @@ class Exam extends Model
 
     function isExpired(): bool
     {
-        $expired_time = Carbon::parse($this->expired_time);
         $start_time = Carbon::parse($this->start_time);
 
-        return now()->greaterThanOrEqualTo($expired_time) ||
-            now()->greaterThanOrEqualTo($start_time->addMinutes(90)) ||
+        return now()->greaterThanOrEqualTo($start_time->addMinutes(90)) ||
             $this->end_time !== null;
     }
 }
