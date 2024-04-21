@@ -26,11 +26,15 @@ Route::prefix('api')->group(function () {
     });
 
     Route::prefix('exam')->group(function () {
+        // Admin
         Route::get('/delete', [Exam::class, 'delete'])->name('delete_exam');
-        Route::get('/start', [Exam::class, 'start'])->name('start_exam');
-        Route::post('/request', [Exam::class, 'request'])->name('request_exam');
         Route::post('/approve', [Exam::class, 'approve'])->name('approve_exam');
         Route::post('/add', [Exam::class, 'add'])->name('add_exam');
+
+        // Patient
+        Route::get('/start', [Exam::class, 'start'])->name('start_exam');
+        Route::post('/request', [Exam::class, 'request'])->name('request_exam');
+        Route::post('/submit', [Exam::class, 'submit'])->name('submit_exam');
     });
 
     Route::prefix('patient')->group(function () {
