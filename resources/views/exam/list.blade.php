@@ -40,7 +40,6 @@
                         <th>Dokter</th>
                         <th>Waktu Mulai</th>
                         <th>Waktu Selesai</th>
-                        <th>Tenggat Waktu</th>
                         <th>Aksi</th>
                         </thead>
                         <tbody>
@@ -49,20 +48,32 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->user->name }}</td>
                                 <td>{{ $item->purpose }}</td>
-                                <td>{{ $item->doctor->name }}</td>
+                                @isset($item->doctor)
+                                    <td>{{ $item->doctor->name }}</td>
+                                @else
+                                    <td>
+                                        <span class="badge bg-warning">Menunggu Persetujuan</span>
+                                    </td>
+                                @endisset
                                 <td>{{ $item->start_time }}</td>
                                 <td>{!! $item->end_time !!}</td>
-                                <td>{{ $item->expired_time }}</td>
                                 <td>
                                     <div class="btn-group mb-2">
                                         <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                             Action
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                            <li><a class="dropdown-item" href="#">View</a></li>
+                                            <li>
+                                                <a class="dropdown-item" href="#">View</a>
+                                            </li>
                                             <li>
                                                 <a class="dropdown-item" href="#">Delete</a>
                                             </li>
+                                            @if($item->approved == 0)
+                                                <li>
+                                                    <a class="dropdown-item" href="{{ route('exam.approve', $item->id) }}">Approve</a>
+                                                </li>
+                                            @endif
                                         </ul>
                                     </div>
                                 </td>
