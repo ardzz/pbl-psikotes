@@ -44,14 +44,6 @@
                             <input type="text" name="purpose" class="form-control" placeholder="Syarat administrasi pendaftaran PNS">
                     </div>
                     <div class="form-group mb-4">
-                        <label class="form-label fw-semibold">Tenggat Waktu</label>
-                        <input type="date" name="deadline" class="form-control" placeholder="Tenggat Waktu">
-                    </div>
-                    <div class="form-group mb-4">
-                        <label class="form-label fw-semibold">Tenggat Jam</label>
-                        <input type="time" name="deadline_time" class="form-control" placeholder="Tenggat Jam">
-                    </div>
-                    <div class="form-group mb-4">
                             <label class="form-label fw-semibold">Nama Dokter</label>
                             @if(auth()->user()->getUserType() == "Doctor")
                                 <input type="text" class="form-control" value="{{ auth()->user()->name }}" disabled>
@@ -133,8 +125,6 @@
             $.post(url, {
                 user_id: $('select[name="patient_id"]').val(),
                 purpose: $('input[name="purpose"]').val(),
-                expired_date: $('input[name="deadline"]').val(),
-                expired_hour: $('input[name="deadline_time"]').val(),
                 @if(auth()->user()->getUserType() == "Admin")
                 doctor_id: $('select[name="doctor_id"]').val()
                 @else
