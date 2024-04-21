@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\RestAPI;
 
 use App\Http\Controllers\Controller;
-use App\Notifications\ExamCreated;
+use App\Notifications\ExamApproved;
 use Illuminate\Http\JsonResponse;
 use App\Models\Exam as ExamModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class Exam extends Controller
@@ -19,8 +19,6 @@ class Exam extends Controller
 
         if ($exam == null) {
             return response()->json(["message" => "Exam not found or already started/finished"], 404);
-        }elseif ($exam->expired_time < now()) {
-            return response()->json(["message" => "Exam expired"], 400);
         }else{
             $exam->update([
                 "start_time" => now()
@@ -32,62 +30,121 @@ class Exam extends Controller
     /**
      * @throws ValidationException
      */
+    function approve(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'exam_id' => 'required|integer|exists:exams,id',
+            'doctor_id' => 'required|integer|exists:users,id,user_type,3',
+        ]);
+
+        $exam = ExamModel::where('id', $validated['exam_id'])->first();
+        $update = $exam->update([
+                'doctor_id' => $validated['doctor_id'],
+                'approved' => true
+            ]);
+
+        if ($update) {
+            $exam->user->notify(new ExamApproved($exam));
+            return response()->json(["message" => "Exam approved successfully"], 200);
+        } else {
+            return response()->json(["message" => "Exam not approved"], 400);
+        }
+    }
+
+    public function delete(Request $request)
+    {
+        $request->validate([
+            'exam_id' => 'required|integer|exists:exams,id'
+        ]);
+
+        $deleted = ExamModel::where('id', $request->exam_id)->delete();
+
+        if ($deleted) {
+            return response()->json(["message" => "Exam deleted successfully"], 200);
+        } else {
+            return response()->json(["message" => "Exam not found for deletion"], 404);
+        }
+    }
+
+    public function finish(Request $request)
+    {
+        $request->validate([
+            'exam_id' => 'required|integer|exists:exams,id'
+        ]);
+
+        $exam = ExamModel::where('id', $request->exam_id)->first();
+
+        if ($exam == null) {
+            return response()->json(["message" => "Exam not found"], 404);
+        }elseif ($exam->end_time !== null) {
+            return response()->json(["message" => "Exam already finished"], 400);
+        }else{
+            $exam->update([
+                "end_time" => now()
+            ]);
+            return response()->json(["message" => "Exam successfully finished"], 200);
+        }
+    }
+
+    public function request(Request $request)
+    {
+        $request->validate([
+            'purpose' => 'required|string',
+        ]);
+
+        $my_exam = ExamModel::where('user_id', auth()->id());
+
+        $unstarted_exam = $my_exam->whereNull('start_time')->whereNull('end_time')->get();
+        $unfinished_exam = $my_exam->whereNull('end_time')->get();
+        $unverified_exam = $my_exam->where('approved', false)->get();
+
+        if ($unverified_exam->count() > 0) {
+            return response()->json(["message" => "You already requested an exam, please wait for approval"], 400);
+        }elseif ($unstarted_exam->count() > 0) {
+            return response()->json(["message" => "You have an unstarted exam"], 400);
+        }elseif ($unfinished_exam->count() > 0) {
+            return response()->json(["message" => "You have an unfinished exam"], 400);
+        }
+
+        $exam = new ExamModel();
+        $exam->user_id = auth()->id();
+        $exam->purpose = $request->purpose;
+        $exam->save();
+
+        return response()->json(["message" => "Exam requested successfully"], 200);
+    }
+
     function add(Request $request): JsonResponse
     {
         $validated = $request->validate([
             'user_id' => 'required|integer|exists:users,id,user_type,1',
             'doctor_id' => 'required|integer|exists:users,id,user_type,3',
             'purpose' => 'required|string',
-            'expired_date' => 'required|date|after_or_equal:today',
-            'expired_hour' => 'required|string',
-        ],[
-            'expired_hour.required' => 'The expired hour field is required.',
-            'expired_hour.string' => 'The expired hour field must be a string.',
-            'expired_hour.after_or_equal' => 'The expired hour field must be after or equal to ' . now()->addMinutes(100)->format('H:i') . ' (minimum 100 minutes from now).',
-            'expired_date.required' => 'The expired date field is required.',
-            'expired_date.date' => 'The expired date field must be a date.',
         ]);
 
+        $my_exam = ExamModel::where('user_id', $validated['user_id']);
+        $unstarted_exam = $my_exam->whereNull('start_time')->whereNull('end_time')->get();
+        $unfinished_exam = $my_exam->whereNull('end_time')->get();
 
-        $expiredTime = $validated['expired_date'] . ' ' . $validated['expired_hour'];
-        $last_exam = ExamModel::where('user_id', $validated['user_id'])->whereNull('end_time')->first();
-
-        if ($last_exam) {
-            return response()->json(["message" => "User already has an exam that is not finished"], 400);
-        }
-        elseif (now()->addMinutes(100) > $expiredTime) {
-            return response()->json(["message" => "The expired date must be after or equal to " . now()->addMinutes(100)->format('H:i') . " (minimum 100 minutes from now)"], 400);
+        if ($unstarted_exam->count() > 0) {
+            return response()->json(["message" => "User have an unstarted exam"], 400);
+        }elseif ($unfinished_exam->count() > 0) {
+            return response()->json(["message" => "User have an unfinished exam"], 400);
         }
 
         $exam = ExamModel::create([
             'user_id' => $validated['user_id'],
             'doctor_id' => $validated['doctor_id'],
             'purpose' => $validated['purpose'],
-            'expired_time' => $expiredTime,
+            'approved' => true
         ]);
 
         if ($exam) {
-            $exam->user->notify(new ExamCreated($exam));
+            $exam->user->notify(new ExamApproved($exam));
             return response()->json(["message" => "Exam added successfully"], 200);
-        } else {
-            return response()->json(["message" => "Exam not added"], 400);
         }
-    }
-
-    public function delete(Request $request)
-    {
-
-        $userId = auth()->id();
-        $id = $request->id;
-
-        $deleted = ExamModel::where('user_id', $userId)
-            ->where('id', $id)
-            ->delete();
-
-        if ($deleted) {
-            return response()->json(["message" => "Exam deleted successfully"], 200);
-        } else {
-            return response()->json(["message" => "Exam not found for deletion"], 404);
+        else {
+            return response()->json(["message" => "Exam not added"], 400);
         }
     }
 }
