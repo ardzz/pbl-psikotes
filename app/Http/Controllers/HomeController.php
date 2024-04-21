@@ -46,11 +46,11 @@ class HomeController extends Controller
 
     public function guides()
     {
-        return view('guides');
+        return view('article.guides');
     }
 
     public function aboutMmpi2(){
-        return view('about-mmpi2');
+        return view('article.about-mmpi2');
     }
 
     public function mmpi2(Request $request){
