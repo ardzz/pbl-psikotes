@@ -19,6 +19,14 @@
             </a>
         </li>
         <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('mmpi2.request') }}" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-pencil-plus"></i>
+                  </span>
+                <span class="hide-menu">Request Exam</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
             <a class="sidebar-link" href="{{ route('examHistory') }}" aria-expanded="false">
                 <span>
                     <i class="ti ti-report-medical"></i>
