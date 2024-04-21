@@ -10,7 +10,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Log;
 
-class ExamCreated extends Notification implements ShouldQueue
+class ExamApproved extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -38,9 +38,8 @@ class ExamCreated extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('Your MMPI-2 exam is ready!')
-            ->greeting('Hello, ' . $this->exam->user->name)
+            ->greeting('Hello, ' . $this->exam->user()->name)
             ->line('Your MMPI-2 exam is ready. Please login to your account to start the exam.')
-            ->line('Please note that the exam will be expired in ' . $this->exam->expired_time . ' (' .  Carbon::parse($this->exam->expired_time)->diffForHumans() . ')')
             ->line('If you have any questions, please contact ' . $this->exam->doctor->name . ' at ' . $this->exam->doctor->email . ' as your doctor.')
             ->action('Start Exam', url('/mmpi2'))
             ->line('Good luck!');
