@@ -45,8 +45,14 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->purpose }}</td>
-                                <td>{{ $item->doctor->name }}</td>
-                                <td>{{ $item->date_time }}</td>
+                                @isset($item->doctor)
+                                    <td>{{ $item->doctor->name }}</td>
+                                @else
+                                    <td>
+                                        <span class="badge bg-warning">Menunggu Persetujuan</span>
+                                    </td>
+                                @endisset
+                                <td>{{ $item->end_time }}</td>
                                 <td>
                                     <div class="btn-group mb-2">
                                         <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
