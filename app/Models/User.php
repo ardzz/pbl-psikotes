@@ -95,4 +95,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->exam()->whereNull('end_time')->first();
     }
+
+    public function getLatestExam(): Model|HasMany
+    {
+        return $this->exam()->orderBy('start_time', 'desc')->first();
+    }
 }
