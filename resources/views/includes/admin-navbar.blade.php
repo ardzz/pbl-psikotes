@@ -35,6 +35,14 @@
             </a>
         </li>
         <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('manageUser') }}" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-user-plus"></i>
+                  </span>
+                <span class="hide-menu">Manage Users</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
             <a class="sidebar-link" href="{{ route('about-mmpi2') }}" aria-expanded="false">
                   <span>
                     <i class="ti ti-book-2"></i>

@@ -44,4 +44,30 @@ class Admin extends Controller
             return response()->json(["message" => "User not added"], 400);
         }
     }
+
+    function edit(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string|email',
+            'id' => 'required|exists:users,id',
+        ]);
+
+        $user = User::where('id', $validated['id'])->first();
+        if ($user) {
+            $update = $user->update([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+            ]);
+            if ($update) {
+                return response()->json(["message" => "The user has been successfully edited"], 200);
+            } else {
+                return response()->json(["message" => "Failed to edit user"], 400);
+            }
+        }
+        else{
+            return response()->json(["message" => "User not found"], 400);
+        }
+
+    }
 }

@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/add-exam', [HomeController::class, 'enrollment'])->name('exam.enrollment');
     Route::get('/exams', [HomeController::class, 'exam'])->name('exam.manage');
     Route::get('/add-user', [HomeController::class, 'addUser'])->name('add-user.frontend');
+    Route::get('/user-list', [HomeController::class, 'manageUser'])->name('manageUser');
+    Route::get('/edit-user/{id}', [HomeController::class, 'editUser'])->name('edit.user');
 });
 
 Route::get('/oauth/callback', [OauthGoogle::class, 'handleGoogleCallback'])->name('oauth.callback');

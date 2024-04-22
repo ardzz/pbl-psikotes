@@ -112,4 +112,19 @@ class HomeController extends Controller
             'null_answered' => $last_exam->getNullAnsweredQuestions()
         ]);
     }
+
+    public function manageUser(){
+        $users = User::all();
+        return view('auth.user-list', ['users' => $users]);
+    }
+
+    public function editUser($id)
+    {
+        $user = User::find($id);
+        if (!$user){
+            return response()->redirectToRoute('manageUser');
+        }
+        return view('profile.edit-user', ['user' => $user]);
+    }
+
 }

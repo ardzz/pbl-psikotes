@@ -47,6 +47,7 @@ Route::prefix('api')->group(function () {
         Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::post('/password', [PasswordController::class, 'update'])->name('password.update');
         Route::post('/add', [Admin::class, 'add'])->name('add-user');
+        Route::post('/edit', [Admin::class, 'edit'])->name('edit-user');
     });
 
 })->middleware(['auth:sanctum', 'verified', 'api']);
