@@ -66,7 +66,7 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="#" class="appointment-btn scrollto">Login</a>
+      <a href="{{ route('login') }}" class="appointment-btn scrollto">Login</a>
 
     </div>
   </header><!-- End Header -->
