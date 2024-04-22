@@ -73,19 +73,22 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
+  <!-- ======= Hero Section ======= -->
   <section id="hero">
-    <!-- Slide 3 -->
-    <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
-          <div class="container">
-            <h2>TES MMPI </h2>
-            <p>Aplikasi Psikotes Online NS Development menyediakan aplikasi khusus untuk pelaksanaan tes MMPI Online. Temukan kemudahan ikut tes online di NS Development. Dengan biaya terjangkau, sekali klik, anda dapat mengikuti tes. Laporan hasil tes realtime.</p>
-            
-            <a href="#about" class="btn-get-started scrollto  mx-2">Daftar Sekarang</a>
-            
-            
-          </div>
-        </div>  
-  </section><!-- End Hero -->
+  <!-- Slide 3 -->
+  <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
+    <div class="container" style="background-color: rgba(63, 187, 192, 1); padding: 20px; border-radius: 15px;">
+      <h2 style = "color: #fafcfc;">TES MMPI ONLINE</h2>
+      <p style = "color: #fafcfc;"><strong>Aplikasi Psikotes PBL Online menyediakan aplikasi khusus untuk pelaksanaan tes MMPI Online. Temukan kemudahan ikut tes online di Psikotes PBL Online. Dengan biaya terjangkau, sekali klik, anda dapat mengikuti tes. Laporan hasil tes realtime.</p>
+      
+      <a href="{{ route('login') }}" class="btn-get-started scrollto mx-2" style="background-color: #297a7d;">Log In</a>
+
+    </div>
+  </div>  
+</section><!-- End Hero -->
+
+
+
 
   <main id="main">
 
@@ -108,47 +111,35 @@
             <img src="assets/img/about.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content aos-init aos-animate" data-aos="fade-left">
-            <h3>Minnesota Multiphasic Personality Inventory</h3>
+            <h3>Apa itu Tes MMPI?</h3>
             <p class="fst-italic">
             Tes MMPI adalah salah satu alat tes psikologi yang paling banyak digunakan untuk mengungkap kepribadian dan psikopatologi. Tes MMPI (Minnesota Multiphasic Personality Inventory) banyak digunakan untuk tujuan-tujuan klinis maupun melihat profile kepribadian secara lengkap. Karena fungsinya yang beragam, sehingga alat tes ini digunakan secara luas.
             </p>
             <ul>
-                                <li>
-                                            <i class="fas fa-check text-primary"></i>
-                                            <span>Evaluasi pasien gangguan jiwa untuk membantu status kesehatan mentalnya.</span>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-check text-primary"></i>
-                                            <span>Sebuah tool untuk menilai gejala dalam menentukan perawatan yang sesuai.</span>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-check text-primary"></i>
-                                            <span>Penilaian kondisi pasien untuk menilai progres perawatan atau terapi</span>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-check text-primary"></i>
-                                            <span>Alat penelitian epidemilogi menggunakan kriteria kepribadian.</span>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-check text-primary"></i>
-                                            <span>Alat penelitian psikologi terutama menentukan perbedaan kriteria kepribadian.</span>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-check text-primary"></i>
-                                            <span>Evaluasi kesehatan mental orang tua.</span>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-check text-primary"></i>
-                                            <span>Deteksi kesehatan mental tersangka pidana (alat forensik kesehatan mental).</span>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-check text-primary"></i>
-                                            <span>Profiling kepribadian untuk penggunaan di organisasi.</span>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-check text-primary"></i>
-                                            <span>Alat penilai kepribadian untuk posisi publik seperti polisi, tentara, pilot, pemadam kebakaran, calon bupati-gubernur-presiden, pejabat lain dan jabatan-jabatan lain yang penting untuk dilihat kesehatan jiwanya.</span>
-                                        </li>
+            <li>
+                <i class="fas fa-check text-primary"></i>
+                <span>Evaluasi pasien gangguan jiwa untuk membantu status kesehatan mentalnya.</span>
+            </li>
+            <li>
+                <i class="fas fa-check text-primary"></i>
+                <span>Penilaian kondisi pasien untuk menilai progres perawatan atau terapi</span>
+            </li>
+            <li>
+                <i class="fas fa-check text-primary"></i>
+                <span>Alat penelitian epidemilogi menggunakan kriteria kepribadian.</span>
+            </li>
+            <li>
+                  <i class="fas fa-check text-primary"></i>
+                  <span>Alat penelitian psikologi terutama menentukan perbedaan kriteria kepribadian.</span>
+            </li>
+            <li>
+                <i class="fas fa-check text-primary"></i>
+                <span>Deteksi kesehatan mental tersangka pidana (alat forensik kesehatan mental).</span>
+            </li>
+            <li>
+                <i class="fas fa-check text-primary"></i>
+                <span>Profiling kepribadian untuk penggunaan di organisasi.</span>
+            </li>
             </ul>
           </div>
         </div>
@@ -177,29 +168,22 @@
       <div class="container aos-init aos-animate" data-aos="zoom-in">
 
       <div class="section-title">
-          <h2>About Us</h2>    
+          <h2>Dapatkan layanan Tes MMPI Online</h2>    
       </div>
 
         <div class="row">
-          <div class="col-lg-6 aos-init aos-animate" data-aos="fade-right">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
+        <div class="col-lg-6 pt-4 pt-lg-0 content aos-init aos-animate" data-aos="fade-right" style="text-align: center;">
+          <p style="font-size: 24px; padding-top: 40px;">Aplikasi psikotes online dengan kemudahan akses</p>
+          <p style="text-align: center; padding-top: 50px; padding-bottom: 50px;">
+            Psikotes PBL Online merupakan sebuah platform aplikasi psikotes online terpercaya di Indonesia. Dengan beragam fitur aplikasi sehingga mendukung pelaksanaan tes secara online.
+          </p>
+          <p style="text-align: center; padding-bottom: 20px;">
+            Alat tes dan laporan hasil tes disusun sesuai dengan norma baku hasil penelitian. Telah dilakukan audit sistem oleh ahli berkompeten dibidangnya.
+            Laporan hasil tes akan didapatkan oleh peserta maksimal 1 x 24, dapat diunduh langsung didalam sistem.
+          </p>
           </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 content aos-init aos-animate" data-aos="fade-left">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <ul>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-            </ul>
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
-            </p>
+          <div class="col-lg-6 aos-init aos-animate" data-aos="fade-left">
+            <img src="assets/img/about.jpg" class="img-fluid" alt="">
           </div>
         </div>
 
