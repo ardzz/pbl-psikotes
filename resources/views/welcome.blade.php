@@ -53,7 +53,7 @@
   <header id="header" class="fixed-top header-scrolled">
     <div class="container d-flex align-items-center">
 
-      <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt=""></a>
+      <a href="index.html" class="logo me-auto"><img src="/dist/images/logos/dark-logo.svg" class="dark-logo" width="180" alt=""></a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
 
@@ -194,7 +194,6 @@
 
         <div class="section-title">
           <h2>Doctors</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
         <div class="row">
@@ -211,8 +210,7 @@
                 </div>
               </div>
               <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Medical Officer</span>
+                <h4>SIMON PETRUS MATLY</h4>
               </div>
             </div>
           </div>
@@ -229,8 +227,7 @@
                 </div>
               </div>
               <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Anesthesiologist</span>
+                <h4>WIBE DAVID RUMBIAK</h4>
               </div>
             </div>
           </div>
@@ -247,8 +244,7 @@
                 </div>
               </div>
               <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>Cardiology</span>
+                <h4>YOHANES YULIUS KAMORI</h4>
               </div>
             </div>
           </div>
@@ -265,8 +261,7 @@
                 </div>
               </div>
               <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Neurosurgeon</span>
+                <h4>IVONNE APRILLIANTI SYARIF</h4>
               </div>
             </div>
           </div>
