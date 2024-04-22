@@ -45,6 +45,11 @@ class HomeController extends Controller
         return view('exam.add', compact('doctors'));
     }
 
+    public function addUser()
+    {
+        return view('exam.add-user');
+    }
+
     public function guides()
     {
         return view('article.guides');

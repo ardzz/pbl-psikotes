@@ -27,19 +27,11 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('guides') }}" aria-expanded="false">
-                  <span>
-                    <i class="ti ti-user-circle"></i>
-                  </span>
-                <span class="hide-menu">Manage Users</span>
-            </a>
-        </li>
-        <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('guides') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('add-user.frontend') }}" aria-expanded="false">
                   <span>
                     <i class="ti ti-user-plus"></i>
                   </span>
-                <span class="hide-menu">Add Doctor</span>
+                <span class="hide-menu">Add Users</span>
             </a>
         </li>
         <li class="sidebar-item">
