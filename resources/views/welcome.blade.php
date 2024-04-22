@@ -310,6 +310,65 @@
       </div>
     </section><!-- End Gallery Section -->
 
+    <section class="faq-section ptb-120">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-12">
+                    <div class="section-heading mb-5 text-center">
+                        <h2>Pertanyaan Seputar Tes MMPI</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-12">
+                    <div class="accordion faq-accordion" id="accordionExample">
+                        <div class="accordion-item box-border  active  mb-3">
+                            <h5 class="accordion-header" id="faq-1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true">
+                                    Waktu Pengerjaan Tes
+                                </button>
+                            </h5>
+                            <div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="faq-1" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <i class="fas fa-question-circle"></i> Berapa lama waktu pengerjaan tes MMPI? <br>
+                                    <i class="fas fa-plus-circle"></i> Waktu pengerjaan tes MMPI berkisar antara 45 menit hingga 90 menit bagi orang normal. Bagi orang yang mengalami gangguan psikologis, kemungkinan akan lebih dari waktu tersebut.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item border" >
+                            <h5 class="accordion-header" id="faq-2">
+                                <button class="accordion-button collapsed"  type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false">
+                                    Jumlah soal Tes MMPI
+                                </button>
+                            </h5>
+                            <div id="collapse-2" class="accordion-collapse collapse" aria-labelledby="faq-2" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <i class="fas fa-question-circle"></i> Tes MMPI itu berapa jumlah soalnya? <br>
+                                    <i class="fas fa-plus-circle"></i> Jumlah soal tes MMPI (MMPI-1) itu berjumlah 566 soal. Untuk tes MMP1-2 jumlah soalnya 567 soal. Sedangkan untuk tes MMPI 2/RF, jumlah soalnya sebanyak 338 soal.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item border-2">
+                            <h5 class="accordion-header" id="faq-3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-3" aria-expanded="false">
+                                    Cara Mengerjakan Tes MMPI Online
+                                </button>
+                            </h5>
+                            <div id="collapse-3" class="accordion-collapse collapse" aria-labelledby="faq-3" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <i class="fas fa-question-circle"></i> Bagaimana cara mengerjakan tes MMPI Online? <br>
+                                    <i class="fas fa-plus-circle"></i> Cara mengerjakan tes MMPI Online adalah anda melakukan registrasi terlebih dahulu. Form registrasi akan dikirim via email anda secara langsung. Jika anda belum memiliki akun di NSD, silahkan registrasi terlebih dahulu secara gratis. Jika telah memiliki akun, anda tinggal login, untuk mengerjakan tes secara online.
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--faq section end-->
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
