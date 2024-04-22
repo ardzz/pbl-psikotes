@@ -36,8 +36,7 @@
                                         <i class="uil uil-edit me-1"></i>
                                         Selesaikan Ujian
                                     </button>
-                                    <button class="btn btn-small btn-success">
-                                        <i class="uil uil-trash-alt me-1"></i>
+                                    <button class="btn btn-small btn-success" onclick="window.location.href='{{ route('question.list') }}'">
                                         Daftar Soal
                                     </button>
                                 </div>

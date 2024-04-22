@@ -92,18 +92,24 @@ class Exam extends Controller
             'purpose' => 'required|string',
         ]);
 
-        $my_exam = ExamModel::where('user_id', auth()->id());
+        $my_exam = ExamModel::where('user_id', auth()->id())->get();
 
-        $unstarted_exam = $my_exam->whereNull('start_time')->whereNull('end_time')->get();
-        $unfinished_exam = $my_exam->whereNull('end_time')->get();
-        $unverified_exam = $my_exam->where('approved', false)->get();
+        $unstarted_exam = $my_exam->whereNull('start_time')->whereNull('end_time')->where('approved', true);
+        $unfinished_exam = $my_exam->where('start_time', '!=', null)->whereNull('end_time')->where('approved', true);
+        $unverified_exam = $my_exam->where('approved', false);
+
+
 
         if ($unverified_exam->count() > 0) {
             return response()->json(["message" => "You already requested an exam, please wait for approval"], 400);
         }elseif ($unstarted_exam->count() > 0) {
             return response()->json(["message" => "You have an unstarted exam"], 400);
         }elseif ($unfinished_exam->count() > 0) {
-            return response()->json(["message" => "You have an unfinished exam"], 400);
+            foreach ($unfinished_exam as $exam) {
+                if (!$exam->isExpired()) {
+                    return response()->json(["message" => "You have an unfinished exam"], 400);
+                }
+            }
         }
 
         $exam = new ExamModel();

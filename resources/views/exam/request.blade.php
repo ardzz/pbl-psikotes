@@ -62,7 +62,7 @@
                         'Data berhasil disimpan',
                         'success'
                     ).then((result) => {
-                        window.location.href = "{{ route('exam.manage') }}";
+                        window.location.href = "{{ route('examHistory') }}";
                     });
                 })
                 .fail(function(error) {

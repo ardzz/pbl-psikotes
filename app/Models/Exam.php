@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,6 +27,27 @@ class Exam extends Model
     function doctor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'doctor_id');
+    }
+
+    function getUnansweredQuestions(): Collection
+    {
+        return $this->getQuestions()->filter(function ($question) {
+            return !$question->answers->where('exam_id', $this->id)->first();
+        });
+    }
+
+    function getNullAnsweredQuestions(): Collection
+    {
+        return $this->getQuestions()->filter(function ($question) {
+            return $question->answers->where('exam_id', $this->id)->whereNull('answer')->first();
+        });
+    }
+
+    function getQuestions()
+    {
+        return Question::with(['answers' => function ($query) {
+            $query->where('exam_id', $this->id);
+        }])->get();
     }
 
     function getLatestQuestion()
