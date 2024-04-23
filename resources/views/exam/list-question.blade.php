@@ -125,10 +125,7 @@
         <div class="col-12">
             <div class="card w-100 position-relative overflow-hidden mb-0">
                 <div class="card-body p-4">
-                    <table
-                        class="table table-striped table-bordered"
-                        id="editable-datatable"
-                    >
+                    <table class="table table-striped table-bordered" id="editable-datatable">
                         <thead>
                         <th>No</th>
                         <th>Soal</th>
