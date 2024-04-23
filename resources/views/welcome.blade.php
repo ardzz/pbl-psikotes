@@ -9,7 +9,7 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  
+
   <!-- Favicons --><link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -45,15 +45,15 @@
         <div class="align-items-center d-none d-md-flex">
             <i class="bi bi-clock"></i> Monday - Saturday, 8AM to 10PM
         </div>
-      
+
     </div>
   </div>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top header-scrolled">
+  <header id="header" class="d-flex align-items-center fixed-top header-scrolled">
     <div class="container d-flex align-items-center">
 
-      <a href="index.html" class="logo me-auto"><img src="/dist/images/logos/dark-logo.svg" class="dark-logo" width="180" alt=""></a>
+      <a href="index.html" class="logo me-auto"><img src="/dist/images/logos/4.png" class="dark-logo" width="200" alt=""></a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
 
@@ -80,11 +80,11 @@
     <div class="container" style="background-color: rgba(63, 187, 192, 1); padding: 20px; border-radius: 15px;">
       <h2 style = "color: #fafcfc;">TES MMPI ONLINE</h2>
       <p style = "color: #fafcfc;"><strong>Aplikasi Psikotes PBL Online menyediakan aplikasi khusus untuk pelaksanaan tes MMPI Online. Temukan kemudahan ikut tes online di Psikotes PBL Online. Dengan biaya terjangkau, sekali klik, anda dapat mengikuti tes. Laporan hasil tes realtime.</p>
-      
+
       <a href="{{ route('login') }}" class="btn-get-started scrollto mx-2" style="background-color: #297a7d;">Log In</a>
 
     </div>
-  </div>  
+  </div>
 </section><!-- End Hero -->
 
 
@@ -168,7 +168,7 @@
       <div class="container aos-init aos-animate" data-aos="zoom-in">
 
       <div class="section-title">
-          <h2>Dapatkan layanan Tes MMPI Online</h2>    
+          <h2>Dapatkan layanan Tes MMPI Online</h2>
       </div>
 
         <div class="row">
@@ -271,24 +271,6 @@
       </div>
     </section><!-- End Doctors Section -->
 
-    <!-- ======= Gallery Section ======= -->
-    <section id="gallery" class="gallery">
-      <div class="container aos-init aos-animate" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Gallery</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="gallery-slider swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
-          <div class="swiper-wrapper align-items-center" id="swiper-wrapper-106010f5555a105d8dc" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-573.6px, 0px, 0px); transition-delay: 0ms;">
-          <div class="swiper-slide" style="width: 171.2px; margin-right: 20px;" role="group" aria-label="7 / 8" data-swiper-slide-index="6"><a class="gallery-lightbox" href="assets/img/gallery/gallery-7.jpg"><img src="assets/img/gallery/gallery-7.jpg" class="img-fluid" alt=""></a></div><div class="swiper-slide" role="group" aria-label="8 / 8" style="width: 171.2px; margin-right: 20px;" data-swiper-slide-index="7"><a class="gallery-lightbox" href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-8.jpg" class="img-fluid" alt=""></a></div><div class="swiper-slide" style="width: 171.2px; margin-right: 20px;" role="group" aria-label="1 / 8" data-swiper-slide-index="0"><a class="gallery-lightbox" href="assets/img/gallery/gallery-1.jpg"><img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt=""></a></div><div class="swiper-slide" style="width: 171.2px; margin-right: 20px;" role="group" aria-label="2 / 8" data-swiper-slide-index="1"><a class="gallery-lightbox" href="assets/img/gallery/gallery-2.jpg"><img src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt=""></a></div><div class="swiper-slide swiper-slide-prev" style="width: 171.2px; margin-right: 20px;" role="group" aria-label="3 / 8" data-swiper-slide-index="2"><a class="gallery-lightbox" href="assets/img/gallery/gallery-3.jpg"><img src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt=""></a></div><div class="swiper-slide swiper-slide-active" style="width: 171.2px; margin-right: 20px;" role="group" aria-label="4 / 8" data-swiper-slide-index="3"><a class="gallery-lightbox" href="assets/img/gallery/gallery-4.jpg"><img src="assets/img/gallery/gallery-4.jpg" class="img-fluid" alt=""></a></div><div class="swiper-slide swiper-slide-next" style="width: 171.2px; margin-right: 20px;" role="group" aria-label="5 / 8" data-swiper-slide-index="4"><a class="gallery-lightbox" href="assets/img/gallery/gallery-5.jpg"><img src="assets/img/gallery/gallery-5.jpg" class="img-fluid" alt=""></a></div><div class="swiper-slide" style="width: 171.2px; margin-right: 20px;" role="group" aria-label="6 / 8" data-swiper-slide-index="5"><a class="gallery-lightbox" href="assets/img/gallery/gallery-6.jpg"><img src="assets/img/gallery/gallery-6.jpg" class="img-fluid" alt=""></a></div></div>
-          <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 4" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 5"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 6"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 7"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 8"></span></div>
-        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-
-      </div>
-    </section><!-- End Gallery Section -->
-
     <section class="faq-section ptb-120">
         <div class="container">
             <div class="row justify-content-center">
@@ -352,7 +334,7 @@
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-    
+
 
     <div class="container">
       <div class="copyright">
@@ -368,7 +350,7 @@
     </div>
   </footer><!-- End Footer -->
 
-  
+
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center active"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->

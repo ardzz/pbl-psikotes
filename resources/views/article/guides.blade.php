@@ -25,7 +25,7 @@
                     <p class="mb-4">
                         Pastikan Anda beristirahat yang cukup sebelum mengikuti tes untuk memastikan konsentrasi yang baik. Bersiaplah untuk menjawab sejumlah besar pertanyaan dengan jujur dan tanpa ragu-ragu.
                     </p>
-                    <h2 class="fs-8 fw-semibold mb-3">2.Anda memiliki 90 menit untuk mengerjakan test</h2>
+                    <h2 class="fs-8 fw-semibold mb-3">2. Anda memiliki 90 menit untuk mengerjakan test</h2>
                     <p class="mb-4">
                         Pastikan Anda dapat mengatur waktu untuk mengikuti tes untuk memastikan konsentrasi yang baik. Bersiaplah untuk menjawab soal test
                     </p>
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <a href="#" class="btn btn-primary btn-lg mt-5">Mulai Tes</a>
+                <a href="{{route('mmpi2')}}" class="btn btn-primary btn-lg mt-5">Mulai Tes</a>
             </div>
         </div>
     </div>
