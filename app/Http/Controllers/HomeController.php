@@ -97,14 +97,32 @@ class HomeController extends Controller
         return view('exam.approve', ['exam' => Exam::find($id), 'doctors' => User::where('user_type', 3)->get()]);
     }
 
-    public function questionList(){
+    public function questionList(Request $request){
         $last_exam = Auth::user()->getLatestExam();
         $questions = $last_exam->getQuestions();
-        return view('exam.list-question', [
-            'questions' => $questions,
-            'exam' => $last_exam,
-            'unanswered' => $last_exam->getUnansweredQuestions(),
-            'null_answered' => $last_exam->getNullAnsweredQuestions()
-        ]);
+        if($request->user()->amIHaveUnassignedExam()) {
+            if ($request->user()->amIUnstartedExam()) {
+                if ($request->user()->getLatestExam()->approved) {
+                    return view('exam.list-question', [
+                        'questions' => $questions,
+                        'exam' => $last_exam,
+                        'unanswered' => $last_exam->getUnansweredQuestions(),
+                        'null_answered' => $last_exam->getNullAnsweredQuestions()
+                    ]);
+                } else {
+                    return view('quiz.unapproved', ['exam' => $request->user()->getLatestExam()]);
+                }
+            }else{
+                return view('exam.list-question', [
+                    'questions' => $questions,
+                    'exam' => $last_exam,
+                    'unanswered' => $last_exam->getUnansweredQuestions(),
+                    'null_answered' => $last_exam->getNullAnsweredQuestions()
+                ]);
+            }
+        }
+        else{
+            return view('quiz.unavailable');
+        }
     }
 }
