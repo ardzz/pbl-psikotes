@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RestAPI\Admin;
 use App\Http\Controllers\RestAPI\Exam;
 use App\Http\Controllers\RestAPI\Patient;
 use App\Http\Controllers\RestAPI\PersonalInformationController;
@@ -45,5 +46,8 @@ Route::prefix('api')->group(function () {
     Route::prefix('user')->group(function () {
         Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::post('/password', [PasswordController::class, 'update'])->name('password.update');
+        Route::post('/add', [Admin::class, 'add'])->name('add-user');
+        Route::post('/edit', [Admin::class, 'edit'])->name('edit-user');
     });
+
 })->middleware(['auth:sanctum', 'verified', 'api']);

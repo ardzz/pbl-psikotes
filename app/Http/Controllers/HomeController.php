@@ -45,6 +45,11 @@ class HomeController extends Controller
         return view('exam.add', compact('doctors'));
     }
 
+    public function addUser()
+    {
+        return view('exam.add-user');
+    }
+
     public function guides()
     {
         return view('article.guides');
@@ -125,4 +130,19 @@ class HomeController extends Controller
             return view('quiz.unavailable');
         }
     }
+
+    public function manageUser(){
+        $users = User::all();
+        return view('auth.user-list', ['users' => $users]);
+    }
+
+    public function editUser($id)
+    {
+        $user = User::find($id);
+        if (!$user){
+            return response()->redirectToRoute('manageUser');
+        }
+        return view('profile.edit-user', ['user' => $user]);
+    }
+
 }
