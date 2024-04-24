@@ -1,8 +1,11 @@
 function score() {
     document.body.style.cursor = "wait";
-    let i, j, scale, tscale, q, n, s, rp;
-    let k, rawscore, kscore, tscore, percent;
-    let t_cnt, f_cnt, cs_cnt, pe;
+    var i, j, scale, tscale, q, n, s, rp;
+    var k, rawscore, kscore, tscore, percent;
+    var t_cnt, f_cnt, cs_cnt, pe;
+    var scale_table = make_table("score_text", "Scale", "Scale Description", "Raw Score", "K Score", "T Score", "% Answered");
+    var ci_table = make_table("ci_table", "Scale", "Question", "Answer", "Question Text");
+    //var ua_table = make_table("#", "Unanswered Questions");
     n = longform ? questions.length : 371;
     t_cnt = 0;
     f_cnt = 0;
@@ -17,10 +20,14 @@ function score() {
                 break;
             default:
                 ++cs_cnt;
+                //append_tr(ua_table, q, questions[q]);
                 break;
         }
     }
     --q;
+    append_tr(scale_table, "True", " ", t_cnt, " ", " ", (t_cnt * 100 / q).toPrecision(3));
+    append_tr(scale_table, "False", " ", f_cnt, " ", " ", (f_cnt * 100 / q).toPrecision(3));
+    append_tr(scale_table, "?", " ", cs_cnt, " ", " ", (cs_cnt * 100 / q).toPrecision(3));
     k = 0;
     pe = 0;
     for (i = 0; i < scales.length; ++i) {
@@ -38,6 +45,9 @@ function score() {
                     case "T":
                         ++n;
                         ++rawscore;
+                        if (tscale === undefined) {
+                            append_tr(ci_table, scale.name, q, "True", questions[q]);
+                        }
                         break;
                     case "F":
                         ++n;
@@ -52,6 +62,9 @@ function score() {
                     case "F":
                         ++n;
                         ++rawscore;
+                        if (tscale === undefined) {
+                            append_tr(ci_table, scale.name, q, "False", questions[q]);
+                        }
                         break;
                     case "T":
                         ++n;
@@ -83,6 +96,7 @@ function score() {
                 tscore = tscale[rawscore];
             }
             percent = scale.rin ? (n * 100 / scale.rin.length) : (n * 100 / (scale.true_questions.length + j));
+            append_tr(scale_table, scale.name, scale.description, rawscore, kscore || " ", tscore, percent.toPrecision(3));
             scale.raw_score = rawscore;
             scale.t_score = tscore;
             scale.response = percent;
@@ -100,11 +114,12 @@ function score() {
             }
         }
     }
-    draw_chart("canvasVCS", "Validity and Clinical Scales Profile", [0, 1, 2, 3, 4, 5, 6, 7, undefined, 9, 10, 11, 12, gender ? 14 : 13, 15, 16, 17, 18, 19], true);
-    draw_chart("canvasRCS", "Restructured Clinical Scales Profile", [92, 93, 94, 95, 96, 97, 98, 99, 100], true);
-    draw_chart("canvasPSY", "PSY-5 Scales Profile", [101, 102, 103, 104, 105]);
-    draw_chart("canvasCSP", "Content Scales Profile", [51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65], false);
-    draw_chart("canvasSS", "Supplementary Scales Profile", [66, 67, 68, 75, 76, 77, 80, 72, 73, 74, 69, 70, 71, 78, 79]);
+    pe /= 8;
+    draw_chart("canvasVCS", "", [0, 1, 2, 3, 4, 5, 6, 7, undefined, 9, 10, 11, 12, gender ? 14 : 13, 15, 16, 17, 18, 19], true);
+    draw_chart("canvasRCS", "", [92, 93, 94, 95, 96, 97, 98, 99, 100], true);
+    draw_chart("canvasPSY", "", [101, 102, 103, 104, 105]);
+    draw_chart("canvasCSP", "", [51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65], false);
+    draw_chart("canvasSS", "", [66, 67, 68, 75, 76, 77, 80, 72, 73, 74, 69, 70, 71, 78, 79]);
     document.body.style.cursor = "auto";
 }
 
