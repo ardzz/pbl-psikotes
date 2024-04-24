@@ -151,11 +151,18 @@ class HomeController extends Controller
     }
 
     public function viewExamResult($id){
-        $exam = Exam::where('user_id', auth()->user()->id)
-            ->where('approved', 1)
-            ->where('id', $id)
-            ->whereNotNull('start_time')
-            ->first();
+        if (auth()->user()->isAdmin()){
+            $exam = Exam::where('id', $id)
+                ->where('approved', 1)
+                ->whereNotNull('start_time')
+                ->first();
+        }else{
+            $exam = Exam::where('user_id', auth()->user()->id)
+                ->where('approved', 1)
+                ->where('id', $id)
+                ->whereNotNull('start_time')
+                ->first();
+        }
         if (!$exam){
             return response()->redirectToRoute('dashboard');
         }
