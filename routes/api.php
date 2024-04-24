@@ -28,7 +28,7 @@ Route::prefix('api')->group(function () {
 
     Route::prefix('exam')->group(function () {
         // Admin
-        Route::get('/delete', [Exam::class, 'delete'])->name('delete_exam');
+        Route::post('/delete', [Exam::class, 'delete'])->name('delete_exam');
         Route::post('/approve', [Exam::class, 'approve'])->name('approve_exam');
         Route::post('/add', [Exam::class, 'add'])->name('add_exam');
 

@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     // admin features
     Route::get('/approve-exam/{id}', [HomeController::class, 'approveExam'])->name('exam.approve');
     Route::get('/add-exam', [HomeController::class, 'enrollment'])->name('exam.enrollment');
+    Route::get('/delete-exam/{id}', [HomeController::class, 'delete'])->name('exam.delete');
     Route::get('/exams', [HomeController::class, 'exam'])->name('exam.manage');
     Route::get('/add-user', [HomeController::class, 'addUser'])->name('add-user.frontend');
     Route::get('/user-list', [HomeController::class, 'manageUser'])->name('manageUser');
