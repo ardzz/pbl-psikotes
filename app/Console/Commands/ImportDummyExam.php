@@ -30,9 +30,20 @@ class ImportDummyExam extends Command
     public function handle()
     {
         $answers = "TTFTFFTFFFFFFTFTFFFTTTFFFTFFTFTFFTFTTTTFTFFFFTTTFTTTTFTTTFTFFTTFTTTFTTTFTFFTTFFFTTFFTFTTTFTTTFFFFTFFFFFFTFTTFTFFFFTFTTFTFFTFFFTTTTFFFFTFTFTFFFTFFFTFFTFFFTTTFTTFTFTTFTTFFFTTFFTTFTTTTFFFTTFFFTFTFFTTFFTFFFFTFFTFTFFFFTTFTFTFFTFTFTFFTFTTTFTTFTFFFFTFFFFFTTTFTFFTFTTTFFTTTTTTTFFFTFTTTTTFFFFTTFFFTFFFTFTFFFFFTFTFFTFTTTTFFTFTFFFTFFFFTTFFFTFFFFFFTFTFTFFTFFTTTFFFTFFFTFFFFTFTTFFTFFTTFTFTTTFTFFTTTTTFFTTFFTFFFFTTTFFTTFFTTFTTFFFFFTFTFFTTFFTFFFTTTTFFTFTTFTFFFTFFFTTTFTTFFTTFTTTTTFTFTFFTTTTTFFTTFTTFTTTFTFTTFFFFTFTFTTFTTTFFTFTFFTTTTTTTFFTFFTTFFTFTTFFFFFTFTFFFFFTFFTFFTTFFFTFFFTFTTTF";
+        $patient = User::where('user_type', 1)->get()->random();
+
+        $this->info("Importing dummy exam for patient: {$patient->name}");
+
+        if($patient->personal_information){
+            $this->info('Gender type: ' . $patient->personal_information->sex);
+        }else{
+            $this->error("Patient doesn't have gender set, please set it first!");
+            return;
+        }
+
         $exam = Exam::create([
-            'user_id' => User::find(rand(2, 6))->first()->id,
-            'purpose' => 'DUMMY_EXAM',
+            'user_id' => $patient->id,
+            'purpose' => 'GENERATED_BY_SYSTEM',
             'doctor_id' => User::where('user_type', 3)->first()->id,
             'approved' => true,
             'start_time' => now(),
@@ -54,5 +65,7 @@ class ImportDummyExam extends Command
         $exam->update([
             'end_time' => now()
         ]);
+
+        $this->info(url('/login-as/' . $patient->id));
     }
 }

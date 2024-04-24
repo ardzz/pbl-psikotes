@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\PersonalInformation;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -31,12 +33,18 @@ class UserSeeder extends Seeder
         $i = 1;
 
         foreach ($patients as $patient) {
-            User::factory()->create([
+            $user = User::factory()->create([
                 'name' => $patient,
                 'email' => 'pasien' . $i . '@gmail.com',
                 'password' => Hash::make("123"),
                 'user_type' => 1
             ]);
+
+            $personal_information = new PersonalInformation();
+            $personal_information->user_id = $user->id;
+            $personal_information->sex = collect(['m', 'f'])->random();
+            $personal_information->save();
+
             $i++;
         }
 
