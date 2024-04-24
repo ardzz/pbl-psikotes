@@ -35,7 +35,7 @@ Route::prefix('api')->group(function () {
         // Patient
         Route::get('/start', [Exam::class, 'start'])->name('start_exam');
         Route::post('/request', [Exam::class, 'request'])->name('request_exam');
-        Route::post('/submit', [Exam::class, 'submit'])->name('submit_exam');
+        Route::post('/submit', [Exam::class, 'finish'])->name('submit_exam');
     });
 
     Route::prefix('patient')->group(function () {
