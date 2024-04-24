@@ -86,4 +86,9 @@ class Exam extends Model
         }
         return false;
     }
+
+    public function isFinished(): bool
+    {
+        return $this->end_time !== null && $this->start_time !== null;
+    }
 }

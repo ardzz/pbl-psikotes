@@ -82,6 +82,22 @@ class Exam extends Controller
         }
     }
 
+    public function forceFinish(Request $request): JsonResponse
+    {
+        $request->validate([
+            'exam_id' => 'required|integer|exists:exams,id'
+        ]);
+
+        $exam = ExamModel::where('id', $request->exam_id)->first();
+
+        if (!$exam->isFinished()){
+            $exam->endExam();
+            return response()->json(["message" => "Exam successfully finished"], 200);
+        }else{
+            return response()->json(["message" => "Exam already finished"], 400);
+        }
+    }
+
     public function request(Request $request)
     {
         $request->validate([

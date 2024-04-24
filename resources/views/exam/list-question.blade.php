@@ -80,7 +80,7 @@
                         @endif
                             <div class="col mb-2">
                                 <div class="d-flex justify-content-center">
-                                    <button class="btn btn-small btn-danger me-2">
+                                    <button class="btn btn-small btn-danger me-2" onclick="finish_exam();">
                                         <i class="uil uil-edit me-1"></i>
                                         Selesaikan Ujian
                                     </button>
@@ -174,5 +174,36 @@
                 "info": false
             });
         });
+
+        function finish_exam(){
+            $.ajax(
+                {
+                    url: '{{ route('submit_exam') }}',
+                    type: 'POST',
+                    data: {},
+                    success: function (data) {
+                        swal.fire({
+                            title: 'Ujian telah selesai',
+                            text: 'Ujian telah selesai, silahkan tunggu hasil interpretasi dari dokter.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = '{{ route('exam.result', $exam->id) }}';
+                            }
+                        });
+                    },
+                    error: function (data) {
+                        swal.fire({
+                            title: 'Gagal',
+                            text: 'Gagal menyelesaikan ujian, : ' + data.responseJSON.message,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                }
+            );
+        }
+
     </script>
 @endsection

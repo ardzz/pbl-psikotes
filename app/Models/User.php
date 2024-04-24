@@ -121,7 +121,9 @@ class User extends Authenticatable implements MustVerifyEmail
             'marital_status', 'education', 'sex'
         ];
 
-        if ($this->personal_information == null) {
+        if($this->user_type == 2 || $this->user_type == 3){
+            return true;
+        }elseif ($this->personal_information == null) {
             return false;
         }else{
             foreach ($keys as $key) {

@@ -32,7 +32,7 @@
                             </div>
                             <div class="col mb-2">
                                 <div class="d-flex justify-content-end">
-                                    <button class="btn btn-small btn-danger me-2">
+                                    <button class="btn btn-small btn-danger me-2" onclick="finish_confirmation();">
                                         <i class="uil uil-edit me-1"></i>
                                         Selesaikan Ujian
                                     </button>
@@ -227,6 +227,53 @@
             let current_question_id = $('#question_id').val();
             get_question(current_question_id, -1);
         }
+
+        function finish_exam(){
+            $.ajax(
+                {
+                    url: '{{ route('submit_exam') }}',
+                    type: 'POST',
+                    data: {},
+                    success: function (data) {
+                        swal.fire({
+                            title: 'Ujian telah selesai',
+                            text: 'Ujian telah selesai, silahkan tunggu hasil interpretasi dari dokter.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = '{{ route('exam.result', $exam->id) }}';
+                            }
+                        });
+                    },
+                    error: function (data) {
+                        swal.fire({
+                            title: 'Gagal',
+                            text: 'Gagal menyelesaikan ujian, : ' + data.responseJSON.message,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                }
+            );
+        }
+
+        function finish_confirmation(){
+            swal.fire({
+                title: 'Selesaikan Ujian?',
+                text: 'Pastikan Anda sudah menjawab semua soal dan batas maksimal tidak menjawab pertanyaan adalah 30 soal, lebih dari itu psiotes akan dianggap tidak valid.',
+                icon: 'error',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Selesaikan',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                    if (result.isConfirmed) {
+                        finish_exam();
+                    }
+                }
+            );
+        }
+
         @if($exam->answer)
             get_question({{ $last_question->id }}, 0);
         @endif

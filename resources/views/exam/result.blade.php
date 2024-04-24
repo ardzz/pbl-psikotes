@@ -68,22 +68,33 @@
                         @endif
 
                         @if($unanswered->count() >= 30)
-                            <div class="alert alert-warning" role="alert">
-                                <h4 class="alert-heading mb-3">ANDA BELUM MENJAWAB SEMUA PERTANYAAN</h4>
-                                <p class="mb-1">Mohon untuk menjawab semua pertanyaan yang ada.</p>
-                                <p class="mb-1">Jika Anda tidak menjawab pertanyaan, maka ujian psikotes tidak dapat diinterpretasikan.</p>
-                                <p class="mb-1">Terima kasih.</p>
-                            </div>
+                                @if(auth()->user()->user_type == 2 || auth()->user()->user_type == 3)
+                                    <div class="alert alert-warning" role="alert">
+                                        <h4 class="alert-heading mb-3">USER BELUM MENJAWAB SEMUA PERTANYAAN</h4>
+                                        <p class="mb-1">Mohon untuk memberitahu user untuk menjawab semua pertanyaan yang ada.</p>
+                                        <p class="mb-1">Jika User tidak menjawab pertanyaan, maka ujian psikotes tidak dapat diinterpretasikan.</p>
+                                        <p class="mb-1">Terima kasih.</p>
+                                    </div>
+                                @else
+                                    <div class="alert alert-warning" role="alert">
+                                        <h4 class="alert-heading mb-3">ANDA BELUM MENJAWAB SEMUA PERTANYAAN</h4>
+                                        <p class="mb-1">Mohon untuk menjawab semua pertanyaan yang ada.</p>
+                                        <p class="mb-1">Jika Anda tidak menjawab pertanyaan, maka ujian psikotes tidak dapat diinterpretasikan.</p>
+                                        <p class="mb-1">Terima kasih.</p>
+                                    </div>
+                                @endif
                         @endif
                             <div class="col mb-2">
                                 <div class="d-flex justify-content-center">
-                                    <button class="btn btn-small btn-danger me-2">
+                                    <button class="btn btn-small btn-danger me-2" onclick="force_finish_exam();">
                                         <i class="uil uil-edit me-1"></i>
                                         Selesaikan Ujian
                                     </button>
-                                    <button class="btn btn-small btn-primary" onclick="window.location.href='{{ route('mmpi2') }}'">
-                                        Kembali ke Halaman Soal
-                                    </button>
+                                    @if(auth()->user()->user_type != 2 && auth()->user()->user_type != 3)
+                                        <button class="btn btn-small btn-primary" onclick="window.location.href='{{ route('mmpi2') }}'">
+                                            Kembali ke Halaman Soal
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                     @else
@@ -274,5 +285,38 @@
         $.fn.DataTable.ext.pager.numbers_length = 3;
         score_text('{{ \App\MMPI2\Scale::make($exam)->toTF() }}');
         $("#editable-datatable").DataTable({"info": false});
+
+
+        function force_finish_exam(){
+            $.ajax(
+                {
+                    url: '{{ route('force_finish_exam') }}',
+                    type: 'POST',
+                    data: {
+                        exam_id: '{{ $exam->id }}'
+                    },
+                    success: function (data) {
+                        swal.fire({
+                            title: 'Ujian telah selesai',
+                            text: 'Ujian telah selesai, silahkan tunggu hasil interpretasi dari dokter.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = '{{ route('exam.result', $exam->id) }}';
+                            }
+                        });
+                    },
+                    error: function (data) {
+                        swal.fire({
+                            title: 'Gagal',
+                            text: 'Gagal menyelesaikan ujian, : ' + data.responseJSON.message,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                }
+            );
+        }
     </script>
 @endsection

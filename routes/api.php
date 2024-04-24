@@ -35,6 +35,7 @@ Route::prefix('api')->group(function () {
                 Route::post('/approve', [Exam::class, 'approve'])->name('approve_exam');
             });
 
+            Route::post('/force-finish', [Exam::class, 'forceFinish'])->name('force_finish_exam');
             Route::post('/add', [Exam::class, 'add'])->name('add_exam');
         });
 
