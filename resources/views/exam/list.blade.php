@@ -64,10 +64,10 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                             <li>
-                                                <a class="dropdown-item" href="#">View</a>
+                                                <a class="dropdown-item" href="{{ route('exam.result', $item->id) }}">View</a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="#">Delete</a>
+                                                <a class="dropdown-item" href="{{ route('exam.delete', $item->id) }}">Delete</a>
                                             </li>
                                             @if($item->approved == 0)
                                                 <li>

@@ -53,9 +53,6 @@
                     </p>
                 </div>
             </div>
-            <div class="text-center">
-                <a href="{{route('mmpi2')}}" class="btn btn-primary btn-lg mt-5">Mulai Tes</a>
-            </div>
         </div>
     </div>
 @endsection
