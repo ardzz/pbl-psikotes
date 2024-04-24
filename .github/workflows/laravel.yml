@@ -50,4 +50,4 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: "{{defaultContext}}:src"
-        tags: ${{ secrets.DOCKER_USERNAME }}/$GITHUB_REPOSITORY:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/pbl-psikotest:latest
