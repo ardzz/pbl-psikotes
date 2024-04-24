@@ -66,23 +66,19 @@ class Exam extends Controller
         }
     }
 
-    public function finish(Request $request)
+    public function finish()
     {
-        $request->validate([
-            'exam_id' => 'required|integer|exists:exams,id'
-        ]);
-
-        $exam = ExamModel::where('id', $request->exam_id)->first();
+        $exam = auth()->user()->getUnfinishedExam();
 
         if ($exam == null) {
             return response()->json(["message" => "Exam not found"], 404);
         }elseif ($exam->end_time !== null) {
             return response()->json(["message" => "Exam already finished"], 400);
         }else{
-            $exam->update([
-                "end_time" => now()
-            ]);
-            return response()->json(["message" => "Exam successfully finished"], 200);
+            if($exam->endExam()) {
+                return response()->json(["message" => "Exam successfully finished"]);
+            }
+            return response()->json(["message" => "There was an error finishing the exam"], 500);
         }
     }
 

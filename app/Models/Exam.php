@@ -77,4 +77,13 @@ class Exam extends Model
         return now()->greaterThanOrEqualTo($start_time->addMinutes(90)) ||
             $this->end_time !== null;
     }
+
+    function endExam(): bool
+    {
+        if ($this->end_time === null) {
+            $this->end_time = now();
+            return $this->save();
+        }
+        return false;
+    }
 }

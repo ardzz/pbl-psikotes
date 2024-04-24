@@ -129,7 +129,30 @@
                     exam_id: '{{ $exam->id }}'
                 },
                 success: function(response) {
-                    get_question(response.question_id, 1);
+                    if(response.question_id !== 567) {
+                        get_question(response.question_id, 1);
+                    }else{
+                        $.ajax({
+                            url: '{{ route('submit_exam') }}',
+                            type: 'POST',
+                            success: function(response) {
+                                swal.fire({
+                                    icon: 'success',
+                                    title: 'Sukses',
+                                    text: 'Ujian telah selesai'
+                                }).then((result) => {
+                                    window.location = '{{ route('examHistory') }}';
+                                });
+                            },
+                            error: function(error) {
+                                swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: error.responseJSON.message
+                                });
+                            }
+                        });
+                    }
                 },
                 error: function(error) {
                     swal.fire({
