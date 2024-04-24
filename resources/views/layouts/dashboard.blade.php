@@ -181,8 +181,6 @@
     <script src="/dist/js/sidebarmenu.js"></script>
     <script src="/dist/js/custom.js"></script>
     <!-- current page js files -->
-    <script src="/dist/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="/dist/js/dashboard2.js"></script>
   @yield('scripts')
   </body>
 </html>
