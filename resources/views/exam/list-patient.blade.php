@@ -29,15 +29,12 @@
         <div class="col-12">
             <div class="card w-100 position-relative overflow-hidden mb-0">
                 <div class="card-body p-4">
-                    <table
-                        class="table table-striped table-bordered"
-                        id="editable-datatable"
-                    >
+                    <table class="table table-striped table-bordered" id="editable-datatable">
                         <thead>
                         <th>No</th>
                         <th>Keterangan Psikotes</th>
                         <th>Dokter</th>
-                        <th>Tanggal Dikerjakan</th>
+                        <th>Waktu Selesai</th>
                         <th>Aksi</th>
                         </thead>
                         <tbody>
@@ -59,7 +56,7 @@
                                             Action
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                            <li><a class="dropdown-item" href="#">View</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('exam.result', $item->id) }}">View</a></li>
                                         </ul>
                                     </div>
                                 </td>

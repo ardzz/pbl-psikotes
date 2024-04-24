@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/mmpi2', [HomeController::class, 'mmpi2'])->name('mmpi2');
     Route::get('/request-mmpi2', [HomeController::class, 'requestMmpi2'])->name('mmpi2.request');
     Route::get('/question-list', [HomeController::class, 'questionList'])->name('question.list');
+    Route::get('/exam/{id}', [HomeController::class, 'viewExamResult'])->name('exam.result');
 
     // admin features
     Route::get('/approve-exam/{id}', [HomeController::class, 'approveExam'])->name('exam.approve');
