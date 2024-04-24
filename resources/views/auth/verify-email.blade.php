@@ -35,7 +35,7 @@
                     <div class="card mb-0">
                         <div class="card-body pt-5">
                             <a href="./index.html" class="text-nowrap logo-img text-center d-block mb-4">
-                                <img src="../../dist/images/logos/dark-logo.svg" width="180" alt="">
+                                <img src="../../dist/images/logos/4.png" width="180" alt="">
                             </a>
                             <div class="mb-5 text-center">
                                 <p class="mb-0 ">

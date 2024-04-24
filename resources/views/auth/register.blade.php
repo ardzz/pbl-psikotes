@@ -36,7 +36,7 @@
               <div class="card mb-0">
                 <div class="card-body">
                   <a href="./index.html" class="text-nowrap logo-img text-center d-block mb-5 w-100">
-                    <img src="/dist/images/logos/dark-logo.svg" width="180" alt="">
+                    <img src="/dist/images/logos/4.png" width="180" alt="">
                   </a>
                   <div class="row">
                       <a class="btn btn-white text-dark border fw-normal d-flex align-items-center justify-content-center rounded-2 py-8" href="{{ route('oauth.redirect') }}" role="button">
