@@ -1311,87 +1311,87 @@ scales = [{
     }
 }, {
     name: "KB1",
-    description: "Koss-Butcher Critical Items - Acute Anxiety Scale",
+    description: "Acute Anxiety Scale",
     true_questions: [5, 15, 28, 39, 59, 172, 218, 301, 444, 463, 469],
     false_questions: [2, 3, 10, 140, 208, 223]
 }, {
     name: "KB2",
-    description: "Koss-Butcher Critical Items - Depressed Suicidal Ideation",
+    description: "Depressed Suicidal Ideation",
     true_questions: [38, 65, 71, 92, 130, 146, 215, 233, 273, 303, 306, 411, 454, 485, 506, 518, 520, 524],
     false_questions: [9, 75, 95, 388]
 }, {
     name: "KB3",
-    description: "Koss-Butcher Critical Items - Threatened Assault",
+    description: "Threatened Assault",
     true_questions: [37, 85, 134, 213, 389],
     false_questions: []
 }, {
     name: "KB4",
-    description: "Koss-Butcher Critical Items - Situational Stress Due to Alcoholism",
+    description: "Situational Stress Due to Alcoholism",
     true_questions: [264, 487, 489, 502, 511, 518],
     false_questions: [125]
 }, {
     name: "KB5",
-    description: "Koss-Butcher Critical Items - Mental Confusion",
+    description: "Mental Confusion",
     true_questions: [24, 31, 32, 72, 96, 180, 198, 299, 311, 316, 325],
     false_questions: []
 }, {
     name: "KB6",
-    description: "Koss-Butcher Critical Items - Persecutory Ideas",
+    description: "Persecutory Ideas",
     true_questions: [17, 42, 99, 124, 138, 144, 145, 162, 216, 228, 241, 251, 259, 333, 361],
     false_questions: [314]
 }, {
     name: "LW1",
-    description: "Lachar-Wrobel Critical Items - Anxiety and Tension",
+    description: "Anxiety and Tension",
     true_questions: [15, 17, 172, 218, 299, 301, 320, 463],
     false_questions: [223, 261, 405]
 }, {
     name: "LW2",
-    description: "Lachar-Wrobel Critical Items - Depression and Worry",
+    description: "Depression and Worry",
     true_questions: [65, 73, 130, 150, 180, 273, 303, 339, 411, 415, 454],
     false_questions: [2, 3, 10, 75, 165]
 }, {
     name: "LW3",
-    description: "Lachar-Wrobel Critical Items - Sleep Disturbance",
+    description: "Sleep Disturbance",
     true_questions: [5, 30, 39, 328, 471],
     false_questions: [140]
 }, {
     name: "LW4",
-    description: "Lachar-Wrobel Critical Items - Deviant Beliefs",
+    description: "Deviant Beliefs",
     true_questions: [42, 99, 138, 144, 162, 216, 228, 259, 333, 336, 355, 466],
     false_questions: [106, 314]
 }, {
     name: "LW5",
-    description: "Lachar-Wrobel Critical Items - Deviant Thinking and Experiences",
+    description: "Deviant Thinking and Experiences",
     true_questions: [32, 60, 96, 122, 198, 298, 307, 316, 319, 427],
     false_questions: []
 }, {
     name: "LW6",
-    description: "Lachar-Wrobel Critical Items - Substance Abuse",
+    description: "Substance Abuse",
     true_questions: [168, 264],
     false_questions: [429]
 }, {
     name: "LW7",
-    description: "Lachar-Wrobel Critical Items - Antisocial Attitude",
+    description: "Antisocial Attitude",
     true_questions: [27, 35, 84, 105, 227, 240, 254, 324],
     false_questions: [266]
 }, {
     name: "LW8",
-    description: "Lachar-Wrobel Critical Items - Family Conflict",
+    description: "Family Conflict",
     true_questions: [21, 288],
     false_questions: [83, 125]
 }, {
     name: "LW9",
-    description: "Lachar-Wrobel Critical Items - Problematic Anger",
+    description: "Problematic Anger",
     true_questions: [85, 134, 213, 389],
     false_questions: []
 }, {
     name: "LW10",
-    description: "Lachar-Wrobel Critical Items - Sexual Concern and Deviation",
+    description: "Sexual Concern and Deviation",
     true_questions: [62, 166, 268],
     false_questions: [12, 34, 121]
 }, {
     name: "LW11",
-    description: "Lachar-Wrobel Critical Items - Somatic Symptoms",
+    description: "Somatic Symptoms",
     true_questions: [18, 28, 40, 44, 53, 57, 59, 101, 111, 175, 182, 229, 247, 464],
     false_questions: [33, 47, 142, 159, 164, 176, 224, 255, 295]
 }];
