@@ -45,6 +45,11 @@ class HomeController extends Controller
         return view('exam.add', compact('doctors'));
     }
 
+    public function delete($id)
+    {
+        return view('exam.delete', ['exam' => Exam::find($id), 'doctors' => User::where('user_type', 3)->get()]);
+    }
+
     public function addUser()
     {
         return view('exam.add-user');
