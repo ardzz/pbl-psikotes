@@ -53,7 +53,7 @@
   <header id="header" class="d-flex align-items-center fixed-top header-scrolled">
     <div class="container d-flex align-items-center">
 
-      <a href="index.html" class="logo me-auto"><img src="/dist/images/logos/4.png" class="dark-logo" width="200" alt=""></a>
+      <a class="logo me-auto"><img src="/dist/images/logos/4.png" class="dark-logo" width="200" alt=""></a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
 

@@ -53,7 +53,7 @@
                       </li>
                   </ul>
                   <div class="d-block d-lg-none">
-                      <img src="../../dist/images/logos/4.jpg" width="180" alt="" />
+                      <img src="../../dist/images/logos/4.png" width="180" alt="" />
                   </div>
                   <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="p-2">
