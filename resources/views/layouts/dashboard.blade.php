@@ -13,7 +13,7 @@
         <!-- Sidebar scroll-->
         <div>
           <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="./index.html" class="text-nowrap logo-img">
+            <a href="{{ route('dashboard') }}" class="text-nowrap logo-img">
               <img src="/dist/images/logos/4.png" class="dark-logo" width="150" alt="" />
               <img src="/dist/images/logos/4.png" class="light-logo"  width="150" alt="" />
             </a>
