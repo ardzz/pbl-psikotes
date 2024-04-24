@@ -16,7 +16,7 @@ class PersonalInformationController extends Controller
     public function update(Request $request): JsonResponse
     {
         $validator = Validator::make($request::all(), [
-            'nik' => 'integer',
+            'nik' => 'integer|unique:personal_information,nik,'.auth()->user()->id.',user_id',
             'occupation' => 'string',
             'birthdate' => 'date',
             'phone_number' => 'string',
