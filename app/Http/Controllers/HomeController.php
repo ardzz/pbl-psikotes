@@ -145,4 +145,21 @@ class HomeController extends Controller
         return view('profile.edit-user', ['user' => $user]);
     }
 
+    public function viewExamResult($id){
+        $exam = Exam::where('user_id', auth()->user()->id)
+            ->where('approved', 1)
+            ->where('id', $id)
+            ->whereNotNull('start_time')
+            ->first();
+        if (!$exam){
+            return response()->redirectToRoute('dashboard');
+        }
+        return view('exam.result', [
+            'exam' => $exam,
+            'questions' => $exam->getQuestions(),
+            'unanswered' => $exam->getUnansweredQuestions(),
+            'null_answered' => $exam->getNullAnsweredQuestions()
+        ]);
+    }
+
 }

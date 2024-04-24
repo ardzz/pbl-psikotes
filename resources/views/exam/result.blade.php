@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('css')
-    <link rel="stylesheet" href="../../dist/libs/vanilla-datatables-editable/datatable.editable.min.css">
     <style>
         .dataTables_paginate {
             justify-content: center !important;
@@ -184,6 +183,22 @@
     <div class="card">
         <div class="col-12">
             <div class="card w-100 position-relative overflow-hidden mb-0">
+                <div class="card-body p-4" id="score_text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="col-12">
+            <div class="card w-100 position-relative overflow-hidden mb-0">
+                <div class="card-body p-4" id="ci_table">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="col-12">
+            <div class="card w-100 position-relative overflow-hidden mb-0">
                 <div class="card-body p-4">
                     <h4 class="card-title fw-semibold">Question & Answer</h4>
                     <p class="card-subtitle mb-4">Table of questions and answers.</p>
@@ -221,29 +236,45 @@
 @endsection
 
 @section('scripts')
-    <script src="../../dist/libs/vanilla-datatables-editable/datatable.editable.min.js"></script>
+    <script src="../../dist/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../dist/libs/simplebar/dist/simplebar.min.js"></script>
+    <script src="../../dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ---------------------------------------------- -->
+    <!-- core files -->
+    <!-- ---------------------------------------------- -->
+    <script src="../../dist/js/app.min.js"></script>
+    <script src="../../dist/js/app.init.js"></script>
+    <script src="../../dist/js/app-style-switcher.js"></script>
+    <script src="../../dist/js/sidebarmenu.js"></script>
+
+    <script src="../../dist/js/custom.js"></script>
+    <script src="../../dist/libs/prismjs/prism.js"></script>
+
+    <!-- ---------------------------------------------- -->
+    <!-- current page js files -->
+    <!-- ---------------------------------------------- -->
     <script src="../../dist/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../../dist/js/plugins/mindmup-editabletable.js"></script>
-    <script src="../../dist/js/plugins/numeric-input-example.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+    <script src="../../dist/js/datatable/datatable-advanced.init.js"></script>
     <script type="text/javascript" src="/assets/mmpi2/scales.js"></script>
     <script type="text/javascript" src="/assets/mmpi2/questions.js"></script>
     <script type="text/javascript" src="/assets/mmpi2/canvastext.js"></script>
     <script type="text/javascript" src="/assets/mmpi2/chart.js"></script>
     <script type="text/javascript" src="/assets/mmpi2/score.js"></script>
+    <script type="text/javascript" src="/assets/mmpi2/utils.js"></script>
     <script>
         longform=true;
         gender= {{ $exam->user->personal_information->gender == 'm' ? 1 : 0 }}
         chart_style=0;
         $.fn.DataTable.ext.pager.numbers_length = 3;
-        $("#editable-datatable")
-            .numericInputExample()
-            .find("td:first")
-            .focus();
-        $(function () {
-            $("#editable-datatable").DataTable({
-                "info": false
-            });
-        });
         score_text('{{ \App\MMPI2\Scale::make($exam)->toTF() }}');
+        $("#editable-datatable").DataTable({"info": false});
     </script>
 @endsection
