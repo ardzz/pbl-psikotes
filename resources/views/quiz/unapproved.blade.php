@@ -25,15 +25,11 @@
         <div class="card-body p-4">
             <div class="row">
                 <div class="col-12">
-                    <div class="d-flex justify-content-center">
-                        <div class="alert alert-warning" role="alert">
-                            <h4 class="alert-heading mb-3">PsiKotes Sedang Dalam Proses Persetujuan</h4>
-                            <p class="mb-1">Mohon tunggu hingga admin menyetujui permintaan psikotes anda.</p>
-                            <p class="mb-1">Informasi PsikoTes Yang Anda Ajukan:</p>
-                            <p class="mb-1">Tujuan Psikotes: <strong>{{ $exam->purpose }}</strong></p>
-
-                        </div>
-                        <br>
+                    <div class="alert alert-warning" role="alert">
+                        <h4 class="alert-heading mb-3">PsiKotes Sedang Dalam Proses Persetujuan</h4>
+                        <p class="mb-1">Mohon tunggu hingga admin menyetujui permintaan psikotes anda.</p>
+                        <p class="mb-1">Informasi PsikoTes Yang Anda Ajukan:</p>
+                        <p class="mb-1"><strong>{{ $exam->purpose }}</strong></p>
                     </div>
                 </div>
             </div>
