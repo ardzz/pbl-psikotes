@@ -86,7 +86,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function amIHaveUnassignedExam(): bool
     {
-        return $this->exam()->where('user_id', $this->id)->exists();
+        return $this->exam()->whereNull('end_time')->exists();
     }
 
     public function amIUnstartedExam(): bool
@@ -107,5 +107,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getLatestExam(): Model|HasMany
     {
         return $this->exam()->latest()->first();
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->user_type == 2;
     }
 }
