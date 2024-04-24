@@ -113,4 +113,23 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->user_type == 2;
     }
+
+    public function isPersonalInformationFullFilled(): bool
+    {
+        $keys = [
+            'nik', 'occupation', 'birthdate', 'phone_number',
+            'marital_status', 'education', 'sex'
+        ];
+
+        if ($this->personal_information == null) {
+            return false;
+        }else{
+            foreach ($keys as $key) {
+                if ($this->personal_information->$key == null) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
 }

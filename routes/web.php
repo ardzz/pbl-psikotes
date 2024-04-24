@@ -3,6 +3,10 @@
 use App\Http\Controllers\Auth\OauthGoogle;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\Admin;
+use App\Http\Middleware\AdminOrDoctor;
+use App\Http\Middleware\Doctor;
+use App\Http\Middleware\PersonalInformation;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,22 +24,30 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 
     // exam features
-    Route::get('/history', [HomeController::class, 'examHistory'])->name('examHistory');
     Route::get('/guides', [HomeController::class, 'guides'])->name('guides');
     Route::get('/about-mmpi2', [HomeController::class, 'aboutMmpi2'])->name('about-mmpi2');
-    Route::get('/mmpi2', [HomeController::class, 'mmpi2'])->name('mmpi2');
-    Route::get('/request-mmpi2', [HomeController::class, 'requestMmpi2'])->name('mmpi2.request');
-    Route::get('/question-list', [HomeController::class, 'questionList'])->name('question.list');
-    Route::get('/exam/{id}', [HomeController::class, 'viewExamResult'])->name('exam.result');
+    Route::middleware(PersonalInformation::class)->group(function (){
+        Route::get('/history', [HomeController::class, 'examHistory'])->name('examHistory');
+        Route::get('/mmpi2', [HomeController::class, 'mmpi2'])->name('mmpi2');
+        Route::get('/request-mmpi2', [HomeController::class, 'requestMmpi2'])->name('mmpi2.request');
+        Route::get('/question-list', [HomeController::class, 'questionList'])->name('question.list');
+        Route::get('/exam/{id}', [HomeController::class, 'viewExamResult'])->name('exam.result');
+    });
 
-    // admin features
-    Route::get('/approve-exam/{id}', [HomeController::class, 'approveExam'])->name('exam.approve');
-    Route::get('/add-exam', [HomeController::class, 'enrollment'])->name('exam.enrollment');
-    Route::get('/delete-exam/{id}', [HomeController::class, 'delete'])->name('exam.delete');
-    Route::get('/exams', [HomeController::class, 'exam'])->name('exam.manage');
-    Route::get('/add-user', [HomeController::class, 'addUser'])->name('add-user.frontend');
-    Route::get('/user-list', [HomeController::class, 'manageUser'])->name('manageUser');
-    Route::get('/edit-user/{id}', [HomeController::class, 'editUser'])->name('edit.user');
+    // admin & doctor features
+    Route::middleware(AdminOrDoctor::class)->group(function (){
+        // admin features
+        Route::middleware(Admin::class)->group(function(){
+            Route::get('/user-list', [HomeController::class, 'manageUser'])->name('manageUser');
+            Route::get('/edit-user/{id}', [HomeController::class, 'editUser'])->name('edit.user');
+            Route::get('/approve-exam/{id}', [HomeController::class, 'approveExam'])->name('exam.approve');
+            Route::get('/delete-exam/{id}', [HomeController::class, 'delete'])->name('exam.delete');
+        });
+
+        Route::get('/add-user', [HomeController::class, 'addUser'])->name('add-user.frontend');
+        Route::get('/add-exam', [HomeController::class, 'enrollment'])->name('exam.enrollment');
+        Route::get('/exams', [HomeController::class, 'exam'])->name('exam.manage');
+    });
 });
 
 Route::get('/oauth/callback', [OauthGoogle::class, 'handleGoogleCallback'])->name('oauth.callback');
