@@ -14,7 +14,7 @@
     <meta name="keywords" content="Mordenize" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--  Favicon -->
-    <link rel="shortcut icon" type="image/png" href="../../dist/images/logos/favicon.ico" />
+    <link rel="shortcut icon" type="image/png" href="/dist/images/logos/4.1.png" />
     <!-- Core Css -->
     <link id="themeColors" rel="stylesheet" href="../../dist/css/style.min.css" />
 </head>
