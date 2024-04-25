@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit-user/{id}', [HomeController::class, 'editUser'])->name('edit.user');
             Route::get('/approve-exam/{id}', [HomeController::class, 'approveExam'])->name('exam.approve');
             Route::get('/delete-exam/{id}', [HomeController::class, 'delete'])->name('exam.delete');
+            Route::get('/delete-user/{id}', [HomeController::class, 'deleteUser'])->name('delete.user');
         });
 
         Route::get('/add-user', [HomeController::class, 'addUser'])->name('add-user.frontend');

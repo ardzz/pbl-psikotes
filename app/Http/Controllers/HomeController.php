@@ -55,6 +55,11 @@ class HomeController extends Controller
         return view('exam.add-user');
     }
 
+    public function deleteUser($id)
+    {
+        return view('exam.delete-user', ['item' => User::find($id)]);
+    }
+
     public function guides()
     {
         return view('article.guides');
