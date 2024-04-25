@@ -6,12 +6,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Psikotes</title>
+  <title>{{ config('app.name') }}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
 
   <!-- Favicons -->
+  <link href="/dist/images/logos/4.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -55,7 +56,7 @@
   <header id="header" class="d-flex align-items-center fixed-top header-scrolled">
     <div class="container d-flex align-items-center">
 
-      <a class="logo me-auto"><img src="/dist/images/logos/4png" class="dark-logo" width="200" alt=""></a>
+      <a class="logo me-auto"><img src="/dist/images/logos/4.png" class="dark-logo" width="200" alt=""></a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
 
@@ -63,6 +64,7 @@
         <ul>
           <li><a class="nav-link scrollto" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#cta">Services</a></li>
           <li><a class="nav-link scrollto active" href="#doctors">Doctors</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
