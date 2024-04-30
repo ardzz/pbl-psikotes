@@ -5,7 +5,7 @@
         <!-- ============================= -->
         <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">Home</span>
+            <span class="hide-menu">Exam</span>
         </li>
         <!-- =================== -->
         <!-- Dashboard -->
@@ -26,6 +26,10 @@
                 <span class="hide-menu">Request Exam</span>
             </a>
         </li>
+        <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">utilities</span>
+        </li>
         <li class="sidebar-item">
             <a class="sidebar-link" href="{{ route('examHistory') }}" aria-expanded="false">
                 <span>
@@ -41,6 +45,18 @@
                 </span>
                 <span class="hide-menu">Personal Information</span>
             </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('personal.edit') }}" aria-expanded="false">
+                <span>
+                    <i class="ti ti-wallet"></i>
+                </span>
+                <span class="hide-menu">Payment</span>
+            </a>
+        </li>
+        <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Articles</span>
         </li>
         <li class="sidebar-item">
             <a class="sidebar-link" href="{{ route('guides') }}" aria-expanded="false">
