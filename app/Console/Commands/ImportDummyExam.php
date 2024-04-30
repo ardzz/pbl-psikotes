@@ -7,6 +7,8 @@ use App\Models\Exam;
 use App\Models\Question;
 use App\Models\User;
 use Illuminate\Console\Command;
+use Laravel\Prompts\MultiSelectPrompt;
+use function Laravel\Prompts\multiselect;
 
 class ImportDummyExam extends Command
 {
@@ -30,19 +32,18 @@ class ImportDummyExam extends Command
     public function handle()
     {
         $answers = "TTFTFFTFFFFFFTFTFFFTTTFFFTFFTFTFFTFTTTTFTFFFFTTTFTTTTFTTTFTFFTTFTTTFTTTFTFFTTFFFTTFFTFTTTFTTTFFFFTFFFFFFTFTTFTFFFFTFTTFTFFTFFFTTTTFFFFTFTFTFFFTFFFTFFTFFFTTTFTTFTFTTFTTFFFTTFFTTFTTTTFFFTTFFFTFTFFTTFFTFFFFTFFTFTFFFFTTFTFTFFTFTFTFFTFTTTFTTFTFFFFTFFFFFTTTFTFFTFTTTFFTTTTTTTFFFTFTTTTTFFFFTTFFFTFFFTFTFFFFFTFTFFTFTTTTFFTFTFFFTFFFFTTFFFTFFFFFFTFTFTFFTFFTTTFFFTFFFTFFFFTFTTFFTFFTTFTFTTTFTFFTTTTTFFTTFFTFFFFTTTFFTTFFTTFTTFFFFFTFTFFTTFFTFFFTTTTFFTFTTFTFFFTFFFTTTFTTFFTTFTTTTTFTFTFFTTTTTFFTTFTTFTTTFTFTTFFFFTFTFTTFTTTFFTFTFFTTTTTTTFFTFFTTFFTFTTFFFFFTFTFFFFFTFFTFFTTFFFTFFFTFTTTF";
-        $patient = User::where('user_type', 1)->get()->random();
+        $patients = User::where('user_type', 1)->get();
 
-        $this->info("Importing dummy exam for patient: {$patient->name}");
+        $select_user = \Laravel\Prompts\multiselect(
+            label: 'Which user do you want to generate the exam for?',
+            options: $patients->pluck('name', 'id')->toArray(),
+            default: [$patients->random()->id],
+        );
 
-        if($patient->personal_information){
-            $this->info('Gender type: ' . $patient->personal_information->sex);
-        }else{
-            $this->error("Patient doesn't have gender set, please set it first!");
-            return;
-        }
+        $selected_user = User::find($select_user)->first();
 
         $exam = Exam::create([
-            'user_id' => $patient->id,
+            'user_id' => $selected_user->id,
             'purpose' => 'GENERATED_BY_SYSTEM',
             'doctor_id' => User::where('user_type', 3)->first()->id,
             'approved' => true,
@@ -66,6 +67,6 @@ class ImportDummyExam extends Command
             'end_time' => now()
         ]);
 
-        $this->info(url('/login-as/' . $patient->id));
+        $this->info(url('/login-as/' . $selected_user->id));
     }
 }
