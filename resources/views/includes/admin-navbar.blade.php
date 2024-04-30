@@ -5,7 +5,7 @@
         <!-- ============================= -->
         <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">Home</span>
+            <span class="hide-menu">Exam</span>
         </li>
         <!-- =================== -->
         <!-- Dashboard -->
@@ -26,6 +26,10 @@
                 <span class="hide-menu">Manage Exam</span>
             </a>
         </li>
+        <li class="nav-small-cap">
+            <i class="ti ti-user-code nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Users</span>
+        </li>
         <li class="sidebar-item">
             <a class="sidebar-link" href="{{ route('add-user.frontend') }}" aria-expanded="false">
                   <span>
@@ -40,6 +44,18 @@
                     <i class="ti ti-user-plus"></i>
                   </span>
                 <span class="hide-menu">Manage Users</span>
+            </a>
+        </li>
+        <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Others</span>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('personal.edit') }}" aria-expanded="false">
+                <span>
+                    <i class="ti ti-wallet"></i>
+                </span>
+                <span class="hide-menu">Manage Payment</span>
             </a>
         </li>
         <li class="sidebar-item">

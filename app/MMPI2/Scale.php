@@ -59,7 +59,11 @@ class Scale
         $answers = Answer::where('exam_id', $this->exam->id)->get();
         $result = [];
         foreach ($answers as $answer) {
-            $result[] = $answer->answer ? 'T' : 'F';
+            $result[] = match ((bool) $answer->answer) {
+                true => 'T',
+                false => 'F',
+                default => '?',
+            };
         }
         return implode('', $result);
     }
