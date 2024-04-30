@@ -27,6 +27,11 @@
                 <div class="card-body p-4">
                     <h5 class="card-title fw-semibold">Personal Details</h5>
                     <p class="card-subtitle mb-4">To change your personal detail , edit and save from here</p>
+                    <div class="alert alert-warning" role="alert">
+                        <h4 class="alert-heading mb-3">PENTING!</h4>
+                        <p class="mb-1">Formulir data diri harus diisi dengan benar dan sesuai dengan identitas diri yang sah.</p>
+                        <p class="mb-0">Jika formulir data diri belum lengkap, maka Anda tidak dapat mengajukan permohonan psikotes.</p>
+                    </div>
                     <form>
                         <div class="row">
                             <div class="col-lg-6">
@@ -275,7 +280,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="d-flex align-items-center justify-content-start mt-4 gap-3">
-                                    <a class="btn btn-primary" onclick="update_profile();">Save</a>
+                                    <a class="btn btn-primary" onclick="update_profile();">Simpan</a>
                                 </div>
                             </div>
                         </div>
