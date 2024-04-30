@@ -156,7 +156,7 @@ class HomeController extends Controller
     }
 
     public function viewExamResult($id){
-        if (auth()->user()->isAdmin() || auth()->user()->isDoctor()){
+        if (auth()->user()->isDoctorOrAdmin()){
             $exam = Exam::where('id', $id)
                 ->where('approved', 1)
                 ->whereNotNull('start_time')
