@@ -119,6 +119,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->user_type == 3;
     }
 
+    public function isDoctorOrAdmin(): bool
+    {
+        return $this->isAdmin() || $this->isDoctor();
+    }
+
     public function isPersonalInformationFullFilled(): bool
     {
         $keys = [
