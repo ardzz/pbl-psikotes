@@ -18,7 +18,10 @@ return new class extends Migration
             $table->timestamp("start_time")->nullable();
             $table->timestamp("end_time")->nullable();
             $table->foreignId("doctor_id")->nullable();
-            $table->boolean("approved")->default(false);
+            $table->foreignId("payment_id")->nullable();
+            $table->boolean("approved")->default(false); // approved by admin
+            $table->boolean("validated")->default(false); // validated the result by doctor
+            $table->longText("note")->nullable(); // doctor's note written after the exam
             $table->timestamps();
         });
     }
