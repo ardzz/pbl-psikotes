@@ -68,6 +68,17 @@ class Admin extends Controller
         else{
             return response()->json(["message" => "User not found"], 400);
         }
+    }
 
+    function delete(Request $request){
+        $validated = $request->validate([
+            'id' => 'required|exists:users,id',
+        ]);
+
+        if(User::find($validated['id'])->delete()){
+            return response()->json(["message" => "The user has been successfully deleted"], 200);
+        }else{
+            return response()->json(["message" => "Failed to delete user"], 400);
+        }
     }
 }

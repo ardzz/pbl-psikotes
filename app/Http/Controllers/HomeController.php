@@ -55,6 +55,11 @@ class HomeController extends Controller
         return view('exam.add-user');
     }
 
+    public function deleteUser($id)
+    {
+        return view('exam.delete-user', ['item' => User::find($id)]);
+    }
+
     public function guides()
     {
         return view('article.guides');
@@ -151,7 +156,7 @@ class HomeController extends Controller
     }
 
     public function viewExamResult($id){
-        if (auth()->user()->isAdmin()){
+        if (auth()->user()->isAdmin() || auth()->user()->isDoctor()){
             $exam = Exam::where('id', $id)
                 ->where('approved', 1)
                 ->whereNotNull('start_time')

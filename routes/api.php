@@ -61,6 +61,7 @@ Route::prefix('api')->group(function () {
         Route::middleware(\App\Http\Middleware\Admin::class)->group(function(){
             Route::post('/add', [Admin::class, 'add'])->name('add-user');
             Route::post('/edit', [Admin::class, 'edit'])->name('edit-user');
+            Route::post('/delete', [Admin::class, 'delete'])->name('delete-user');
         });
     });
 

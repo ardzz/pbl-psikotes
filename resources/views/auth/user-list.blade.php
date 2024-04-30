@@ -57,7 +57,7 @@
                                                 <a class="dropdown-item" href="{{route('edit.user', $item->id)}}">Edit</a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="#">Delete</a>
+                                                <a class="dropdown-item" href="{{route('delete.user', $item->id)}}">Delete</a>
                                             </li>
                                         </ul>
                                     </div>

@@ -11,11 +11,11 @@
     <meta name="keywords" content="Mordenize" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--  Favicon -->
-    <link rel="shortcut icon" type="image/png" href="/dist/images/logos/favicon.ico" />
+    <link rel="shortcut icon" type="image/png" href="/dist/images/logos/4.1.png" />
     <!-- Owl Carousel -->
     <link rel="stylesheet" href="/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css">
     <!-- Core Css -->
-    <link  id="themeColors"  rel="stylesheet" href="/dist/css/style.min.css" />
+    <link id="themeColors" rel="stylesheet" href="/dist/css/style.min.css" />
     <link rel="stylesheet" href="/dist/libs/sweetalert2/dist/sweetalert2.min.css">
     @yield('css')
 </head>
