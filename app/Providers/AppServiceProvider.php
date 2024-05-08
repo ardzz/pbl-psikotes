@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Filament\Patient\Resources\ExamResource\Pages\CreateExam;
+use Filament\Support\Facades\FilamentView;
+use Filament\View\PanelsRenderHook;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Midtrans\Config;
 use Spatie\CpuLoadHealthCheck\CpuLoadCheck;
@@ -46,5 +50,21 @@ class AppServiceProvider extends ServiceProvider
         Config::$isProduction = false;
         Config::$isSanitized = true;
         Config::$is3ds = true;
+
+        if (Config::$isProduction){
+            $snap_url = 'https://app.midtrans.com';
+        }else{
+            $snap_url = 'https://app.sandbox.midtrans.com';
+        }
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::SCRIPTS_BEFORE,
+            fn (): string => Blade::render(<<<HTML
+                    <script src="{$snap_url}/snap.js" data-client-key="{{ \Midtrans\Config::\$clientKey }}"></script>
+            HTML),
+            scopes: [
+                CreateExam::class
+            ]
+        );
     }
 }
