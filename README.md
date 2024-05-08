@@ -8,7 +8,7 @@
 </p>
 
 ## About MMPI-2 PSYCHOLOGICAL TEST
-This is a simple web application that allows users to take the MMPI-2 psychological test and get their results. The MMPI-2 is a psychological test that assesses personality traits and psychopathology. The test consists of 567 true/false questions and takes about 60-90 minutes to complete. The test is scored based on the user's responses and provides information about the user's personality traits, emotional functioning, and psychopathology.
+This is a simple web application that allows users to take the MMPI-2 psychological test and get their results. The MMPI-2 is a psychological test that assesses personality traits and psychopathology. The test consists of 567 true/false questions and takes about 60-90 minutes to complete. The test is scored based on the user's responses and provides information about the user's personality traits, emotional functioning, and psychopathology
 
 ## Installation
 1. Clone the repository
