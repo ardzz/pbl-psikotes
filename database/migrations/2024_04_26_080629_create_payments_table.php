@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable();
             $table->enum('method', ['manual', 'online'])->default('manual');
             $table->string('provider_payment_method')->nullable();
+            $table->string('snap_code')->nullable(); // if method is online (midtrans)
             $table->enum('status', ['pending', 'paid', 'failed'])->default('pending');
             $table->string('description')->default('Payment is pending');
             $table->string('bank_name')->nullable(); // if method is manual
