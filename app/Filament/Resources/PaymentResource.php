@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PaymentResource\Pages;
-use App\Filament\Resources\PaymentResource\RelationManagers;
 use App\Models\Payment;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -27,7 +26,13 @@ class PaymentResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('provider_payment_method')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('status')
+                Forms\Components\Select::make('status')
+                    ->options([
+                        'pending' => 'Pending',
+                        'paid' => 'Paid',
+                        'expired' => 'Expired',
+                    ])
+                    ->native(false)
                     ->required(),
                 Forms\Components\TextInput::make('description')
                     ->required()
@@ -43,8 +48,7 @@ class PaymentResource extends Resource
                     ->required()
                     ->numeric()
                     ->default(400000),
-                Forms\Components\TextInput::make('proof')
-                    ->maxLength(255),
+                Forms\Components\FileUpload::make('proof')->columnSpanFull(),
                 Forms\Components\DateTimePicker::make('paid_at'),
                 Forms\Components\DateTimePicker::make('expired_at'),
             ]);
@@ -69,7 +73,7 @@ class PaymentResource extends Resource
                 Tables\Columns\TextColumn::make('amount')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('proof')
+                Tables\Columns\ImageColumn::make('proof')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('paid_at')
                     ->dateTime()

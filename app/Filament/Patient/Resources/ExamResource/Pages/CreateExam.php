@@ -3,6 +3,7 @@
 namespace App\Filament\Patient\Resources\ExamResource\Pages;
 
 use App\Filament\Patient\Resources\ExamResource;
+use App\Models\Payment;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
@@ -11,7 +12,10 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Wizard;
+use Filament\Forms\Form;
 use Filament\Forms\Get;
+use Filament\Forms\Set;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\HtmlString;
 use Livewire\Component as Livewire;
@@ -31,6 +35,47 @@ class CreateExam extends CreateRecord
             'name' => auth()->user()->name,
             'user_id' => auth()->id(),
         ]);
+    }
+
+    function midtrans($pdf_url): void
+    {
+        $this->sendNotification(Payment::midtrans($pdf_url));
+    }
+
+    function sendNotification($trx): Notification
+    {
+        $notification = match ($trx) {
+            'settlement', 'capture' => Notification::make()
+                ->title('Pembayaran Berhasil')
+                ->success()
+                ->body('Pembayaran anda telah berhasil dilakukan. Silahkan tunggu konfirmasi selanjutnya.'),
+            'challenge' => Notification::make()
+                ->title('Pembayaran Ditahan')
+                ->success()
+                ->body('Pembayaran anda ditahan oleh FDS. Silahkan hubungi kami untuk informasi lebih lanjut.'),
+            'deny' => Notification::make()
+                ->title('Pembayaran Ditolak')
+                ->danger()
+                ->body('Pembayaran anda ditolak oleh midtrans. Silahkan hubungi kami untuk informasi lebih lanjut.'),
+            'expire' => Notification::make()
+                ->title('Pembayaran Kadaluarsa')
+                ->danger()
+                ->body('Pembayaran anda telah kadaluarsa. Silahkan hubungi kami untuk informasi lebih lanjut.'),
+            'cancel' => Notification::make()
+                ->title('Pembayaran Dibatalkan')
+                ->danger()
+                ->body('Pembayaran anda telah dibatalkan. Silahkan hubungi kami untuk informasi lebih lanjut.'),
+            'pending' => Notification::make()
+                ->title('Pembayaran Pending')
+                ->info()
+                ->body('Silahkan selesaikan pembayaran anda.'),
+            default => Notification::make()
+                ->title('Pembayaran Gagal')
+                ->danger()
+                ->body('Pembayaran anda gagal. Silahkan hubungi kami untuk informasi lebih lanjut.'),
+        };
+
+        return $notification->send();
     }
 
     public function getSteps(): array
@@ -63,7 +108,7 @@ class CreateExam extends CreateRecord
                         ->live()
                         ->suffixIcon('heroicon-o-currency-dollar')
                         ->required()
-                        ->afterStateUpdated(function (Get $get, Livewire $livewire){
+                        ->afterStateUpdated(function (Get $get, Livewire $livewire, Set $set){
                             if ($get('method') === 'midtrans') {
                                 $params = [
                                     'transaction_details' => [
@@ -76,7 +121,14 @@ class CreateExam extends CreateRecord
                                     ]
                                 ];
                                 $snap_code = Snap::getSnapToken($params);
-                                $livewire->js('snap.pay("'.$snap_code.'");');
+                                $livewire->js(<<<JS
+                                    snap.pay('$snap_code', {
+                                        onSuccess: function(result){
+                                            \$wire.midtrans(result.pdf_url);
+                                        }
+                                    });
+                                JS
+                                );
                             }
                         }),
                     Section::make('Formulir Pembayaran')
@@ -97,7 +149,7 @@ class CreateExam extends CreateRecord
                                 ->label('Bukti Pembayaran')
                                 ->image()
                                 ->imageEditor()
-                                //->required()
+                                ->required()
                         ])
                         ->visible(fn (Get $get) => $get('method') === 'cash')
                         ->dehydrated(),
@@ -119,8 +171,28 @@ class CreateExam extends CreateRecord
         $data['user_id'] = auth()->id();
         $data['payment']['user_id'] = auth()->id();
 
-        //dd($data);
-
         return $data;
+    }
+
+    protected function beforeCreate(): void
+    {
+        $data = $this->data;
+        if ($data['method'] == 'midtrans'){
+            $trx = Payment::latestMidtrans();
+            if ($trx) {
+                if ($trx->status != 'paid') {
+                    $this->sendNotification($trx->status);
+                    $this->halt();
+                }
+            }else{
+                Notification::make()
+                    ->title('Pembayaran Gagal')
+                    ->danger()
+                    ->body('Pembayaran anda gagal. Data transaksi tidak ditemukan, silahkan ulangi proses pembayaran.')
+                    ->send();
+                $this->halt();
+            }
+            $this->data['payment_id'] = $trx->id;
+        }
     }
 }

@@ -17,4 +17,16 @@ class EditPayment extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $status = $data['status'];
+        if ($status === 'paid') {
+            $data['paid_at'] = now();
+        } elseif ($status === 'expired') {
+            $data['expired_at'] = now();
+        }
+
+        return $data;
+    }
 }

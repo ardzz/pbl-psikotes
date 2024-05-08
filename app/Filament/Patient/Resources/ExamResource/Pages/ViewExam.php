@@ -65,6 +65,20 @@ class ViewExam extends ViewRecord
                         ->imageEditor()
                         ->required()
                 ])
+            ->visible(fn () => $this->getRecord()->payment->isManual()),
+            Section::make('Status Pembayaran')
+                ->relationship('payment')
+                ->schema([
+                    TextInput::make('status')
+                        ->label('Status Pembayaran')
+                        ->disabled(),
+                    TextInput::make('provider_payment_method')
+                        ->label('Metode Pembayaran')
+                        ->disabled(),
+                    TextInput::make('description')
+                        ->label('Deskripsi')
+                        ->disabled(),
+                ])
         ]);
     }
 }
