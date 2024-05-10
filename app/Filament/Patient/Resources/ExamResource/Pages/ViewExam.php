@@ -4,6 +4,7 @@ namespace App\Filament\Patient\Resources\ExamResource\Pages;
 
 use App\Filament\Patient\Resources\ExamResource;
 use Filament\Actions;
+use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
@@ -28,7 +29,6 @@ class ViewExam extends ViewRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        $payment = $this->getRecord()->payment;
         $data['name'] = $this->getRecord()->user->name;
 
         return $data;
@@ -45,30 +45,22 @@ class ViewExam extends ViewRecord
                     ->label('Keperluan Mengikuti Psikotest MMPI-2')
                     ->required()
             ]),
-            Section::make('Formulir Pembayaran')
-                ->relationship('payment')
-                ->schema([
-                    TextInput::make('bank_name')
-                        ->label('Nama Bank')
-                        ->helperText('Contoh: BCA, BNI, BRI, Mandiri, dll.')
-                        ->required(),
-                    TextInput::make('bank_account_name')
-                        ->label('Nama Pengirim')
-                        ->required(),
-                    TextInput::make('bank_account')
-                        ->label('Nomor Rekening Pengirim')
-                        ->placeholder('1234567890')
-                        ->required(),
-                    FileUpload::make('proof')
-                        ->label('Bukti Pembayaran')
-                        ->image()
-                        ->imageEditor()
-                        ->required()
-                ])
-            ->visible(fn () => $this->getRecord()->payment->isManual()),
             Section::make('Status Pembayaran')
                 ->relationship('payment')
                 ->schema([
+                    Fieldset::make('Bank')->schema([
+                        TextInput::make('bank_name')
+                            ->label('Nama Bank')
+                            ->helperText('Contoh: BCA, BNI, BRI, Mandiri, dll.')
+                            ->required(),
+                        TextInput::make('bank_account_name')
+                            ->label('Nama Pengirim')
+                            ->required(),
+                        TextInput::make('bank_account')
+                            ->label('Nomor Rekening Pengirim')
+                            ->placeholder('1234567890')
+                            ->required()
+                    ])->visible(fn () => $this->getRecord()->payment->isManual()),
                     TextInput::make('status')
                         ->label('Status Pembayaran')
                         ->disabled(),
@@ -78,6 +70,9 @@ class ViewExam extends ViewRecord
                     TextInput::make('description')
                         ->label('Deskripsi')
                         ->disabled(),
+                    FileUpload::make('proof')
+                        ->label('Bukti Pembayaran')
+                        ->image()
                 ])
         ]);
     }
