@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use DutchCodingCompany\FilamentSocialite\FilamentSocialitePlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -17,6 +18,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Jeffgreco13\FilamentBreezy\BreezyCore;
 
 class PatientPanelProvider extends PanelProvider
 {
@@ -26,8 +28,31 @@ class PatientPanelProvider extends PanelProvider
             ->id('patient')
             ->path('patient')
             ->login()
+            ->registration()
+            ->sidebarCollapsibleOnDesktop()
+            //->brandLogo('https://web.polines.ac.id/wp-content/uploads/2021/11/LOGO-POLITEKNIK-NEGERI-SEMARANG-2.png')
+            //->brandLogoHeight('4rem')
+            ->brandName('Kelompok Tiga')
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Violet,
+            ])
+            ->plugins([
+                //BreezyCore::make()->myProfile(),
+                FilamentSocialitePlugin::make()
+                    // (required) Add providers corresponding with providers in `config/services.php`.
+                    ->setProviders([
+                        'google' => [
+                            'label' => 'Google',
+                            // Custom icon requires an additional package, see below.
+                            'icon' => 'fab-google',
+                            // (optional) Button color override, default: 'gray'.
+                            'color' => 'primary',
+                            // (optional) Button style override, default: true (outlined).
+                            'outlined' => false,
+                        ],
+                    ])
+                    // (optional) Enable/disable registration of new (socialite-) users.
+                    ->setRegistrationEnabled(true)
             ])
             ->discoverResources(in: app_path('Filament/Patient/Resources'), for: 'App\\Filament\\Patient\\Resources')
             ->discoverPages(in: app_path('Filament/Patient/Pages'), for: 'App\\Filament\\Patient\\Pages')
