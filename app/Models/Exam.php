@@ -10,7 +10,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Exam extends Model
 {
-    protected $fillable = ["user_id", "doctor_id", "purpose", "approved", "start_time", "end_time"];
+    protected $fillable = [
+        "user_id", "doctor_id", "purpose", "approved", "start_time", "end_time",
+        "payment_id"
+    ];
 
     use HasFactory;
 
