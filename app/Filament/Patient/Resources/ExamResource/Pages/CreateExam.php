@@ -171,14 +171,9 @@ class CreateExam extends CreateRecord
         $data['user_id'] = auth()->id();
         $data['payment']['user_id'] = auth()->id();
 
-        return $data;
-    }
-
-    protected function beforeCreate(): void
-    {
-        $data = $this->data;
         if ($data['method'] == 'midtrans'){
             $trx = Payment::latestMidtrans();
+            //dd($trx);
             if ($trx) {
                 if ($trx->status != 'paid') {
                     $this->sendNotification($trx->status);
@@ -192,7 +187,10 @@ class CreateExam extends CreateRecord
                     ->send();
                 $this->halt();
             }
+            $data['payment_id'] = $trx->id;
             $this->data['payment_id'] = $trx->id;
         }
+
+        return $data;
     }
 }
