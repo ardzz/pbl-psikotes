@@ -83,7 +83,7 @@
     <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
       <div class="container" style="background-color: rgba(63, 187, 192, 1); padding: 20px; border-radius: 15px;">
         <h2 style="color: #fafcfc;">TES MMPI ONLINE</h2>
-        <p style="color: #fafcfc;"><strong>Aplikasi Psikotes PBL Online menyediakan aplikasi khusus untuk pelaksanaan tes MMPI Online. Temukan kemudahan ikut tes online di Psikotes PBL Online. Dengan biaya terjangkau, sekali klik, anda dapat mengikuti tes. Laporan hasil tes realtime.</p>
+        <p style="color: #fafcfc;"><strong>Aplikasi Psikotes PBL Online menyediakan aplikasi khusus untuk pelaksanaan tes MMPI Online. Temukan kemudahan ikut tes online di Psikotes PBL Online. Dengan biaya terjangkau, sekali klik, anda dapat mengikuti tes. Laporan hasil tes realtime. </p>
 
         <a href="{{ route('login') }}" class="btn-get-started scrollto mx-2" style="background-color: #297a7d;">Log In</a>
 
