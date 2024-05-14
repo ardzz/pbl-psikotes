@@ -62,6 +62,11 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
         return User::where('user_type', 1)->get();
     }
 
+    public function payment(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *

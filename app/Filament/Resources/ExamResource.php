@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ExamResource extends Resource implements HasShieldPermissions
@@ -83,11 +84,12 @@ class ExamResource extends Resource implements HasShieldPermissions
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->description(function (Model $record) {
+                        return $record->user->email;
+                    }),
                 Tables\Columns\TextColumn::make('purpose')
-                    ->searchable(),
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('start_time')
                     ->dateTime()
                     ->sortable(),
@@ -97,11 +99,14 @@ class ExamResource extends Resource implements HasShieldPermissions
                 Tables\Columns\TextColumn::make('doctor.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('payment_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('payment.method')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'online' => 'success',
+                        'manual' => 'warning',
+                    })
                     ->sortable(),
-                Tables\Columns\IconColumn::make('approved')
-                    ->boolean(),
+                Tables\Columns\ToggleColumn::make('approved'),
                 Tables\Columns\IconColumn::make('validated')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')

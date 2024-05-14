@@ -1,6 +1,6 @@
 @php use App\Models\Exam; @endphp
 @php
-    /* @var Exam $exam */
+    /* @var Exam $this->exam */
 @endphp
 <div class="flex p-4 mb-4 text-sm text-yellow-900 border border-yellow-300 rounded-lg bg-yellow-100 dark:bg-gray-800 dark:border-yellow-800 dark:text-yellow-400 "
      role="alert">
@@ -19,7 +19,7 @@
                 <div class="flex items">
                     <div class="flex flex-col">
                         <span class="text-sm font-medium">Keterangan Psikotes</span>
-                        <span class="text-sm">{{ $exam->purpose }}</span>
+                        <span class="text-sm">{{ $this->exam->purpose }}</span>
                     </div>
                 </div>
             </div>
@@ -28,8 +28,8 @@
                 <div class="flex items">
                     <div class="flex flex-col">
                         <span class="text-m font-medium">Status Pembayaran</span>
-                        @if($exam->payment->method == 'online')
-                            @switch($exam->payment->status)
+                        @if($this->exam->payment->method == 'online')
+                            @switch($this->exam->payment->status)
                                 @case('pending') <span class="text-yellow-500">Menunggu Pembayaran</span> @break
                                 @case('paid') <span class="text-green-500">Pembayaran Berhasil</span> @break
                                 @case('failed') <span class="text-red-500">Pembayaran Gagal</span> @break

@@ -4,6 +4,7 @@ namespace App\Filament\Patient\Resources\ExamResource\Pages;
 
 use App\Filament\Patient\Resources\ExamResource;
 use App\Models\Payment;
+use Faker\Provider\Text;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
@@ -17,6 +18,7 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\HtmlString;
 use Livewire\Component as Livewire;
 use Midtrans\Snap;
@@ -33,7 +35,6 @@ class CreateExam extends CreateRecord
     {
         $this->form->fill([
             'name' => auth()->user()->name,
-            'user_id' => auth()->id(),
         ]);
     }
 
@@ -168,12 +169,14 @@ class CreateExam extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
 
+        $this->data['user_id'] = auth()->id();
+        $this->data['payment']['user_id'] = auth()->id();
+
         $data['user_id'] = auth()->id();
         $data['payment']['user_id'] = auth()->id();
 
         if ($data['method'] == 'midtrans'){
             $trx = Payment::latestMidtrans();
-            //dd($trx);
             if ($trx) {
                 if ($trx->status != 'paid') {
                     $this->sendNotification($trx->status);
@@ -193,4 +196,15 @@ class CreateExam extends CreateRecord
 
         return $data;
     }
+
+    function afterCreate(){
+        if ($this->data['method'] == 'manual'){
+            /* @var \App\Models\Exam $record */
+            $record = $this->record;
+            $record->payment->update([
+                'user_id' => auth()->id(),
+            ]);
+        }
+    }
+
 }
