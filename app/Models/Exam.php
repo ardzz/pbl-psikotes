@@ -104,4 +104,13 @@ class Exam extends Model
     {
         return $this->user_id === auth()->id();
     }
+
+    public function startExam(): bool
+    {
+        if ($this->start_time === null) {
+            $this->start_time = now();
+            return $this->save();
+        }
+        return false;
+    }
 }

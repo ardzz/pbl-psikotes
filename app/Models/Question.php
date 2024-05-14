@@ -12,8 +12,8 @@ class Question extends Model
 
     protected $fillable = ['content'];
 
-    public function answers(): HasMany
+    public function answers(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasOne(Answer::class, 'question_id', 'id');
     }
 }
