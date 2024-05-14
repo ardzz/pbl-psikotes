@@ -106,7 +106,15 @@ class ExamResource extends Resource implements HasShieldPermissions
                         'manual' => 'warning',
                     })
                     ->sortable(),
-                Tables\Columns\ToggleColumn::make('approved'),
+                Tables\Columns\ToggleColumn::make('approved')
+                ->afterStateUpdated(function ($record, $state){
+                    if ($state && $record->payment->method === 'manual'){
+                        $record->payment->status = 'paid';
+                        $record->payment->description = 'Pembayaran telah diverifikasi';
+                        $record->payment->paid_at = now();
+                        $record->payment->save();
+                    }
+                }),
                 Tables\Columns\IconColumn::make('validated')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
