@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        FilamentView::registerRenderHook('panels::body.end', fn(): string => Blade::render("@vite(['resources/css/app.css','resources/js/app.js'])"));
     }
 
     /**
@@ -60,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
         FilamentView::registerRenderHook(
             PanelsRenderHook::SCRIPTS_BEFORE,
             fn (): string => Blade::render(<<<HTML
-                    <script src="{$snap_url}/snap.js" data-client-key="{{ \Midtrans\Config::\$clientKey }}"></script>
+                    <script src="{$snap_url}/snap/snap.js" data-client-key="{{ \Midtrans\Config::\$clientKey }}"></script>
             HTML),
             scopes: [
                 CreateExam::class
