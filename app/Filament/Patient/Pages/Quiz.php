@@ -102,19 +102,18 @@ class Quiz extends Page implements HasForms
                     Action::make('list')
                         ->label('Daftar Soal')
                         ->color('primary')
-                        ->modalContent(function (){
-                            return new HtmlString('asdasd');
-                        })
+                        ->modalContent(View::make('filament.patient.pages.questions'))
                         ->modalCancelAction(false)
                         ->modalSubmitAction(false)
                         ->extraModalFooterActions([
+                            \Filament\Actions\Action::make('next_list')
+                                ->label('Soal Selanjutnya')
+                                ->color('gray'),
                             \Filament\Actions\Action::make('prev_list')
                                 ->label('Soal Sebelumnya')
                                 ->color('gray'),
-                            \Filament\Actions\Action::make('next_list')
-                                ->label('Soal Selanjutnya')
-                                ->color('gray')
-                        ]),
+                        ])
+                    ->modalFooterActionsAlignment(Alignment::Center),
                     Action::make('finish')
                         ->label('Selesaikan Quiz')
                         ->color('danger')
