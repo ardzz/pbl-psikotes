@@ -29,6 +29,7 @@
                 }
             }, 1000);
         </script>
+
     @else
         {{ $this->form }}
     @endif

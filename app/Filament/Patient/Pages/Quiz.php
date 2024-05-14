@@ -26,6 +26,7 @@ use Filament\Support\Enums\Alignment;
 use Filament\Support\Enums\IconPosition;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\HtmlString;
 
 class Quiz extends Page implements HasForms
 {
@@ -100,7 +101,20 @@ class Quiz extends Page implements HasForms
                 Actions::make([
                     Action::make('list')
                         ->label('Daftar Soal')
-                        ->color('primary'),
+                        ->color('primary')
+                        ->modalContent(function (){
+                            return new HtmlString('asdasd');
+                        })
+                        ->modalCancelAction(false)
+                        ->modalSubmitAction(false)
+                        ->extraModalFooterActions([
+                            \Filament\Actions\Action::make('prev_list')
+                                ->label('Soal Sebelumnya')
+                                ->color('gray'),
+                            \Filament\Actions\Action::make('next_list')
+                                ->label('Soal Selanjutnya')
+                                ->color('gray')
+                        ]),
                     Action::make('finish')
                         ->label('Selesaikan Quiz')
                         ->color('danger')
