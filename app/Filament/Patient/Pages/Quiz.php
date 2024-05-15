@@ -116,6 +116,7 @@ class Quiz extends Page implements HasForms
                     ->modalFooterActionsAlignment(Alignment::Center),
                     Action::make('finish')
                         ->label('Selesaikan Quiz')
+                        ->requiresConfirmation()
                         ->color('danger')
                 ])->alignCenter()->columnSpanFull()
             ]),
