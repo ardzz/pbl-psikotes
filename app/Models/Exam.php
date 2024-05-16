@@ -53,11 +53,20 @@ class Exam extends Model
         });
     }
 
-    function getQuestions()
+    function getQuestions(): Collection|array
     {
         return Question::with(['answers' => function ($query) {
             $query->where('exam_id', $this->id);
         }])->get();
+    }
+
+    function getQuestionList($page = 1, $offset = 50): Collection|array
+    {
+        $query = Question::with(['answers' => function ($query) {
+            $query->where('exam_id', $this->id);
+        }]);
+
+        return $query->offset(($page - 1) * $offset)->limit($offset)->get();
     }
 
     function getLatestQuestion()

@@ -17,30 +17,24 @@
         font-size: 1.5rem;
     }
 
-    /* Warna untuk status jawaban */
-    .jawab {
+    .answered {
         background-color: #4ed36b; /* Hijau */
     }
 
-    .tidak-jawab {
-        background-color: #ce4a4a; /* Merah */
-    }
-
-    .belum-dijawab {
+    .unanswered {
         background-color: #F6E05E; /* Kuning */
     }
 </style>
 <div class="mt-2 mb-2">
     <div class="soal-group">
         <!-- Daftar Soal -->
-        <?php
-        $totalSoal = 50; // Ubah jumlah soal sesuai kebutuhan
-        $statusJawaban = array("jawab", "tidak-jawab", "belum-dijawab", "jawab", "tidak-jawab", "belum-dijawab", "jawab", "tidak-jawab", "belum-dijawab");
-        for ($i = 1; $i <= $totalSoal; $i++) {
-            $status = isset($statusJawaban[$i - 1]) ? $statusJawaban[$i - 1] : "belum-dijawab";
-            ?>
-        <div class="soal-box <?php echo $status; ?>"><?php echo $i; ?></div>
-        <?php } ?>
+        @php
+        $questions = $this->questionList;
+        foreach ($questions as $question) {
+            $status = ($question->answers != null) ? 'answered' : 'unanswered';
+            echo '<a wire:click.prevent="loadQuestion(' . $question->id . ')" class="soal-box ' . $status . '">' . $question->id . '</a>';
+        }
+        @endphp
             <!-- Akhir Daftar Soal -->
     </div>
 </div>

@@ -24,6 +24,7 @@ use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Support\Enums\Alignment;
 use Filament\Support\Enums\IconPosition;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\HtmlString;
@@ -45,6 +46,10 @@ class Quiz extends Page implements HasForms
 
     public Exam $exam;
     public Carbon $deadline;
+
+    public int $currentPageQuestion = 1;
+
+    public Collection $questionList;
 
     public ?array $data = [];
 
@@ -81,6 +86,7 @@ class Quiz extends Page implements HasForms
                             null => '?'
                         };
                     }
+                    $this->questionList = $exam->getQuestionList($this->currentPageQuestion);
                     $this->setActiveSchema('quiz');
                 }else{
                     $this->setActiveSchema('unavailable');
@@ -97,7 +103,11 @@ class Quiz extends Page implements HasForms
         $this->currentSchema = 'quiz';
         return [
             Fieldset::make()->schema([
-                View::make('filament.patient.pages.quiz-info')->columnSpanFull(),
+                View::make('filament.patient.pages.quiz-info')
+                    ->viewData([
+                        'questionList' => $this->questionList
+                    ])
+                    ->columnSpanFull(),
                 Actions::make([
                     Action::make('list')
                         ->label('Daftar Soal')
@@ -105,14 +115,28 @@ class Quiz extends Page implements HasForms
                         ->modalContent(View::make('filament.patient.pages.questions'))
                         ->modalCancelAction(false)
                         ->modalSubmitAction(false)
-                        ->extraModalFooterActions([
-                            \Filament\Actions\Action::make('next_list')
-                                ->label('Soal Selanjutnya')
-                                ->color('gray'),
-                            \Filament\Actions\Action::make('prev_list')
-                                ->label('Soal Sebelumnya')
-                                ->color('gray'),
+                        ->extraModalFooterActions(fn (Action $action): array => [
+                            $action->makeModalSubmitAction('next', ['next'])->label('Soal Selanjutnya'),
+                            $action->makeModalSubmitAction('prev', ['prev'])->label('Soal Sebelumnya')
                         ])
+                        ->action(function (array $data, array $arguments){
+                            $act = $arguments[0];
+                            if ($act == 'next'){
+                                $this->currentPageQuestion++;
+                                $this->questionList = $this->exam->getQuestionList($this->currentPageQuestion);
+                                Notification::make('Soal Selanjutnya')
+                                    ->body('Soal selanjutnya telah dimuat')
+                                    ->success()
+                                    ->send();
+                            }elseif($act == 'prev'){
+                                $this->currentPageQuestion--;
+                                $this->questionList = $this->exam->getQuestionList($this->currentPageQuestion);
+                                Notification::make('Soal Sebelumnya')
+                                    ->body('Soal sebelumnya telah dimuat')
+                                    ->success()
+                                    ->send();
+                            }
+                        })
                     ->modalFooterActionsAlignment(Alignment::Center),
                     Action::make('finish')
                         ->label('Selesaikan Quiz')
@@ -294,5 +318,27 @@ class Quiz extends Page implements HasForms
     private function setActiveSchema($schema)
     {
         $this->currentSchema = $schema;
+    }
+
+    function loadQuestion($id){
+        $question = Question::where('id', $id)->first();
+        if($question){
+            $this->content = $question->content;
+            if ($question->answers) {
+                $this->data['answer'] = match ($question->answers->answer) {
+                    1 => 'T',
+                    0 => 'F',
+                    null => '?'
+                };
+            }else{
+                $this->data['answer'] = null;
+            }
+            $this->currentQuestion = $id;
+            Notification::make('Memilih Soal')
+                ->body('Soal telah dimuat')
+                ->success()
+                ->send();
+            $this->form->fill($this->data);
+        }
     }
 }
