@@ -25,8 +25,15 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
     {
         if ($panel->getPath() == 'admin'){
             return $this->hasRole('super_admin');
+        }elseif ($panel->getPath() == 'doctor'){
+            return $this->hasRole('doctor');
         }
-        return true;
+        elseif ($panel->getPath() == 'patient'){
+            return $this->hasRole('patient');
+        }
+        else{
+            return true;
+        }
     }
 
     /**
