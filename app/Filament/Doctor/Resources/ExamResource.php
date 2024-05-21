@@ -107,9 +107,7 @@ class ExamResource extends Resource
     {
         return [
             'index' => Pages\ListExams::route('/'),
-            'create' => Pages\CreateExam::route('/create'),
             'analyze' => Pages\AnalyzeExamResult::route('/{record}/analyze'),
-            //'edit' => Pages\EditExam::route('/{record}/edit'),
         ];
     }
 }
