@@ -6,6 +6,7 @@ use App\Filament\Doctor\Resources\ExamResource;
 use App\Filament\Doctor\Widgets\ClinicalScale;
 use App\Filament\Doctor\Widgets\ContentScalesProfile;
 use App\Filament\Doctor\Widgets\ExamResultTable;
+use App\Filament\Doctor\Widgets\PSY5;
 use App\Filament\Doctor\Widgets\RestructuredClinicalScale;
 use App\Filament\Doctor\Widgets\Supplementary;
 use App\Filament\Doctor\Widgets\Validity;
@@ -214,6 +215,7 @@ class AnalyzeExamResult extends EditRecord implements HasForms
             RestructuredClinicalScale::make(),
             ContentScalesProfile::make(),
             Supplementary::make(),
+            PSY5::make(),
             ExamResultTable::make()
         ] : [];
     }
