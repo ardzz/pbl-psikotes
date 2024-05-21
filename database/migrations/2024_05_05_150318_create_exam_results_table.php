@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('exam_results', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('exam_id')->constrained()->cascadeOnDelete();
+            $table->string('category');
+            $table->string('sub_category');
+            $table->integer('raw_score')->nullable();
+            $table->integer('t_score')->nullable();
+            $table->integer('k_score')->nullable();
             $table->timestamps();
         });
     }

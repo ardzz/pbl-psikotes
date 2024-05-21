@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\MMPI2\Scale;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,6 +17,11 @@ class Exam extends Model
     ];
 
     use HasFactory;
+
+    function exam_result()
+    {
+        return $this->hasOne(ExamResult::class);
+    }
 
     function answer()
     {
@@ -121,5 +127,18 @@ class Exam extends Model
             return $this->save();
         }
         return false;
+    }
+
+    /**
+     * @throws \Exception
+     */
+    function analyze(): Scale
+    {
+        return new Scale($this);
+    }
+
+    function hasExamResult(): bool
+    {
+        return (bool) ExamResult::where('exam_id', $this->id)->first();
     }
 }
