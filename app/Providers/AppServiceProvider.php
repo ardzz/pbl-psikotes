@@ -36,13 +36,13 @@ class AppServiceProvider extends ServiceProvider
             OptimizedAppCheck::new(),
             DebugModeCheck::new(),
             EnvironmentCheck::new(),
-            /*SecurityAdvisoriesCheck::new(),
+            SecurityAdvisoriesCheck::new(),
             CpuLoadCheck::new()
                 ->failWhenLoadIsHigherInTheLast5Minutes(2.0)
                 ->failWhenLoadIsHigherInTheLast15Minutes(1.5),
             DatabaseConnectionCountCheck::new()
                 ->warnWhenMoreConnectionsThan(50)
-                ->failWhenMoreConnectionsThan(100)*/
+                ->failWhenMoreConnectionsThan(100)
         ]);
 
         Config::$serverKey = 'SB-Mid-server-hcUstBPhdDcDYLGpuW94srji';
