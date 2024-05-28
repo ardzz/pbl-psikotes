@@ -142,6 +142,16 @@ class Quiz extends Page implements HasForms
                         ->label('Selesaikan Quiz')
                         ->requiresConfirmation()
                         ->color('danger')
+                        ->action(function(array $data){
+                            $exam = auth()->user()->getUnfinishedExam();
+                            if($exam->update(['end_time' => now()])){
+                                Notification::make('Quiz Selesai')
+                                    ->body('Quiz telah selesai. Terima kasih telah mengerjakan.')
+                                    ->success()
+                                    ->send();
+                                $this->redirect('/patient');
+                            }
+                        })
                 ])->alignCenter()->columnSpanFull()
             ]),
             Section::make('Lembar Soal')
