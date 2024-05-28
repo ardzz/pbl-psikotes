@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\HtmlString;
+use Spatie\FlareClient\Http\Exceptions\NotFound;
 
 class Quiz extends Page implements HasForms
 {
@@ -176,7 +177,14 @@ class Quiz extends Page implements HasForms
                     Action::make('next')->label('Next')
                         ->color('gray')
                         ->action(function(Get $get){
-                            $this->next($this->data['answer']);
+                           if ($this->currentQuestion == 567){
+                               Notification::make('Soal Terakhir')
+                                   ->body('Ini adalah soal terakhir. Silahkan selesaikan quiz.')
+                                   ->info()
+                                   ->send();
+                           }else{
+                               $this->next($this->data['answer']);
+                           }
                         }),
                 ])
                 ->footerActionsAlignment(function(Request $request){
