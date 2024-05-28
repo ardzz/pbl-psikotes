@@ -12,6 +12,7 @@ use App\Filament\Doctor\Widgets\Supplementary;
 use App\Filament\Doctor\Widgets\Validity;
 use App\Models\Exam;
 use App\Models\ExamResult;
+use Filament\Actions\Concerns\CanSubmitForm;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Actions\Action;
@@ -41,6 +42,8 @@ class AnalyzeExamResult extends EditRecord implements HasForms
 
     protected static ?string $title = 'Analyze Exam Result';
 
+    public ?array $data = [];
+
     public function form(Form $form): Form
     {
         return $form->schema([
@@ -54,6 +57,9 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                 TextInput::make('end_time')->disabled(),
                 RichEditor::make('notes')
                     ->columnSpanFull(),
+                RichEditor::make('conclusion')
+                    ->required()
+                    ->columnSpanFull(),
                 SignaturePad::make('signature')
                     ->visible(fn (Model $record) => $record->hasExamResult())
                     ->downloadable()                    // Allow download of the signature (defaults to false)
@@ -62,7 +68,7 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                         DownloadableFormat::JPG,
                         DownloadableFormat::SVG,
                     ])
-                    ->downloadActionDropdownPlacement('center-end')
+                    ->downloadActionDropdownPlacement('center')
             ])
                 ->columns(2)
             ->footerActions([
@@ -147,6 +153,7 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                     ->label('Validate Report')
                     ->action(function (Model $record){
                         $exam_result = ExamResult::where('exam_id', $record->id)->get();
+
                         if ($exam_result->isEmpty()){
                             Notification::make()
                                 ->body('Report belum di-generate')
@@ -156,9 +163,27 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                             $this->halt();
                         }
 
-                        $record->update([
-                            'validated' => true
-                        ]);
+                        if ($this->data['conclusion'] === null){
+                            Notification::make()
+                                ->body('Kesimpulan belum diisi')
+                                ->title('Kesimpulan Belum Ada')
+                                ->danger()
+                                ->send();
+                            $this->halt();
+                        }elseif ($this->data['signature'] === null){
+                            Notification::make()
+                                ->body('Tanda tangan belum diisi')
+                                ->title('Tanda Tangan Belum Ada')
+                                ->danger()
+                                ->send();
+                            $this->halt();
+                        }
+
+                        $record->validated = true;
+                        $record->conclusion = $this->data['conclusion'];
+                        $record->signature = $this->data['signature'];
+                        $record->note = $this->data['notes'];
+                        $record->save();
 
                         Notification::make()
                             ->body('Report berhasil divalidasi')
@@ -181,9 +206,11 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                             $this->halt();
                         }
 
-                        $record->update([
-                            'validated' => true
-                        ]);
+                        $record->validated = false;
+                        $record->conclusion = null;
+                        $record->signature = null;
+                        $record->note = null;
+                        $record->save();
 
                         Notification::make()
                             ->body('Report berhasil di-invalidate')
@@ -204,6 +231,9 @@ class AnalyzeExamResult extends EditRecord implements HasForms
             'purpose' => $this->record->purpose,
             'start_time' => $this->record->start_time,
             'end_time' => $this->record->end_time,
+            'notes' => $this->record->note,
+            'conclusion' => $this->record->conclusion,
+            'signature' => $this->record->signature,
         ]);
     }
 
