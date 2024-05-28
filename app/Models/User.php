@@ -128,11 +128,9 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
     }
     public function getUnfinishedExam(): Model|HasMany|null
     {
-        $exams = $this->exam()->whereNull('end_time')->get();
-        foreach ($exams as $exam) {
-            if (!$exam->isExpired()) {
-                return $exam;
-            }
+        $exam = $this->exam()->whereNull('end_time')->latest()->first();
+        if (!$exam->isExpired()) {
+            return $exam;
         }
         return null;
     }
