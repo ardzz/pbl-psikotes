@@ -118,11 +118,13 @@ class Scale
 
     protected function TScore($scale, $raw_score){
         if(array_key_exists('tScores', $scale)){
-            $tscore = $scale['tScores'][$this->gender];
-            if (array_key_exists('scoreOffsets', $scale)) {
-                $raw_score -= $scale['scoreOffsets'][$this->gender];
+            if (array_key_exists($this->gender, $scale['tScores'])){
+                $tscore = $scale['tScores'][$this->gender];
+                if (array_key_exists('scoreOffsets', $scale)) {
+                    $raw_score -= $scale['scoreOffsets'][$this->gender];
+                }
+                return $tscore[min(max(0, $raw_score), count($tscore) - 1)];
             }
-            return $tscore[min(max(0, $raw_score), count($tscore) - 1)];
         }
         return null;
     }
