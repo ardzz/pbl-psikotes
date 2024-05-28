@@ -177,14 +177,7 @@ class Quiz extends Page implements HasForms
                     Action::make('next')->label('Next')
                         ->color('gray')
                         ->action(function(Get $get){
-                           if ($this->currentQuestion == 567){
-                               Notification::make('Soal Terakhir')
-                                   ->body('Ini adalah soal terakhir. Silahkan selesaikan quiz.')
-                                   ->info()
-                                   ->send();
-                           }else{
-                               $this->next($this->data['answer']);
-                           }
+                            $this->next($this->data['answer']);
                         }),
                 ])
                 ->footerActionsAlignment(function(Request $request){
@@ -289,6 +282,15 @@ class Quiz extends Page implements HasForms
             $answer->question_id = $this->currentQuestion;
             $answer->answer = $input_answer;
             $answer->save();
+        }
+        if ($this->currentQuestion >= 567){
+            $this->exam->update(['end_time' => now()]);
+            Notification::make('Quiz Selesai')
+                ->body('Quiz telah selesai. Terima kasih telah mengerjakan.')
+                ->success()
+                ->send();
+            redirect('/patient/quiz');
+            $this->halt();
         }
         $nextQuestion = Question::where('id', $this->currentQuestion + 1)->first();
         $this->content = $nextQuestion->content;
