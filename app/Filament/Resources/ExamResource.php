@@ -56,23 +56,18 @@ class ExamResource extends Resource implements HasShieldPermissions
                     ->schema([
                         TextInput::make('bank_name')
                             ->label('Nama Bank')
-                            ->helperText('Contoh: BCA, BNI, BRI, Mandiri, dll.')
-                            ->required(),
+                            ->helperText('Contoh: BCA, BNI, BRI, Mandiri, dll.'),
                         TextInput::make('bank_account_name')
-                            ->label('Nama Pengirim')
-                            ->required(),
+                            ->label('Nama Pengirim'),
                         TextInput::make('bank_account')
                             ->label('Nomor Rekening Pengirim')
-                            ->placeholder('1234567890')
-                            ->required(),
+                            ->placeholder('1234567890'),
                         FileUpload::make('proof')
                             ->label('Bukti Pembayaran')
                             ->image()
                             ->imageEditor()
-                            ->required()
                     ]),
-                Forms\Components\Toggle::make('approved')
-                    ->required(),
+                Forms\Components\Toggle::make('approved'),
                 Forms\Components\Toggle::make('validated')
                     ->required(),
                 Forms\Components\Textarea::make('note')
