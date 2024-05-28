@@ -29,7 +29,7 @@
     <div class="soal-group">
         <!-- Daftar Soal -->
         @php
-        $questions = $this->questionList;
+        $questions = auth()->user()->getUnfinishedExam()->getQuestionList($this->currentPageQuestion);
         foreach ($questions as $question) {
             $status = ($question->answers != null) ? 'answered' : 'unanswered';
             echo '<a wire:click.prevent="loadQuestion(' . $question->id . ')" class="soal-box ' . $status . '">' . $question->id . '</a>';
