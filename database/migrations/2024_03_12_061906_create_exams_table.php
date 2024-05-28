@@ -22,6 +22,8 @@ return new class extends Migration
             $table->boolean("approved")->default(false); // approved by admin
             $table->boolean("validated")->default(false); // validated the result by doctor
             $table->longText("note")->nullable(); // doctor's note written after the exam
+            $table->longText("conclusion")->nullable(); // result of the exam
+            $table->longText("signature")->nullable(); // result of the exam
             $table->timestamps();
         });
     }

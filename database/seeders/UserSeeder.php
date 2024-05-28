@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'email' => 'superadmin@gmail.com',
             'password' => Hash::make("adminadmin"),
             'user_type' => 2
-        ]);
+        ])->assignRole('super_admin');
 
         $patients = [
             'YUNUS PAKAGE',
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
                 'email' => 'pasien' . $i . '@gmail.com',
                 'password' => Hash::make("123"),
                 'user_type' => 1
-            ]);
+            ])->assignRole('patient');
 
             $personal_information = new PersonalInformation();
             $personal_information->user_id = $user->id;
@@ -61,7 +61,7 @@ class UserSeeder extends Seeder
                 'email' => 'dokter' . $i . '@gmail.com',
                 'password' => Hash::make("123"),
                 'user_type' => 3
-            ]);
+            ])->assignRole('doctor');
             $i++;
         }
     }

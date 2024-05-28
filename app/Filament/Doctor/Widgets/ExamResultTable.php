@@ -45,4 +45,9 @@ class ExamResultTable extends BaseWidget
                     }),
             ]);
     }
+
+    public static function canView(): bool
+    {
+        return request()->is('doctor/exams/*/analyze');
+    }
 }
