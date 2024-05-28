@@ -39,7 +39,7 @@ class PersonalInformationResource extends Resource
                 Forms\Components\TextInput::make('marital_status'),
                 Forms\Components\TextInput::make('education'),
                 Forms\Components\TextInput::make('sex'),
-                Forms\Components\TextInput::make('province')
+                /*Forms\Components\TextInput::make('province')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('city')
                     ->maxLength(255),
@@ -48,7 +48,7 @@ class PersonalInformationResource extends Resource
                 Forms\Components\TextInput::make('sub_district')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('address')
-                    ->maxLength(255),
+                    ->maxLength(255),*/
             ]);
     }
 
@@ -73,7 +73,7 @@ class PersonalInformationResource extends Resource
                 Tables\Columns\TextColumn::make('marital_status'),
                 Tables\Columns\TextColumn::make('education'),
                 Tables\Columns\TextColumn::make('sex'),
-                Tables\Columns\TextColumn::make('province')
+                /*Tables\Columns\TextColumn::make('province')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('city')
                     ->searchable(),
@@ -91,6 +91,7 @@ class PersonalInformationResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                */
             ])
             ->filters([
                 //
