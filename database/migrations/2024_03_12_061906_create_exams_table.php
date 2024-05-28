@@ -24,6 +24,7 @@ return new class extends Migration
             $table->longText("note")->nullable(); // doctor's note written after the exam
             $table->longText("conclusion")->nullable(); // result of the exam
             $table->longText("signature")->nullable(); // result of the exam
+            $table->string("certificate")->nullable(); // certificate of the exam
             $table->timestamps();
         });
     }
