@@ -7,11 +7,15 @@ use App\Filament\Doctor\Resources\ExamResource\Pages\AnalyzeExamResult;
 use App\Filament\Doctor\Resources\ExamResource\RelationManagers;
 use App\Models\Exam;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Saade\FilamentAutograph\Forms\Components\Enums\DownloadableFormat;
+use Saade\FilamentAutograph\Forms\Components\SignaturePad;
 
 class ExamResource extends Resource
 {
@@ -29,24 +33,37 @@ class ExamResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Section::make('')->schema([
-                        Forms\Components\Fieldset::make('Data Pasien')
-                            ->schema([
-                                Forms\Components\TextInput::make('name'),
-                                Forms\Components\TextInput::make('email'),
-                            ])
-                            ->disabled()
-                            ->relationship('user'),
-                        Forms\Components\TextInput::make('purpose')
-                            ->required()
-                            ->maxLength(255)
-                            ->default('General Checkup'),
-                        Forms\Components\DateTimePicker::make('start_time'),
-                        Forms\Components\DateTimePicker::make('end_time'),
-                        Forms\Components\RichEditor::make('note')
-                            ->columnSpanFull(),
-                        Forms\Components\Toggle::make('validated')
-                            ->required(),
-                    ])->columns(2),
+                    Forms\Components\Fieldset::make('Data Pasien')
+                        ->schema([
+                            Forms\Components\TextInput::make('name'),
+                            Forms\Components\TextInput::make('email'),
+                        ])
+                        ->disabled()
+                        ->relationship('user'),
+                    Forms\Components\TextInput::make('purpose')
+                        ->required()
+                        ->maxLength(255)
+                        ->default('General Checkup'),
+                    Forms\Components\DateTimePicker::make('start_time'),
+                    Forms\Components\DateTimePicker::make('end_time'),
+                    RichEditor::make('notes')
+                        ->columnSpanFull(),
+                    RichEditor::make('conclusion')
+                        ->visible(fn (Model $record) => $record->hasExamResult())
+                        ->required()
+                        ->columnSpanFull(),
+                    SignaturePad::make('signature')
+                        ->visible(fn (Model $record) => $record->hasExamResult())
+                        ->downloadable()                    // Allow download of the signature (defaults to false)
+                        ->downloadableFormats([             // Available formats for download (defaults to all)
+                            DownloadableFormat::PNG,
+                            DownloadableFormat::JPG,
+                            DownloadableFormat::SVG,
+                        ])
+                        ->downloadActionDropdownPlacement('center'),
+                    Forms\Components\Toggle::make('validated')
+                        ->disabled(),
+                ])->columns(2),
             ]);
     }
 
@@ -82,8 +99,8 @@ class ExamResource extends Resource
                 //
             ])
             ->actions([
-                //Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+                //Tables\Actions\ViewAction::make(),
                 Tables\Actions\Action::make('Analyze')
                     ->icon('css-track')
                     ->color('gray')

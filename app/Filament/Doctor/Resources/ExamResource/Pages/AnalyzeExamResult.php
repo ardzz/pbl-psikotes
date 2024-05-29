@@ -56,8 +56,10 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                 TextInput::make('start_time')->disabled(),
                 TextInput::make('end_time')->disabled(),
                 RichEditor::make('notes')
+                    ->visible(fn (Model $record) => $record->hasExamResult())
                     ->columnSpanFull(),
                 RichEditor::make('conclusion')
+                    ->visible(fn (Model $record) => $record->hasExamResult())
                     ->required()
                     ->columnSpanFull(),
                 SignaturePad::make('signature')
