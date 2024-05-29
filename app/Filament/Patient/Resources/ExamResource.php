@@ -44,7 +44,7 @@ class ExamResource extends Resource
                     ->relationship('doctor', 'name'),
                 Forms\Components\TextInput::make('payment.method')
                     ->formatStateUsing(function(?Model $record){
-                        if ($record->payment->payment_method == 'manual') {
+                        if ($record->payment->method == 'manual') {
                             return 'Bank Transfer';
                         } else {
                             return 'Vendor Payment';
