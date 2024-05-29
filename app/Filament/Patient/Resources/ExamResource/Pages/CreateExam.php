@@ -197,13 +197,13 @@ class CreateExam extends CreateRecord
         return $data;
     }
 
-    function afterCreate(){
-        if ($this->data['method'] == 'manual'){
+    function afterCreate(): void
+    {
+        if ($this->data['method'] == 'cash'){
             /* @var \App\Models\Exam $record */
             $record = $this->record;
-            $record->payment->update([
-                'user_id' => auth()->id(),
-            ]);
+            $record->payment->user_id = auth()->id();
+            $record->payment->save();
         }
     }
 

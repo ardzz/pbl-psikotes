@@ -13,6 +13,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class ExamResource extends Resource
 {
@@ -33,20 +34,29 @@ class ExamResource extends Resource
             ->schema([
                 Forms\Components\RichEditor::make('purpose')
                     ->required()
+                    ->columnSpanFull()
                     ->maxLength(255)
                     ->default('General Checkup'),
-                Forms\Components\DateTimePicker::make('start_time'),
-                Forms\Components\DateTimePicker::make('end_time'),
+                Forms\Components\DateTimePicker::make('start_time')->disabled(),
+                Forms\Components\DateTimePicker::make('end_time')->disabled(),
                 Forms\Components\Select::make('doctor_id')
+                    ->disabled()
                     ->relationship('doctor', 'name'),
-                Forms\Components\TextInput::make('payment_id')
-                    ->numeric(),
-                Forms\Components\Toggle::make('approved')
-                    ->required(),
-                Forms\Components\Toggle::make('validated')
-                    ->required(),
-                Forms\Components\Textarea::make('note')
-                    ->columnSpanFull(),
+                Forms\Components\TextInput::make('payment.method')
+                    ->formatStateUsing(function(?Model $record){
+                        if ($record->payment->payment_method == 'manual') {
+                            return 'Bank Transfer';
+                        } else {
+                            return 'Vendor Payment';
+                        }
+                    })
+                    ->disabled(),
+                Forms\Components\Fieldset::make()->schema([
+                    Forms\Components\Toggle::make('approved')
+                        ->disabled(),
+                    Forms\Components\Toggle::make('validated')
+                        ->disabled(),
+                ])
             ]);
     }
 
@@ -82,8 +92,11 @@ class ExamResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('download_certificate')
+                ->label('Certificate')
+                ->icon('untitledui-certificate')
+                ->color('success')
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -104,8 +117,6 @@ class ExamResource extends Resource
         return [
             'index' => ListExams::route('/'),
             'create' => CreateExam::route('/create'),
-            'edit' => EditExam::route('/{record}/edit'),
-            'view' => ViewExam::route('/{record}'),
         ];
     }
 }
