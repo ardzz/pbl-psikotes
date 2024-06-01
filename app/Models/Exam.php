@@ -48,14 +48,20 @@ class Exam extends Model
     function getAnsweredQuestions(): Collection
     {
         return $this->getQuestions()->filter(function ($question) {
-            return $question->answers->where('exam_id', $this->id)->whereNotNull('answer')->first();
+            if ($current_question = $question->answers->where('exam_id', $this->id)) {
+                return $current_question->whereNotNull('answer')->first();
+            }
+            return null;
         });
     }
 
     function getNullAnsweredQuestions(): Collection
     {
         return $this->getQuestions()->filter(function ($question) {
-            return $question->answers->where('exam_id', $this->id)->whereNull('answer')->first();
+            if($current_question = $question->answers->where('exam_id', $this->id)){
+                return $current_question->whereNull('answer')->first();
+            }
+            return null;
         });
     }
 
