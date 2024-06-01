@@ -10,6 +10,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Tables\Filters\SelectFilter;
 use function Laravel\Prompts\search;
@@ -66,10 +67,19 @@ class PersonalInformation extends Page implements HasForms
                         Actions\Action::make('save')->action(function(){
                             $personalInformation = \App\Models\PersonalInformation::where('user_id', auth()->user()->id)->first();
                             if ($personalInformation) {
-                                $personalInformation->update($this->data);
+                                if($personalInformation->update($this->data)){
+                                    Notification::make()
+                                        ->body('Personal Information updated successfully')
+                                        ->success()
+                                        ->send();
+                                }
                             } else {
                                 $this->data['user_id'] = auth()->user()->id;
                                 \App\Models\PersonalInformation::create($this->data);
+                                Notification::make()
+                                    ->body('Personal Information created successfully')
+                                    ->success()
+                                    ->send();
                             }
                         })
                     ])
