@@ -95,6 +95,8 @@ class PersonalInformation extends Page implements HasForms
             $this->data = $personalInformation->toArray();
             $this->form->fill($this->data);
         }
-        $this->form->fill();
+        else{
+            $this->form->fill();
+        }
     }
 }
