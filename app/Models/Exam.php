@@ -33,7 +33,7 @@ class Exam extends Model
         return $this->belongsTo(User::class);
     }
 
-    function doctor(): BelongsTo|Model|null
+    function doctor(): Model
     {
         return $this->belongsTo(User::class, 'doctor_id')->first();
     }
