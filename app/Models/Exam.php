@@ -29,12 +29,12 @@ class Exam extends Model
         return $this->hasMany(Answer::class);
     }
 
-    function user(): Model
+    function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    function doctor(): Model
+    function doctor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'doctor_id');
     }
