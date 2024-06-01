@@ -29,6 +29,8 @@ class PatientPanelProvider extends PanelProvider
             ->path('patient')
             ->login()
             ->registration()
+            ->databaseNotifications()
+            ->databaseNotificationsPolling('5s')
             ->sidebarCollapsibleOnDesktop()
             //->brandLogo('https://web.polines.ac.id/wp-content/uploads/2021/11/LOGO-POLITEKNIK-NEGERI-SEMARANG-2.png')
             //->brandLogoHeight('4rem')

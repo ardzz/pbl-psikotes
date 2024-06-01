@@ -30,6 +30,8 @@ class DoctorPanelProvider extends PanelProvider
                 'primary' => Color::Amber,
             ])
             ->login()
+            ->databaseNotifications()
+            ->databaseNotificationsPolling('5s')
             ->discoverResources(in: app_path('Filament/Doctor/Resources'), for: 'App\\Filament\\Doctor\\Resources')
             ->discoverPages(in: app_path('Filament/Doctor/Pages'), for: 'App\\Filament\\Doctor\\Pages')
             ->pages([
