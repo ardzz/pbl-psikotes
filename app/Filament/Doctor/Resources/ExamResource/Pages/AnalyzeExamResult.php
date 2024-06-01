@@ -26,6 +26,7 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Pages\Concerns\InteractsWithRecord;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Pages\ViewRecord;
+use Filament\Support\Exceptions\Halt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -76,19 +77,15 @@ class AnalyzeExamResult extends EditRecord implements HasForms
             ->footerActions([
                 Action::make('submit')
                     ->icon('bx-stats')
-                    ->color('success')
-                    ->label('Generate Report')
+                    ->color(function (Model $record) {
+                        return $record->hasExamResult() ? 'danger' : 'info';
+                    })
+                    ->label(function (?Model $record) {
+                        return $record->hasExamResult() ? 'Re-analyze Exam' : 'Analyze Exam';
+                    })
                     /* @var Exam $record */
                     ->action(function (Model $record){
                         $exam_result = ExamResult::where('exam_id', $record->id)->first();
-                        if ($exam_result){
-                            Notification::make()
-                                ->body('Report sudah pernah di-generate sebelumnya')
-                                ->title('Report Sudah Ada')
-                                ->danger()
-                                ->send();
-                            $this->halt();
-                        }
 
                         try {
                             $scale = $record->analyze();
@@ -101,12 +98,14 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                                 $this->halt();
                             }
                         }catch (\Exception $e){
-                            Notification::make()
-                                ->body($e->getMessage())
-                                ->title('Error')
-                                ->danger()
-                                ->send();
-                            $this->halt();
+                            if (!($e instanceof Halt)){
+                                Notification::make()
+                                    ->body($e->getMessage())
+                                    ->title('Error')
+                                    ->danger()
+                                    ->send();
+                                $this->halt();
+                            }
                         }
 
                         dispatch(function () use ($record, $scale, $exam_result) {
@@ -133,7 +132,6 @@ class AnalyzeExamResult extends EditRecord implements HasForms
 
                             if (!$exam_result) {
                                 foreach ($output as $data) {
-                                    logger($data['category']);
                                     foreach ($data['sub_categories'] as $key => $sub_category) {
                                         ExamResult::create([
                                             'exam_id' => $record->id,
@@ -145,7 +143,29 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                                         ]);
                                     }
                                 }
+                            }else{
+                                foreach ($output as $data) {
+                                    foreach ($data['sub_categories'] as $key => $sub_category) {
+                                        $exam_result = ExamResult::where('exam_id', $record->id)
+                                            ->where('category', $data['category'])
+                                            ->where('sub_category', $key)
+                                            ->first();
+
+                                        $exam_result->raw_score = $sub_category['raw_score'];
+                                        $exam_result->t_score = $sub_category['t_score'];
+                                        $exam_result->k_score = $sub_category['k_score'];
+                                        $exam_result->save();
+                                    }
+                                }
                             }
+
+                            Notification::make()
+                                ->body(function() use ($record) {
+                                    return "Report pada {$record->user()->name} berhasil di-generate, silahkan cek pada halaman report";
+                                })
+                                ->title('Analisis Selesai')
+                                ->success()
+                                ->sendToDatabase($record->doctor());
                         });
                     })
                     ->visible(fn (Model $record) => !$record->hasExamResult()),
