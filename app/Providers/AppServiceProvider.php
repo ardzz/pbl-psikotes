@@ -6,6 +6,7 @@ use App\Filament\Patient\Resources\ExamResource\Pages\CreateExam;
 use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Midtrans\Config;
 use Spatie\CpuLoadHealthCheck\CpuLoadCheck;
@@ -32,6 +33,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if(env('APP_ENV') != 'local') {
+            URL::forceScheme('https');
+        }
         Health::checks([
             OptimizedAppCheck::new(),
             DebugModeCheck::new(),
