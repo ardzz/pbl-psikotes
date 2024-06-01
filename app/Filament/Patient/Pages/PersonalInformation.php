@@ -83,6 +83,8 @@ class PersonalInformation extends Page implements HasForms
         $personalInformation = \App\Models\PersonalInformation::where('user_id', auth()->user()->id)->first();
         if ($personalInformation) {
             $this->data = $personalInformation->toArray();
+            $this->form->fill($this->data);
         }
+        $this->form->fill();
     }
 }
