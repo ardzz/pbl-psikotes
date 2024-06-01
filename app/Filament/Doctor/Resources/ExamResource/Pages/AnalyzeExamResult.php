@@ -159,7 +159,7 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                                 }
                             }
 
-                            $record->doctor->notify(
+                            $record->doctor()->notify(
                                 Notification::make()
                                     ->body(function() use ($record) {
                                         return "Report pada {$record->user()->name} berhasil di-generate, silahkan cek pada halaman report";
