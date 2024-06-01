@@ -174,6 +174,7 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                     ->icon('bx-check')
                     ->color('success')
                     ->label('Validate Report')
+                    /* @var Exam $record */
                     ->action(function (Model $record){
                         $exam_result = ExamResult::where('exam_id', $record->id)->get();
 
@@ -213,6 +214,16 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                             ->title('Report Validated')
                             ->success()
                             ->send();
+
+                        $record->user()->notify(
+                            Notification::make()
+                                ->body(function() use ($record) {
+                                    return "Selamat, report psikotes anda telah divalidasi oleh {$record->doctor->name}. Silahkan unduh sertifikat pada halaman exam";
+                                })
+                                ->title('Psikotes Anda Telah Divalidasi')
+                                ->success()
+                                ->toDatabase()
+                        );
                     })->visible(fn (Model $record) => $record->hasExamResult()),
                 Action::make('invalidate')
                     ->icon('bx-x')
