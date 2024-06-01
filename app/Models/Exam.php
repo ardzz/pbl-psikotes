@@ -33,9 +33,9 @@ class Exam extends Model
         return $this->belongsTo(User::class);
     }
 
-    function doctor(): BelongsTo
+    function doctor(): BelongsTo|Model|null
     {
-        return $this->belongsTo(User::class, 'doctor_id');
+        return $this->belongsTo(User::class, 'doctor_id')->first();
     }
 
     function getUnansweredQuestions(): Collection
