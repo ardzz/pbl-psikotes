@@ -159,13 +159,15 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                                 }
                             }
 
-                            Notification::make()
-                                ->body(function() use ($record) {
-                                    return "Report pada {$record->user()->name} berhasil di-generate, silahkan cek pada halaman report";
-                                })
-                                ->title('Analisis Selesai')
-                                ->success()
-                                ->sendToDatabase($record->doctor());
+                            $record->doctor->notify(
+                                Notification::make()
+                                    ->body(function() use ($record) {
+                                        return "Report pada {$record->user()->name} berhasil di-generate, silahkan cek pada halaman report";
+                                    })
+                                    ->title('Analisis Selesai')
+                                    ->success()
+                                    ->toDatabase()
+                            );
                         });
                     }),
                 Action::make('validate')
