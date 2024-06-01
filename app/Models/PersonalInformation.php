@@ -24,6 +24,7 @@ class PersonalInformation extends Model
         'district',
         'sub_district',
         'address',
+        'user_id'
     ];
     public function user(): BelongsTo
     {
