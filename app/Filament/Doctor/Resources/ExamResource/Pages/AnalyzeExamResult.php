@@ -167,8 +167,7 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                                 ->success()
                                 ->sendToDatabase($record->doctor());
                         });
-                    })
-                    ->visible(fn (Model $record) => !$record->hasExamResult()),
+                    }),
                 Action::make('validate')
                     ->icon('bx-check')
                     ->color('success')
