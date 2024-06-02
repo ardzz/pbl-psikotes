@@ -4,6 +4,7 @@ namespace App\Filament\Patient\Resources\ExamResource\Pages;
 
 use App\Filament\Patient\Resources\ExamResource;
 use App\Models\Payment;
+use App\Models\Setting;
 use Faker\Provider\Text;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\FileUpload;
@@ -114,7 +115,7 @@ class CreateExam extends CreateRecord
                                 $params = [
                                     'transaction_details' => [
                                         'order_id' => rand(),
-                                        'gross_amount' => 10000,
+                                        'gross_amount' => Setting::where('name', 'amount')->first()->value,
                                     ],
                                     'customer_details' => [
                                         'first_name' => auth()->user()->name,
@@ -134,6 +135,13 @@ class CreateExam extends CreateRecord
                         }),
                     Section::make('Formulir Pembayaran')
                         ->relationship('payment')
+                        ->description(function(){
+                            $bank = Setting::all();
+                            $bank_name = $bank->where('name', 'bank_name')->first()->value;
+                            $bank_account_name = $bank->where('name', 'bank_account_name')->first()->value;
+                            $bank_account = $bank->where('name', 'bank_account')->first()->value;
+                            return new HtmlString("Silahkan transfer ke rekening <strong>{$bank_name}</strong> atas nama <strong>{$bank_account_name}</strong> dengan nomor rekening <strong>{$bank_account}</strong>.");
+                        })
                         ->schema([
                             TextInput::make('bank_name')
                                 ->label('Nama Bank')
