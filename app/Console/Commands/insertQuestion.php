@@ -27,7 +27,6 @@ class insertQuestion extends Command
     public function handle()
     {
         $this->call('migrate:fresh');
-        $this->call('db:seed', ['--class' => 'Database\Seeders\ShieldSeeder']);
         $this->call('db:seed');
         $question_file = file_get_contents("indonesian_questions.json");
         $questions = json_decode($question_file, true);
