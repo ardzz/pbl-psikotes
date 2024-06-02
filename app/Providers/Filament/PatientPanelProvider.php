@@ -21,6 +21,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
+use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
 
 class PatientPanelProvider extends PanelProvider
 {
@@ -33,6 +34,7 @@ class PatientPanelProvider extends PanelProvider
             ->registration(Register::class)
             ->passwordReset()
             ->databaseNotifications()
+            ->profile()
             ->databaseNotificationsPolling('5s')
             ->sidebarCollapsibleOnDesktop()
             ->brandName('Kelompok Tiga')
@@ -41,6 +43,13 @@ class PatientPanelProvider extends PanelProvider
             ])
             ->plugins([
                 //BreezyCore::make()->myProfile(),
+                EnvironmentIndicatorPlugin::make()->color(fn () => match (app()->environment()) {
+                    'production' => null,
+                    'beta' => Color::Rose,
+                    'local' => Color::Green,
+                    'staging' => Color::Orange,
+                    default => Color::Emerald,
+                })->visible(fn () => app()->environment() !== 'production'),
                 FilamentSocialitePlugin::make()
                     // (required) Add providers corresponding with providers in `config/services.php`.
                     ->setProviders([

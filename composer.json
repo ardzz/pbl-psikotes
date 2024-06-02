@@ -26,6 +26,7 @@
         "midtrans/midtrans-php": "^2.5",
         "owenvoke/blade-fontawesome": "^2.6",
         "predis/predis": "2.0",
+        "pxlrbt/filament-environment-indicator": "^2.0",
         "rappasoft/laravel-authentication-log": "^4.0",
         "saade/blade-iconsax": "^1.2",
         "saade/filament-autograph": "^3.1",
