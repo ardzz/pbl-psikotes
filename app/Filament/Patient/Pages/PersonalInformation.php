@@ -20,7 +20,7 @@ class PersonalInformation extends Page implements HasForms
     use InteractsWithForms;
 
     public static ?string $title = 'Personal Information';
-    public static ?string $navigationIcon = 'heroicon-o-document-text';
+    public static ?string $navigationIcon = 'css-profile';
     protected static string $view = 'filament.patient.pages.personal-information';
     public ?array $data;
     public function form(Form $form): Form

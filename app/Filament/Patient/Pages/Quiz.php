@@ -33,7 +33,7 @@ use Spatie\FlareClient\Http\Exceptions\NotFound;
 class Quiz extends Page implements HasForms
 {
     use InteractsWithForms;
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'fluentui-quiz-new-24-o';
 
     protected static string $view = 'filament.patient.pages.quiz';
 
