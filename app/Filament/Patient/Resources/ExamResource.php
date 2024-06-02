@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\HtmlString;
 
 class ExamResource extends Resource
 {
@@ -94,9 +95,12 @@ class ExamResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\Action::make('download_certificate')
-                ->label('Certificate')
-                ->icon('untitledui-certificate')
-                ->color('success')
+                    ->label('Certificate')
+                    ->icon('untitledui-certificate')
+                    ->color('success')
+                    ->modalDescription(new HtmlString('Oops fitur belum ada! Sabar yaa, frontend kita lagi sibuk ngerjain paper dan tubes lainnya XD<br><br>'))
+                    ->modalSubmitAction(false)
+                    ->modalCancelAction(false)
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
