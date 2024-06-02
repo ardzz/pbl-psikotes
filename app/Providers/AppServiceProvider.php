@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Filament\Patient\Resources\ExamResource\Pages\CreateExam;
 use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
+use Illuminate\Http\Middleware\TrustProxies;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -36,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
         if(env('APP_ENV') != 'local') {
             URL::forceScheme('https');
         }
+        TrustProxies::at('*');
         Health::checks([
             OptimizedAppCheck::new(),
             DebugModeCheck::new(),
