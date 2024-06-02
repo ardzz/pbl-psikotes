@@ -54,8 +54,22 @@ class AppServiceProvider extends ServiceProvider
 
         $setting = Setting::all();
 
-        Config::$serverKey = $setting->where('name', 'midtrans_server_key')->first()->value;
-        Config::$clientKey = $setting->where('name', 'midtrans_client_key')->first()->value;
+        $should_not_null = [
+            'midtrans_client_key',
+            'midtrans_server_key',
+            'midtrans_environment',
+        ];
+
+        foreach ($should_not_null as $key) {
+            if ($setting->where('name', $key)->first()->value == null) {
+                $temp = $setting->where('name', $key)->first();
+                $temp->value = $key == 'midtrans_environment' ? 'sandbox' : encrypt('PLACEHOLDER');
+                $temp->save();
+            }
+        }
+
+        Config::$serverKey = decrypt($setting->where('name', 'midtrans_server_key')->first()->value);
+        Config::$clientKey = decrypt($setting->where('name', 'midtrans_client_key')->first()->value);
         Config::$isProduction = $setting->where('name', 'midtrans_environment')->first()->value == 'production';
 
         Config::$isSanitized = true;

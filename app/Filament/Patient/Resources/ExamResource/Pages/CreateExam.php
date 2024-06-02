@@ -102,10 +102,25 @@ class CreateExam extends CreateRecord
                 ->schema([
                     Select::make('method')
                         ->label('Metode Pembayaran')
-                        ->options([
-                            'cash' => 'Transfer Bank Manual',
-                            'midtrans' => 'Midtrans',
-                        ])
+                        ->options(function (){
+                            $setting = Setting::where('name', 'midtrans_enabled')->first();
+                            if ($setting){
+                                if ($setting->value == '1'){
+                                    return [
+                                        'midtrans' => 'Midtrans',
+                                        'cash' => 'Transfer Bank'
+                                    ];
+                                }else{
+                                    return [
+                                        'cash' => 'Transfer Bank'
+                                    ];
+                                }
+                            }else{
+                                return [
+                                    'cash' => 'Transfer Bank'
+                                ];
+                            }
+                        })
                         ->native(false)
                         ->live()
                         ->suffixIcon('heroicon-o-currency-dollar')

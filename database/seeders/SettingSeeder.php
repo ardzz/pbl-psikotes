@@ -21,6 +21,7 @@ class SettingSeeder extends Seeder
             'midtrans_client_key',
             'midtrans_server_key',
             'midtrans_environment',
+            'midtrans_enabled',
 
             'whatsapp_api_url',
             'whatsapp_api_token',
