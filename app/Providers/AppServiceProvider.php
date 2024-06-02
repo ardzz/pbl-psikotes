@@ -52,33 +52,37 @@ class AppServiceProvider extends ServiceProvider
                 ->failWhenMoreConnectionsThan(100)
         ]);
 
-        $setting = Setting::all();
+        try {
+            $setting = Setting::all();
 
-        $should_not_null = [
-            'midtrans_client_key',
-            'midtrans_server_key',
-            'midtrans_environment',
-        ];
+            $should_not_null = [
+                'midtrans_client_key',
+                'midtrans_server_key',
+                'midtrans_environment',
+            ];
 
-        foreach ($should_not_null as $key) {
-            if ($setting->where('name', $key)->first()->value == null) {
-                $temp = $setting->where('name', $key)->first();
-                $temp->value = $key == 'midtrans_environment' ? 'sandbox' : encrypt('PLACEHOLDER');
-                $temp->save();
+            foreach ($should_not_null as $key) {
+                if ($setting->where('name', $key)->first()->value == null) {
+                    $temp = $setting->where('name', $key)->first();
+                    $temp->value = $key == 'midtrans_environment' ? 'sandbox' : encrypt('PLACEHOLDER');
+                    $temp->save();
+                }
             }
-        }
 
-        Config::$serverKey = decrypt($setting->where('name', 'midtrans_server_key')->first()->value);
-        Config::$clientKey = decrypt($setting->where('name', 'midtrans_client_key')->first()->value);
-        Config::$isProduction = $setting->where('name', 'midtrans_environment')->first()->value == 'production';
+            Config::$serverKey = decrypt($setting->where('name', 'midtrans_server_key')->first()->value);
+            Config::$clientKey = decrypt($setting->where('name', 'midtrans_client_key')->first()->value);
+            Config::$isProduction = $setting->where('name', 'midtrans_environment')->first()->value == 'production';
 
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
+            Config::$isSanitized = true;
+            Config::$is3ds = true;
 
-        if (Config::$isProduction){
-            $snap_url = 'https://app.midtrans.com';
-        }else{
-            $snap_url = 'https://app.sandbox.midtrans.com';
+            if (Config::$isProduction) {
+                $snap_url = 'https://app.midtrans.com';
+            } else {
+                $snap_url = 'https://app.sandbox.midtrans.com';
+            }
+        }catch (\Exception $e){
+            // do nothing
         }
 
         FilamentView::registerRenderHook(
