@@ -91,7 +91,7 @@ class ExamResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\Action::make('download_certificate')
                     ->label('Certificate')
                     ->icon('untitledui-certificate')
