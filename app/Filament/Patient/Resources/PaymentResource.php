@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Request;
 
 class PaymentResource extends Resource
 {
@@ -36,20 +37,33 @@ class PaymentResource extends Resource
                             ->columnSpanFull(),
                         Forms\Components\TextInput::make('method')
                             ->helperText('Payment method directly to the bank (manual) or through a midtrans (online)')
+                            ->formatStateUsing(function (string $state) {
+                                return match ($state) {
+                                    'manual' => 'Transfer Bank',
+                                    'online' => 'Online',
+                                    default => 'N/A',
+                                };
+                            })
+                            ->disabledOn('edit')
                             ->required(),
                         Forms\Components\TextInput::make('provider_payment_method')
                             ->helperText('Provider payment method (e.g. Gopay, OVO, DANA, etc.)')
-                            ->maxLength(255),
+                            ->default('N/A')
+                            ->maxLength(255)
+                            ->disabledOn('edit'),
                         Forms\Components\TextInput::make('status')
+                            ->disabledOn('edit')
                             ->required(),
                         Forms\Components\TextInput::make('amount')
                             ->prefix('Rp')
+                            ->disabledOn('edit')
                             ->required()
                             ->numeric()
                             ->default(400000),
                         Forms\Components\Fieldset::make('Bank')
                             ->schema([
-                                Forms\Components\TextInput::make('description')
+                                Forms\Components\TextInput::make('description')                            ->disabledOn('edit')
+                                    ->disabledOn('edit')
                                     ->required()
                                     ->maxLength(255)
                                     ->default('Payment is pending'),
@@ -60,9 +74,13 @@ class PaymentResource extends Resource
                                 Forms\Components\TextInput::make('bank_account_name')
                                     ->maxLength(255),
                                 ]),
-                        Forms\Components\DateTimePicker::make('paid_at'),
-                        Forms\Components\DateTimePicker::make('expired_at'),
+                        Forms\Components\DateTimePicker::make('paid_at')
+                            ->disabledOn('edit'),
+                        Forms\Components\DateTimePicker::make('expired_at')
+                            ->disabledOn('edit'),
                         Forms\Components\FileUpload::make('proof')
+                            ->image()
+                            ->imageEditor()
                             ->downloadable()
                             ->columnSpanFull(),
                         ]),
@@ -73,27 +91,52 @@ class PaymentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('method'),
+                Tables\Columns\TextColumn::make('method')
+                    ->label('Jenis Pembayaran')
+                    ->formatStateUsing(function (string $state) {
+                        return match ($state) {
+                            'manual' => 'Transfer Bank',
+                            'online' => 'Online',
+                            default => 'N/A',
+                        };
+                    }),
                 Tables\Columns\TextColumn::make('provider_payment_method')
+                    ->label('Provider Pembayaran')
+                    ->default('N/A')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('status')
+                    ->color(fn(string $state) => match ($state) {
+                        'pending' => 'warning',
+                        'success' => 'success',
+                        'failed' => 'danger',
+                        default => 'primary',
+                    })
+                    ->badge(),
                 Tables\Columns\TextColumn::make('description')
+                    ->label('Deskripsi')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('bank_name')
+                    ->label('Nama Bank')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('bank_account')
+                    ->label('Nomor Rekening')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('bank_account_name')
+                    ->label('Nama Pemilik Rekening')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('amount')
+                    ->prefix('Rp')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('proof')
+                Tables\Columns\ImageColumn::make('proof')
+                    ->label('Bukti Pembayaran')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('paid_at')
+                    ->label('Tanggal Pembayaran')
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('expired_at')
+                    ->label('Tanggal Kadaluarsa')
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -131,7 +174,7 @@ class PaymentResource extends Resource
         return [
             'index' => Pages\ListPayments::route('/'),
             //'create' => Pages\CreatePayment::route('/create'),
-            'view' => Pages\ViewPayment::route('/{record}'),
+            //'view' => Pages\ViewPayment::route('/{record}'),
             //'edit' => Pages\EditPayment::route('/{record}/edit'),
         ];
     }
