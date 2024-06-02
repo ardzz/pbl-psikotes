@@ -6,6 +6,7 @@ use App\Models\Setting;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -18,7 +19,10 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Support\Enums\IconPosition;
+use Filament\Support\Enums\IconSize;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 
 class Settings extends Page implements HasForms
@@ -34,6 +38,9 @@ class Settings extends Page implements HasForms
         return $form
             ->schema([
                 Section::make('Bank Setting')
+                    ->icon('bx-wallet')
+                    ->iconSize(IconSize::Large)
+                    ->iconColor('primary')
                     ->schema([
                         TextInput::make('bank_name')->label('Bank Name'),
                         TextInput::make('bank_account')->label('Bank Account'),
@@ -45,6 +52,9 @@ class Settings extends Page implements HasForms
                 ])->columns(2),
 
                 Section::make('Midtrans Setting')
+                    ->icon('bx-wallet')
+                    ->iconSize(IconSize::Large)
+                    ->iconColor('primary')
                     ->schema([
                         TextInput::make('midtrans_server_key')
                             ->formatStateUsing(function (string $state) {
@@ -52,7 +62,10 @@ class Settings extends Page implements HasForms
                             })
                             ->suffixAction(Actions\Action::make('reveal')
                                 ->label('Midtrans Server Key')
-                                ->icon('heroicon-o-eye')
+                                ->icon(function (Get $get){
+                                    return $get('midtrans_server_key_revealed') ? 'bx-lock-open-alt' : 'heroicon-o-eye';
+                                })
+                                ->disabled(fn (Get $get) => $get('midtrans_server_key_revealed'))
                                 ->form([
                                     TextInput::make('password')
                                         ->label('Enter your password to reveal the key')
@@ -62,6 +75,7 @@ class Settings extends Page implements HasForms
                                 ->action(function (array $data, Set $set){
                                     if (Hash::check($data['password'], auth()->user()->password)) {
                                         $set('midtrans_server_key', decrypt(Setting::where('name', 'midtrans_server_key')->first()->value));
+                                        $set('midtrans_server_key_revealed', true);
                                     }else{
                                         Notification::make()
                                             ->body('Password is incorrect')
@@ -77,7 +91,16 @@ class Settings extends Page implements HasForms
                             })
                             ->suffixAction(Actions\Action::make('reveal')
                                 ->label('Midtrans Client Key')
-                                ->icon('heroicon-o-eye')
+                                ->icon(function (Get $get){
+                                    return $get('midtrans_client_key_revealed') ? 'bx-lock-open-alt' : 'heroicon-o-eye';
+                                })
+                                ->disabled(fn (Get $get) => $get('midtrans_client_key_revealed'))
+                                ->form([
+                                    TextInput::make('password')
+                                        ->label('Enter your password to reveal the key')
+                                        ->required()
+                                        ->password()
+                                ])
                                 ->form([
                                     TextInput::make('password')
                                         ->label('Enter your password to reveal the key')
@@ -87,10 +110,12 @@ class Settings extends Page implements HasForms
                                 ->action(function (array $data, Set $set){
                                     if (Hash::check($data['password'], auth()->user()->password)) {
                                         $set('midtrans_client_key', decrypt(Setting::where('name', 'midtrans_client_key')->first()->value));
+                                        $set('midtrans_client_key_revealed', true);
                                     }else{
                                         Notification::make()
-                                            ->body('Password is incorrect')
+                                            ->title('Error')
                                             ->danger()
+                                            ->body('Password is incorrect')
                                             ->send();
                                     }
                                 })
@@ -109,7 +134,15 @@ class Settings extends Page implements HasForms
                 ])->columns(2),
 
                 Section::make('Whatsapp Notification Setting')
+                    ->icon('gmdi-whatsapp')
+                    ->iconSize(IconSize::Large)
+                    ->iconColor('success')
+                    ->iconPosition(IconPosition::After)
                     ->schema([
+                        Placeholder::make('')->content(function (){
+                            $github = 'https://github.com/chrishubert/whatsapp-api';
+                            return new HtmlString("Check the documentation <strong><a href='{$github}' target='_blank'>Whatsapp API</a></strong> to get the API URL and Token for Whatsapp Notification. Make sure to use the API URL with the correct format");
+                        })->columnSpanFull(),
                         TextInput::make('whatsapp_api_url')->label('Whatsapp API URL'),
                         TextInput::make('whatsapp_api_token')->label('Whatsapp API Token'),
                 ])->columns(2),
