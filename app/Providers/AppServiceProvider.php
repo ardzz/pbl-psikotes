@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Filament\Patient\Resources\ExamResource\Pages\CreateExam;
+use App\Models\Setting;
 use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Http\Middleware\TrustProxies;
@@ -51,9 +52,12 @@ class AppServiceProvider extends ServiceProvider
                 ->failWhenMoreConnectionsThan(100)
         ]);
 
-        Config::$serverKey = 'SB-Mid-server-hcUstBPhdDcDYLGpuW94srji';
-        Config::$clientKey = 'SB-Mid-client-WmA9-eaewKwi1Yw-';
-        Config::$isProduction = false;
+        $setting = Setting::all();
+
+        Config::$serverKey = $setting->where('name', 'midtrans_server_key')->first()->value;
+        Config::$clientKey = $setting->where('name', 'midtrans_client_key')->first()->value;
+        Config::$isProduction = $setting->where('name', 'midtrans_environment')->first()->value == 'production';
+
         Config::$isSanitized = true;
         Config::$is3ds = true;
 

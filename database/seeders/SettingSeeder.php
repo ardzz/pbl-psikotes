@@ -18,6 +18,10 @@ class SettingSeeder extends Seeder
             'bank_account_name',
             'amount',
 
+            'midtrans_client_key',
+            'midtrans_server_key',
+            'midtrans_environment',
+
             'whatsapp_api_url',
             'whatsapp_api_token',
         ];
