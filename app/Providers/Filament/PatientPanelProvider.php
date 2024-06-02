@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Login;
+use App\Filament\Pages\Register;
 use DutchCodingCompany\FilamentSocialite\FilamentSocialitePlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -27,13 +29,12 @@ class PatientPanelProvider extends PanelProvider
         return $panel
             ->id('patient')
             ->path('patient')
-            ->login()
-            ->registration()
+            ->login(Login::class)
+            ->registration(Register::class)
+            ->passwordReset()
             ->databaseNotifications()
             ->databaseNotificationsPolling('5s')
             ->sidebarCollapsibleOnDesktop()
-            //->brandLogo('https://web.polines.ac.id/wp-content/uploads/2021/11/LOGO-POLITEKNIK-NEGERI-SEMARANG-2.png')
-            //->brandLogoHeight('4rem')
             ->brandName('Kelompok Tiga')
             ->colors([
                 'primary' => Color::Violet,
