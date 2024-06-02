@@ -215,7 +215,7 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                             ->success()
                             ->send();
 
-                        $record->user()->notify(
+                        $record->user->notify(
                             Notification::make()
                                 ->body(function() use ($record) {
                                     return "Selamat, report psikotes anda telah divalidasi oleh {$record->doctor->name}. Silahkan unduh sertifikat pada halaman exam";
