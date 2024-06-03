@@ -22,7 +22,7 @@ class ExamResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = Exam::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'gmdi-assignment-o';
 
     public static function getPermissionPrefixes(): array
     {

@@ -126,10 +126,10 @@ class Settings extends Page implements HasForms
                                 'sandbox' => 'Sandbox',
                                 'production' => 'Production',
                             ])
-                            ->columnSpanFull()
                             ->native(false)
                             ->label('Midtrans Environment'),
                         Toggle::make('midtrans_enabled')
+                            ->columnSpanFull()
                             ->label('Midtrans Enabled'),
                 ])->columns(2),
 
@@ -143,8 +143,17 @@ class Settings extends Page implements HasForms
                             $github = 'https://github.com/chrishubert/whatsapp-api';
                             return new HtmlString("Check the documentation <strong><a href='{$github}' target='_blank'>Whatsapp API</a></strong> to get the API URL and Token for Whatsapp Notification. Make sure to use the API URL with the correct format");
                         })->columnSpanFull(),
-                        TextInput::make('whatsapp_api_url')->label('Whatsapp API URL'),
-                        TextInput::make('whatsapp_api_token')->label('Whatsapp API Token'),
+                        TextInput::make('whatsapp_api_url')
+                            ->placeholder('https://wa-api.kelompoktiga.my.id/')
+                            ->label('Whatsapp API URL'),
+                        TextInput::make('whatsapp_api_token')
+                            ->hint('If your API Token is empty, you can leave it blank')
+                            ->label('Whatsapp API Token'),
+                        TextInput::make('whatsapp_api_session')
+                            ->label('Whatsapp API Session'),
+                        Toggle::make('whatsapp_api_enabled')
+                            ->columnSpanFull()
+                            ->label('Enable Whatsapp Notification'),
                 ])->columns(2),
                 Actions::make([
                     Actions\Action::make('save')
