@@ -33,6 +33,8 @@ class PatientPanelProvider extends PanelProvider
             ->login(Login::class)
             ->registration(Register::class)
             ->passwordReset()
+            ->spa()
+            ->emailVerification()
             ->databaseNotifications()
             ->profile()
             ->databaseNotificationsPolling('5s')
@@ -42,7 +44,6 @@ class PatientPanelProvider extends PanelProvider
                 'primary' => Color::Violet,
             ])
             ->plugins([
-                //BreezyCore::make()->myProfile(),
                 EnvironmentIndicatorPlugin::make()->color(fn () => match (app()->environment()) {
                     'production' => null,
                     'beta' => Color::Rose,
@@ -51,19 +52,14 @@ class PatientPanelProvider extends PanelProvider
                     default => Color::Emerald,
                 })->visible(fn () => app()->environment() !== 'production'),
                 FilamentSocialitePlugin::make()
-                    // (required) Add providers corresponding with providers in `config/services.php`.
                     ->setProviders([
                         'google' => [
                             'label' => 'Google',
-                            // Custom icon requires an additional package, see below.
                             'icon' => 'fab-google',
-                            // (optional) Button color override, default: 'gray'.
                             'color' => 'primary',
-                            // (optional) Button style override, default: true (outlined).
                             'outlined' => false,
                         ],
                     ])
-                    // (optional) Enable/disable registration of new (socialite-) users.
                     ->setRegistrationEnabled(true)
             ])
             ->discoverResources(in: app_path('Filament/Patient/Resources'), for: 'App\\Filament\\Patient\\Resources')
