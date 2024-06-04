@@ -91,7 +91,6 @@ class AnalyzeExamResult extends EditRecord implements HasForms
 
                         try {
                             $scale = $record->analyze();
-                            dd($scale->CNSValidity());
                             if (!$scale->CNSValidity()) {
                                 Notification::make()
                                     ->body('Exam tidak dapat dianalisis karena CNSValidity tidak valid, karena jumlah soal yang tidak dijawab >= 30 soal')
