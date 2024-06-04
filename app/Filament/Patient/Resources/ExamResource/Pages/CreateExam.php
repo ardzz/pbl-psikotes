@@ -217,6 +217,11 @@ class CreateExam extends CreateRecord
             $this->data['payment_id'] = $trx->id;
         }
 
+        $amount = Setting::where('name', 'amount')->first()->value;
+
+        $data['amount'] = $amount;
+        $this->data['amount'] = $amount;
+
         return $data;
     }
 
