@@ -76,7 +76,7 @@ class Scale
         if($this->exam->getUnansweredQuestions()->count() <= 30){
             return $this->exam->getNullAnsweredQuestions()->count() <= 30;
         }
-        return true;
+        return false;
     }
 
     /**

@@ -50,7 +50,7 @@ class Exam extends Model
     {
         return $this->getQuestions()->filter(function ($question) {
             if ($current_question = $question->answers) {
-                return $current_question->where('exam_id', $this->id)->whereNotNull('answer')->first();
+                return $current_question->answer !== null ? $current_question : null;
             }
             return null;
         });
@@ -59,8 +59,8 @@ class Exam extends Model
     function getNullAnsweredQuestions(): Collection
     {
         return $this->getQuestions()->filter(function ($question) {
-            if($current_question = $question->answers){
-                return $current_question->where('exam_id', $this->id)->whereNull('answer')->first();
+            if ($current_question = $question->answers) {
+                return $current_question->answer === null ? $current_question : null;
             }
             return null;
         });
