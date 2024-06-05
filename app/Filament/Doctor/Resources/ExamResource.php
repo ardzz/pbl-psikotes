@@ -46,8 +46,8 @@ class ExamResource extends Resource
                         ->default('General Checkup'),
                     Forms\Components\DateTimePicker::make('start_time'),
                     Forms\Components\DateTimePicker::make('end_time'),
-                    RichEditor::make('notes')
-                        ->columnSpanFull(),
+                    /*RichEditor::make('notes')
+                        ->columnSpanFull(),*/
                     RichEditor::make('conclusion')
                         ->visible(fn (Model $record) => $record->hasExamResult())
                         ->required()
