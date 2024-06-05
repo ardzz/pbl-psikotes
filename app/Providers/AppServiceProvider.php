@@ -85,18 +85,17 @@ class AppServiceProvider extends ServiceProvider
             } else {
                 $snap_url = 'https://app.sandbox.midtrans.com';
             }
+            FilamentView::registerRenderHook(
+                PanelsRenderHook::SCRIPTS_BEFORE,
+                fn (): string => Blade::render(<<<HTML
+                    <script src="{$snap_url}/snap/snap.js" data-client-key="{{ \Midtrans\Config::\$clientKey }}"></script>
+            HTML),
+                scopes: [
+                    CreateExam::class
+                ]
+            );
         }catch (\Exception $e){
             // do nothing
         }
-
-        FilamentView::registerRenderHook(
-            PanelsRenderHook::SCRIPTS_BEFORE,
-            fn (): string => Blade::render(<<<HTML
-                    <script src="{$snap_url}/snap/snap.js" data-client-key="{{ \Midtrans\Config::\$clientKey }}"></script>
-            HTML),
-            scopes: [
-                CreateExam::class
-            ]
-        );
     }
 }
