@@ -65,6 +65,10 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                     ->required()
                     ->visible(fn (Model $record) => $record->hasExamResult())
                     ->columnSpanFull(),
+                TextInput::make('validity_score')->label('Skor Validitas')
+                    ->numeric()
+                    ->required()
+                    ->visible(fn (Model $record) => $record->hasExamResult()),
                 Fieldset::make('INDEKS KAPASITAS MENTAL')
                     ->schema([
                         Placeholder::make('')
