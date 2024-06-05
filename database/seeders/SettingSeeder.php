@@ -25,6 +25,8 @@ class SettingSeeder extends Seeder
 
             'whatsapp_api_url',
             'whatsapp_api_token',
+            'whatsapp_api_session',
+            'whatsapp_api_enabled',
         ];
 
         foreach ($setting_names as $setting_name) {

@@ -29,40 +29,47 @@ class PersonalInformation extends Page implements HasForms
             ->schema([
                 Section::make()->schema([
                     TextInput::make('nik')
-                        ->maxLength(255),
+                        ->maxLength(255)
+                        ->label('NIK'),
                     TextInput::make('occupation')
-                        ->maxLength(255),
-                    DatePicker::make('birthdate'),
+                        ->maxLength(255)
+                        ->label('Pekerjaan'),
+                    DatePicker::make('birthdate')
+                        ->label('Tanggal Lahir'),
                     TextInput::make('phone_number')
                         ->tel()
-                        ->maxLength(255),
+                        ->maxLength(255)
+                        ->label('Nomor Telepon'),
                     TextInput::make('religion')
-                        ->maxLength(255),
+                        ->maxLength(255)
+                        ->label('Agama'),
                     Select::make('marital_status')
                         ->native(false)
                         ->options([
-                            'single' => 'Single',
-                            'married' => 'Married',
-                            'divorced' => 'Divorced',
-                            'widowed' => 'Widowed'
-                        ]),
+                            'single' => 'Belum Menikah',
+                            'married' => 'Menikah',
+                            'divorced' => 'Cerai',
+                            'widowed' => 'Duda/Janda'
+                        ])
+                        ->label('Status Pernikahan'),
                     Select::make('education')
                         ->native(false)
                         ->options([
-                            'elementary' => 'Elementary',
-                            'junior_high' => 'Junior High',
-                            'senior_high' => 'Senior High',
+                            'elementary' => 'SD',
+                            'junior_high' => 'SMP',
+                            'senior_high' => 'SMA',
                             'diploma' => 'Diploma',
-                            'bachelor' => 'Bachelor',
-                            'master' => 'Master',
-                            'doctor' => 'Doctor'
-                        ]),
+                            'bachelor' => 'Sarjana',
+                            'master' => 'Magister',
+                            'doctor' => 'Doktor'
+                        ])
+                        ->label('Pendidikan'),
                     Select::make('sex')
                         ->options([
-                            'm' => 'Male',
-                            'f' => 'Female'
+                            'm' => 'Laki-laki',
+                            'f' => 'Perempuan'
                         ])
-                        ->label('gender'),
+                        ->label('Jenis Kelamin'),
                     Actions::make([
                         Actions\Action::make('save')->action(function(){
                             $personalInformation = \App\Models\PersonalInformation::where('user_id', auth()->user()->id)->first();

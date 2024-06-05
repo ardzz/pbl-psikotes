@@ -62,7 +62,7 @@ class PaymentResource extends Resource
                             ->default(400000),
                         Forms\Components\Fieldset::make('Bank')
                             ->schema([
-                                Forms\Components\TextInput::make('description')                            ->disabledOn('edit')
+                                Forms\Components\TextInput::make('description')
                                     ->disabledOn('edit')
                                     ->required()
                                     ->maxLength(255)
@@ -125,6 +125,7 @@ class PaymentResource extends Resource
                     ->label('Nama Pemilik Rekening')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('amount')
+                    ->label('Jumlah')
                     ->prefix('Rp')
                     ->numeric()
                     ->sortable(),

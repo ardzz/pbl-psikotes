@@ -10,6 +10,7 @@ use App\Filament\Doctor\Widgets\PSY5;
 use App\Filament\Doctor\Widgets\RestructuredClinicalScale;
 use App\Filament\Doctor\Widgets\Supplementary;
 use App\Filament\Doctor\Widgets\Validity;
+use App\Models\Answer;
 use App\Models\Exam;
 use App\Models\ExamResult;
 use Filament\Actions\Concerns\CanSubmitForm;
@@ -87,6 +88,7 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                     ->action(function (Model $record){
                         $exam_result = ExamResult::where('exam_id', $record->id)->first();
 
+
                         try {
                             $scale = $record->analyze();
                             if (!$scale->CNSValidity()) {
@@ -104,11 +106,22 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                                     ->title('Error')
                                     ->danger()
                                     ->send();
-                                $this->halt();
                             }
+                            $this->halt();
                         }
 
                         dispatch(function () use ($record, $scale, $exam_result) {
+
+                            $unanswered_questions = $record->getUnansweredQuestions();
+
+                            foreach ($unanswered_questions as $question) {
+                                $answer = new Answer();
+                                $answer->exam_id = $record->id;
+                                $answer->question_id = $question->id;
+                                $answer->answer = null;
+                                $answer->save();
+                            }
+
                             $method_excludes = [
                                 'CNSValidity',
                                 'toTF',
@@ -159,7 +172,7 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                                 }
                             }
 
-                            $record->doctor()->notify(
+                            $record->doctor->notify(
                                 Notification::make()
                                     ->body(function() use ($record) {
                                         return "Report pada {$record->user->name} berhasil di-generate, silahkan cek pada halaman report";

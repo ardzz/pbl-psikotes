@@ -117,8 +117,8 @@ class Quiz extends Page implements HasForms
                         ->modalCancelAction(false)
                         ->modalSubmitAction(false)
                         ->extraModalFooterActions(fn (Action $action): array => [
-                            $action->makeModalSubmitAction('next', ['next'])->label('Soal Selanjutnya'),
-                            $action->makeModalSubmitAction('prev', ['prev'])->label('Soal Sebelumnya')
+                            $action->makeModalSubmitAction('next', ['next'])->label('Daftar Soal Selanjutnya'),
+                            $action->makeModalSubmitAction('prev', ['prev'])->label('Daftar Soal Sebelumnya')
                         ])
                         ->action(function (array $data, array $arguments){
                             $act = $arguments[0];

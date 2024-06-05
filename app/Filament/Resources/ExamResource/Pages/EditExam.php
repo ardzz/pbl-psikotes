@@ -16,4 +16,16 @@ class EditExam extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    function afterSave(){
+        if($this->data['approved']){
+            $payment = $this->record->payment;
+            if ($payment->status == 'pending'){
+                $payment->status = 'paid';
+                $payment->description = 'Pembayaran telah diverifikasi';
+                $payment->paid_at = now();
+                $payment->save();
+            }
+        }
+    }
 }

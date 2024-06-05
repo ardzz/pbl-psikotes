@@ -17,7 +17,7 @@ use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 use App\Notifications\ResetPasswordQueued;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail, FilamentUser
+class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable, HasRoles, HasPanelShield;
 

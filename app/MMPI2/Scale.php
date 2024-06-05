@@ -73,7 +73,10 @@ class Scale
 
     public function CNSValidity(): bool
     {
-        return $this->exam->getNullAnsweredQuestions()->count() <= 30;
+        if($this->exam->getUnansweredQuestions()->count() <= 30){
+            return $this->exam->getNullAnsweredQuestions()->count() <= 30;
+        }
+        return false;
     }
 
     /**

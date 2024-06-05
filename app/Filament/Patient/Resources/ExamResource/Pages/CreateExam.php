@@ -217,17 +217,23 @@ class CreateExam extends CreateRecord
             $this->data['payment_id'] = $trx->id;
         }
 
+        $amount = Setting::where('name', 'amount')->first()->value;
+
+        $data['amount'] = $amount;
+        $this->data['amount'] = $amount;
+
         return $data;
     }
 
     function afterCreate(): void
     {
+        $record = $this->record;
         if ($this->data['method'] == 'cash'){
             /* @var \App\Models\Exam $record */
-            $record = $this->record;
             $record->payment->user_id = auth()->id();
-            $record->payment->save();
         }
+        $record->payment->amount = $this->data['amount'];
+        $record->payment->save();
     }
 
 }

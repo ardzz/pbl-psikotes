@@ -30,6 +30,7 @@ class DoctorPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->spa()
             ->login(Login::class)
             ->databaseNotifications()
             ->databaseNotificationsPolling('5s')

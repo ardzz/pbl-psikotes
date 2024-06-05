@@ -42,15 +42,15 @@ class Exam extends Model
     function getUnansweredQuestions(): Collection
     {
         return $this->getQuestions()->filter(function ($question) {
-            return !$question->answers->where('exam_id', $this->id)->first();
+            return !$question->answers;
         });
     }
 
     function getAnsweredQuestions(): Collection
     {
         return $this->getQuestions()->filter(function ($question) {
-            if ($current_question = $question->answers->where('exam_id', $this->id)) {
-                return $current_question->whereNotNull('answer')->first();
+            if ($current_question = $question->answers) {
+                return $current_question->answer !== null ? $current_question : null;
             }
             return null;
         });
@@ -59,8 +59,8 @@ class Exam extends Model
     function getNullAnsweredQuestions(): Collection
     {
         return $this->getQuestions()->filter(function ($question) {
-            if($current_question = $question->answers->where('exam_id', $this->id)){
-                return $current_question->whereNull('answer')->first();
+            if ($current_question = $question->answers) {
+                return $current_question->answer === null ? $current_question : null;
             }
             return null;
         });

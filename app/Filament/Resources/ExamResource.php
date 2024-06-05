@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ExamResource\Pages;
 use App\Models\Exam;
+use App\Models\User;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
@@ -22,7 +23,7 @@ class ExamResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = Exam::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'gmdi-assignment-o';
 
     public static function getPermissionPrefixes(): array
     {
@@ -47,10 +48,16 @@ class ExamResource extends Resource implements HasShieldPermissions
                     ->required()
                     ->maxLength(255)
                     ->default('General Checkup'),
-                Forms\Components\DateTimePicker::make('start_time'),
-                Forms\Components\DateTimePicker::make('end_time'),
+                Forms\Components\DateTimePicker::make('start_time')
+                    ->disabledOn('edit'),
+                Forms\Components\DateTimePicker::make('end_time')
+                    ->disabledOn('edit'),
                 Forms\Components\Select::make('doctor_id')
-                    ->relationship('doctor', 'name'),
+                    ->required()
+                    ->native(false)
+                    ->options(
+                        User::doctors()->pluck('name', 'id')
+                    ),
                 Section::make('Formulir Pembayaran')
                     ->relationship('payment')
                     ->schema([
@@ -66,12 +73,13 @@ class ExamResource extends Resource implements HasShieldPermissions
                             ->label('Bukti Pembayaran')
                             ->image()
                             ->imageEditor()
-                    ]),
-                Forms\Components\Toggle::make('approved'),
-                Forms\Components\Toggle::make('validated')
-                    ->required(),
-                Forms\Components\Textarea::make('note')
-                    ->columnSpanFull(),
+                    ])->disabledOn('edit'),
+                Forms\Components\Fieldset::make()->schema([
+                    Forms\Components\Toggle::make('approved'),
+                    Forms\Components\Toggle::make('validated')
+                        ->disabled()
+                        ->required(),
+                ])->columns(2)
             ]);
     }
 

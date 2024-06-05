@@ -35,6 +35,8 @@
                                 @case('failed') <span class="text-red-500">Pembayaran Gagal</span> @break
                                 @case('expired') <span class="text-red-500">Pembayaran Kadaluarsa</span> @break
                             @endswitch
+                        @else
+                            <span class="text-yellow-500">Pembayaran Sedang Diproses</span>
                         @endif
                     </div>
                 </div>
