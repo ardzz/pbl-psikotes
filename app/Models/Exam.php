@@ -168,4 +168,20 @@ class Exam extends Model
     {
         return (bool) ExamResult::where('exam_id', $this->id)->first();
     }
+
+    function countMentalCapacity(){
+        return $this->work_performance
+            + $this->adaptability
+            + $this->psychological_issue
+            + $this->destructive_action
+            + $this->moral_integrity;
+    }
+
+    function countPersonality(){
+        return $this->openness
+            + $this->conscientiousness
+            + $this->extraversion
+            + $this->agreeableness
+            + $this->neuroticism;
+    }
 }

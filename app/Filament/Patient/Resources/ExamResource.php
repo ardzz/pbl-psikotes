@@ -3,6 +3,7 @@
 namespace App\Filament\Patient\Resources;
 
 
+use App\Filament\Patient\Pages\Certificate;
 use App\Filament\Patient\Resources\ExamResource\Pages\CreateExam;
 use App\Filament\Patient\Resources\ExamResource\Pages\EditExam;
 use App\Filament\Patient\Resources\ExamResource\Pages\ListExams;
@@ -100,9 +101,7 @@ class ExamResource extends Resource
                     ->label('Certificate')
                     ->icon('untitledui-certificate')
                     ->color('success')
-                    ->modalDescription(new HtmlString('Oops fitur belum ada! Sabar yaa, frontend kita lagi sibuk ngerjain paper dan tubes lainnya XD<br><br>'))
-                    ->modalSubmitAction(false)
-                    ->modalCancelAction(false)
+                    ->action(fn (?Model $record) => redirect("/patient/exams/{$record->id}/certificate")),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

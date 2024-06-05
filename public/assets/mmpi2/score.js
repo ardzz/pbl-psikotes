@@ -3,8 +3,8 @@ function score() {
     var i, j, scale, tscale, q, n, s, rp;
     var k, rawscore, kscore, tscore, percent;
     var t_cnt, f_cnt, cs_cnt, pe;
-    var scale_table = make_table("score_text", "Scale", "Scale Description", "Raw Score", "K Score", "T Score", "% Answered");
-    var ci_table = make_table("ci_table", "Scale", "Question", "Answer", "Question Text");
+    //var scale_table = make_table("score_text", "Scale", "Scale Description", "Raw Score", "K Score", "T Score", "% Answered");
+    //var ci_table = make_table("ci_table", "Scale", "Question", "Answer", "Question Text");
     //var ua_table = make_table("#", "Unanswered Questions");
     n = longform ? questions.length : 371;
     t_cnt = 0;
@@ -25,9 +25,9 @@ function score() {
         }
     }
     --q;
-    append_tr(scale_table, "True", " ", t_cnt, " ", " ", (t_cnt * 100 / q).toPrecision(3));
-    append_tr(scale_table, "False", " ", f_cnt, " ", " ", (f_cnt * 100 / q).toPrecision(3));
-    append_tr(scale_table, "?", " ", cs_cnt, " ", " ", (cs_cnt * 100 / q).toPrecision(3));
+    //append_tr(scale_table, "True", " ", t_cnt, " ", " ", (t_cnt * 100 / q).toPrecision(3));
+    //append_tr(scale_table, "False", " ", f_cnt, " ", " ", (f_cnt * 100 / q).toPrecision(3));
+    //append_tr(scale_table, "?", " ", cs_cnt, " ", " ", (cs_cnt * 100 / q).toPrecision(3));
     k = 0;
     pe = 0;
     for (i = 0; i < scales.length; ++i) {
@@ -46,7 +46,7 @@ function score() {
                         ++n;
                         ++rawscore;
                         if (tscale === undefined) {
-                            append_tr(ci_table, scale.name, q, "True", questions[q]);
+                            //append_tr(ci_table, scale.name, q, "True", questions[q]);
                         }
                         break;
                     case "F":
@@ -63,7 +63,7 @@ function score() {
                         ++n;
                         ++rawscore;
                         if (tscale === undefined) {
-                            append_tr(ci_table, scale.name, q, "False", questions[q]);
+                            //append_tr(ci_table, scale.name, q, "False", questions[q]);
                         }
                         break;
                     case "T":
@@ -96,7 +96,7 @@ function score() {
                 tscore = tscale[rawscore];
             }
             percent = scale.rin ? (n * 100 / scale.rin.length) : (n * 100 / (scale.true_questions.length + j));
-            append_tr(scale_table, scale.name, scale.description, rawscore, kscore || " ", tscore, percent.toPrecision(3));
+            //append_tr(scale_table, scale.name, scale.description, rawscore, kscore || " ", tscore, percent.toPrecision(3));
             scale.raw_score = rawscore;
             scale.t_score = tscore;
             scale.response = percent;
