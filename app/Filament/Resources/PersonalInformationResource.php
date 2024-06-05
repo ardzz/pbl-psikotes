@@ -62,17 +62,50 @@ class PersonalInformationResource extends Resource
                 Tables\Columns\TextColumn::make('nik')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('occupation')
+                    ->label('Pekerjaan')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('birthdate')
+                    ->label('Tanggal Lahir')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('phone_number')
+                    ->label('Nomor Telepon')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('religion')
+                    ->label('Agama')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('marital_status'),
-                Tables\Columns\TextColumn::make('education'),
-                Tables\Columns\TextColumn::make('sex'),
+                Tables\Columns\TextColumn::make('marital_status')
+                ->formatStateUsing(function(string $state){
+                    return match ($state) {
+                        'single' => 'Belum Menikah',
+                        'married' => 'Menikah',
+                        'divorced' => 'Cerai',
+                        'widowed' => 'Duda/Janda',
+                        default => $state,
+                    };
+
+                }),
+                Tables\Columns\TextColumn::make('education')
+                ->formatStateUsing(function(string $state){
+                    return match ($state) {
+                        'elementary' => 'SD',
+                        'junior_high' => 'SMP',
+                        'senior_high' => 'SMA',
+                        'diploma' => 'Diploma',
+                        'bachelor' => 'S1',
+                        'master' => 'S2',
+                        'doctor' => 'S3',
+                        default => $state,
+                    };
+                }),
+                Tables\Columns\TextColumn::make('sex')
+                    ->label('Jenis Kelamin')
+                    ->formatStateUsing(function (string $state){
+                        return match ($state) {
+                            'f' => 'Perempuan',
+                            'm' => 'Laki-laki',
+                        };
+                }),
                 /*Tables\Columns\TextColumn::make('province')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('city')
@@ -119,7 +152,6 @@ class PersonalInformationResource extends Resource
         return [
             'index' => Pages\ListPersonalInformation::route('/'),
             'create' => Pages\CreatePersonalInformation::route('/create'),
-            'view' => Pages\ViewPersonalInformation::route('/{record}'),
             'edit' => Pages\EditPersonalInformation::route('/{record}/edit'),
         ];
     }
