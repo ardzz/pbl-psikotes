@@ -12,8 +12,12 @@ class Question extends Model
 
     protected $fillable = ['content'];
 
-    public function answers(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function answers(int $exam_id = null): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasOne(Answer::class, 'question_id', 'id');
+        $answer = $this->hasOne(Answer::class, 'question_id', 'id');
+        if ($exam_id != null) {
+            $answer = $answer->where('exam_id', $exam_id);
+        }
+        return $answer;
     }
 }

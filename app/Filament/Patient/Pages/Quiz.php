@@ -318,8 +318,8 @@ class Quiz extends Page implements HasForms
         $nextQuestion = Question::where('id', $this->currentQuestion + 1)->first();
         $this->content = $nextQuestion->content;
         $this->currentQuestion++;
-        if ($nextQuestion->answers) {
-            $this->data['answer'] = match ($nextQuestion->answers->answer) {
+        if ($answers = $nextQuestion->answers($this->exam->id)->get()->first()) {
+            $this->data['answer'] = match ($answers->answer) {
                 1 => 'T',
                 0 => 'F',
                 null => '?'
@@ -335,8 +335,8 @@ class Quiz extends Page implements HasForms
             $prevQuestion = Question::where('id', $this->currentQuestion - 1)->first();
             $this->content = $prevQuestion->content;
             $this->currentQuestion--;
-            if ($prevQuestion->answers) {
-                $this->data['answer'] = match ($prevQuestion->answers->answer) {
+            if ($answers = $prevQuestion->answers($this->exam->id)->get()->first()) {
+                $this->data['answer'] = match ($answers->answer) {
                     1 => 'T',
                     0 => 'F',
                     null => '?'
@@ -368,8 +368,8 @@ class Quiz extends Page implements HasForms
         $question = Question::where('id', $id)->first();
         if($question){
             $this->content = $question->content;
-            if ($question->answers) {
-                $this->data['answer'] = match ($question->answers->answer) {
+            if ($answers = $question->answers($this->exam->id)->get()->first()) {
+                $this->data['answer'] = match ($answers->answer) {
                     1 => 'T',
                     0 => 'F',
                     null => '?'
