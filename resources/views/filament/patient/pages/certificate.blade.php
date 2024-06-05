@@ -449,7 +449,7 @@
         <img src="{{$exam->signature}}" alt="">
         <br>
         <br>
-        <p>(Dr.......SpKJ)  </p>
+        <p>(Dr.{{$exam->doctor->name}})  </p>
 
     </div>
 </div>
