@@ -30,8 +30,15 @@ class UserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('user_type')
+                Forms\Components\Select::make('user_type')
+                    ->options([
+                        1 => 'Patient',
+                        2 => 'Super Admin',
+                        3 => 'Doctor',
+                    ])
+                    ->native(false)
                     ->required(),
+                Forms\Components\TextInput::make('password'),
                 Forms\Components\Select::make('roles')
                     ->relationship('roles', 'name')
                     ->multiple()
@@ -48,11 +55,25 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('user_type'),
-                Tables\Columns\TextColumn::make('doctor_id')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('user_type')
+                    ->badge()
+                    ->color(fn(User $user) => match ($user->user_type){
+                        2 => 'primary',
+                        1 => 'success',
+                        3 => 'warning',
+                        default => 'danger'
+                    })
+                    ->formatStateUsing(function(string $state){
+                        $state = (int) $state;
+                        return match ($state){
+                            2 => 'Super Admin',
+                            1 => 'Patient',
+                            3 => 'Doctor',
+                            default => 'Unknown'
+                        };
+                    }),
                 Tables\Columns\TextColumn::make('email_verified_at')
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

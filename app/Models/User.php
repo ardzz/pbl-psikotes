@@ -59,6 +59,10 @@ class User extends Authenticatable implements FilamentUser
         'remember_token',
     ];
 
+    protected $casts = [
+        'user_type' => 'integer',
+    ];
+
     public static function doctors()
     {
         return User::where('user_type', 3)->get();
