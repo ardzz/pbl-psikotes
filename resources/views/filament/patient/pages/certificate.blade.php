@@ -224,10 +224,16 @@
         .signature p{
 
         }
+        @media print {
+            .page-break  { display:block; page-break-before:always; }
+            body {
+                transform: scale(0.75);
+            }
+        }
     </style>
 </head>
 <body onload="window.print()">
-<div class="card-body">
+<div class="card-body page-break">
     <div class="letterhead">
         <h1>Validity and Clinical Scales Profile</h1>
     </div>
@@ -235,7 +241,7 @@
         <canvas id="canvasVCS" width="1" height="1"></canvas>
     </div>
 </div>
-<div class="card-body">
+<div class="card-body page-break">
     <div class="letterhead">
         <h1>Restructured Clinical Scales Profile</h1>
     </div>
@@ -243,7 +249,7 @@
         <canvas id="canvasRCS" width="1" height="1"></canvas>
     </div>
 </div>
-<div class="card-body">
+<div class="card-body page-break">
     <div class="letterhead">
         <h1>Content Scales Profile</h1>
     </div>
@@ -251,7 +257,7 @@
         <canvas id="canvasCSP" width="1" height="1"></canvas>
     </div>
 </div>
-<div class="card-body">
+<div class="card-body page-break">
     <div class="letterhead">
         <h1>Supplementary Scales Profile</h1>
     </div>
@@ -259,7 +265,7 @@
         <canvas id="canvasSS" width="1" height="1"></canvas>
     </div>
 </div>
-<div class="card-body">
+<div class="card-body page-break">
     <div class="letterhead">
         <h1>PSY-5 Scales Profile</h1>
     </div>
@@ -268,7 +274,7 @@
     </div>
 </div>
 <!-- Kop Surat -->
-<div class="card-body">
+<div class="card-body page-break">
     <!-- Sesuaikan dengan desain kop surat yang diinginkan -->
     <div class="letterhead">
         <!-- <div>
@@ -447,7 +453,6 @@
         <p>Pembuat Laporan,</p>
         <br>
         <img src="{{$exam->signature}}" alt="">
-        <br>
         <br>
         <p>(Dr.{{$exam->doctor->name}})  </p>
 
