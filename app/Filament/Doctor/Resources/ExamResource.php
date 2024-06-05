@@ -57,6 +57,10 @@ class ExamResource extends Resource
                         ->required()
                         ->visible(fn (Model $record) => $record->hasExamResult())
                         ->columnSpanFull(),
+                    TextInput::make('validity_score')
+                        ->label('Skor Validitas')
+                        ->numeric()
+                        ->required(),
                     Fieldset::make('INDEKS KAPASITAS MENTAL')
                         ->schema([
                             Placeholder::make('')
