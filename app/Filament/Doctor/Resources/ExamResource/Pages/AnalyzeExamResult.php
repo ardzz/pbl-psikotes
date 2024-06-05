@@ -17,6 +17,8 @@ use Filament\Actions\Concerns\CanSubmitForm;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
@@ -30,6 +32,7 @@ use Filament\Resources\Pages\ViewRecord;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Saade\FilamentAutograph\Forms\Components\Enums\DownloadableFormat;
 use Saade\FilamentAutograph\Forms\Components\SignaturePad;
@@ -57,10 +60,74 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                     ->disabled(),
                 TextInput::make('start_time')->disabled(),
                 TextInput::make('end_time')->disabled(),
-                RichEditor::make('notes')
+                RichEditor::make('response_to_test')
+                    ->label('Sikap Terhadap Tes')
+                    ->required()
                     ->visible(fn (Model $record) => $record->hasExamResult())
                     ->columnSpanFull(),
+                Fieldset::make('INDEKS KAPASITAS MENTAL')
+                    ->schema([
+                        Placeholder::make('')
+                            ->columnSpanFull()
+                            ->content(function(){
+                                return new HtmlString('<table><thead><tr><th>Skor</th><th>Keterangan</th></tr></thead><tbody><tr><td>0</td><td>Kurang</td></tr><tr><td>1</td><td>Sedang</td></tr><tr><td>2</td><td>Besar</td></tr></tbody></table>');
+                            }),
+                        TextInput::make('work_performance')
+                            ->numeric()
+                            ->required()
+                            ->label('Potensi Kinerja'),
+                        TextInput::make('adaptability')
+                            ->numeric()
+                            ->required()
+                            ->label('Kemampuan Adaptasi'),
+                        TextInput::make('psychological_issue')
+                            ->numeric()
+                            ->required()
+                            ->label('Kendala Psikologis'),
+                        TextInput::make('destructive_action')
+                            ->numeric()
+                            ->required()
+                            ->label('Perilaku Beresiko'),
+                        TextInput::make('moral_integrity')
+                            ->numeric()
+                            ->required()
+                            ->label('Integritas Moral')
+                    ])->visible(fn (Model $record) => $record->hasExamResult()),
+                RichEditor::make('clinical_profile')
+                    ->label('Profil Klinis')
+                    ->visible(fn (Model $record) => $record->hasExamResult())
+                    ->required()
+                    ->columnSpanFull()->visible(fn (Model $record) => $record->hasExamResult()),
+                Fieldset::make('INDEKS KEPRIBADIAN DASAR')
+                    ->schema([
+                        Placeholder::make('')
+                            ->columnSpanFull()
+                            ->content(function(){
+                                return new HtmlString('<table><thead><tr><th>Skor</th><th>Keterangan</th></tr></thead><tbody><tr><td>0</td><td>Kurang</td></tr><tr><td>1</td><td>Sedang</td></tr><tr><td>2</td><td>Besar</td></tr></tbody></table>');
+                            }),
+                        TextInput::make('openness')
+                            ->required()
+                            ->numeric()
+                            ->label('Keterbukaan'),
+                        TextInput::make('conscientiousness')
+                            ->required()
+                            ->numeric()
+                            ->label('Kesungguhan'),
+                        TextInput::make('extraversion')
+                            ->required()
+                            ->numeric()
+                            ->label('Ekstraversi'),
+                        TextInput::make('agreeableness')
+                            ->required()
+                            ->numeric()
+                            ->label('Kemurahan Hati'),
+                        TextInput::make('neuroticism')
+                            ->required()
+                            ->numeric()
+                            ->label('Neurotisme')
+                    ])->visible(fn (Model $record) => $record->hasExamResult()),
                 RichEditor::make('conclusion')
+                    ->label('Kesimpulan')
                     ->visible(fn (Model $record) => $record->hasExamResult())
                     ->required()
                     ->columnSpanFull(),
@@ -284,7 +351,7 @@ class AnalyzeExamResult extends EditRecord implements HasForms
         ]);
     }
 
-    protected function getFooterWidgets(): array
+    protected function getHeaderWidgets(): array
     {
         return $this->record->hasExamResult() ? [
             Validity::make(),

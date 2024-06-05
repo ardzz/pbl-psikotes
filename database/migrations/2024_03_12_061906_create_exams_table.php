@@ -19,12 +19,29 @@ return new class extends Migration
             $table->timestamp("end_time")->nullable();
             $table->foreignId("doctor_id")->nullable();
             $table->foreignId("payment_id")->nullable();
-            $table->boolean("approved")->default(false); // approved by admin
-            $table->boolean("validated")->default(false); // validated the result by doctor
-            $table->longText("note")->nullable(); // doctor's note written after the exam
-            $table->longText("conclusion")->nullable(); // result of the exam
-            $table->longText("signature")->nullable(); // result of the exam
-            $table->string("certificate")->nullable(); // certificate of the exam
+            $table->boolean("approved")->default(false);
+            $table->boolean("validated")->default(false);
+            $table->longText("note")->nullable();
+
+            $table->longText("response_to_test")->nullable();
+            $table->integer("validity_score")->nullable();
+
+            $table->integer("work_performance")->nullable();
+            $table->integer("adaptability")->nullable();
+            $table->integer("psychological_issue")->nullable();
+            $table->integer("destructive_action")->nullable();
+            $table->integer("moral_integrity")->nullable();
+
+            $table->longText("clinical_profile")->nullable();
+
+            $table->longText("openness")->nullable();
+            $table->longText("conscientiousness")->nullable();
+            $table->longText("extraversion")->nullable();
+            $table->longText("agreeableness")->nullable();
+            $table->longText("neuroticism")->nullable();
+
+            $table->longText("conclusion")->nullable();
+            $table->longText("signature")->nullable();
             $table->timestamps();
         });
     }

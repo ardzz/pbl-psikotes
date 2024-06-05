@@ -13,8 +13,25 @@ use PhpParser\Node\Expr\AssignOp\Mod;
 class Exam extends Model
 {
     protected $fillable = [
-        "user_id", "doctor_id", "purpose", "approved", "start_time", "end_time",
-        "payment_id"
+        'user_id',
+        'purpose',
+        'start_time',
+        'end_time',
+        'doctor_id',
+        'payment_id',
+        'approved',
+        'validated',
+        'note',
+        'response_to_test',
+        'validity_score',
+        'work_performance',
+        'adaptability',
+        'psychological_issue',
+        'destructive_action',
+        'moral_integrity',
+        'clinical_profile',
+        'conclusion',
+        'signature',
     ];
 
     use HasFactory;
