@@ -17,7 +17,7 @@ class Certificate extends Controller
     function index(int $id){
         $exam = \App\Models\Exam::where('id', $id)->where('user_id', auth()->id())->first();
         if (!$exam) {
-            abort(403);
+            abort(404);
         }
         return view('filament.patient.pages.certificate', compact('exam'));
     }
