@@ -5,6 +5,7 @@ namespace App\Filament\Patient\Pages;
 use App\Models\Answer;
 use App\Models\Exam;
 use App\Models\Question;
+use Awcodes\Shout\Components\Shout;
 use Carbon\Carbon;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Actions\Action;
@@ -22,6 +23,7 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Alignment;
 use Filament\Support\Enums\IconPosition;
 use Illuminate\Database\Eloquent\Collection;
@@ -61,7 +63,10 @@ class Quiz extends Page implements HasForms
     public function mount()
     {
         $data = [];
-        if(auth()->user()->amIHaveUnassignedExam()){
+        if(!auth()->user()->isPersonalInformationFullFilled()){
+            $this->setActiveSchema('unfilled-profile');
+        }
+        elseif(auth()->user()->amIHaveUnassignedExam()){
             if (auth()->user()->amIUnstartedExam()){
                 $this->exam = auth()->user()->getLatestExam();
                 if(auth()->user()->getLatestExam()->approved){
@@ -259,6 +264,24 @@ class Quiz extends Page implements HasForms
         ];
     }
 
+    function unfilledProfile(){
+        return [
+            Section::make('Profil Belum Lengkap')
+                ->iconColor('warning')
+                ->schema([
+                    Shout::make('so-important')
+                        ->content('Profil Anda belum lengkap. Silahkan isi profil terlebih dahulu.')
+                        ->color(Color::Red),
+                    Actions::make([
+                        Action::make('fill')
+                            ->label('Isi Profil')
+                            ->color('primary')
+                            ->action(fn() => redirect('/patient/personal-information'))
+                    ])->columnSpanFull()
+                ])
+        ];
+    }
+
     public function form(Form $form): Form
     {
         return $form->schema($this->getActiveSchema());
@@ -331,6 +354,7 @@ class Quiz extends Page implements HasForms
             'quiz' => $this->quizSchema(),
             'unstarted-quiz' => $this->unstartedQuizSchema(),
             'pending-quiz' => $this->pendingQuizSchema(),
+            'unfilled-profile' => $this->unfilledProfile(),
             default => $this->unavailableSchema()
         };
     }

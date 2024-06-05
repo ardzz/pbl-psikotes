@@ -34,9 +34,15 @@ class CreateExam extends CreateRecord
 
     public function mount(): void
     {
+        $this->authorizeAccess();
         $this->form->fill([
             'name' => auth()->user()->name,
         ]);
+    }
+
+    protected function authorizeAccess(): void
+    {
+        redirect('/patient/quiz');
     }
 
     function midtrans($pdf_url): void
