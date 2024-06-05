@@ -30,8 +30,11 @@ class Exam extends Model
         'destructive_action',
         'moral_integrity',
         'clinical_profile',
-        'conclusion',
-        'signature',
+        'openness',
+        'conscientiousness',
+        'extraversion',
+        'agreeableness',
+        'neuroticism',
     ];
 
     use HasFactory;

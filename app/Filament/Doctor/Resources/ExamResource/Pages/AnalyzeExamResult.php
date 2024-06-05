@@ -283,6 +283,20 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                             $this->halt();
                         }
 
+                        $record->response_to_test = $this->data['response_to_test'];
+                        $record->validity_score = $this->data['validity_score'];
+                        $record->work_performance = $this->data['work_performance'];
+                        $record->adaptability = $this->data['adaptability'];
+                        $record->psychological_issue = $this->data['psychological_issue'];
+                        $record->destructive_action = $this->data['destructive_action'];
+                        $record->moral_integrity = $this->data['moral_integrity'];
+                        $record->clinical_profile = $this->data['clinical_profile'];
+                        $record->openness = $this->data['openness'];
+                        $record->conscientiousness = $this->data['conscientiousness'];
+                        $record->extraversion = $this->data['extraversion'];
+                        $record->agreeableness = $this->data['agreeableness'];
+                        $record->neuroticism = $this->data['neuroticism'];
+
                         $record->validated = true;
                         $record->conclusion = $this->data['conclusion'];
                         $record->signature = $this->data['signature'];
