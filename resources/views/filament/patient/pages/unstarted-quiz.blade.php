@@ -7,7 +7,7 @@
         <span class="font-medium">Perhatian!</span>
         <span class="block">Perhatikan baik-baik sebelum memulai tes.</span>
         <ul class="mt-1.5 list-disc list-inside">
-            <li>Soal tes berjumlag 567 butir soal.</li>
+            <li>Soal tes berjumlah 567 butir soal.</li>
             <li>Waktu pengerjaan tes adalah 90 menit.</li>
             <li>Setiap soal memiliki 3 pilihan jawaban (<strong>ya</strong>, <strong>tidak</strong>, dan <strong>tidak tahu</strong>)</li>
             <li>Setelah memulai tes, tidak dapat di-<i>pause</i>.</li>
