@@ -98,10 +98,15 @@ class ExamResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\Action::make('download_certificate')
-                    ->label('Certificate')
+                    ->label(function (?Model $record) {
+                        return $record->hasExamResult() ? 'Download Sertifikat' : 'Sertifikat Tidak Tersedia';
+                    })
                     ->icon('untitledui-certificate')
-                    ->color('success')
-                    ->action(fn (?Model $record) => redirect("/patient/exams/{$record->id}/certificate")),
+                    ->color(function (?Model $record) {
+                        return $record->hasExamResult() ? 'success' : 'danger';
+                    })
+                    ->action(fn (?Model $record) => redirect("/patient/exams/{$record->id}/certificate"))
+                    ->disabled(fn (?Model $record) => !$record->hasExamResult()),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
