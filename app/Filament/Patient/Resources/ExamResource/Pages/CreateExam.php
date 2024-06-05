@@ -42,7 +42,9 @@ class CreateExam extends CreateRecord
 
     protected function authorizeAccess(): void
     {
-        redirect('/patient/quiz');
+        if (!auth()->user()->isPersonalInformationFullFilled()){
+            redirect('/patient/quiz');
+        }
     }
 
     function midtrans($pdf_url): void
