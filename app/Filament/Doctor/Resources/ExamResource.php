@@ -21,7 +21,7 @@ class ExamResource extends Resource
 {
     protected static ?string $model = Exam::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'gmdi-assignment-o';
 
     public static function getEloquentQuery(): Builder
     {
