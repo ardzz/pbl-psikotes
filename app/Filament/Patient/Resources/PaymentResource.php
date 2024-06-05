@@ -125,6 +125,7 @@ class PaymentResource extends Resource
                     ->label('Nama Pemilik Rekening')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('amount')
+                    ->label('Jumlah')
                     ->prefix('Rp')
                     ->numeric()
                     ->sortable(),

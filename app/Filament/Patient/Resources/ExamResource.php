@@ -64,14 +64,18 @@ class ExamResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('purpose')
+                    ->label('Tujuan Tes')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('start_time')
+                    ->label('Waktu Mulai')
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('end_time')
+                    ->label('Waktu Selesai')
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('doctor.name')
+                    ->label('Nama Dokter')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('approved')
