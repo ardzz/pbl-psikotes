@@ -11,7 +11,7 @@
 
 
     <!-- Favicons -->
-    <link href="/dist/images/logos/4.png" rel="icon">
+    <link href="/dist/images/logos/4.1.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
