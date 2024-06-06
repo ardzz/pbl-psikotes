@@ -111,6 +111,7 @@
 
             <div class="row">
                 <div class="col-lg-6 aos-init aos-animate" data-aos="fade-right">
+                <p style="padding-top: 50px;">
                     <img src="assets/img/about.jpg" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 content aos-init aos-animate" data-aos="fade-left">
@@ -176,7 +177,7 @@
 
             <div class="row">
                 <div class="col-lg-6 pt-4 pt-lg-0 content aos-init aos-animate" data-aos="fade-right" style="text-align: center;">
-                    <p style="font-size: 24px; padding-top: 40px;">Aplikasi psikotes online dengan kemudahan akses</p>
+                    <p style="font-size: 24px;">Aplikasi psikotes online dengan kemudahan akses</p>
                     <p style="text-align: center; padding-top: 50px; padding-bottom: 50px;">
                         Psikotes PBL Online merupakan sebuah platform aplikasi psikotes online terpercaya di Indonesia. Dengan beragam fitur aplikasi sehingga mendukung pelaksanaan tes secara online.
                     </p>
