@@ -65,7 +65,6 @@
                 <li><a class="nav-link scrollto" href="#about">About</a></li>
                 <li><a class="nav-link scrollto" href="#cta">Services</a></li>
                 <li><a class="nav-link scrollto active" href="#doctors">Doctors</a></li>
-                <li><a class="nav-link scrollto" href="/patient/login">Login</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
