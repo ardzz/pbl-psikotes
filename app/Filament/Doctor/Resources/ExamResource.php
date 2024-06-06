@@ -60,7 +60,8 @@ class ExamResource extends Resource
                     TextInput::make('validity_score')
                         ->label('Skor Validitas')
                         ->numeric()
-                        ->required(),
+                        ->required()
+                        ->visible(fn (Model $record) => $record->hasExamResult()),
                     Fieldset::make('INDEKS KAPASITAS MENTAL')
                         ->schema([
                             Placeholder::make('')
