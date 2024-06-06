@@ -1,62 +1,23 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Widgets;
 
-use App\Filament\Resources\PaymentResource\Pages;
 use App\Models\Payment;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Widgets\TableWidget as BaseWidget;
 
-class PaymentResource extends Resource
+class PaymentExam extends BaseWidget
 {
-    protected static ?string $model = Payment::class;
+    protected static ?int $sort = 3;
+    protected int | string | array $columnSpan = 'full';
 
-    protected static ?string $navigationIcon = 'untitledui-credit-card-02';
-
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('method')
-                    ->required(),
-                Forms\Components\TextInput::make('provider_payment_method')
-                    ->maxLength(255),
-                Forms\Components\Select::make('status')
-                    ->options([
-                        'pending' => 'Pending',
-                        'paid' => 'Paid',
-                        'expired' => 'Expired',
-                    ])
-                    ->native(false)
-                    ->required(),
-                Forms\Components\TextInput::make('description')
-                    ->required()
-                    ->maxLength(255)
-                    ->default('Payment is pending'),
-                Forms\Components\TextInput::make('bank_name')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('bank_account')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('bank_account_name')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('amount')
-                    ->required()
-                    ->numeric()
-                    ->default(400000),
-                Forms\Components\FileUpload::make('proof')->columnSpanFull(),
-                Forms\Components\DateTimePicker::make('paid_at'),
-                Forms\Components\DateTimePicker::make('expired_at'),
-            ]);
-    }
-
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
+            ->query(
+                Payment::query()
+            )
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')->searchable(),
                 Tables\Columns\TextColumn::make('method')
@@ -116,35 +77,6 @@ class PaymentResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListPayments::route('/'),
-            'create' => Pages\CreatePayment::route('/create'),
-            'view' => Pages\ViewPayment::route('/{record}'),
-            'edit' => Pages\EditPayment::route('/{record}/edit'),
-        ];
     }
 }

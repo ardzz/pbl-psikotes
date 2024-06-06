@@ -147,4 +147,9 @@ class Payment extends Model
     {
         return $this->method == 'manual';
     }
+
+    function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
