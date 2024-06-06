@@ -69,7 +69,7 @@
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
 
-{{--        <a href="{{ route('login') }}" class="appointment-btn scrollto">Login</a>--}}
+        <a href="/patient/login" class="appointment-btn scrollto">Login</a>
 {{--        <a href="{{ route('register') }}" class="mx-3 btn-inverse-primary scrollto">Register</a>--}}
 
     </div>
