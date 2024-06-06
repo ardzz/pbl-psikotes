@@ -323,7 +323,7 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                                 ->toDatabase()
                         );
                     })->visible(fn (Model $record) => $record->hasExamResult()),
-                Action::make('invalidate')
+                /*Action::make('invalidate')
                     ->icon('bx-x')
                     ->color('danger')
                     ->label('Invalidate Report')
@@ -349,7 +349,7 @@ class AnalyzeExamResult extends EditRecord implements HasForms
                             ->title('Report Invalidated')
                             ->success()
                             ->send();
-                    })->visible(fn (Model $record) => $record->hasExamResult()),
+                    })->visible(fn (Model $record) => $record->hasExamResult()),*/
             ])
         ])->statePath('data');
     }
