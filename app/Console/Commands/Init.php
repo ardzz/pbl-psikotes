@@ -5,14 +5,14 @@ namespace App\Console\Commands;
 use App\Models\Question;
 use Illuminate\Console\Command;
 
-class insertQuestion extends Command
+class Init extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:insert-question';
+    protected $signature = 'app:init';
 
     /**
      * The console command description.
