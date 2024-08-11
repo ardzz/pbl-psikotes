@@ -19,6 +19,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use JaOcero\FilaChat\FilaChatPlugin;
 
 class DoctorPanelProvider extends PanelProvider
 {
@@ -32,6 +33,9 @@ class DoctorPanelProvider extends PanelProvider
             ])
             ->spa()
             ->login(Login::class)
+            ->plugins([
+                FilaChatPlugin::make(),
+            ])
             ->databaseNotifications()
             ->databaseNotificationsPolling('5s')
             ->discoverResources(in: app_path('Filament/Doctor/Resources'), for: 'App\\Filament\\Doctor\\Resources')

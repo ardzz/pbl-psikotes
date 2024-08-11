@@ -6,7 +6,8 @@ export default {
         './app/Filament/**/*.php',
         './resources/views/filament/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
-        './node_modules/flowbite/**/*.js'
+        './node_modules/flowbite/**/*.js',
+        './vendor/jaocero/filachat/resources/views/**/**/*.blade.php',
     ],
     plugins: [
         require('flowbite/plugin')
