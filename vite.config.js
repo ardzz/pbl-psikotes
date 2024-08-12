@@ -11,4 +11,8 @@ export default defineConfig({
             ],
         }),
     ],
+    server: {
+        host: 'npm-dev', // node container in docker
+        origin: 'http://localhost:5173', // exposed node container address
+    },
 })
