@@ -2,7 +2,7 @@ FROM php:8.3-fpm-alpine
 
 RUN apk add icu-dev libzip-dev oniguruma-dev
 
-RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev && \
+RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev nano && \
   docker-php-ext-configure gd \
     --with-freetype=/usr/include/ \
     --with-jpeg=/usr/include/ && \
@@ -25,7 +25,7 @@ RUN mkdir -p /usr/src/php/ext/redis \
     && curl -L https://github.com/phpredis/phpredis/archive/5.3.4.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \
     && echo 'redis' >> /usr/src/php-available-exts \
     && docker-php-ext-install redis
-    
+
 USER root
 
 CMD ["php-fpm", "-y", "/usr/local/etc/php-fpm.conf", "-R"]
