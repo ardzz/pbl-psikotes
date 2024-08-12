@@ -115,7 +115,7 @@ services:
       - "3001:3001"
       - "5173:5173"
     working_dir: /var/www/html
-    entrypoint: [ 'npm', 'run', 'dev' ]
+    entrypoint: [ 'npm' ]
     networks:
       - laravel
 
