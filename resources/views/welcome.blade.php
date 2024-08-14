@@ -4,367 +4,968 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>{{ config('app.name') }}</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
+    <title>Index - Bootslander Bootstrap Template</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="/dist/images/logos/4.1.png" rel="icon">
+    <link href="assets/img/favicon.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
-
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet">
     <!-- =======================================================
-    * Template Name: Medicio
-    * Template URL: https://bootstrapmade.com/medicio-free-bootstrap-theme/
-    * Updated: Mar 17 2024 with Bootstrap v5.3.3
+    * Template Name: Bootslander
+    * Template URL: https://bootstrapmade.com/bootslander-free-bootstrap-landing-page-template/
+    * Updated: Aug 07 2024 with Bootstrap v5.3.3
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
+
+    <link rel="stylesheet" href="public/assets/css/styles.css">
 </head>
 
-<body data-aos-easing="ease-in-out" data-aos-duration="1000" data-aos-delay="0" class="">
+<body class="index-page">
 
-<!-- ======= Top Bar ======= -->
-<div id="topbar" class="d-flex align-items-center fixed-top topbar-scrolled">
-    <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
-        <div class="align-items-center d-none d-md-flex">
-            <i class="bi bi-clock"></i> Monday - Saturday, 8AM to 10PM
-        </div>
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-    </div>
-</div>
+        <a href="index.html" class="logo d-flex align-items-center">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <!-- <img src="assets/img/logo.png" alt=""> -->
+            <h1 class="sitename">PsychePro</h1>
+        </a>
 
-<!-- ======= Header ======= -->
-<header id="header" class="d-flex align-items-center fixed-top header-scrolled">
-    <div class="container d-flex align-items-center">
-
-        <a class="logo me-auto"><img src="/dist/images/logos/4.png" class="dark-logo" width="200" alt=""></a>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
-
-        <nav id="navbar" class="navbar order-last order-lg-0">
+        <nav id="navmenu" class="navmenu">
             <ul>
-                <li><a class="nav-link scrollto" href="#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="#about">About</a></li>
-                <li><a class="nav-link scrollto" href="#cta">Services</a></li>
-                <li><a class="nav-link scrollto active" href="#doctors">Doctors</a></li>
+                <li><a href="#hero" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="#">Dropdown 1</a></li>
+                        <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a href="#">Deep Dropdown 1</a></li>
+                                <li><a href="#">Deep Dropdown 2</a></li>
+                                <li><a href="#">Deep Dropdown 3</a></li>
+                                <li><a href="#">Deep Dropdown 4</a></li>
+                                <li><a href="#">Deep Dropdown 5</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Dropdown 2</a></li>
+                        <li><a href="#">Dropdown 3</a></li>
+                        <li><a href="#">Dropdown 4</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
-
-        <a href="/patient/login" class="appointment-btn scrollto">Login</a>
-{{--        <a href="{{ route('register') }}" class="mx-3 btn-inverse-primary scrollto">Register</a>--}}
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
 
     </div>
-</header><!-- End Header -->
+</header>
 
-<!-- ======= Hero Section ======= -->
-<!-- ======= Hero Section ======= -->
-<section id="hero">
-    <!-- Slide 3 -->
-    <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
-        <div class="container" style="background-color: rgba(63, 187, 192, 1); padding: 20px; border-radius: 15px;">
-            <h2 style="color: #fafcfc;">TES MMPI ONLINE</h2>
-            <p style="color: #fafcfc;"><strong>Aplikasi Psikotes PBL Online menyediakan aplikasi khusus untuk pelaksanaan tes MMPI Online. Temukan kemudahan ikut tes online di Psikotes PBL Online. Dengan biaya terjangkau, sekali klik, anda dapat mengikuti tes. Laporan hasil tes realtime. </p>
+<main class="main">
 
-{{--            <a href="{{ route('login') }}" class="btn-get-started scrollto mx-2" style="background-color: #297a7d;">Log In</a>--}}
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+        <img src="assets/img/hero-bg-2.jpg" alt="" class="hero-bg">
 
+        <div class="container">
+            <div class="row gy-4 justify-content-between">
+                <div class="col-lg-4 order-lg-last hero-img" data-aos="zoom-out" data-aos-delay="100">
+                    <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+                </div>
+
+                <div class="col-lg-6  d-flex flex-column justify-content-center" data-aos="fade-in">
+                    <h1>Solve Your Problem with <span class="highlight">PsychePro</span></h1>
+
+                    <style>
+                        .highlight {
+                            font-weight: bold;
+                            text-decoration: none;
+                            padding: 3px 0px;
+                        }
+                    </style>
+
+                    <p>We provide a place for you to solve your problems</p>
+                    <div class="d-flex">
+                        <a href="#about" class="btn-get-started">Get Started</a>
+{{--                        <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>--}}
+                    </div>
+
+                </div>
+
+            </div>
         </div>
-    </div>
-</section><!-- End Hero -->
+
+        <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+            <defs>
+                <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+            </defs>
+            <g class="wave1">
+                <use xlink:href="#wave-path" x="50" y="3"></use>
+            </g>
+            <g class="wave2">
+                <use xlink:href="#wave-path" x="50" y="0"></use>
+            </g>
+            <g class="wave3">
+                <use xlink:href="#wave-path" x="50" y="9"></use>
+            </g>
+        </svg>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+        <div class="container" data-aos="fade-up" data-aos-delay="50">
+            <div class="row align-items-xl-center gy-5">
+
+                <div class="col-xl-5 content">
+                    <h3>About Us</h3>
+                    <h2>MMPI-2 Project Team </h2>
+                    <h2 style="margin-bottom: 20px;">Politeknik Negeri Semarang</h2>
+                    <p>We are a dedicated group of students from Politeknik Negeri Semarang, working on a project involving the Minnesota Multiphasic Personality Inventory-2 (MMPI-2). Our mission is to explore the applications of this psychological assessment tool in various settings, including educational, clinical, and organizational environments.</p>
+                    <p>Our team is committed to providing insights into personality traits and psychological conditions using the MMPI-2, ensuring that the results are accurate and beneficial for users.</p>
+                    <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+
+                </div>
+
+                <div class="col-xl-7">
+                    <div class="row gy-4 icon-boxes">
+
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                            <div class="icon-box">
+                                <i class="bi bi-buildings"></i>
+                                <h3>Comprehensive Research</h3>
+                                <p>We conduct thorough research on the efficacy and applications of MMPI-2, ensuring that our work is grounded in scientific principles and methodologies.</p>
+                            </div>
+                        </div> <!-- End Icon Box -->
+
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                            <div class="icon-box">
+                                <i class="bi bi-clipboard-pulse"></i>
+                                <h3>Data Analysis</h3>
+                                <p>Our team is skilled in analyzing complex data sets, providing meaningful interpretations of the MMPI-2 results to enhance understanding and decision-making.</p>
+                            </div>
+                        </div> <!-- End Icon Box -->
+
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                            <div class="icon-box">
+                                <i class="bi bi-command"></i>
+                                <h3>Innovative Solutions</h3>
+                                <p>We aim to develop innovative solutions that utilize the MMPI-2 in practical applications, tailored to the needs of different sectors.</p>
+                            </div>
+                        </div> <!-- End Icon Box -->
+
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+                            <div class="icon-box">
+                                <i class="bi bi-graph-up-arrow"></i>
+                                <h3>Educational Impact</h3>
+                                <p>Through our project, we strive to educate others about the importance and potential uses of psychological assessments like the MMPI-2.</p>
+                            </div>
+                        </div> <!-- End Icon Box -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section><!-- /About Section -->
 
 
+    <!-- Features Section -->
+    <section id="features" class="features section">
 
+        <div class="container">
 
-<main id="main">
+            <div class="row gy-4">
 
-    <!-- ======= Featured Services Section ======= -->
-    <!-- End Featured Services Section -->
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="features-item">
+                        <i class="bi bi-eye" style="color: #ffbb2c;"></i>
+                        <h3><a href="" class="stretched-link">Lorem Ipsum</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
 
-    <!-- ======= Cta Section ======= -->
-    <!-- End Cta Section -->
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="features-item">
+                        <i class="bi bi-infinity" style="color: #5578ff;"></i>
+                        <h3><a href="" class="stretched-link">Dolor Sitema</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
 
-    <!-- ======= About Us Section ======= -->
-    <section id="about" class="about">
-        <div class="container aos-init aos-animate" data-aos="fade-up">
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="features-item">
+                        <i class="bi bi-mortarboard" style="color: #e80368;"></i>
+                        <h3><a href="" class="stretched-link">Sed perspiciatis</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
 
-            <div class="section-title">
-                <h2>Mengenal Tes MMPI</h2>
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="features-item">
+                        <i class="bi bi-nut" style="color: #e361ff;"></i>
+                        <h3><a href="" class="stretched-link">Magni Dolores</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="features-item">
+                        <i class="bi bi-shuffle" style="color: #47aeff;"></i>
+                        <h3><a href="" class="stretched-link">Nemo Enim</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="features-item">
+                        <i class="bi bi-star" style="color: #ffa76e;"></i>
+                        <h3><a href="" class="stretched-link">Eiusmod Tempor</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="700">
+                    <div class="features-item">
+                        <i class="bi bi-x-diamond" style="color: #11dbcf;"></i>
+                        <h3><a href="" class="stretched-link">Midela Teren</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="800">
+                    <div class="features-item">
+                        <i class="bi bi-camera-video" style="color: #4233ff;"></i>
+                        <h3><a href="" class="stretched-link">Pira Neve</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="900">
+                    <div class="features-item">
+                        <i class="bi bi-command" style="color: #b2904f;"></i>
+                        <h3><a href="" class="stretched-link">Dirada Pack</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="features-item">
+                        <i class="bi bi-dribbble" style="color: #b20969;"></i>
+                        <h3><a href="" class="stretched-link">Moton Ideal</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1100">
+                    <div class="features-item">
+                        <i class="bi bi-activity" style="color: #ff5828;"></i>
+                        <h3><a href="" class="stretched-link">Verdo Park</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1200">
+                    <div class="features-item">
+                        <i class="bi bi-brightness-high" style="color: #29cc61;"></i>
+                        <h3><a href="" class="stretched-link">Flavor Nivelanda</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
             </div>
 
-            <div class="row">
-                <div class="col-lg-6 aos-init aos-animate" data-aos="fade-right">
-                <p style="padding-top: 50px;">
-                    <img src="assets/img/about.jpg" class="img-fluid" alt="">
+        </div>
+
+    </section><!-- /Features Section -->
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats section light-background">
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row gy-4">
+
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                    <i class="bi bi-emoji-smile"></i>
+                    <div class="stats-item">
+                        <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+                        <p>Happy Clients</p>
+                    </div>
+                </div><!-- End Stats Item -->
+
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                    <i class="bi bi-journal-richtext"></i>
+                    <div class="stats-item">
+                        <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+                        <p>Projects</p>
+                    </div>
+                </div><!-- End Stats Item -->
+
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                    <i class="bi bi-headset"></i>
+                    <div class="stats-item">
+                        <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
+                        <p>Hours Of Support</p>
+                    </div>
+                </div><!-- End Stats Item -->
+
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                    <i class="bi bi-people"></i>
+                    <div class="stats-item">
+                        <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+                        <p>Hard Workers</p>
+                    </div>
+                </div><!-- End Stats Item -->
+
+            </div>
+
+        </div>
+
+    </section><!-- /Stats Section -->
+
+    <!-- Details Section -->
+    <section id="details" class="details section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Details</h2>
+            <div><span>Check Our</span> <span class="description-title">Details</span></div>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+
+            <div class="row gy-4 align-items-center features-item">
+                <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+                    <img src="assets/img/details-1.png" class="img-fluid" alt="">
                 </div>
-                <div class="col-lg-6 pt-4 pt-lg-0 content aos-init aos-animate" data-aos="fade-left">
-                    <h3>Apa itu Tes MMPI?</h3>
+                <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
                     <p class="fst-italic">
-                        Tes MMPI adalah salah satu alat tes psikologi yang paling banyak digunakan untuk mengungkap kepribadian dan psikopatologi. Tes MMPI (Minnesota Multiphasic Personality Inventory) banyak digunakan untuk tujuan-tujuan klinis maupun melihat profile kepribadian secara lengkap. Karena fungsinya yang beragam, sehingga alat tes ini digunakan secara luas.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua.
                     </p>
                     <ul>
-                        <li>
-                            <i class="fas fa-check text-primary"></i>
-                            <span>Evaluasi pasien gangguan jiwa untuk membantu status kesehatan mentalnya.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check text-primary"></i>
-                            <span>Penilaian kondisi pasien untuk menilai progres perawatan atau terapi</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check text-primary"></i>
-                            <span>Alat penelitian epidemilogi menggunakan kriteria kepribadian.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check text-primary"></i>
-                            <span>Alat penelitian psikologi terutama menentukan perbedaan kriteria kepribadian.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check text-primary"></i>
-                            <span>Deteksi kesehatan mental tersangka pidana (alat forensik kesehatan mental).</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check text-primary"></i>
-                            <span>Profiling kepribadian untuk penggunaan di organisasi.</span>
-                        </li>
+                        <li><i class="bi bi-check"></i><span> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
+                        <li><i class="bi bi-check"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
+                        <li><i class="bi bi-check"></i> <span>Ullam est qui quos consequatur eos accusamus.</span></li>
                     </ul>
                 </div>
-            </div>
+            </div><!-- Features Item -->
 
-        </div>
-    </section><!-- End About Us Section -->
-
-    <!-- ======= Counts Section ======= -->
-    <!-- End Counts Section -->
-
-    <!-- ======= Features Section ======= -->
-    <!-- End Features Section -->
-
-    <!-- ======= Services Section ======= -->
-    <!-- End Services Section -->
-
-    <!-- ======= Appointment Section ======= -->
-    <!-- End Appointment Section -->
-
-    <!-- ======= Departments Section ======= -->
-    <!-- End Departments Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <!-- End Testimonials Section -->
-    <section id="cta" class="cta">
-        <div class="container aos-init aos-animate" data-aos="zoom-in">
-
-            <div class="section-title">
-                <h2>Dapatkan layanan Tes MMPI Online</h2>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6 pt-4 pt-lg-0 content aos-init aos-animate" data-aos="fade-right" style="text-align: center;">
-                    <p style="font-size: 24px;">Aplikasi psikotes online dengan kemudahan akses</p>
-                    <p style="text-align: center; padding-top: 50px; padding-bottom: 50px;">
-                        Psikotes PBL Online merupakan sebuah platform aplikasi psikotes online terpercaya di Indonesia. Dengan beragam fitur aplikasi sehingga mendukung pelaksanaan tes secara online.
+            <div class="row gy-4 align-items-center features-item">
+                <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                    <img src="assets/img/details-2.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-7 order-2 order-md-1" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Corporis temporibus maiores provident</h3>
+                    <p class="fst-italic">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua.
                     </p>
-                    <p style="text-align: center; padding-bottom: 20px;">
-                        Alat tes dan laporan hasil tes disusun sesuai dengan norma baku hasil penelitian. Telah dilakukan audit sistem oleh ahli berkompeten dibidangnya.
-                        Laporan hasil tes akan didapatkan oleh peserta maksimal 1 x 24, dapat diunduh langsung didalam sistem.
+                    <p>
+                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                        culpa qui officia deserunt mollit anim id est laborum
                     </p>
                 </div>
-                <div class="col-lg-6 aos-init aos-animate" data-aos="fade-left">
-                    <img src="assets/img/about.jpg" class="img-fluid" alt="">
+            </div><!-- Features Item -->
+
+            <div class="row gy-4 align-items-center features-item">
+                <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out">
+                    <img src="assets/img/details-3.png" class="img-fluid" alt="">
                 </div>
+                <div class="col-md-7" data-aos="fade-up">
+                    <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>
+                    <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe odit aut quia voluptatem hic voluptas dolor doloremque.</p>
+                    <ul>
+                        <li><i class="bi bi-check"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
+                        <li><i class="bi bi-check"></i><span> Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
+                        <li><i class="bi bi-check"></i> <span>Facilis ut et voluptatem aperiam. Autem soluta ad fugiat</span>.</li>
+                    </ul>
+                </div>
+            </div><!-- Features Item -->
+
+            <div class="row gy-4 align-items-center features-item">
+                <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out">
+                    <img src="assets/img/details-4.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-7 order-2 order-md-1" data-aos="fade-up">
+                    <h3>Quas et necessitatibus eaque impedit ipsum animi consequatur incidunt in</h3>
+                    <p class="fst-italic">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua.
+                    </p>
+                    <p>
+                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                        culpa qui officia deserunt mollit anim id est laborum
+                    </p>
+                </div>
+            </div><!-- Features Item -->
+
+        </div>
+
+    </section><!-- /Details Section -->
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Gallery</h2>
+            <div><span>Check Our</span> <span class="description-title">Gallery</span></div>
+        </div><!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row g-0">
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item">
+                        <a href="assets/img/gallery/gallery-1.jpg" class="glightbox" data-gallery="images-gallery">
+                            <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                </div><!-- End Gallery Item -->
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item">
+                        <a href="assets/img/gallery/gallery-2.jpg" class="glightbox" data-gallery="images-gallery">
+                            <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                </div><!-- End Gallery Item -->
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item">
+                        <a href="assets/img/gallery/gallery-3.jpg" class="glightbox" data-gallery="images-gallery">
+                            <img src="assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                </div><!-- End Gallery Item -->
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item">
+                        <a href="assets/img/gallery/gallery-4.jpg" class="glightbox" data-gallery="images-gallery">
+                            <img src="assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                </div><!-- End Gallery Item -->
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item">
+                        <a href="assets/img/gallery/gallery-5.jpg" class="glightbox" data-gallery="images-gallery">
+                            <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                </div><!-- End Gallery Item -->
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item">
+                        <a href="assets/img/gallery/gallery-6.jpg" class="glightbox" data-gallery="images-gallery">
+                            <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                </div><!-- End Gallery Item -->
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item">
+                        <a href="assets/img/gallery/gallery-7.jpg" class="glightbox" data-gallery="images-gallery">
+                            <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                </div><!-- End Gallery Item -->
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item">
+                        <a href="assets/img/gallery/gallery-8.jpg" class="glightbox" data-gallery="images-gallery">
+                            <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                </div><!-- End Gallery Item -->
+
             </div>
 
         </div>
-    </section> <!-- ======= Doctors Section ======= -->
-    <section id="doctors" class="doctors section-bg">
-        <div class="container aos-init aos-animate" data-aos="fade-up">
 
-            <div class="section-title">
-                <h2>Doctors</h2>
-            </div>
+    </section><!-- /Gallery Section -->
 
-            <div class="row">
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section dark-background">
 
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                    <div class="member aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                        <div class="member-img">
-                            <img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
+        <img src="assets/img/testimonials-bg.jpg" class="testimonials-bg" alt="">
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="swiper init-swiper">
+                <script type="application/json" class="swiper-config">
+                    {
+                      "loop": true,
+                      "speed": 600,
+                      "autoplay": {
+                        "delay": 5000
+                      },
+                      "slidesPerView": "auto",
+                      "pagination": {
+                        "el": ".swiper-pagination",
+                        "type": "bullets",
+                        "clickable": true
+                      }
+                    }
+                </script>
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                            <h3>Saul Goodman</h3>
+                            <h4>Ceo &amp; Founder</h4>
+                            <div class="stars">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                             </div>
+                            <p>
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
                         </div>
-                        <div class="member-info">
-                            <h4>SIMON PETRUS MATLY</h4>
-                        </div>
-                    </div>
-                </div>
+                    </div><!-- End testimonial item -->
 
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                    <div class="member aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                        <div class="member-img">
-                            <img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                            <h3>Sara Wilsson</h3>
+                            <h4>Designer</h4>
+                            <div class="stars">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                             </div>
+                            <p>
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
                         </div>
-                        <div class="member-info">
-                            <h4>WIBE DAVID RUMBIAK</h4>
-                        </div>
-                    </div>
-                </div>
+                    </div><!-- End testimonial item -->
 
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                    <div class="member aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-                        <div class="member-img">
-                            <img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                            <h3>Jena Karlis</h3>
+                            <h4>Store Owner</h4>
+                            <div class="stars">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                             </div>
+                            <p>
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
                         </div>
-                        <div class="member-info">
-                            <h4>YOHANES YULIUS KAMORI</h4>
-                        </div>
-                    </div>
-                </div>
+                    </div><!-- End testimonial item -->
 
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                    <div class="member aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
-                        <div class="member-img">
-                            <img src="assets/img/doctors/doctors-4.jpg" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                            <h3>Matt Brandon</h3>
+                            <h4>Freelancer</h4>
+                            <div class="stars">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                             </div>
+                            <p>
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
                         </div>
-                        <div class="member-info">
-                            <h4>IVONNE APRILLIANTI SYARIF</h4>
-                        </div>
-                    </div>
-                </div>
+                    </div><!-- End testimonial item -->
 
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                            <h3>John Larson</h3>
+                            <h4>Entrepreneur</h4>
+                            <div class="stars">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                            <p>
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div><!-- End testimonial item -->
+
+                </div>
+                <div class="swiper-pagination"></div>
             </div>
 
         </div>
-    </section><!-- End Doctors Section -->
 
-    <section class="faq-section ptb-120">
+    </section><!-- /Testimonials Section -->
+
+    <!-- Team Section -->
+    <section id="team" class="team section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Team</h2>
+            <div><span>Check Our</span> <span class="description-title">Team</span></div>
+        </div><!-- End Section Title -->
+
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-7 col-12">
-                    <div class="section-heading mb-5 text-center">
-                        <h2>Pertanyaan Seputar Tes MMPI</h2>
+
+            <div class="row gy-5 justify-content-center">
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="member">
+                        <div class="pic"><img src="" class="img-fluid" alt=""></div>
+                        <div class="member-info">
+                            <h4>Naufal Reky Ardhana</h4>
+                            <span>Web Developer</span>
+                            <div class="social">
+                                <a href=""><i class="bi bi-twitter-x"></i></a>
+                                <a href=""><i class="bi bi-facebook"></i></a>
+                                <a href=""><i class="bi bi-instagram"></i></a>
+                                <a href=""><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
                     </div>
+                </div><!-- End Team Member -->
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="member">
+                        <div class="pic"><img src="" class="img-fluid" alt=""></div>
+                        <div class="member-info">
+                            <h4>Farhan Rahman Permana</h4>
+                            <span>Web Developer</span>
+                            <div class="social">
+                                <a href=""><i class="bi bi-twitter-x"></i></a>
+                                <a href=""><i class="bi bi-facebook"></i></a>
+                                <a href=""><i class="bi bi-instagram"></i></a>
+                                <a href=""><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Team Member -->
+
+            </div>
+
+        </div>
+
+    </section><!-- /Team Section -->
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Pricing</h2>
+            <div><span>Check Our</span> <span class="description-title">Pricing</span></div>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+
+            <div class="row gy-4">
+
+                <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="pricing-item">
+                        <h3>Free Plan</h3>
+                        <p class="description">Ullam mollitia quasi nobis soluta in voluptatum et sint palora dex strater</p>
+                        <h4><sup>$</sup>0<span> / month</span></h4>
+                        <a href="#" class="cta-btn">Start a free trial</a>
+                        <p class="text-center small">No credit card required</p>
+                        <ul>
+                            <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
+                            <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
+                            <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
+                            <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
+                            <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+                            <li class="na"><i class="bi bi-x"></i> <span>Voluptate id voluptas qui sed aperiam rerum</span></li>
+                            <li class="na"><i class="bi bi-x"></i> <span>Iure nihil dolores recusandae odit voluptatibus</span></li>
+                        </ul>
+                    </div>
+                </div><!-- End Pricing Item -->
+
+                <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="pricing-item featured">
+                        <p class="popular">Popular</p>
+                        <h3>Business Plan</h3>
+                        <p class="description">Ullam mollitia quasi nobis soluta in voluptatum et sint palora dex strater</p>
+                        <h4><sup>$</sup>29<span> / month</span></h4>
+                        <a href="#" class="cta-btn">Start a free trial</a>
+                        <p class="text-center small">No credit card required</p>
+                        <ul>
+                            <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
+                            <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
+                            <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
+                            <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
+                            <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+                            <li><i class="bi bi-check"></i> <span>Voluptate id voluptas qui sed aperiam rerum</span></li>
+                            <li class="na"><i class="bi bi-x"></i> <span>Iure nihil dolores recusandae odit voluptatibus</span></li>
+                        </ul>
+                    </div>
+                </div><!-- End Pricing Item -->
+
+                <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="pricing-item">
+                        <h3>Developer Plan</h3>
+                        <p class="description">Ullam mollitia quasi nobis soluta in voluptatum et sint palora dex strater</p>
+                        <h4><sup>$</sup>49<span> / month</span></h4>
+                        <a href="#" class="cta-btn">Start a free trial</a>
+                        <p class="text-center small">No credit card required</p>
+                        <ul>
+                            <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
+                            <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
+                            <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
+                            <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
+                            <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+                            <li><i class="bi bi-check"></i> <span>Voluptate id voluptas qui sed aperiam rerum</span></li>
+                            <li><i class="bi bi-check"></i> <span>Iure nihil dolores recusandae odit voluptatibus</span></li>
+                        </ul>
+                    </div>
+                </div><!-- End Pricing Item -->
+
+            </div>
+
+        </div>
+
+    </section><!-- /Pricing Section -->
+
+    <!-- Faq Section -->
+    <section id="faq" class="faq section light-background">
+
+        <div class="container-fluid">
+
+            <div class="row gy-4">
+
+                <div class="col-lg-7 d-flex flex-column justify-content-center order-2 order-lg-1">
+
+                    <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
+                        <h3><span>Frequently Asked </span><strong>Questions</strong></h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                        </p>
+                    </div>
+
+                    <div class="faq-container px-xl-5" data-aos="fade-up" data-aos-delay="200">
+
+                        <div class="faq-item faq-active">
+                            <i class="faq-icon bi bi-question-circle"></i>
+                            <h3>Non consectetur a erat nam at lectus urna duis?</h3>
+                            <div class="faq-content">
+                                <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                        <div class="faq-item">
+                            <i class="faq-icon bi bi-question-circle"></i>
+                            <h3>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</h3>
+                            <div class="faq-content">
+                                <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                        <div class="faq-item">
+                            <i class="faq-icon bi bi-question-circle"></i>
+                            <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
+                            <div class="faq-content">
+                                <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-5 order-1 order-lg-2">
+                    <img src="assets/img/faq.jpg" class="img-fluid" alt="" data-aos="zoom-in" data-aos-delay="100">
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-7 col-12">
-                    <div class="accordion faq-accordion" id="accordionExample">
-                        <div class="accordion-item box-border  active  mb-3">
-                            <h5 class="accordion-header" id="faq-1">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true">
-                                    Waktu Pengerjaan Tes
-                                </button>
-                            </h5>
-                            <div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="faq-1" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <i class="fas fa-question-circle"></i> Berapa lama waktu pengerjaan tes MMPI? <br>
-                                    <i class="fas fa-plus-circle"></i> Waktu pengerjaan tes MMPI berkisar antara 45 menit hingga 90 menit bagi orang normal. Bagi orang yang mengalami gangguan psikologis, kemungkinan akan lebih dari waktu tersebut.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item border">
-                            <h5 class="accordion-header" id="faq-2">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false">
-                                    Jumlah soal Tes MMPI
-                                </button>
-                            </h5>
-                            <div id="collapse-2" class="accordion-collapse collapse" aria-labelledby="faq-2" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <i class="fas fa-question-circle"></i> Tes MMPI itu berapa jumlah soalnya? <br>
-                                    <i class="fas fa-plus-circle"></i> Jumlah soal tes MMPI (MMPI-1) itu berjumlah 566 soal. Untuk tes MMP1-2 jumlah soalnya 567 soal. Sedangkan untuk tes MMPI 2/RF, jumlah soalnya sebanyak 338 soal.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item border-2">
-                            <h5 class="accordion-header" id="faq-3">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-3" aria-expanded="false">
-                                    Cara Mengerjakan Tes MMPI Online
-                                </button>
-                            </h5>
-                            <div id="collapse-3" class="accordion-collapse collapse" aria-labelledby="faq-3" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <i class="fas fa-question-circle"></i> Bagaimana cara mengerjakan tes MMPI Online? <br>
-                                    <i class="fas fa-plus-circle"></i> Cara mengerjakan tes MMPI Online adalah anda melakukan registrasi terlebih dahulu. Form registrasi akan dikirim via email anda secara langsung. Jika anda belum memiliki akun di NSD, silahkan registrasi terlebih dahulu secara gratis. Jika telah memiliki akun, anda tinggal login, untuk mengerjakan tes secara online.
-                                </div>
-                            </div>
-                        </div>
 
+        </div>
 
-                    </div>
+    </section><!-- /Faq Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Contact</h2>
+            <div><span>Check Our</span> <span class="description-title">Contact</span></div>
+        </div><!-- End Section Title -->
+
+        <div class="container" data-aos="fade" data-aos-delay="100">
+
+            <div class="row gy-4">
+
+                <div class="col-lg-4">
+                    <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                        <i class="bi bi-geo-alt flex-shrink-0"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <p>A108 Adam Street, New York, NY 535022</p>
+                        </div>
+                    </div><!-- End Info Item -->
+
+                    <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                        <i class="bi bi-telephone flex-shrink-0"></i>
+                        <div>
+                            <h3>Call Us</h3>
+                            <p>+1 5589 55488 55</p>
+                        </div>
+                    </div><!-- End Info Item -->
+
+                    <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                        <i class="bi bi-envelope flex-shrink-0"></i>
+                        <div>
+                            <h3>Email Us</h3>
+                            <p>info@example.com</p>
+                        </div>
+                    </div><!-- End Info Item -->
+
+                </div>
+
+                <div class="col-lg-8">
+                    <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+                        <div class="row gy-4">
+
+                            <div class="col-md-6">
+                                <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                            </div>
+
+                            <div class="col-md-6 ">
+                                <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                            </div>
+
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                            </div>
+
+                            <div class="col-md-12">
+                                <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                            </div>
+
+                            <div class="col-md-12 text-center">
+                                <div class="loading">Loading</div>
+                                <div class="error-message"></div>
+                                <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                                <button type="submit">Send Message</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div><!-- End Contact Form -->
+
+            </div>
+
+        </div>
+
+    </section><!-- /Contact Section -->
+
+</main>
+
+<footer id="footer" class="footer dark-background">
+
+    <div class="container footer-top">
+        <div class="row gy-4">
+            <div class="col-lg-4 col-md-6 footer-about">
+                <a href="index.html" class="logo d-flex align-items-center">
+                    <span class="sitename">Bootslander</span>
+                </a>
+                <div class="footer-contact pt-3">
+                    <p>A108 Adam Street</p>
+                    <p>New York, NY 535022</p>
+                    <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+                    <p><strong>Email:</strong> <span>info@example.com</span></p>
+                </div>
+                <div class="social-links d-flex mt-4">
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
                 </div>
             </div>
-        </div>
-    </section>
-    <!--faq section end-->
-</main><!-- End #main -->
 
-<!-- ======= Footer ======= -->
-<footer id="footer">
+            <div class="col-lg-2 col-md-3 footer-links">
+                <h4>Useful Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Terms of service</a></li>
+                    <li><a href="#">Privacy policy</a></li>
+                </ul>
+            </div>
 
+            <div class="col-lg-2 col-md-3 footer-links">
+                <h4>Our Services</h4>
+                <ul>
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">Web Development</a></li>
+                    <li><a href="#">Product Management</a></li>
+                    <li><a href="#">Marketing</a></li>
+                    <li><a href="#">Graphic Design</a></li>
+                </ul>
+            </div>
 
-    <div class="container">
-        <div class="copyright">
-            © Copyright <strong><span>PBL - Kelompok 3</span></strong> All Rights Reserved
-        </div>
-        <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medicio-free-bootstrap-theme/ -->
+            <div class="col-lg-4 col-md-12 footer-newsletter">
+                <h4>Our Newsletter</h4>
+                <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+                <form action="forms/newsletter.php" method="post" class="php-email-form">
+                    <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
+                    <div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+                </form>
+            </div>
+
         </div>
     </div>
-</footer><!-- End Footer -->
 
+    <div class="container copyright text-center mt-4">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">Bootslander</strong> <span>All Rights Reserved</span></p>
+        <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you've purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+    </div>
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center active"><i class="bi bi-arrow-up-short"></i></a>
+</footer>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Preloader -->
+<div id="preloader"></div>
 
 <!-- Vendor JS Files -->
-<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-<script src="assets/vendor/aos/aos.js"></script>
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 <script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
-<!-- Template Main JS File -->
+<!-- Main JS File -->
 <script src="assets/js/main.js"></script>
 
 </body>

@@ -39,7 +39,7 @@ class PatientPanelProvider extends PanelProvider
             ->profile()
             ->databaseNotificationsPolling('5s')
             ->sidebarCollapsibleOnDesktop()
-            ->brandName('Kelompok Tiga')
+            ->brandLogo(asset('/dist/images/logos/4.png'))
             ->colors([
                 'primary' => Color::Violet,
             ])
