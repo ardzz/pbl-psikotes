@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use JaOcero\FilaChat\Models\FilaChatAgent;
 
 class UserSeeder extends Seeder
 {
@@ -56,12 +57,17 @@ class UserSeeder extends Seeder
         ];
         $i = 1;
         foreach ($doctors as $doctor) {
-            User::factory()->create([
+            $user_doctor = User::factory()->create([
                 'name' => $doctor,
                 'email' => 'dokter' . $i . '@gmail.com',
                 'password' => Hash::make("123"),
                 'user_type' => 3
             ])->assignRole('doctor');
+
+            FilaChatAgent::create([
+                'agentable_id' => $user_doctor->id,
+                'agentable_type' => config('filachat.agent_model'),
+            ]);
             $i++;
         }
     }

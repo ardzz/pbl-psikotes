@@ -13,13 +13,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use JaOcero\FilaChat\Traits\HasFilaChat;
 use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 use App\Notifications\ResetPasswordQueued;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
-    use HasFactory, Notifiable, HasRoles, HasPanelShield;
+    use HasFactory, Notifiable, HasRoles, HasPanelShield, HasFilaChat;
 
     public function canAccessPanel(Panel $panel): bool
     {

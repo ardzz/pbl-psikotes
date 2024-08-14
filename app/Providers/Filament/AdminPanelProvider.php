@@ -22,6 +22,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use JaOcero\FilaChat\FilaChatPlugin;
 use ShuvroRoy\FilamentSpatieLaravelBackup\FilamentSpatieLaravelBackupPlugin;
 use ShuvroRoy\FilamentSpatieLaravelHealth\FilamentSpatieLaravelHealthPlugin;
 
@@ -53,6 +54,7 @@ class AdminPanelProvider extends PanelProvider
                 ThemesPlugin::make(),
                 FilamentShieldPlugin::make(),
                 FilamentSpatieLaravelHealthPlugin::make(),
+                FilaChatPlugin::make(),
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([])
