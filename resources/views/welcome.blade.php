@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Index - Bootslander Bootstrap Template</title>
+    <title>PsychePro - Psikotest MMPI2</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/4.1.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Fonts -->
@@ -671,7 +671,7 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <h2>Pricing</h2>
-            <div><span>Check Our</span> <span class="description-title">Pricing</span></div>
+            <div><span>Explore Our</span> <span class="description-title">Test Plans</span></div>
         </div><!-- End Section Title -->
 
         <div class="container">
@@ -680,19 +680,18 @@
 
                 <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
                     <div class="pricing-item">
-                        <h3>Free Plan</h3>
-                        <p class="description">Ullam mollitia quasi nobis soluta in voluptatum et sint palora dex strater</p>
-                        <h4><sup>$</sup>0<span> / month</span></h4>
-                        <a href="#" class="cta-btn">Start a free trial</a>
-                        <p class="text-center small">No credit card required</p>
+                        <h3>Basic Test</h3>
+                        <p class="description">An introductory assessment designed to provide a general overview of your psychological profile.</p>
+                        <h4><sup>$</sup>10<span> / test</span></h4>
+                        <a href="#" class="cta-btn">Start Now</a>
+                        <p class="text-center small">Online access only</p>
                         <ul>
-                            <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-                            <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
-                            <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-                            <li class="na"><i class="bi bi-x"></i> <span>Voluptate id voluptas qui sed aperiam rerum</span></li>
-                            <li class="na"><i class="bi bi-x"></i> <span>Iure nihil dolores recusandae odit voluptatibus</span></li>
+                            <li><i class="bi bi-check"></i> <span>General personality insights</span></li>
+                            <li><i class="bi bi-check"></i> <span>Immediate results</span></li>
+                            <li><i class="bi bi-check"></i> <span>Access to basic report</span></li>
+                            <li class="na"><i class="bi bi-x"></i> <span>In-depth analysis</span></li>
+                            <li class="na"><i class="bi bi-x"></i> <span>Consultation with a psychologist</span></li>
+                            <li class="na"><i class="bi bi-x"></i> <span>Detailed feedback session</span></li>
                         </ul>
                     </div>
                 </div><!-- End Pricing Item -->
@@ -700,38 +699,36 @@
                 <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
                     <div class="pricing-item featured">
                         <p class="popular">Popular</p>
-                        <h3>Business Plan</h3>
-                        <p class="description">Ullam mollitia quasi nobis soluta in voluptatum et sint palora dex strater</p>
-                        <h4><sup>$</sup>29<span> / month</span></h4>
-                        <a href="#" class="cta-btn">Start a free trial</a>
-                        <p class="text-center small">No credit card required</p>
+                        <h3>Standard Test</h3>
+                        <p class="description">A comprehensive assessment offering a deeper understanding of your psychological health.</p>
+                        <h4><sup>$</sup>30<span> / test</span></h4>
+                        <a href="#" class="cta-btn">Start Now</a>
+                        <p class="text-center small">Includes detailed reporting</p>
                         <ul>
-                            <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-                            <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
-                            <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-                            <li><i class="bi bi-check"></i> <span>Voluptate id voluptas qui sed aperiam rerum</span></li>
-                            <li class="na"><i class="bi bi-x"></i> <span>Iure nihil dolores recusandae odit voluptatibus</span></li>
+                            <li><i class="bi bi-check"></i> <span>Detailed personality analysis</span></li>
+                            <li><i class="bi bi-check"></i> <span>Comprehensive report</span></li>
+                            <li><i class="bi bi-check"></i> <span>Feedback from a psychologist</span></li>
+                            <li><i class="bi bi-check"></i> <span>Online and printable results</span></li>
+                            <li class="na"><i class="bi bi-x"></i> <span>One-on-one consultation</span></li>
+                            <li class="na"><i class="bi bi-x"></i> <span>Customized therapy recommendations</span></li>
                         </ul>
                     </div>
                 </div><!-- End Pricing Item -->
 
                 <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
                     <div class="pricing-item">
-                        <h3>Developer Plan</h3>
-                        <p class="description">Ullam mollitia quasi nobis soluta in voluptatum et sint palora dex strater</p>
-                        <h4><sup>$</sup>49<span> / month</span></h4>
-                        <a href="#" class="cta-btn">Start a free trial</a>
-                        <p class="text-center small">No credit card required</p>
+                        <h3>Premium Test</h3>
+                        <p class="description">Our most thorough evaluation for an in-depth analysis of psychological well-being.</p>
+                        <h4><sup>$</sup>50<span> / test</span></h4>
+                        <a href="#" class="cta-btn">Start Now</a>
+                        <p class="text-center small">Includes personal consultation</p>
                         <ul>
-                            <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-                            <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
-                            <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-                            <li><i class="bi bi-check"></i> <span>Voluptate id voluptas qui sed aperiam rerum</span></li>
-                            <li><i class="bi bi-check"></i> <span>Iure nihil dolores recusandae odit voluptatibus</span></li>
+                            <li><i class="bi bi-check"></i> <span>Full psychological evaluation</span></li>
+                            <li><i class="bi bi-check"></i> <span>One-on-one consultation</span></li>
+                            <li><i class="bi bi-check"></i> <span>Personalized feedback session</span></li>
+                            <li><i class="bi bi-check"></i> <span>Comprehensive therapy plan</span></li>
+                            <li><i class="bi bi-check"></i> <span>Continuous follow-up support</span></li>
+                            <li><i class="bi bi-check"></i> <span>Access to premium resources</span></li>
                         </ul>
                     </div>
                 </div><!-- End Pricing Item -->
@@ -741,6 +738,7 @@
         </div>
 
     </section><!-- /Pricing Section -->
+
 
     <!-- Faq Section -->
     <section id="faq" class="faq section light-background">
@@ -752,9 +750,9 @@
                 <div class="col-lg-7 d-flex flex-column justify-content-center order-2 order-lg-1">
 
                     <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
-                        <h3><span>Frequently Asked </span><strong>Questions</strong></h3>
+                        <h3><span>Web Psikotest </span><strong>MMPI-2</strong></h3>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                            Welcome to the MMPI-2 Psychometric Test portal provided by Politeknik Negeri Semarang (PsychePro). This test is designed to assess personality and psychological well-being using a standardized approach.
                         </p>
                     </div>
 
@@ -762,27 +760,27 @@
 
                         <div class="faq-item faq-active">
                             <i class="faq-icon bi bi-question-circle"></i>
-                            <h3>Non consectetur a erat nam at lectus urna duis?</h3>
+                            <h3>What is the MMPI-2 test used for?</h3>
                             <div class="faq-content">
-                                <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
+                                <p>The MMPI-2 is a comprehensive psychological assessment tool used to evaluate personality structure and psychopathology. It is widely used in mental health, forensic, and employment settings.</p>
                             </div>
                             <i class="faq-toggle bi bi-chevron-right"></i>
                         </div><!-- End Faq item-->
 
                         <div class="faq-item">
                             <i class="faq-icon bi bi-question-circle"></i>
-                            <h3>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</h3>
+                            <h3>How can I take the MMPI-2 test at Politeknik Negeri Semarang?</h3>
                             <div class="faq-content">
-                                <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                                <p>You can register for the MMPI-2 test through our online portal. Once registered, you will receive instructions and access to the test, which you can complete at your convenience.</p>
                             </div>
                             <i class="faq-toggle bi bi-chevron-right"></i>
                         </div><!-- End Faq item-->
 
                         <div class="faq-item">
                             <i class="faq-icon bi bi-question-circle"></i>
-                            <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
+                            <h3>What should I expect during the MMPI-2 test?</h3>
                             <div class="faq-content">
-                                <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
+                                <p>The MMPI-2 test consists of a series of statements to which you will respond as "True" or "False" based on how they apply to you. The test is designed to be completed in about 60-90 minutes.</p>
                             </div>
                             <i class="faq-toggle bi bi-chevron-right"></i>
                         </div><!-- End Faq item-->
@@ -792,13 +790,14 @@
                 </div>
 
                 <div class="col-lg-5 order-1 order-lg-2">
-                    <img src="assets/img/faq.jpg" class="img-fluid" alt="" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="assets/img/faq.jpg" class="img-fluid" alt="MMPI-2 Test" data-aos="zoom-in" data-aos-delay="100">
                 </div>
             </div>
 
         </div>
 
-    </section><!-- /Faq Section -->
+    </section><!-- /MMPI-2 Section -->
+
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
@@ -818,7 +817,7 @@
                         <i class="bi bi-geo-alt flex-shrink-0"></i>
                         <div>
                             <h3>Address</h3>
-                            <p>A108 Adam Street, New York, NY 535022</p>
+                            <p>Politeknik Negeri Semarang</p>
                         </div>
                     </div><!-- End Info Item -->
 
@@ -826,7 +825,7 @@
                         <i class="bi bi-telephone flex-shrink-0"></i>
                         <div>
                             <h3>Call Us</h3>
-                            <p>+1 5589 55488 55</p>
+                            <p>+62-8129-6579</p>
                         </div>
                     </div><!-- End Info Item -->
 
@@ -834,7 +833,7 @@
                         <i class="bi bi-envelope flex-shrink-0"></i>
                         <div>
                             <h3>Email Us</h3>
-                            <p>info@example.com</p>
+                            <p>pyschepro@gmail.com</p>
                         </div>
                     </div><!-- End Info Item -->
 
@@ -886,13 +885,13 @@
         <div class="row gy-4">
             <div class="col-lg-4 col-md-6 footer-about">
                 <a href="index.html" class="logo d-flex align-items-center">
-                    <span class="sitename">Bootslander</span>
+                    <span class="sitename">PsychePro</span>
                 </a>
                 <div class="footer-contact pt-3">
-                    <p>A108 Adam Street</p>
-                    <p>New York, NY 535022</p>
-                    <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                    <p><strong>Email:</strong> <span>info@example.com</span></p>
+                    <p>Politeknik Negeri Semarang</p>
+                    <p>Semarang, Tembalang City</p>
+                    <p class="mt-3"><strong>Phone:</strong> <span>+62-8129-6579</span></p>
+                    <p><strong>Email:</strong> <span>pyschepro@gmail.com</span></p>
                 </div>
                 <div class="social-links d-flex mt-4">
                     <a href=""><i class="bi bi-twitter-x"></i></a>
