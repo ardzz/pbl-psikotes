@@ -2,16 +2,20 @@
 
 namespace App\Filament\Pages;
 
+use App\Facades\WhatsAppAPI;
 use App\Models\Setting;
+use BaconQrCode\Encoder\QrCode;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ToggleButtons;
+use Filament\Forms\Components\View;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
@@ -150,7 +154,156 @@ class Settings extends Page implements HasForms
                             ->hint('If your API Token is empty, you can leave it blank')
                             ->label('Whatsapp API Token'),
                         TextInput::make('whatsapp_api_session')
+                            ->live(debounce: 500)
+                            ->afterStateUpdated(function (Get $get, Set $set){
+                                if ($get('whatsapp_api_session')) {
+                                    $status = WhatsAppAPI::getSessionStatus($get('whatsapp_api_session'));
+                                    if($status['success']) {
+                                        Notification::make()
+                                            ->body('Whatsapp API Session is valid')
+                                            ->success()
+                                            ->send();
+                                        $set('whatsapp_api_session_status', true);
+                                    }else{
+                                        Notification::make()
+                                            ->body('Whatsapp API Session is invalid, ' . $status['message'])
+                                            ->danger()
+                                            ->send();
+                                        $set('whatsapp_api_session_status', false);
+                                    }
+                                }
+                            })
                             ->label('Whatsapp API Session'),
+                        Section::make('Template')
+                            ->columns(2)
+                            ->schema([
+                                Textarea::make('whatsapp_template_after_filled_personal_information')
+                                    ->rows(20)
+                                    ->label('Notification After Filled Personal Information'),
+                                Textarea::make('whatsapp_template_after_requested_exam')
+                                    ->rows(20)
+                                    ->label('Notification After Requested Exam'),
+                                Textarea::make('whatsapp_template_after_approved_exam')
+                                    ->rows(20)
+                                    ->label('Notification After Approved Exam'),
+                                Textarea::make('whatsapp_template_after_rejected_exam')
+                                    ->rows(20)
+                                    ->label('Notification After Rejected Exam'),
+                                Textarea::make('whatsapp_template_warning_exam_about_to_expire')
+                                    ->rows(20)
+                                    ->label('Warning Exam About to Expire'),
+                                Textarea::make('whatsapp_template_warning_exam_expired')
+                                    ->rows(20)
+                                    ->label('Warning Exam Expired'),
+                                Textarea::make('whatsapp_template_warning_exam_rejected')
+                                    ->rows(20)
+                                    ->label('Notification Exam Result Is Invalid'),
+                                Textarea::make('whatsapp_template_warning_exam_approved')
+                                    ->rows(20)
+                                    ->label('Notification Exam Result Is Valid'),
+                            ])
+                            ->visible(function (Get $get){
+                                $session = WhatsAppAPI::getSessionStatus($get('whatsapp_api_session'));
+                                return $session['success'] && $session['state'] == 'CONNECTED';
+                            }),
+                        Fieldset::make('Whatsapp API Session')
+                            ->schema([
+                                View::make('filament.qr')
+                                    ->label('Session Status')
+                                    ->viewData([
+                                        'code' => $this->data['code'] ?? null
+                                    ])
+                                    ->visible(fn (Get $get) => $get('created_session'))
+                                    ->columnSpanFull(),
+                                Actions::make([
+                                    Actions\Action::make('create')
+                                        ->label('Create Session')
+                                        ->action(function (Get $get, Set $set){
+                                            $session = WhatsAppAPI::startSession($get('whatsapp_api_session'));
+                                            if ($session['success']) {
+                                                Notification::make()
+                                                    ->body('Whatsapp API Session created successfully')
+                                                    ->success()
+                                                    ->send();
+                                                $code = WhatsAppAPI::getSessionQRCode($get('whatsapp_api_session'));
+                                                if ($code['success']) {
+                                                    $this->data['code'] = $code['qr'];
+                                                    $set('created_session', true);
+                                                }
+                                                $set('created_session', false);
+                                            }else{
+                                                if (array_key_exists('error', $session)) {
+                                                    $error = $session['error'];
+                                                }else{
+                                                    $error = $session['message'];
+                                                }
+                                                Notification::make()
+                                                    ->body('Failed to create Whatsapp API Session, ' . $get('whatsapp_api_session') . " " . $error)
+                                                    ->danger()
+                                                    ->send();
+                                                $set('created_session', false);
+                                            }
+                                        }),
+                                    Actions\Action::make('refresh')
+                                        ->color('success')
+                                        ->label('Refresh QR Code')
+                                        ->action(function (Get $get, Set $set){
+                                            $session_status = WhatsAppAPI::getSessionStatus($get('whatsapp_api_session'));
+                                            if($session_status['success'] && $session_status['state'] == 'CONNECTED'){
+                                                Notification::make()
+                                                    ->body('Whatsapp API Session is already connected')
+                                                    ->success()
+                                                    ->send();
+                                            }else{
+                                                $code = WhatsAppAPI::getSessionQRCode($get('whatsapp_api_session'));
+                                                if ($code['success']) {
+                                                    $this->data['code'] = $code['qr'];
+                                                    $set('created_session', true);
+                                                }else{
+                                                    if (array_key_exists('error', $code)) {
+                                                        $error = $code['error'];
+                                                    }else{
+                                                        $error = $code['message'];
+                                                    }
+                                                    Notification::make()
+                                                        ->body('Failed to refresh QR Code, ' . $get('whatsapp_api_session') . " " . $error)
+                                                        ->danger()
+                                                        ->send();
+                                                    $set('created_session', false);
+                                                }
+                                            }
+                                        }),
+                                    Actions\Action::make('delete')
+                                        ->label('Delete Session')
+                                        ->requiresConfirmation()
+                                        ->modalIcon('gmdi-whatsapp')
+                                        ->modalHeading('Delete Whatsapp API Session')
+                                        ->modalDescription('Are you sure you want to delete this session?')
+                                        ->modalSubmitActionLabel('Yes, delete it')
+                                        ->color('danger')
+                                        ->action(function (Get $get, Set $set){
+                                            $session = WhatsAppAPI::terminateSession($get('whatsapp_api_session'));
+                                            if ($session['success']) {
+                                                Notification::make()
+                                                    ->body('Whatsapp API Session deleted successfully')
+                                                    ->success()
+                                                    ->send();
+                                                $set('whatsapp_api_session_status', null);
+                                            }else{
+                                                if (array_key_exists('error', $session)) {
+                                                    $error = $session['error'];
+                                                }else{
+                                                    $error = $session['message'];
+                                                }
+                                                Notification::make()
+                                                    ->body('Failed to delete Whatsapp API Session, ' . $get('whatsapp_api_session') . " " . $error)
+                                                    ->danger()
+                                                    ->send();
+                                            }
+                                        })
+                                ]),
+
+                            ]),
                         Toggle::make('whatsapp_api_enabled')
                             ->columnSpanFull()
                             ->label('Enable Whatsapp Notification'),
@@ -158,21 +311,21 @@ class Settings extends Page implements HasForms
                 Actions::make([
                     Actions\Action::make('save')
                         ->label('Save Setting')
-                        ->action(function(){
+                        ->action(function() {
                             $fields = $this->data;
                             foreach ($fields as $key => $value) {
                                 $setting = \App\Models\Setting::where('name', $key)->first();
                                 $midtrans = ['midtrans_server_key', 'midtrans_client_key'];
 
-                                if (in_array($key, $midtrans) && !Str::of($value)->contains('*')) {
-                                    if ($setting) {
-                                        $setting->value = encrypt($value);
-                                        $setting->save();
-                                    }
-                                    continue;
-                                }
-
-                                if ($setting && !Str::of($value)->contains('*')) {
+                                if (in_array($key, $midtrans) && !Str::of($value)->contains('*') && $setting) {
+                                    $setting->value = encrypt($value);
+                                    $setting->save();
+                                } elseif ($setting && !Str::of($value)->contains('*')) {
+                                    $setting->value = $value;
+                                    $setting->save();
+                                } elseif (!Str::of($value)->contains('*')) {
+                                    $setting = new Setting();
+                                    $setting->name = $key;
                                     $setting->value = $value;
                                     $setting->save();
                                 }

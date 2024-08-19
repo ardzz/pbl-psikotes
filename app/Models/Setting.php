@@ -13,4 +13,8 @@ class Setting extends Model
         'name',
         'value',
     ];
+
+    static function get($key){
+        return self::where('name', $key)->first()->value;
+    }
 }
