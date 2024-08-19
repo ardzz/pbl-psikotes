@@ -8,6 +8,7 @@ export default {
         './vendor/filament/**/*.blade.php',
         './node_modules/flowbite/**/*.js',
         './vendor/jaocero/filachat/resources/views/**/**/*.blade.php',
+        './vendor/laravel/pulse/resources/views/**/*.blade.php',
     ],
     plugins: [
         require('flowbite/plugin')
