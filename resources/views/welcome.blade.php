@@ -35,6 +35,7 @@
     ======================================================== -->
 
     <link rel="stylesheet" href="public/assets/css/styles.css">
+
 </head>
 
 <body class="index-page">
@@ -52,28 +53,53 @@
             <ul>
                 <li><a href="#hero" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#Timeline">How to</a></li>
                 <li><a href="#team">Team</a></li>
                 <li><a href="#pricing">Pricing</a></li>
-                <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                    <ul>
-                        <li><a href="#">Dropdown 1</a></li>
-                        <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                            <ul>
-                                <li><a href="#">Deep Dropdown 1</a></li>
-                                <li><a href="#">Deep Dropdown 2</a></li>
-                                <li><a href="#">Deep Dropdown 3</a></li>
-                                <li><a href="#">Deep Dropdown 4</a></li>
-                                <li><a href="#">Deep Dropdown 5</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Dropdown 2</a></li>
-                        <li><a href="#">Dropdown 3</a></li>
-                        <li><a href="#">Dropdown 4</a></li>
-                    </ul>
-                </li>
+{{--                <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>--}}
+{{--                    <ul>--}}
+{{--                        <li><a href="#">Dropdown 1</a></li>--}}
+{{--                        <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>--}}
+{{--                            <ul>--}}
+{{--                                <li><a href="#">Deep Dropdown 1</a></li>--}}
+{{--                                <li><a href="#">Deep Dropdown 2</a></li>--}}
+{{--                                <li><a href="#">Deep Dropdown 3</a></li>--}}
+{{--                                <li><a href="#">Deep Dropdown 4</a></li>--}}
+{{--                                <li><a href="#">Deep Dropdown 5</a></li>--}}
+{{--                            </ul>--}}
+{{--                        </li>--}}
+{{--                        <li><a href="#">Dropdown 2</a></li>--}}
+{{--                        <li><a href="#">Dropdown 3</a></li>--}}
+{{--                        <li><a href="#">Dropdown 4</a></li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="patient/login" class="btn-login">Login</a>
+                    <style>
+                        .btn-login {
+                            display: inline-block;
+                            padding: 10px 20px;
+                            font-size: 12px;
+                            font-weight: bold;
+                            color: #fff; /* Warna teks */
+                            background-color: #1ACC8DFF; /* Warna latar belakang tombol */
+                            border: 3px solid #1ACC8DFF; /* Ukuran dan warna border */
+                            border-radius: 15px; /* Membulatkan sudut tombol */
+                            text-decoration: none; /* Menghapus garis bawah dari tautan */
+                            text-align: center;
+                            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Menambahkan transisi untuk border-color */
+                            cursor: pointer; /* Menampilkan pointer saat hover */
+                        }
+                        .btn-login:hover {
+                            background-color: #4aaad0; /* Warna latar belakang tombol saat hover */
+                            color: #fff; /* Warna teks saat hover */
+                        }
+
+                        .btn-login:active {
+                            background-color: #3a8bbd; /* Warna latar belakang tombol saat diklik */
+                        }
+                    </style>
+                </li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -107,7 +133,7 @@
                     <p>We provide a place for you to solve your problems</p>
                     <div class="d-flex">
                         <a href="#about" class="btn-get-started">Get Started</a>
-{{--                        <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>--}}
+                        {{--                        <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>--}}
                     </div>
 
                 </div>
@@ -192,314 +218,654 @@
     </section><!-- /About Section -->
 
 
-    <!-- Features Section -->
-    <section id="features" class="features section">
+    {{--    <!-- Features Section -->--}}
+    {{--    <section id="features" class="features section">--}}
 
-        <div class="container">
+    {{--        <div class="container">--}}
 
-            <div class="row gy-4">
+    {{--            <div class="row gy-4">--}}
 
-                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="features-item">
-                        <i class="bi bi-eye" style="color: #ffbb2c;"></i>
-                        <h3><a href="" class="stretched-link">Lorem Ipsum</a></h3>
-                    </div>
-                </div><!-- End Feature Item -->
+    {{--                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="100">--}}
+    {{--                    <div class="features-item">--}}
+    {{--                        <i class="bi bi-eye" style="color: #ffbb2c;"></i>--}}
+    {{--                        <h3><a href="" class="stretched-link">Lorem Ipsum</a></h3>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Feature Item -->--}}
 
-                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="features-item">
-                        <i class="bi bi-infinity" style="color: #5578ff;"></i>
-                        <h3><a href="" class="stretched-link">Dolor Sitema</a></h3>
-                    </div>
-                </div><!-- End Feature Item -->
+    {{--                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="200">--}}
+    {{--                    <div class="features-item">--}}
+    {{--                        <i class="bi bi-infinity" style="color: #5578ff;"></i>--}}
+    {{--                        <h3><a href="" class="stretched-link">Dolor Sitema</a></h3>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Feature Item -->--}}
 
-                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="features-item">
-                        <i class="bi bi-mortarboard" style="color: #e80368;"></i>
-                        <h3><a href="" class="stretched-link">Sed perspiciatis</a></h3>
-                    </div>
-                </div><!-- End Feature Item -->
+    {{--                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">--}}
+    {{--                    <div class="features-item">--}}
+    {{--                        <i class="bi bi-mortarboard" style="color: #e80368;"></i>--}}
+    {{--                        <h3><a href="" class="stretched-link">Sed perspiciatis</a></h3>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Feature Item -->--}}
 
-                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="features-item">
-                        <i class="bi bi-nut" style="color: #e361ff;"></i>
-                        <h3><a href="" class="stretched-link">Magni Dolores</a></h3>
-                    </div>
-                </div><!-- End Feature Item -->
+    {{--                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="400">--}}
+    {{--                    <div class="features-item">--}}
+    {{--                        <i class="bi bi-nut" style="color: #e361ff;"></i>--}}
+    {{--                        <h3><a href="" class="stretched-link">Magni Dolores</a></h3>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Feature Item -->--}}
 
-                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="500">
-                    <div class="features-item">
-                        <i class="bi bi-shuffle" style="color: #47aeff;"></i>
-                        <h3><a href="" class="stretched-link">Nemo Enim</a></h3>
-                    </div>
-                </div><!-- End Feature Item -->
+    {{--                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="500">--}}
+    {{--                    <div class="features-item">--}}
+    {{--                        <i class="bi bi-shuffle" style="color: #47aeff;"></i>--}}
+    {{--                        <h3><a href="" class="stretched-link">Nemo Enim</a></h3>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Feature Item -->--}}
 
-                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="600">
-                    <div class="features-item">
-                        <i class="bi bi-star" style="color: #ffa76e;"></i>
-                        <h3><a href="" class="stretched-link">Eiusmod Tempor</a></h3>
-                    </div>
-                </div><!-- End Feature Item -->
+    {{--                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="600">--}}
+    {{--                    <div class="features-item">--}}
+    {{--                        <i class="bi bi-star" style="color: #ffa76e;"></i>--}}
+    {{--                        <h3><a href="" class="stretched-link">Eiusmod Tempor</a></h3>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Feature Item -->--}}
 
-                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="700">
-                    <div class="features-item">
-                        <i class="bi bi-x-diamond" style="color: #11dbcf;"></i>
-                        <h3><a href="" class="stretched-link">Midela Teren</a></h3>
-                    </div>
-                </div><!-- End Feature Item -->
+    {{--                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="700">--}}
+    {{--                    <div class="features-item">--}}
+    {{--                        <i class="bi bi-x-diamond" style="color: #11dbcf;"></i>--}}
+    {{--                        <h3><a href="" class="stretched-link">Midela Teren</a></h3>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Feature Item -->--}}
 
-                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="800">
-                    <div class="features-item">
-                        <i class="bi bi-camera-video" style="color: #4233ff;"></i>
-                        <h3><a href="" class="stretched-link">Pira Neve</a></h3>
-                    </div>
-                </div><!-- End Feature Item -->
+    {{--                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="800">--}}
+    {{--                    <div class="features-item">--}}
+    {{--                        <i class="bi bi-camera-video" style="color: #4233ff;"></i>--}}
+    {{--                        <h3><a href="" class="stretched-link">Pira Neve</a></h3>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Feature Item -->--}}
 
-                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="900">
-                    <div class="features-item">
-                        <i class="bi bi-command" style="color: #b2904f;"></i>
-                        <h3><a href="" class="stretched-link">Dirada Pack</a></h3>
-                    </div>
-                </div><!-- End Feature Item -->
+    {{--                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="900">--}}
+    {{--                    <div class="features-item">--}}
+    {{--                        <i class="bi bi-command" style="color: #b2904f;"></i>--}}
+    {{--                        <h3><a href="" class="stretched-link">Dirada Pack</a></h3>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Feature Item -->--}}
 
-                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1000">
-                    <div class="features-item">
-                        <i class="bi bi-dribbble" style="color: #b20969;"></i>
-                        <h3><a href="" class="stretched-link">Moton Ideal</a></h3>
-                    </div>
-                </div><!-- End Feature Item -->
+    {{--                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1000">--}}
+    {{--                    <div class="features-item">--}}
+    {{--                        <i class="bi bi-dribbble" style="color: #b20969;"></i>--}}
+    {{--                        <h3><a href="" class="stretched-link">Moton Ideal</a></h3>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Feature Item -->--}}
 
-                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1100">
-                    <div class="features-item">
-                        <i class="bi bi-activity" style="color: #ff5828;"></i>
-                        <h3><a href="" class="stretched-link">Verdo Park</a></h3>
-                    </div>
-                </div><!-- End Feature Item -->
+    {{--                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1100">--}}
+    {{--                    <div class="features-item">--}}
+    {{--                        <i class="bi bi-activity" style="color: #ff5828;"></i>--}}
+    {{--                        <h3><a href="" class="stretched-link">Verdo Park</a></h3>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Feature Item -->--}}
 
-                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1200">
-                    <div class="features-item">
-                        <i class="bi bi-brightness-high" style="color: #29cc61;"></i>
-                        <h3><a href="" class="stretched-link">Flavor Nivelanda</a></h3>
-                    </div>
-                </div><!-- End Feature Item -->
+    {{--                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1200">--}}
+    {{--                    <div class="features-item">--}}
+    {{--                        <i class="bi bi-brightness-high" style="color: #29cc61;"></i>--}}
+    {{--                        <h3><a href="" class="stretched-link">Flavor Nivelanda</a></h3>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Feature Item -->--}}
 
-            </div>
+    {{--            </div>--}}
 
-        </div>
+    {{--        </div>--}}
 
-    </section><!-- /Features Section -->
+    {{--    </section><!-- /Features Section -->--}}
 
-    <!-- Stats Section -->
-    <section id="stats" class="stats section light-background">
+    {{--    <!-- Stats Section -->--}}
+    {{--    <section id="stats" class="stats section light-background">--}}
 
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
+    {{--        <div class="container" data-aos="fade-up" data-aos-delay="100">--}}
 
-            <div class="row gy-4">
+    {{--            <div class="row gy-4">--}}
 
-                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                    <i class="bi bi-emoji-smile"></i>
-                    <div class="stats-item">
-                        <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-                        <p>Happy Clients</p>
-                    </div>
-                </div><!-- End Stats Item -->
+    {{--                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">--}}
+    {{--                    <i class="bi bi-emoji-smile"></i>--}}
+    {{--                    <div class="stats-item">--}}
+    {{--                        <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>--}}
+    {{--                        <p>Happy Clients</p>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Stats Item -->--}}
 
-                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                    <i class="bi bi-journal-richtext"></i>
-                    <div class="stats-item">
-                        <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-                        <p>Projects</p>
-                    </div>
-                </div><!-- End Stats Item -->
+    {{--                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">--}}
+    {{--                    <i class="bi bi-journal-richtext"></i>--}}
+    {{--                    <div class="stats-item">--}}
+    {{--                        <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>--}}
+    {{--                        <p>Projects</p>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Stats Item -->--}}
 
-                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                    <i class="bi bi-headset"></i>
-                    <div class="stats-item">
-                        <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-                        <p>Hours Of Support</p>
-                    </div>
-                </div><!-- End Stats Item -->
+    {{--                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">--}}
+    {{--                    <i class="bi bi-headset"></i>--}}
+    {{--                    <div class="stats-item">--}}
+    {{--                        <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>--}}
+    {{--                        <p>Hours Of Support</p>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Stats Item -->--}}
 
-                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                    <i class="bi bi-people"></i>
-                    <div class="stats-item">
-                        <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-                        <p>Hard Workers</p>
-                    </div>
-                </div><!-- End Stats Item -->
+    {{--                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">--}}
+    {{--                    <i class="bi bi-people"></i>--}}
+    {{--                    <div class="stats-item">--}}
+    {{--                        <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>--}}
+    {{--                        <p>Hard Workers</p>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Stats Item -->--}}
 
-            </div>
+    {{--            </div>--}}
 
-        </div>
+    {{--        </div>--}}
 
-    </section><!-- /Stats Section -->
+    {{--    </section><!-- /Stats Section -->--}}
 
-    <!-- Details Section -->
-    <section id="details" class="details section">
+    {{--    <!-- Details Section -->--}}
+    {{--    <section id="details" class="details section">--}}
 
+    {{--        <!-- Section Title -->--}}
+    {{--        <div class="container section-title" data-aos="fade-up">--}}
+    {{--            <h2>Details</h2>--}}
+    {{--            <div><span>Check Our</span> <span class="description-title">Details</span></div>--}}
+    {{--        </div><!-- End Section Title -->--}}
+
+    {{--        <div class="container">--}}
+
+    {{--            <div class="row gy-4 align-items-center features-item">--}}
+    {{--                <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">--}}
+    {{--                    <img src="assets/img/details-1.png" class="img-fluid" alt="">--}}
+    {{--                </div>--}}
+    {{--                <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">--}}
+    {{--                    <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>--}}
+    {{--                    <p class="fst-italic">--}}
+    {{--                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore--}}
+    {{--                        magna aliqua.--}}
+    {{--                    </p>--}}
+    {{--                    <ul>--}}
+    {{--                        <li><i class="bi bi-check"></i><span> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>--}}
+    {{--                        <li><i class="bi bi-check"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>--}}
+    {{--                        <li><i class="bi bi-check"></i> <span>Ullam est qui quos consequatur eos accusamus.</span></li>--}}
+    {{--                    </ul>--}}
+    {{--                </div>--}}
+    {{--            </div><!-- Features Item -->--}}
+
+    {{--            <div class="row gy-4 align-items-center features-item">--}}
+    {{--                <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">--}}
+    {{--                    <img src="assets/img/details-2.png" class="img-fluid" alt="">--}}
+    {{--                </div>--}}
+    {{--                <div class="col-md-7 order-2 order-md-1" data-aos="fade-up" data-aos-delay="200">--}}
+    {{--                    <h3>Corporis temporibus maiores provident</h3>--}}
+    {{--                    <p class="fst-italic">--}}
+    {{--                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore--}}
+    {{--                        magna aliqua.--}}
+    {{--                    </p>--}}
+    {{--                    <p>--}}
+    {{--                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate--}}
+    {{--                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in--}}
+    {{--                        culpa qui officia deserunt mollit anim id est laborum--}}
+    {{--                    </p>--}}
+    {{--                </div>--}}
+    {{--            </div><!-- Features Item -->--}}
+
+    {{--            <div class="row gy-4 align-items-center features-item">--}}
+    {{--                <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out">--}}
+    {{--                    <img src="assets/img/details-3.png" class="img-fluid" alt="">--}}
+    {{--                </div>--}}
+    {{--                <div class="col-md-7" data-aos="fade-up">--}}
+    {{--                    <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>--}}
+    {{--                    <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe odit aut quia voluptatem hic voluptas dolor doloremque.</p>--}}
+    {{--                    <ul>--}}
+    {{--                        <li><i class="bi bi-check"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>--}}
+    {{--                        <li><i class="bi bi-check"></i><span> Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>--}}
+    {{--                        <li><i class="bi bi-check"></i> <span>Facilis ut et voluptatem aperiam. Autem soluta ad fugiat</span>.</li>--}}
+    {{--                    </ul>--}}
+    {{--                </div>--}}
+    {{--            </div><!-- Features Item -->--}}
+
+    {{--            <div class="row gy-4 align-items-center features-item">--}}
+    {{--                <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out">--}}
+    {{--                    <img src="assets/img/details-4.png" class="img-fluid" alt="">--}}
+    {{--                </div>--}}
+    {{--                <div class="col-md-7 order-2 order-md-1" data-aos="fade-up">--}}
+    {{--                    <h3>Quas et necessitatibus eaque impedit ipsum animi consequatur incidunt in</h3>--}}
+    {{--                    <p class="fst-italic">--}}
+    {{--                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore--}}
+    {{--                        magna aliqua.--}}
+    {{--                    </p>--}}
+    {{--                    <p>--}}
+    {{--                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate--}}
+    {{--                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in--}}
+    {{--                        culpa qui officia deserunt mollit anim id est laborum--}}
+    {{--                    </p>--}}
+    {{--                </div>--}}
+    {{--            </div><!-- Features Item -->--}}
+
+    {{--        </div>--}}
+
+    {{--    </section><!-- /Details Section -->--}}
+
+    <!-- Timeline Section -->
+    <section id="Timeline" class="details timeline">
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-            <h2>Details</h2>
-            <div><span>Check Our</span> <span class="description-title">Details</span></div>
+            <h2>Tutorial</h2>
+            <div><span>Check Our</span> <span class="description-title">Tutorial</span></div>
         </div><!-- End Section Title -->
 
         <div class="container">
-
-            <div class="row gy-4 align-items-center features-item">
-                <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-                    <img src="assets/img/details-1.png" class="img-fluid" alt="">
+            <section id="news" class="white-bg padding-top-bottom">
+                <div class="timeline">
+                    <div class="date-title">
+                        <span>Start</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 news-item">
+                            <div class="news-content">
+                                <div class="date">
+                                    <p>1</p>
+                                </div>
+                                <h2 class="news-title">Login or Sign Up</h2>
+                                <p>Create a new account or log in to your existing account to start the process.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 news-item right">
+                            <div class="news-content">
+                                <div class="date">
+                                    <p>2</p>
+                                </div>
+                                <h2 class="news-title">Complete Your Profile</h2>
+                                <p>Fill in all your personal details accurately to ensure proper verification.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 news-item">
+                            <div class="news-content">
+                                <div class="date">
+                                    <p>3</p>
+                                </div>
+                                <h2 class="news-title">Register for the Exam</h2>
+                                <p>Submit your exam request to the admin for approval.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 news-item right">
+                            <div class="news-content">
+                                <div class="date">
+                                    <p>4</p>
+                                </div>
+                                <h2 class="news-title">Wait for Verification</h2>
+                                <p>Once verified by the admin, you can start the exam.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 news-item">
+                            <div class="news-content">
+                                <div class="date">
+                                    <p>5</p>
+                                </div>
+                                <h2 class="news-title">Take the Exam</h2>
+                                <p>Answer all questions carefully and thoroughly.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 news-item right">
+                            <div class="news-content">
+                                <div class="date">
+                                    <p>6</p>
+                                </div>
+                                <h2 class="news-title">View Results</h2>
+                                <p>After completing the exam, view the results verified by the doctor.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="date-title">
+                        <span>Finish</span>
+                    </div>
                 </div>
-                <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-                    <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-                    <p class="fst-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                    </p>
-                    <ul>
-                        <li><i class="bi bi-check"></i><span> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-                        <li><i class="bi bi-check"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-                        <li><i class="bi bi-check"></i> <span>Ullam est qui quos consequatur eos accusamus.</span></li>
-                    </ul>
-                </div>
-            </div><!-- Features Item -->
-
-            <div class="row gy-4 align-items-center features-item">
-                <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="assets/img/details-2.png" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-7 order-2 order-md-1" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Corporis temporibus maiores provident</h3>
-                    <p class="fst-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                    </p>
-                    <p>
-                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum
-                    </p>
-                </div>
-            </div><!-- Features Item -->
-
-            <div class="row gy-4 align-items-center features-item">
-                <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out">
-                    <img src="assets/img/details-3.png" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-7" data-aos="fade-up">
-                    <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>
-                    <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe odit aut quia voluptatem hic voluptas dolor doloremque.</p>
-                    <ul>
-                        <li><i class="bi bi-check"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-                        <li><i class="bi bi-check"></i><span> Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-                        <li><i class="bi bi-check"></i> <span>Facilis ut et voluptatem aperiam. Autem soluta ad fugiat</span>.</li>
-                    </ul>
-                </div>
-            </div><!-- Features Item -->
-
-            <div class="row gy-4 align-items-center features-item">
-                <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out">
-                    <img src="assets/img/details-4.png" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-7 order-2 order-md-1" data-aos="fade-up">
-                    <h3>Quas et necessitatibus eaque impedit ipsum animi consequatur incidunt in</h3>
-                    <p class="fst-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                    </p>
-                    <p>
-                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum
-                    </p>
-                </div>
-            </div><!-- Features Item -->
-
+            </section>
         </div>
 
-    </section><!-- /Details Section -->
+        <style>
+            body {
+                background: #ddd;
+            }
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery section">
+            .timeline {
+                clear: both;
+                position: relative;
+                margin-bottom: 0;
+                margin-top: 0;
+                z-index: 1;
+            }
 
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Gallery</h2>
-            <div><span>Check Our</span> <span class="description-title">Gallery</span></div>
-        </div><!-- End Section Title -->
+            .timeline:before {
+                content: "";
+                position: absolute;
+                width: 50%;
+                height: 90%; /* Ubah tinggi garis */
+                left: 1px;
+                top: 13%; /* Ubah posisi garis dari atas */
+                border-right: 1px solid #5CC9DF;
+                z-index: -1;
+            }
 
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
+            .timeline:after {
+                content: "";
+                position: absolute;
+                width: 50%;
+                height: 100px;
+                left: 1px;
+                bottom: -105px;
+                border-right: 1px dashed #5CC9DF;
+                z-index: -1;
+            }
 
-            <div class="row g-0">
+            .timeline .date-title {
+                text-align: center;
+                margin: 70px 0 50px;
+            }
 
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="assets/img/gallery/gallery-1.jpg" class="glightbox" data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
-                        </a>
-                    </div>
-                </div><!-- End Gallery Item -->
+            .timeline .date-title span {
+                padding: 15px 30px;
+                font-size: 21px;
+                font-weight: 400;
+                color: #fff;
+                background: #5CC9DF;
+                border-radius: 5px;
+            }
 
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="assets/img/gallery/gallery-2.jpg" class="glightbox" data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
-                        </a>
-                    </div>
-                </div><!-- End Gallery Item -->
+            .news-item {
+                padding-bottom: 45px;
+            }
 
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="assets/img/gallery/gallery-3.jpg" class="glightbox" data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
-                        </a>
-                    </div>
-                </div><!-- End Gallery Item -->
+            .news-item.right {
+                float: right;
+                margin-top: 40px;
+            }
 
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="assets/img/gallery/gallery-4.jpg" class="glightbox" data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
-                        </a>
-                    </div>
-                </div><!-- End Gallery Item -->
+            .news-item .news-content {
+                margin: 20px 30px 0 0;
+                position: relative;
+                padding: 30px;
+                padding-left: 100px;
+                background: #f5f5f5;
+                border-radius: 10px;
+                box-shadow: -5px 5px 0 rgba(0, 0, 0, 0.08);
+                transition: all .3s ease-out;
+            }
 
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="assets/img/gallery/gallery-5.jpg" class="glightbox" data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
-                        </a>
-                    </div>
-                </div><!-- End Gallery Item -->
+            .news-item:hover .news-content {
+                background: #5CC9DF;
+                color: #fff;
+            }
 
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="assets/img/gallery/gallery-6.jpg" class="glightbox" data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
-                        </a>
-                    </div>
-                </div><!-- End Gallery Item -->
+            .news-item.right .news-content {
+                margin: 150px 0 0 30px;
+                box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.08);
+            }
 
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="assets/img/gallery/gallery-7.jpg" class="glightbox" data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
-                        </a>
-                    </div>
-                </div><!-- End Gallery Item -->
+            .news-item .news-content:after {
+                content: "";
+                position: absolute;
+                top: 50px;
+                right: -40px;
+                width: 0;
+                height: 0;
+                background: transparent;
+                border: 20px solid transparent;
+                border-left: 20px solid #f5f5f5;
+                transition: border-left-color .3s ease-out;
+            }
 
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="assets/img/gallery/gallery-8.jpg" class="glightbox" data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
-                        </a>
-                    </div>
-                </div><!-- End Gallery Item -->
+            .news-item.right .news-content:after {
+                left: -40px;
+                right: auto;
+                border-left: 20px solid transparent;
+                border-right: 20px solid #f5f5f5;
+                transition: border-right-color .3s ease-out;
+            }
 
-            </div>
+            .news-item:hover .news-content:after {
+                border-left-color: #5CC9DF;
+            }
 
-        </div>
+            .news-item.right:hover .news-content:after {
+                border-left-color: transparent;
+                border-right-color: #5CC9DF;
+            }
 
-    </section><!-- /Gallery Section -->
+            .news-item .news-content:before {
+                content: "";
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                right: -53px;
+                top: 60px;
+                background: #5CC9DF;
+                border: 3px solid #fff;
+                border-radius: 50%;
+                transition: background .3s ease-out;
+            }
+
+            .news-item.right .news-content:before {
+                left: -53px;
+                top: 60px;
+                right: auto;
+            }
+
+            .news-content .date {
+                position: absolute;
+                width: 80px;
+                height: 80px;
+                left: 10px;
+                text-align: center;
+                color: #5CC9DF;
+                transition: color .3s ease-out;
+            }
+
+            .news-item:hover .news-content .date {
+                color: #fff;
+            }
+
+            .news-content .date p {
+                margin: 0;
+                font-size: 48px;
+                font-weight: 600;
+                line-height: 48px;
+            }
+
+            .news-content .date small {
+                margin: 0;
+                font-size: 26px;
+                font-weight: 300;
+                line-height: 24px;
+            }
+
+            .news-content .news-title {
+                font-size: 24px;
+                font-weight: 300;
+            }
+
+            .news-content p {
+                font-size: 16px;
+                line-height: 24px;
+                font-weight: 300;
+                letter-spacing: 0.02em;
+                margin-bottom: 10px;
+            }
+
+            .news-content .read-more {
+                padding: 10px 0;
+                text-decoration: none;
+                font-size: 16px;
+                color: #7A7C7F;
+                line-height: 24px;
+                transition: padding .3s ease-out;
+            }
+
+            .news-item:hover .news-content .read-more {
+                color: #fff;
+                padding-left: 7px;
+            }
+
+            .news-content .read-more:after {
+                content: '\f054';
+                padding-left: 15px;
+                font-family: 'FontAwesome';
+                font-size: 21px;
+                color: #5CC9DF;
+                transition: padding .3s ease-out;
+            }
+
+            .news-content .read-more:hover:after {
+                padding-left: 20px;
+            }
+
+            .news-item:hover .news-content .read-more:after {
+                color: #fff;
+            }
+
+            .news-content .news-media {
+                position: absolute;
+                width: 80px;
+                bottom: -45px;
+                right: 40px;
+                border-radius: 8px;
+            }
+
+            .news-content .news-media img {
+                border-radius: 8px;
+                transition: transform .3s ease-out;
+            }
+
+            .news-content .news-media a {
+                display: block;
+                text-decoration: none;
+                background: #fff;
+                border-radius: 8px;
+                overflow: hidden;
+                -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
+            }
+
+            .news-content .news-media a:hover img {
+                transform: scale(1.3);
+            }
+
+            .news-content .news-media a:after {
+                content: '\f065';
+                position: absolute;
+                width: 100%;
+                top: 0;
+                left: 0;
+                font-family: 'FontAwesome';
+                font-size: 32px;
+                line-height: 80px;
+                text-align: center;
+                color: #5CC9DF;
+                transform: scale(0);
+                opacity: 0;
+                transition: all .2s ease-out .1s;
+            }
+
+            .news-content .news-media.video a:after {
+                content: '\f04b';
+            }
+
+            .news-content .news-media a:hover:after {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            .news-content .news-media.gallery {
+                box-shadow: 4px 4px 0 #bbb, 8px 8px 0 #ddd;
+            }
+        </style>
+    </section>
+    <!-- /Timeline Section -->
+
+
+    {{--    <!-- Gallery Section -->--}}
+    {{--    <section id="gallery" class="gallery section">--}}
+
+    {{--        <!-- Section Title -->--}}
+    {{--        <div class="container section-title" data-aos="fade-up">--}}
+    {{--            <h2>Gallery</h2>--}}
+    {{--            <div><span>Check Our</span> <span class="description-title">Gallery</span></div>--}}
+    {{--        </div><!-- End Section Title -->--}}
+
+    {{--        <div class="container" data-aos="fade-up" data-aos-delay="100">--}}
+
+    {{--            <div class="row g-0">--}}
+
+    {{--                <div class="col-lg-3 col-md-4">--}}
+    {{--                    <div class="gallery-item">--}}
+    {{--                        <a href="assets/img/gallery/gallery-1.jpg" class="glightbox" data-gallery="images-gallery">--}}
+    {{--                            <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">--}}
+    {{--                        </a>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Gallery Item -->--}}
+
+    {{--                <div class="col-lg-3 col-md-4">--}}
+    {{--                    <div class="gallery-item">--}}
+    {{--                        <a href="assets/img/gallery/gallery-2.jpg" class="glightbox" data-gallery="images-gallery">--}}
+    {{--                            <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">--}}
+    {{--                        </a>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Gallery Item -->--}}
+
+    {{--                <div class="col-lg-3 col-md-4">--}}
+    {{--                    <div class="gallery-item">--}}
+    {{--                        <a href="assets/img/gallery/gallery-3.jpg" class="glightbox" data-gallery="images-gallery">--}}
+    {{--                            <img src="assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">--}}
+    {{--                        </a>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Gallery Item -->--}}
+
+    {{--                <div class="col-lg-3 col-md-4">--}}
+    {{--                    <div class="gallery-item">--}}
+    {{--                        <a href="assets/img/gallery/gallery-4.jpg" class="glightbox" data-gallery="images-gallery">--}}
+    {{--                            <img src="assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">--}}
+    {{--                        </a>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Gallery Item -->--}}
+
+    {{--                <div class="col-lg-3 col-md-4">--}}
+    {{--                    <div class="gallery-item">--}}
+    {{--                        <a href="assets/img/gallery/gallery-5.jpg" class="glightbox" data-gallery="images-gallery">--}}
+    {{--                            <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">--}}
+    {{--                        </a>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Gallery Item -->--}}
+
+    {{--                <div class="col-lg-3 col-md-4">--}}
+    {{--                    <div class="gallery-item">--}}
+    {{--                        <a href="assets/img/gallery/gallery-6.jpg" class="glightbox" data-gallery="images-gallery">--}}
+    {{--                            <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">--}}
+    {{--                        </a>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Gallery Item -->--}}
+
+    {{--                <div class="col-lg-3 col-md-4">--}}
+    {{--                    <div class="gallery-item">--}}
+    {{--                        <a href="assets/img/gallery/gallery-7.jpg" class="glightbox" data-gallery="images-gallery">--}}
+    {{--                            <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">--}}
+    {{--                        </a>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Gallery Item -->--}}
+
+    {{--                <div class="col-lg-3 col-md-4">--}}
+    {{--                    <div class="gallery-item">--}}
+    {{--                        <a href="assets/img/gallery/gallery-8.jpg" class="glightbox" data-gallery="images-gallery">--}}
+    {{--                            <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">--}}
+    {{--                        </a>--}}
+    {{--                    </div>--}}
+    {{--                </div><!-- End Gallery Item -->--}}
+
+    {{--            </div>--}}
+
+    {{--        </div>--}}
+
+    {{--    </section><!-- /Gallery Section -->--}}
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials section dark-background">
@@ -529,14 +895,14 @@
                     <div class="swiper-slide">
                         <div class="testimonial-item">
                             <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                            <h3>Saul Goodman</h3>
-                            <h4>Ceo &amp; Founder</h4>
+                            <h3>Dr. Ahmad Fauzi</h3>
+                            <h4>Psychologist at Politeknik Negeri Semarang</h4>
                             <div class="stars">
                                 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                             </div>
                             <p>
                                 <i class="bi bi-quote quote-icon-left"></i>
-                                <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
+                                <span>"The MMPI-2 we use at Politeknik Negeri Semarang greatly aids in understanding and assessing various psychological aspects of students. This test provides a clear picture of personality and individual potential, helping us offer better guidance."</span>
                                 <i class="bi bi-quote quote-icon-right"></i>
                             </p>
                         </div>
@@ -545,14 +911,14 @@
                     <div class="swiper-slide">
                         <div class="testimonial-item">
                             <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                            <h3>Sara Wilsson</h3>
-                            <h4>Designer</h4>
+                            <h3>Maria Susanti</h3>
+                            <h4>Information Technology Student</h4>
                             <div class="stars">
                                 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                             </div>
                             <p>
                                 <i class="bi bi-quote quote-icon-left"></i>
-                                <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
+                                <span>"My experience with the MMPI-2 test at Politeknik Negeri Semarang was very positive. The test helped me better understand myself and recognize my strengths and weaknesses. The results provided valuable insights for my personal and academic growth."</span>
                                 <i class="bi bi-quote quote-icon-right"></i>
                             </p>
                         </div>
@@ -561,14 +927,14 @@
                     <div class="swiper-slide">
                         <div class="testimonial-item">
                             <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                            <h3>Jena Karlis</h3>
-                            <h4>Store Owner</h4>
+                            <h3>Rizki Setiawan</h3>
+                            <h4>Alumnus of Politeknik Negeri Semarang</h4>
                             <div class="stars">
                                 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                             </div>
                             <p>
                                 <i class="bi bi-quote quote-icon-left"></i>
-                                <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
+                                <span>"The MMPI-2 at Politeknik Negeri Semarang provided me with a deep understanding of my character and psychological tendencies. The results were very helpful for career planning and choosing a professional path after graduation."</span>
                                 <i class="bi bi-quote quote-icon-right"></i>
                             </p>
                         </div>
@@ -577,30 +943,14 @@
                     <div class="swiper-slide">
                         <div class="testimonial-item">
                             <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                            <h3>Matt Brandon</h3>
-                            <h4>Freelancer</h4>
+                            <h3>Fariha Nabila</h3>
+                            <h4>Psychology Lecturer</h4>
                             <div class="stars">
                                 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                             </div>
                             <p>
                                 <i class="bi bi-quote quote-icon-left"></i>
-                                <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
-                                <i class="bi bi-quote quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                            <h3>John Larson</h3>
-                            <h4>Entrepreneur</h4>
-                            <div class="stars">
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                            </div>
-                            <p>
-                                <i class="bi bi-quote quote-icon-left"></i>
-                                <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
+                                <span>"As a psychology lecturer, I highly recommend the MMPI-2 used at Politeknik Negeri Semarang. It is an effective tool for assessing various psychological dimensions and providing constructive feedback for students."</span>
                                 <i class="bi bi-quote quote-icon-right"></i>
                             </p>
                         </div>
@@ -613,6 +963,7 @@
         </div>
 
     </section><!-- /Testimonials Section -->
+
 
     <!-- Team Section -->
     <section id="team" class="team section">
@@ -629,7 +980,7 @@
 
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="member">
-                        <div class="pic"><img src="" class="img-fluid" alt=""></div>
+                        <div class="pic"><img src="assets/img/team/reky.JPG" class="img-fluid" alt=""></div>
                         <div class="member-info">
                             <h4>Naufal Reky Ardhana</h4>
                             <span>Web Developer</span>
@@ -645,7 +996,7 @@
 
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="member">
-                        <div class="pic"><img src="" class="img-fluid" alt=""></div>
+                        <div class="pic"><img src="assets/img/team/farhan.JPG" class="img-fluid" alt=""></div>
                         <div class="member-info">
                             <h4>Farhan Rahman Permana</h4>
                             <span>Web Developer</span>
@@ -937,14 +1288,21 @@
         </div>
     </div>
 
+{{--    <div class="container copyright text-center mt-4">--}}
+{{--        <p>© <span>Copyright</span> <strong class="px-1 sitename">Bootslander</strong> <span>All Rights Reserved</span></p>--}}
+{{--        <div class="credits">--}}
+{{--            <!-- All the links in the footer should remain intact. -->--}}
+{{--            <!-- You can delete the links only if you've purchased the pro version. -->--}}
+{{--            <!-- Licensing information: https://bootstrapmade.com/license/ -->--}}
+{{--            <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->--}}
+{{--            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+
     <div class="container copyright text-center mt-4">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">Bootslander</strong> <span>All Rights Reserved</span></p>
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">PsychePro</strong> <span>Politeknik Negeri Semarang. All Rights Reserved.</span></p>
         <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you've purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            Designed by <a href="https://polines.ac.id">Politeknik Negeri Semarang</a>
         </div>
     </div>
 
@@ -963,6 +1321,8 @@
 <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
 <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
 <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <!-- Main JS File -->
 <script src="assets/js/main.js"></script>
