@@ -61,11 +61,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ github.sha }}-snyk-results.sarif
-      - run: ls -la
       - name: Parse SARIF and Check for Vulnerabilities
         id: parse_sarif
         run: |
-          if jq -e '.runs[].tool.driver.rules | length > 0' *.sarif > /dev/null; then
+          if jq -e '.first(.runs[].tool.driver.rules | length) > 0' *.sarif > /dev/null; then
             echo "Vulnerabilities found."
             echo "::set-output name=has_vulnerabilities::true"
           else
