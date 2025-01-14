@@ -102,8 +102,8 @@ jobs:
                elif .properties["security-severity"] | tonumber <= 6.9 then "🟡 [MEDIUM]"
                elif .properties["security-severity"] | tonumber <= 8.9 then "🔴 [HIGH]"
                else "🚨 [CRITICAL]" end) +
-              " \(.shortDescription.text)\nDescription: \(.fullDescription.text)"' "${{ env.sarif_file }}")
-            echo "issues=${formatted_issues}" | tr '\n' '\\n' >> $GITHUB_ENV
+              " \(.shortDescription.text)\\nDescription: \(.fullDescription.text)"' "${{ env.sarif_file }}")
+            echo "issues=$formatted_issues" >> $GITHUB_ENV
           else
             echo "SARIF file not found"
             exit 1
@@ -113,7 +113,7 @@ jobs:
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'true' && env.issues != ''
         uses: slackapi/slack-github-action@v2.0.0
         with:
-          method: chat.update
+          method: chat.postMessage
           token: ${{ secrets.SLACK_BOT_TOKEN }}
           payload: |
             channel: ${{ secrets.SLACK_CHANNEL }}
@@ -122,11 +122,17 @@ jobs:
               - type: header
                 text:
                   type: plain_text
-                  text: "PHP Security Check found vulnerabilities"
+                  text: "PHP Security Check: Vulnerabilities Found 🚨"
               - type: section
                 text:
                   type: mrkdwn
-                  text: "${{ env.issues }}"
+                  text: |
+                    Vulnerabilities detected in the PHP Security Check:
+                    \n${{ env.issues }}
+              - type: context
+                elements:
+                  - type: mrkdwn
+                    text: "Checked by *${{ github.actor }}* in repository *${{ github.repository }}* on commit *${{ github.sha }}*"
 
       - name: Notify Slack if no vulnerabilities found
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'false'
