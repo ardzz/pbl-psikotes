@@ -86,7 +86,7 @@ jobs:
       - name: Download notify_start_ts
         uses: actions/download-artifact@v4
         with:
-          name: notify_start_ts
+          name: notify-start-ts
           path: notify_start_ts.txt
       - run: ls -al
       - run: cat notify_start_ts.txt
