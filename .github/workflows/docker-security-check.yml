@@ -1,0 +1,27 @@
+name: Docker Security Check
+run-name: docker-security-check
+
+on:
+  push:
+    branches:
+      - filament
+  pull_request:
+    branches:
+      - filament
+
+jobs:
+  security-check:
+    name: Build image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/pbl-filament:latest .
+      - uses: actions/checkout@v2
+      - uses: snyk/actions/docker@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: ${{ secrets.DOCKER_USERNAME }}/pbl-filament:latest
+          args: --file=Dockerfile
