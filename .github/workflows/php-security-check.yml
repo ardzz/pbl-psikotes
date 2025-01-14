@@ -11,6 +11,9 @@ on:
 
 jobs:
   php-security-check:
+    permissions:
+      contents: read
+      security-events: write
     name: PHP Security Check
     runs-on: ubuntu-latest
     steps:
