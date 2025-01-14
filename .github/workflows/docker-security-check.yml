@@ -19,12 +19,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/pbl-filament:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/pbl-filament:${{ github.sha }} .
       - uses: actions/checkout@v2
       - uses: snyk/actions/docker@master
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          image: ${{ secrets.DOCKER_USERNAME }}/pbl-filament:latest
+          image: ${{ secrets.DOCKER_USERNAME }}/pbl-filament:${{ github.sha }}
           args: --file=Dockerfile
