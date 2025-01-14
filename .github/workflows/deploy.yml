@@ -20,10 +20,10 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: --sarif-file-output=snyk.sarif
-                  - name: Upload result to GitHub Code Scanning
-                  uses: github/codeql-action/upload-sarif@v2
-                  with:
-                    sarif_file: snyk.sarif
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: snyk.sarif
 
   build-docker-image:
     runs-on: ubuntu-latest
