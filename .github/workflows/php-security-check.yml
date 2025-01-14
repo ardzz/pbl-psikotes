@@ -74,19 +74,22 @@ jobs:
             echo "No vulnerabilities found."
             echo "::set-output name=has_vulnerabilities::false"
           fi
-
+      - run: pwd && ls -la
+      - name: Set SARIF file
+        id: set_sarif_file
+        run: echo "sarif_file=$(find . -name '*.sarif')" >> $GITHUB_ENV
       - name: Prepare Slack message
         id: prepare_slack_message
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'true'
         run: |
-          if [ -f "snyk.sarif" ]; then
+          if [ -f ${{ env.sarif_file }} ]; then
             # Extract issues with severity levels and emojis
             formatted_issues=$(jq -r '.runs[].tool.driver.rules[] |
               (if .properties["security-severity"] | tonumber <= 3.9 then "🟢 [LOW]"
                elif .properties["security-severity"] | tonumber <= 6.9 then "🟡 [MEDIUM]"
                elif .properties["security-severity"] | tonumber <= 8.9 then "🔴 [HIGH]"
                else "🚨 [CRITICAL]" end) +
-              " \(.shortDescription.text)\nDescription: \(.fullDescription.text)"' "${{ github.event.inputs.sarif_file }}")
+              " \(.shortDescription.text)\nDescription: \(.fullDescription.text)"' "${{ env.sarif_file }}")
             echo "::set-output name=message::${formatted_issues}"
           else
             echo "SARIF file not found: ${{ github.event.inputs.sarif_file }}"
