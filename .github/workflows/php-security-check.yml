@@ -109,28 +109,39 @@ jobs:
       - run: cat $GITHUB_ENV
       - name: Notify Slack if vulnerabilities found
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'true' && env.issues != ''
-        uses: slackapi/slack-github-action@v2.0.0
-        with:
-          method: chat.postMessage
-          token: ${{ secrets.SLACK_BOT_TOKEN }}
-          payload: |
-            channel: ${{ secrets.SLACK_CHANNEL }}
-            ts: ${{ env.notify_start_ts }}
-            blocks:
-              - type: header
-                text:
-                  type: plain_text
-                  text: "PHP Security Check: Vulnerabilities Found 🚨"
-              - type: section
-                text:
-                  type: mrkdwn
-                  text: |
-                    Vulnerabilities detected in the PHP Security Check:
-                    \n$(echo "${{ env.issues }}" | base64 --decode)
-              - type: context
-                elements:
-                  - type: mrkdwn
-                    text: "Checked by *${{ github.actor }}* in repository *${{ github.repository }}* on commit *${{ github.sha }}*"
+        run: |
+          decoded_issues=$(echo "${{ env.issues }}" | base64 --decode)
+          curl -X POST -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "channel": "'"${{ secrets.SLACK_CHANNEL }}"'",
+              "ts": ${{ env.notify_start_ts }},
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "PHP Security Check: Vulnerabilities Found 🚨"
+                  }
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "'"${decoded_issues}"'"
+                  }
+                },
+                {
+                  "type": "context",
+                  "elements": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "Checked by *${{ github.actor }}* in repository *${{ github.repository }}* on commit *${{ github.sha }}*"
+                    }
+                  ]
+                }
+              ]
+            }' https://slack.com/api/chat.update
 
       - name: Notify Slack if no vulnerabilities found
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'false'
