@@ -110,8 +110,6 @@ jobs:
       - name: Notify Slack if vulnerabilities found
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'true' && env.issues != ''
         run: |
-          commits_message="Commit details: \n- Repository: ${{ github.repository }} \n- Commit: ${{ github.sha }} \n- Author: ${{ github.actor }} \n- Message: ${{ github.event.head_commit.message }} \n- Date: ${{ github.event.head_commit.timestamp }}"
-          # Decode the Base64 string
           decoded_issues=$(echo "${{ env.issues }}" | base64 --decode)
 
           # Prepare the JSON payload
@@ -142,7 +140,7 @@ jobs:
                       "type": "section",
                       "text": {
                         "type": "mrkdwn",
-                        "text": $commits_message
+                        "text": "Due to the presence of vulnerabilities, the commit *(${{ github.event.head_commit.message }})* is not safe to deploy. Please fix the vulnerabilities and make sure your app is *unhackable*."
                       }
                     },
                     {
@@ -177,8 +175,8 @@ jobs:
           method: files.uploadV2
           token: ${{ secrets.SLACK_BOT_TOKEN }}
           payload: |
-            channel: ${{ secrets.SLACK_CHANNEL_ID }}
-            initial_comment: "the results are in!"
+            channel: ${{ secrets.SLACK_CHANNEL }}
+            initial_comment: "PHP Security Check: Vulnerabilities Found 🚨"
             file: "${{ env.sarif_file }}"
             filename: "${{ github.sha }}-snyk-results.sarif"
 
