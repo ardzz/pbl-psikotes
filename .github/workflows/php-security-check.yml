@@ -120,6 +120,7 @@ jobs:
                 --arg text "PHP Security Check: Vulnerabilities Found 🚨" \
                 --arg file "${{ env.sarif_file }}" \
                 --arg filename "${{ github.sha }}-snyk-results.sarif" \
+                --arg commits_message "$commits_message" \
                 --arg blocks "$(jq -n \
                   --arg decoded_issues "$decoded_issues" \
                   '[
