@@ -95,10 +95,10 @@ jobs:
             exit 1
           fi
       - run: echo "::set-output name=commit_short::$(echo ${{ github.sha }} | cut -c1-7)"
-      - run: echo $GITHUB_ENV
+      - run: cat $GITHUB_ENV
       - run: echo "notify_start_ts=${{ steps.php-security-check.outputs.notify_start_ts }}" >> $GITHUB_ENV
       - name: Notify Slack if vulnerabilities found
-        if: steps.parse_sarif.outputs.has_vulnerabilities == 'true' && steps.prepare_slack_message.outputs.message != ''
+        if: steps.parse_sarif.outputs.has_vulnerabilities == 'true' && env.issues != ''
         uses: slackapi/slack-github-action@v2.0.0
         with:
           method: chat.update
@@ -126,7 +126,6 @@ jobs:
           payload: |
             channel: ${{ secrets.SLACK_CHANNEL }}
             ts: ${{ env.notify_start_ts }}
-            text: ":shield: PHP Security Check found no vulnerabilities :shield:"
             blocks:
               - type: header
                 text:
