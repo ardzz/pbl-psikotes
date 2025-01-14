@@ -36,6 +36,7 @@ jobs:
                   type: mrkdwn
                   text: "Commit details: \n- Repository: ${{ github.repository }} \n- Commit: ${{ github.sha }} \n- Author: ${{ github.actor }} \n- Message: ${{ github.event.head_commit.message }} \n- Date: ${{ github.event.head_commit.timestamp }}"
       - run: echo "notify_start_ts=${{ steps.notify_start.outputs.ts }}" >> $GITHUB_ENV
+      - run: echo "::set-output name=notify_start_ts::${{ steps.notify_start.outputs.ts }}"
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/php@master
         env:
@@ -77,6 +78,7 @@ jobs:
       - name: Set SARIF file
         id: set_sarif_file
         run: echo "sarif_file=$(find . -name '*.sarif')" >> $GITHUB_ENV
+      - run: echo "notify_start_ts=${{ needs.php-security-check.outputs.notify_start_ts }}" >> $GITHUB_ENV
       - name: Prepare Slack message
         id: prepare_slack_message
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'true'
