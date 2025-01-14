@@ -114,8 +114,8 @@ jobs:
           curl -X POST -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
             -H "Content-Type: application/json" \
             -d '{
-              "channel": "'"${{ secrets.SLACK_CHANNEL }}"'",
-              "ts": ${{ env.notify_start_ts }},
+              "channel": ""${{ secrets.SLACK_CHANNEL }}"",
+              "ts": "${{ env.notify_start_ts }}",
               "blocks": [
                 {
                   "type": "header",
