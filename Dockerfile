@@ -22,6 +22,4 @@ RUN install-php-extensions pdo pdo_mysql intl zip exif mbstring gd
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 RUN composer install --ignore-platform-reqs --no-dev -a
 
-# Build the static binary
-WORKDIR /go/src/app/
-RUN EMBED=dist/app/ ./build-static.sh
+COPY . /app/public
