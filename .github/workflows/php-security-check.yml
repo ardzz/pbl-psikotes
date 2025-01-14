@@ -176,8 +176,10 @@ jobs:
           slack_token: ${{ secrets.SLACK_BOT_TOKEN }}
           initial_comment: "PHP Security Check: Vulnerabilities Found 🚨"
           file_type: json
-          file_name: "${{ env.sarif_file }}"
+          file_path: "${{ env.sarif_file }}"
+          file_name: "${{ github.sha }}-snyk-results.sarif"
           title: "${{ github.sha }}-snyk-results.sarif"
+          thread_ts: ${{ env.ts }}
 
       - name: Notify Slack if no vulnerabilities found
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'false'
