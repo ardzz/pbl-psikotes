@@ -149,6 +149,9 @@ jobs:
                 '{
                   channel: $channel,
                   text: $text,
+                  ts: $ts,
+                  file: $file,
+                  filename: $filename,
                   blocks: ($blocks | fromjson)
                 }')
 
