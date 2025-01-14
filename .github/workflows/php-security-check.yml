@@ -32,6 +32,7 @@ jobs:
                 text:
                   type: mrkdwn
                   text: "Commit details: \n- Repository: ${{ github.repository }} \n- Commit: ${{ github.sha }} \n- Author: ${{ github.actor }} \n- Message: ${{ github.event.head_commit.message }} \n- Date: ${{ github.event.head_commit.timestamp }}"
+      - run: echo "notify_start_ts=${{ steps.notify_start.outputs.ts }}" >> $GITHUB_ENV
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/php@master
         env:
@@ -60,6 +61,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ github.sha }}-snyk-results.sarif
+      - run: unzip ${{ github.sha }}-snyk-results.sarif.zip
 
       - name: Parse SARIF and Check for Vulnerabilities
         id: parse_sarif
@@ -89,7 +91,7 @@ jobs:
             echo "SARIF file not found: ${{ github.event.inputs.sarif_file }}"
             exit 1
           fi
-
+      - run: echo "::set-output name=commit_short::$(echo ${{ github.sha }} | cut -c1-7)"
       - name: Notify Slack if vulnerabilities found
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'true' && steps.prepare_slack_message.outputs.message != ''
         uses: slackapi/slack-github-action@v2.0.0
@@ -98,13 +100,13 @@ jobs:
           token: ${{ secrets.SLACK_BOT_TOKEN }}
           payload: |
             channel: ${{ secrets.SLACK_CHANNEL }}
-            ts: ${{ needs.php-security-check.outputs.notify-start.ts }}
+            ts: ${{ env.notify_start_ts }}
             text: ":rotating_light: PHP Security Check found vulnerabilities :rotating_light:"
             blocks:
               - type: section
                 text:
                   type: mrkdwn
-                  text: "Commit details: \n- Repository: ${{ github.repository }} \n- Commit: ${{ github.sha }} \n- Author: ${{ github.actor }} \n- Message: ${{ github.event.head_commit.message }} \n- Date: ${{ github.event.head_commit.timestamp }}"
+                  text: "Commit details: \n- Repository: ${{ github.repository }} \n- Commit: ${{ steps.notify-after-check.outputs.commit_short }} \n- Author: ${{ github.actor }} \n- Message: ${{ github.event.head_commit.message }} \n- Date: ${{ github.event.head_commit.timestamp }}"
               - type: section
                 text:
                   type: mrkdwn
@@ -118,7 +120,7 @@ jobs:
           token: ${{ secrets.SLACK_BOT_TOKEN }}
           payload: |
             channel: ${{ secrets.SLACK_CHANNEL }}
-            ts: ${{ needs.php-security-check.outputs.notify-start.ts }}
+            ts: ${{ env.notify_start_ts }}
             text: ":shield: PHP Security Check found no vulnerabilities :shield:"
             blocks:
               - type: section
