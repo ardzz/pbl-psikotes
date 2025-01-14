@@ -18,19 +18,114 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: notify-start
+        uses: slackapi/slack-github-action@v2.0.0
+        id: notify_start
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          payload: |
+            channel: ${{ secrets.SLACK_CHANNEL }}
+            text: ":safety_vest: PHP Security Check started :safety_vest:"
+            blocks:
+              - type: section
+                text:
+                  type: mrkdwn
+                  text: "Commit details: \n- Repository: ${{ github.repository }} \n- Commit: ${{ github.sha }} \n- Author: ${{ github.actor }} \n- Message: ${{ github.event.head_commit.message }} \n- Date: ${{ github.event.head_commit.timestamp }}"
       - name: Run Snyk to check for vulnerabilities
-        continue-on-error: true
         uses: snyk/actions/php@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: --all-projects --sarif-file-output=snyk.sarif
       - name: Archive Snyk results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ${{ github.sha }}-snyk-results.sarif
           path: snyk.sarif
       - name: Upload result to GitHub Code Scanning
+        if: always()
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: snyk.sarif
+
+  notify-after-check:
+    name: Notify Slack after PHP Security Check
+    runs-on: ubuntu-latest
+    needs: [php-security-check]
+    if: always() # Ensure this runs even if the previous job fails
+    steps:
+      - name: Download Snyk results
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ github.sha }}-snyk-results.sarif
+
+      - name: Parse SARIF and Check for Vulnerabilities
+        id: parse_sarif
+        run: |
+          if jq -e '.runs[].tool.driver.rules | length > 0' ${{ github.sha }}-snyk-results.sarif > /dev/null; then
+            echo "Vulnerabilities found."
+            echo "::set-output name=has_vulnerabilities::true"
+          else
+            echo "No vulnerabilities found."
+            echo "::set-output name=has_vulnerabilities::false"
+          fi
+
+      - name: Prepare Slack message
+        id: prepare_slack_message
+        if: steps.parse_sarif.outputs.has_vulnerabilities == 'true'
+        run: |
+          if [ -f "${{ github.event.inputs.sarif_file }}" ]; then
+            # Extract issues with severity levels and emojis
+            formatted_issues=$(jq -r '.runs[].tool.driver.rules[] |
+              (if .properties["security-severity"] | tonumber <= 3.9 then "🟢 [LOW]"
+               elif .properties["security-severity"] | tonumber <= 6.9 then "🟡 [MEDIUM]"
+               elif .properties["security-severity"] | tonumber <= 8.9 then "🔴 [HIGH]"
+               else "🚨 [CRITICAL]" end) +
+              " \(.shortDescription.text)\nDescription: \(.fullDescription.text)"' "${{ github.event.inputs.sarif_file }}")
+            echo "::set-output name=message::${formatted_issues}"
+          else
+            echo "SARIF file not found: ${{ github.event.inputs.sarif_file }}"
+            exit 1
+          fi
+
+      - name: Notify Slack if vulnerabilities found
+        if: steps.parse_sarif.outputs.has_vulnerabilities == 'true' && steps.prepare_slack_message.outputs.message != ''
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          payload: |
+            channel: ${{ secrets.SLACK_CHANNEL }}
+            ts: ${{ needs.php-security-check.outputs.notify-start.ts }}
+            text: ":rotating_light: PHP Security Check found vulnerabilities :rotating_light:"
+            blocks:
+              - type: section
+                text:
+                  type: mrkdwn
+                  text: "Commit details: \n- Repository: ${{ github.repository }} \n- Commit: ${{ github.sha }} \n- Author: ${{ github.actor }} \n- Message: ${{ github.event.head_commit.message }} \n- Date: ${{ github.event.head_commit.timestamp }}"
+              - type: section
+                text:
+                  type: mrkdwn
+                  text: "${{ steps.prepare_slack_message.outputs.message }}"
+
+      - name: Notify Slack if no vulnerabilities found
+        if: steps.parse_sarif.outputs.has_vulnerabilities == 'false'
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          payload: |
+            channel: ${{ secrets.SLACK_CHANNEL }}
+            ts: ${{ needs.php-security-check.outputs.notify-start.ts }}
+            text: ":shield: PHP Security Check found no vulnerabilities :shield:"
+            blocks:
+              - type: section
+                text:
+                  type: mrkdwn
+                  text: "Commit details: \n- Repository: ${{ github.repository }} \n- Commit: ${{ github.sha }} \n- Author: ${{ github.actor }} \n- Message: ${{ github.event.head_commit.message }} \n- Date: ${{ github.event.head_commit.timestamp }}"
+              - type: section
+                text:
+                  type: mrkdwn
+                  text: ":tada: No vulnerabilities found in the PHP code. :tada:"
