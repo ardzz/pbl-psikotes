@@ -87,8 +87,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: notify-start-ts
-      - run: apt update && apt install -y tree
-      - run: tree
       - run: ls -al
       - run: cat notify_start_ts.txt
       - run: echo "notify_start_ts=$(cat notify_start_ts.txt)" >> $GITHUB_ENV
