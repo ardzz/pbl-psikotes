@@ -154,7 +154,7 @@ jobs:
                   filename: $filename,
                   blocks: ($blocks | fromjson)
                 }')
-
+                echo $payload
                 curl -X POST -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
                    -H "Content-Type: application/json; charset=utf-8" \
                    -d "$payload" https://slack.com/api/chat.update
