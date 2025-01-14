@@ -1,4 +1,4 @@
-FROM dunglas/frankenphp
+FROM dunglas/frankenphp:1.4.0-php8.2-bookworm
 
 # Copy your app
 WORKDIR /go/src/app/dist/app
