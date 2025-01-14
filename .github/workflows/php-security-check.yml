@@ -174,7 +174,7 @@ jobs:
         with:
           channel_id: ${{ secrets.SLACK_CHANNEL }}
           slack_token: ${{ secrets.SLACK_BOT_TOKEN }}
-          initial_comment: "PHP Security Check: Vulnerabilities Found 🚨"
+          initial_comment: "${{ github.sha }}-snyk-results.sarif"
           file_type: json
           file_path: "${{ env.sarif_file }}"
           file_name: "${{ github.sha }}-snyk-results.sarif"
