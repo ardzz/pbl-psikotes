@@ -74,7 +74,6 @@ jobs:
             echo "No vulnerabilities found."
             echo "::set-output name=has_vulnerabilities::false"
           fi
-      - run: pwd && ls -la
       - name: Set SARIF file
         id: set_sarif_file
         run: echo "sarif_file=$(find . -name '*.sarif')" >> $GITHUB_ENV
@@ -92,7 +91,7 @@ jobs:
               " \(.shortDescription.text)\nDescription: \(.fullDescription.text)"' "${{ env.sarif_file }}")
             echo "::set-output name=message::${formatted_issues}"
           else
-            echo "SARIF file not found: ${{ github.event.inputs.sarif_file }}"
+            echo "SARIF file not found"
             exit 1
           fi
       - run: echo "::set-output name=commit_short::$(echo ${{ github.sha }} | cut -c1-7)"
@@ -109,10 +108,10 @@ jobs:
             ts: ${{ env.notify_start_ts }}
             text: ":rotating_light: PHP Security Check found vulnerabilities :rotating_light:"
             blocks:
-              - type: section
+              - type: header
                 text:
-                  type: mrkdwn
-                  text: "Commit details: \n- Repository: ${{ github.repository }} \n- Commit: ${{ steps.notify-after-check.outputs.commit_short }} \n- Author: ${{ github.actor }} \n- Message: ${{ github.event.head_commit.message }} \n- Date: ${{ github.event.head_commit.timestamp }}"
+                  type: plain_text
+                  text: "PHP Security Check found vulnerabilities"
               - type: section
                 text:
                   type: mrkdwn
@@ -129,6 +128,10 @@ jobs:
             ts: ${{ env.notify_start_ts }}
             text: ":shield: PHP Security Check found no vulnerabilities :shield:"
             blocks:
+              - type: header
+                text:
+                  type: plain_text
+                  text: "PHP Security Check found no vulnerabilities"
               - type: section
                 text:
                   type: mrkdwn
