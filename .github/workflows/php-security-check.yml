@@ -110,38 +110,48 @@ jobs:
       - name: Notify Slack if vulnerabilities found
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'true' && env.issues != ''
         run: |
-          decoded_issues=$(echo "${{ env.issues }}" | base64 --decode)
-          curl -X POST -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "channel": ""${{ secrets.SLACK_CHANNEL }}"",
-              "ts": "${{ env.notify_start_ts }}",
-              "blocks": [
-                {
-                  "type": "header",
-                  "text": {
-                    "type": "plain_text",
-                    "text": "PHP Security Check: Vulnerabilities Found 🚨"
-                  }
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "'"${decoded_issues}"'"
-                  }
-                },
-                {
-                  "type": "context",
-                  "elements": [
+          # Decode the Base64 string
+          decoded_issues=$(echo "${{ env.issues }}" | base64 --decode | jq -R '.')
+
+          # Prepare the JSON payload
+          payload=$(jq -n --arg channel "${{ secrets.SLACK_CHANNEL }}" \
+                --arg text "PHP Security Check: Vulnerabilities Found 🚨" \
+                --arg blocks "$(jq -n \
+                  --arg decoded_issues "$decoded_issues" \
+                  '[
                     {
-                      "type": "mrkdwn",
-                      "text": "Checked by *${{ github.actor }}* in repository *${{ github.repository }}* on commit *${{ github.sha }}*"
+                      "type": "header",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "PHP Security Check: Vulnerabilities Found 🚨"
+                      }
+                    },
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": $decoded_issues
+                      }
+                    },
+                    {
+                      "type": "context",
+                      "elements": [
+                        {
+                          "type": "mrkdwn",
+                          "text": "Checked by *${{ github.actor }}* in repository *${{ github.repository }}* on commit *${{ github.sha }}*"
+                        }
+                      ]
                     }
-                  ]
-                }
-              ]
-            }' https://slack.com/api/chat.update
+                  ]')" \
+                '{
+                  channel: $channel,
+                  text: $text,
+                  blocks: ($blocks | fromjson)
+                }')
+
+                curl -X POST -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
+                   -H "Content-Type: application/json; charset=utf-8" \
+                   -d "$payload" https://slack.com/api/chat.update
 
       - name: Notify Slack if no vulnerabilities found
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'false'
