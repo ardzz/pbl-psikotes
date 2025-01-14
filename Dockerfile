@@ -19,6 +19,7 @@ RUN apt update && apt install -y libicu-dev libzip-dev libonig-dev zip nano
 RUN install-php-extensions pdo pdo_mysql intl zip exif mbstring gd
 
 # Install the dependencies
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 RUN composer install --ignore-platform-reqs --no-dev -a
 
 # Build the static binary
