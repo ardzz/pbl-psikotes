@@ -35,8 +35,13 @@ jobs:
                 text:
                   type: mrkdwn
                   text: "Commit details: \n- Repository: ${{ github.repository }} \n- Commit: ${{ github.sha }} \n- Author: ${{ github.actor }} \n- Message: ${{ github.event.head_commit.message }} \n- Date: ${{ github.event.head_commit.timestamp }}"
-      - run: echo "notify_start_ts=${{ steps.notify_start.outputs.ts }}" >> $GITHUB_ENV
-      - run: echo "::set-output name=notify_start_ts::${{ steps.notify_start.outputs.ts }}"
+      - run: echo "${{ steps.notify_start.outputs.ts }}" > notify_start_ts.txt
+      - name: Share notify_start_ts with subsequent jobs via artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.sha }}-notify-start-ts
+          path: 'notify_start_ts.txt'
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/php@master
         env:
@@ -78,7 +83,14 @@ jobs:
       - name: Set SARIF file
         id: set_sarif_file
         run: echo "sarif_file=$(find . -name '*.sarif')" >> $GITHUB_ENV
-      - run: echo "notify_start_ts=${{ needs.php-security-check.outputs.notify_start_ts }}" >> $GITHUB_ENV
+      - name: Download notify_start_ts
+        uses: actions/download-artifact@v4
+        with:
+          name: 'notify_start_ts.txt'
+      - run: ls -al
+      - run: cat notify_start_ts.txt
+      - run: echo "notify_start_ts=$(cat notify_start_ts.txt)" >> $GITHUB_ENV
+      - run: cat $GITHUB_ENV
       - name: Prepare Slack message
         id: prepare_slack_message
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'true'
