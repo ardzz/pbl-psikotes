@@ -79,7 +79,7 @@ jobs:
         id: prepare_slack_message
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'true'
         run: |
-          if [ -f "${{ github.event.inputs.sarif_file }}" ]; then
+          if [ -f "snyk.sarif" ]; then
             # Extract issues with severity levels and emojis
             formatted_issues=$(jq -r '.runs[].tool.driver.rules[] |
               (if .properties["security-severity"] | tonumber <= 3.9 then "🟢 [LOW]"
