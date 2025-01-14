@@ -115,7 +115,10 @@ jobs:
 
           # Prepare the JSON payload
           payload=$(jq -n --arg channel "${{ secrets.SLACK_CHANNEL }}" \
+                --arg ts "${{ env.notify_start_ts }}" \
                 --arg text "PHP Security Check: Vulnerabilities Found 🚨" \
+                --arg file "${{ env.sarif_file }}" \
+                --arg filename "${{ github.sha }}-snyk-results.sarif" \
                 --arg blocks "$(jq -n \
                   --arg decoded_issues "$decoded_issues" \
                   '[
