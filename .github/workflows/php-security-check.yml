@@ -89,7 +89,7 @@ jobs:
                elif .properties["security-severity"] | tonumber <= 8.9 then "🔴 [HIGH]"
                else "🚨 [CRITICAL]" end) +
               " \(.shortDescription.text)\nDescription: \(.fullDescription.text)"' "${{ env.sarif_file }}")
-            echo "issues=${formatted_issues}" >> $GITHUB_ENV
+            echo 'issues="${formatted_issues}"' >> $GITHUB_ENV
           else
             echo "SARIF file not found"
             exit 1
