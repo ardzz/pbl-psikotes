@@ -140,9 +140,9 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return null;
     }
 
-    public function getLatestExam(): Model|HasMany
+    public function getLatestExam(): Model|HasMany|null
     {
-        return $this->exam()->latest()->first();
+        return $this->exam()?->latest()->first();
     }
 
     public function isAdmin(): bool
