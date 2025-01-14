@@ -111,7 +111,7 @@ jobs:
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'true' && env.issues != ''
         run: |
           # Decode the Base64 string
-          decoded_issues=$(echo "${{ env.issues }}" | base64 --decode | jq -R '.')
+          decoded_issues=$(echo "${{ env.issues }}" | base64 --decode)
 
           # Prepare the JSON payload
           payload=$(jq -n --arg channel "${{ secrets.SLACK_CHANNEL }}" \
