@@ -40,8 +40,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.sha }}-notify-start-ts
-          path: 'notify_start_ts.txt'
+          name: notify-start-ts
+          path: notify_start_ts.txt
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/php@master
         env:
@@ -86,7 +86,8 @@ jobs:
       - name: Download notify_start_ts
         uses: actions/download-artifact@v4
         with:
-          name: 'notify_start_ts.txt'
+          name: notify_start_ts
+          path: notify_start_ts.txt
       - run: ls -al
       - run: cat notify_start_ts.txt
       - run: echo "notify_start_ts=$(cat notify_start_ts.txt)" >> $GITHUB_ENV
