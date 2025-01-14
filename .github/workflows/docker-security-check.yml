@@ -8,6 +8,11 @@ on:
   pull_request:
     branches:
       - filament
+  workflow_run:
+    workflows:
+      - PHP Security Check
+    types:
+      - completed
 
 jobs:
   security-check:
@@ -16,6 +21,7 @@ jobs:
     permissions:
       contents: read
       security-events: write
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
