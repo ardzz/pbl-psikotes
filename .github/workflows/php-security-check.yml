@@ -26,8 +26,11 @@ jobs:
           token: ${{ secrets.SLACK_BOT_TOKEN }}
           payload: |
             channel: ${{ secrets.SLACK_CHANNEL }}
-            text: ":safety_vest: PHP Security Check started :safety_vest:"
             blocks:
+              - type: header
+                text:
+                  type: plain_text
+                  text: "PHP Security Check started"
               - type: section
                 text:
                   type: mrkdwn
@@ -64,7 +67,7 @@ jobs:
       - name: Parse SARIF and Check for Vulnerabilities
         id: parse_sarif
         run: |
-          if jq -e '.first(.runs[].tool.driver.rules | length) > 0' *.sarif > /dev/null; then
+          if jq -e 'first(.runs[].tool.driver.rules | length) > 0' *.sarif > /dev/null; then
             echo "Vulnerabilities found."
             echo "::set-output name=has_vulnerabilities::true"
           else
@@ -90,6 +93,8 @@ jobs:
             exit 1
           fi
       - run: echo "::set-output name=commit_short::$(echo ${{ github.sha }} | cut -c1-7)"
+      - run: echo $GITHUB_ENV
+      - run: echo "notify_start_ts=${{ steps.php-security-check.outputs.notify_start_ts }}" >> $GITHUB_ENV
       - name: Notify Slack if vulnerabilities found
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'true' && steps.prepare_slack_message.outputs.message != ''
         uses: slackapi/slack-github-action@v2.0.0
