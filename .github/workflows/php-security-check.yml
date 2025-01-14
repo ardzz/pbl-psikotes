@@ -100,7 +100,7 @@ jobs:
                elif .properties["security-severity"] | tonumber <= 6.9 then "🟡 [MEDIUM]"
                elif .properties["security-severity"] | tonumber <= 8.9 then "🔴 [HIGH]"
                else "🚨 [CRITICAL]" end) +
-              " \(.shortDescription.text)\\nDescription: \(.fullDescription.text)"' "${{ env.sarif_file }}")
+              " \(.shortDescription.text)\n\(.fullDescription.text)"' "${{ env.sarif_file }}")
             echo "issues=$(echo "$formatted_issues" | base64 -w 0)" >> $GITHUB_ENV
           else
             echo "SARIF file not found"
@@ -110,6 +110,7 @@ jobs:
       - name: Notify Slack if vulnerabilities found
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'true' && env.issues != ''
         run: |
+          commits_message="Commit details: \n- Repository: ${{ github.repository }} \n- Commit: ${{ github.sha }} \n- Author: ${{ github.actor }} \n- Message: ${{ github.event.head_commit.message }} \n- Date: ${{ github.event.head_commit.timestamp }}"
           # Decode the Base64 string
           decoded_issues=$(echo "${{ env.issues }}" | base64 --decode)
 
@@ -137,6 +138,13 @@ jobs:
                       }
                     },
                     {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": $commits_message
+                      }
+                    },
+                    {
                       "type": "context",
                       "elements": [
                         {
@@ -155,9 +163,23 @@ jobs:
                   blocks: ($blocks | fromjson)
                 }')
                 echo $payload
-                curl -X POST -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
+                request=$(curl -X POST -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
                    -H "Content-Type: application/json; charset=utf-8" \
-                   -d "$payload" https://slack.com/api/chat.update
+                   -d "$payload" https://slack.com/api/chat.update --silent)
+                # {"ok":true,"channel":"***","ts":"1736878113.948639","text":"PHP Security Check: Vulnerabilities Found :rotating_light:","message":{"user":"U08875WKVFX","type":"message","edited":{"user":"B088CGBAF36","ts":"1736878142.000000"},"bot_id":"B088CGBAF36","app_id":"A0883C9QUQN","text":"PHP Security Check: Vulnerabilities Found :rotating_light:","team":"T087V7ACJPR","bot_profile":{"id":"B088CGBAF36","app_id":"A0883C9QUQN","name":"Satpam Server","icons":{"image_36":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_36.png","image_48":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_48.png","image_72":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/service_72.png"},"deleted":false,"updated":1736763387,"team_id":"T087V7ACJPR"},"blocks":[{"type":"header","block_id":"EtzSb","text":{"type":"plain_text","text":"PHP Security Check: Vulnerabilities Found :rotating_light:","emoji":true}}}
+                # get message.edited.ts
+                echo "ts=$(echo $request | jq -r '.message.edited.ts')" >> $GITHUB_ENV
+
+      - name: Upload sarif file
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          method: files.uploadV2
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          payload: |
+            channel: ${{ secrets.SLACK_CHANNEL_ID }}
+            initial_comment: "the results are in!"
+            file: "${{ env.sarif_file }}"
+            filename: "${{ github.sha }}-snyk-results.sarif"
 
       - name: Notify Slack if no vulnerabilities found
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'false'
