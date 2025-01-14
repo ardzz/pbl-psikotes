@@ -179,7 +179,7 @@ jobs:
           file_path: "${{ env.sarif_file }}"
           file_name: "${{ github.sha }}-snyk-results.sarif"
           title: "${{ github.sha }}-snyk-results.sarif"
-          thread_ts: ${{ env.ts }}
+          thread_ts: ${{ env.notify_start_ts }}
 
       - name: Notify Slack if no vulnerabilities found
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'false'
