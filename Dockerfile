@@ -15,6 +15,9 @@ RUN sed -i'' -e 's/^APP_ENV=.*/APP_ENV=production/' -e 's/^APP_DEBUG=.*/APP_DEBU
 
 # Make other changes to your .env file if needed
 
+RUN apk add icu-dev libzip-dev oniguruma-dev
+RUN docker-php-ext-install pdo pdo_mysql intl zip exif mbstring gd
+
 # Install the dependencies
 RUN composer install --ignore-platform-reqs --no-dev -a
 
