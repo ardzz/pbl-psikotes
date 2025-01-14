@@ -140,7 +140,7 @@ jobs:
                       "type": "section",
                       "text": {
                         "type": "mrkdwn",
-                        "text": "Due to the presence of vulnerabilities, the commit *(${{ github.event.head_commit.message }})* is not safe to deploy. Please fix the vulnerabilities and make sure your app is *unhackable*."
+                        "text": "Due to the presence of vulnerabilities, the commit *${{ github.event.head_commit.message }}* is not safe to deploy. Please fix the vulnerabilities and make sure your app is *unhackable*."
                       }
                     },
                     {
@@ -170,15 +170,14 @@ jobs:
                 echo "ts=$(echo $request | jq -r '.message.edited.ts')" >> $GITHUB_ENV
 
       - name: Upload sarif file
-        uses: slackapi/slack-github-action@v2.0.0
+        uses: MeilCli/slack-upload-file@v4
         with:
-          method: files.uploadV2
-          token: ${{ secrets.SLACK_BOT_TOKEN }}
-          payload: |
-            channel: ${{ secrets.SLACK_CHANNEL }}
-            initial_comment: "PHP Security Check: Vulnerabilities Found 🚨"
-            file: "${{ env.sarif_file }}"
-            filename: "${{ github.sha }}-snyk-results.sarif"
+          channel_id: ${{ secrets.SLACK_CHANNEL }}
+          slack_token: ${{ secrets.SLACK_BOT_TOKEN }}
+          initial_comment: "PHP Security Check: Vulnerabilities Found 🚨"
+          file_type: json
+          file_name: "${{ env.sarif_file }}"
+          title: "${{ github.sha }}-snyk-results.sarif"
 
       - name: Notify Slack if no vulnerabilities found
         if: steps.parse_sarif.outputs.has_vulnerabilities == 'false'
